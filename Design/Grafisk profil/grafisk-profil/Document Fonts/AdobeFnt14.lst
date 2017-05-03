@@ -1,0 +1,127 @@
+%!Adobe-FontList 1.14
+%Locale:0x41d
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:TrueType
+FontName:LTHSektionssymboler
+FamilyName:LTH Sektionssymboler
+StyleName:Regular
+FullName:LTH Sektionssymboler
+MenuName:LTH Sektionssymboler
+StyleBits:0
+WritingScript:Roman
+OutlineFileName:H:\johan\sanning\grafisk-profil\Document fonts\lth-sektionssymboler.ttf
+DataFormat:sfntData
+FileLength:11640
+FileModTime:1237143084
+WeightClass:400
+WidthClass:5
+AngleClass:0
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:Type1
+FontName:CMUSerif-BoldSlanted
+FamilyName:CMU Serif Extra
+StyleName:BoldSlanted
+FullName:CMU Serif Bold Extended Slanted Roman
+MenuName:CMU Serif Extra
+StyleBits:3
+WritingScript:Roman
+OutlineFileName:H:\johan\sanning\grafisk-profil\Document fonts\cmunbl.otf
+DataFormat:sfntData
+UsesStandardEncoding:yes
+isCFF:yes
+FileLength:322396
+FileModTime:1349966948
+WeightClass:700
+WidthClass:5
+AngleClass:1
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:Type1
+FontName:CMUSerif-BoldNonextended
+FamilyName:CMU Serif Extra
+StyleName:BoldNonextended
+FullName:CMU Serif Roman Bold Nonextended
+MenuName:CMU Serif Extra
+StyleBits:2
+WritingScript:Roman
+OutlineFileName:H:\johan\sanning\grafisk-profil\Document fonts\cmunrb.otf
+DataFormat:sfntData
+UsesStandardEncoding:yes
+isCFF:yes
+FileLength:216080
+FileModTime:1349966944
+WeightClass:700
+WidthClass:5
+AngleClass:0
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:Type1
+FontName:CMUSerif-Roman
+FamilyName:CMU Serif
+StyleName:Roman
+FullName:CMU Serif Roman
+MenuName:CMU Serif
+StyleBits:0
+WritingScript:Roman
+OutlineFileName:H:\johan\sanning\grafisk-profil\Document fonts\cmunrm.otf
+DataFormat:sfntData
+UsesStandardEncoding:yes
+isCFF:yes
+FileLength:324280
+FileModTime:1349966943
+WeightClass:500
+WidthClass:5
+AngleClass:0
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:Type1
+FontName:CMUSerif-BoldItalic
+FamilyName:CMU Serif
+StyleName:BoldItalic
+FullName:CMU Serif Bold Extended Italic
+MenuName:CMU Serif
+StyleBits:3
+WritingScript:Roman
+OutlineFileName:H:\johan\sanning\grafisk-profil\Document fonts\cmunbi.otf
+DataFormat:sfntData
+UsesStandardEncoding:yes
+isCFF:yes
+FileLength:255724
+FileModTime:1349966948
+WeightClass:700
+WidthClass:5
+AngleClass:1
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:Type1
+FontName:CMUClassicalSerif-Italic
+FamilyName:CMU Classical Serif
+StyleName:Italic
+FullName:CMU Classical Serif Italic
+MenuName:CMU Classical Serif
+StyleBits:1
+WritingScript:Roman
+OutlineFileName:H:\johan\sanning\grafisk-profil\Document fonts\cmunci.otf
+DataFormat:sfntData
+UsesStandardEncoding:yes
+isCFF:yes
+FileLength:252972
+FileModTime:1349966945
+WeightClass:500
+WidthClass:5
+AngleClass:1
+%EndFont
+

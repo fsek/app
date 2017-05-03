@@ -1,0 +1,157 @@
+
+%% example.tex: Manual till den stora F-klassen(TM) med exempel.
+%% Av Johan Förberg F10, 2013
+
+%% Ladda in F-klassen.
+\documentclass[protokoll]{fclass}
+
+%% Om du vill ta med F-papperet i PDF:en digitalt skriver du istället
+ %\documentclass[nofpaper]{fclass}
+%% Använd detta bara när du vet att du inte kommer att behöva skriva ut,
+%% och bara vill maila ut dokumentet. Skriv alltid ut på riktigt F-papper!
+
+%% F-klassen tar hand om textkodning och annat bök åt dig. Bra va?
+
+%% Rubrik för dokumentet.
+\title{Protokoll från styrelsemöte F1--HT93 \\
+       \normalsize{Alumnirummet, 
+       kl. 12.15 onsdagen den 2 september 2093}}
+
+%% Kortare rubrik som vi kan använda i sidhuvudet.
+ \shorttitle{F1--HT93}
+%% Ta inte med "motion angående" eller liknande. Kort och koncist.
+
+%% Vem har författat dokumentet?
+\author{\f -sektionens styrelse}
+%% Ditt namn, namnet på en arbetsgrupp eller "\f -sektionens styrelse".
+
+%% När skrevs dokumentet?
+\date{\today}
+%% Värdet bör alltid vara \today.
+
+%% Vad är det för slags dokument? 
+\type{Protokoll}
+%% Exempel: Motion, Protokoll, Remiss, Dagordning.
+
+%% Plats för att ladda paket. Kolla först i fclass.cls om det finns där.
+ %\usepackage{myawesomepackage}
+
+%% Här börjar dokumentet.
+\begin{document}
+
+%% Påbörja en ny paragraf med \para 
+
+\para{O.F.M.Ö.}
+Ordförande Trula Teknologsson förklarade mötet öppnat.
+
+\para{Närvaro}
+
+%% Närvarolistan gör man så här. Skriv \\ (radbrytning) efter varje namn
+%% utom det sista.
+
+\begin{narvaro}
+	\textbf{Trula Teknologsson}\\
+    \textbf{Truls Trulasson}\\
+    \textbf{Teknolog Teknologsson}\\
+    \textbf{Teknolog Trulsson}\\
+    \textbf{Truls Teknologsson}\\
+    \textbf{Trula Trulasdotter}\\
+    \textbf{Truls von Technik}\\
+    \textbf{Truls Trulsson}\\
+    \textbf{Teknolog de Technique} \emph{fr.o.m. §7}\\
+    Hilbert Älg\\
+    Hella Älg
+\end{narvaro}
+
+\para{Adjungeringar}
+Alla som skrivit upp sig på närvarolistan samt som inte var ständigt adjungerade eller styrelseledamöter adjungerades.
+
+\para{Val av justerare}
+Kassör Teknolog Trulsson utsågs att, jämte ordförande Trula Teknologsson, justera protokollet.
+
+\para{Godkännandede av dagordning}
+Styrelsen beslutade 
+\batt
+godkänna dagordningen som den låg.
+\eatt
+
+
+\para{Meddelanden}
+
+Vice ordförande Teknolog Teknologsson meddelade att potatisskörden hade varit dålig i Skåne innevarande år.
+
+
+\para{Beslutsuppföljning}
+\begin{beslutsupf}
+F12--VT92&Älghorn&Truls von Technik&F01--HT93\\ % Skriv F01--HT93 inte F1--HT93 som vanligt för att allt ska ligga i linje.
+\end{beslutsupf}
+
+\textbf{Älghorn:} Bla bla bla...
+
+Styrelsen beslutade 
+\batt
+stryka punkten från beslutsuppföljningen.
+\eatt
+
+
+\para{Arbetsgruppsrapporter och redovisningar}
+\begin{arb}
+F122--VT93&Hilberts frack&Truls Trulsson&F01--HT93\\
+\end{arb}
+
+\textbf{Hilberts frack:} Bla bla bla...
+\batt
+flytta redovisningsdatum till F3--HT93.
+\eatt
+
+
+
+\para{Inköp av potatis}
+
+Bla bla bla...
+
+Styrelsen beslutade
+\batt
+avsätta upp till 10\,000~kronor ur kontot för styrelsen disponibelt för inköp av potatis.
+\eatt
+
+
+\para{Övrigt}
+
+Inga övriga frågor lyftes.
+
+
+
+\para{Nästa möte}
+
+Nästa möte sattes till onsdagen den 9 september klockan 12.15 i Alumnirummet
+
+
+\para{O.F.M.A.}
+Ordförande Trula Teknologsson förklarade mötet avslutat.
+
+%% Lämna lite plats mellan texten och underskrifterna.
+
+\vspace{10mm}
+
+%% Här börjar blocket med signaturer. Miljön ser automatiskt till att 
+%% alla signaturer kommer på samma sida.
+
+\begin{signblock}
+
+\emph{I sektionsstyrelsens tjänst,}
+%% Din post eller annan titel skriver du inom hakparentes.
+
+\sign[Ordförande]{Trula Teknologsson}
+\sign[Sekreterare]{Truls Trulasson}
+\sign[Justerare]{Teknolog Trulsson}
+
+%% Här kan man fylla på med fler namn om man vill. Miljön lägger dem 
+%% automatiskt i två kolumner.
+\end{signblock}
+
+%% Slut.
+
+%\includepdf[pages=-]{}
+
+\end{document}

@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html class="with-statusbar-overlay">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>F-appen</title>
+    <!-- Path to Framework7 Library CSS-->
+    <link rel="stylesheet" href="css/framework7.ios.min.css">
+    <link rel="stylesheet" href="css/framework7.ios.colors.min.css">
+    <!-- Path to your custom app styles-->
+    <link rel="stylesheet" href="css/my-app.css">
+  </head>
+  <body>
+    <!-- Status bar overlay for fullscreen mode-->
+    <div class="statusbar-overlay"></div>
+    <!-- Panels overlay-->
+    <div class="panel-overlay"></div>
+    <!-- Left panel with reveal effect-->
+    <div class="panel panel-left panel-reveal">
+      <div class="content-block">
+        <p>Left panel content goes here</p>
+      </div>
+    </div>
+    <!-- Right panel with cover effect-->
+    <div class="panel panel-right panel-cover">
+      <div class="content-block">
+        <p>Right panel content goes here</p>
+      </div>
+    </div>
+    <!-- Views-->
+    <div class="views tabs">
+      <div id="tab1" class="view view-main tab active" data-page="index-1">
+        <div class="navbar">
+          <div class="navbar-inner">
+            <div class="center sliding">1:a tabben</div>
+            <div class="right">
+              <a href="#" class="link icon-only open-panel"> 
+                <i class="icon icon-bars"></i>
+              </a>
+           </div>
+          </div>              
+        </div>
+        <div class="pages navbar-fixed">
+          <div class="page" data-page="index-1">
+            <div class="page-content">
+            <div class="content-block-title">Side panels</div>
+              <div class="content-block">
+                <div class="row">
+                  <div class="col-50">
+                    <a href="#" data-panel="left" class="button open-panel">Left Panel</a>
+                  </div>
+                  <div class="col-50">
+                    <a href="#" data-panel="right" class="button open-panel">Right Panel</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="tab2" class="view tab" data-page="index-2">
+        <div class="navbar">
+          <div class="navbar-inner">
+            <div class="center sliding">2:a tabben</div>
+          </div>              
+        </div>
+        <div class="pages navbar-fixed">
+          <div class="page" data-page="index-2">
+            <div class="page-content">
+              <div class="list-block">
+                <ul>
+                  <li>
+                    <a href="about.html" class="item-link">
+                      <div class="item-content">
+                        <div class="item-inner"> 
+                          <div class="item-title">About</div>
+                        </div>
+                      </div>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="form.html" class="item-link">
+                      <div class="item-content"> 
+                        <div class="item-inner">
+                          <div class="item-title">Form</div>
+                        </div>
+                      </div>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="services.html" class="item-link">
+                      <div class="item-content"> 
+                        <div class="item-inner">
+                          <div class="item-title">Services</div>
+                        </div>
+                      </div>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="tab3" class="view tab" data-page="index-3">
+        <div class="navbar">
+          <div class="navbar-inner">
+            <div class="center sliding">3:e tabben</div>
+          </div>              
+        </div>
+        <div class="pages navbar-fixed">
+          <div class="page" data-page="index-3">
+            <div class="page-content">
+              <div class="content-block-title">Flupp</div>
+              <div class="content-block">
+                <a href="#" class="open-login-screen">Log in page</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="tab4" class="view tab" data-page="index-4">
+        <div class="navbar">
+          <div class="navbar-inner">
+            <div class="center sliding">4:e tabben</div>
+          </div>              
+        </div>
+        <div class="pages navbar-fixed">
+          <div class="page" data-page="index-4">
+            <div class="page-content">
+              <div class="content-block-title">En fin historia</div>
+              <div class="content-block">
+                <p>Det var en gång en groda, quack!</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="tab5" class="view tab" data-page="index-5">
+        <div class="navbar">
+          <div class="navbar-inner">
+            <div class="center sliding">5:e tabben</div>
+          </div>              
+        </div>
+        <div class="pages navbar-fixed">
+          <div class="page" data-page="index-5">
+            <div class="page-content">
+              <div class="content-block-title">Plupp?</div>
+              <div class="content-block">
+                <p>Plupp.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Tabbar -->
+      <div class="toolbar tabbar tabbar-labels">
+          <div class="toolbar-inner">
+            <a href="#tab1" class="tab-link active">
+                <i class="icon demo-icon-1"></i>
+                <span class="tabbar-label">Tab 1</span>
+            </a>
+            <a href="#tab2" class="tab-link">
+                <i class="icon demo-icon-2">
+                    <span class="badge bg-orange">1337</span>
+                </i>
+                <span class="tabbar-label">Tab 2</span>
+            </a>
+            <a href="#tab3" class="tab-link">
+                <i class="icon demo-icon-3"></i>
+                <span class="tabbar-label">Tab 3</span>
+            </a>
+            <a href="#tab4" class="tab-link">
+                <i class="icon demo-icon-4"></i>
+                <span class="tabbar-label">Tab 4</span>
+            </a>
+            <a href="#tab5" class="tab-link">
+                <i class="icon demo-icon-4"></i>
+                <span class="tabbar-label">Tab 5</span>
+            </a>
+        </div>
+      </div>
+    </div>
+    <div class="login-screen modal-in">
+      <!-- Default view-page layout -->
+      <div class="view">
+        <div class="page">
+          <!-- page-content has additional login-screen content -->
+          <div class="page-content login-screen-content login-content">
+            <div class="login-logo"></div>
+            <!-- Login form -->
+            <form class="login-input">
+              <div class="list-block theme-orange">
+                <ul>
+                  <li class="item-content">
+                    <div class="item-inner">
+                      <i class="icon icon-bars"></i>
+                      <div class="item-input">
+                        <input type="email" name="email" placeholder="name@example.com">
+                      </div>
+                    </div>
+                  </li>
+                  <li class="item-content">
+                    <div class="item-inner">
+                      <i class="icon icon-bars"></i>
+                      <div class="item-input">
+                        <input type="password" name="password" placeholder="password">
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>  
+              <div class="list-block">
+                <div class="list-block-label">
+                  <p>Forgot your password? 
+                    <a href="#" class="close-login-screen"> Click here</a>
+                  </p>
+                </div>
+                <ul>
+                  <li>
+                    <a href="#" class="item-link list-button sign-in-button">Sign In</a>
+                  </li>
+                </ul>
+                <div class="list-block-label">
+                  <p>Don't have an account? 
+                    <a href="#" class="close-login-screen"> Sign up here</a>
+                  </p>
+                </div>
+              </div>    
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Path to Framework7 Library JS-->
+    <script type="text/javascript" src="js/framework7.min.js"></script>
+    <!-- Path to your app js-->
+    <script type="text/javascript" src="js/my-app.js"></script>
+  </body>
+</html>

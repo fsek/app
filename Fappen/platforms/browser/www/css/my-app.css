@@ -1,0 +1,55 @@
+
+.login-content{
+	color: #eb7125;
+	width: 100%;
+	height: 100%;
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+	background-image: url("../img/framsida_sjonsjon.png");
+}
+
+.login-logo{
+		width: 55%;
+	height: 30%;;
+	margin-left: 24%;
+	margin-top: 5%;
+	margin-bottom: 20%; 
+	background-position: fixed;
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-image: url("../img/f_logo.png");		
+}
+
+.sign-in-button{
+	/*opacity: 0.7;*/
+	width: 90%;
+	background: #eb7125;
+	border-radius: 8px;
+	color: white;
+}
+
+.login-input{
+	width: 85%;
+	margin-left: 7.5%;
+	color: #FFF;
+}
+input::-webkit-input-placeholder {
+  color: white;
+}
+
+
+a:active{
+	color:#d35400;
+}
+
+.statusbar-overlay {
+    background: lightblue;
+    /* We can add transition for smooth color animation */
+    -webkit-transition: 400ms;
+    transition: 400ms;
+}
+ 
+/* Change Status bar background when panel opened */
+body.with-panel-left-cover .statusbar-overlay {
+    background: black;
+}

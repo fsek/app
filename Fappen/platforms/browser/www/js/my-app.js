@@ -15,7 +15,9 @@ var tabview2 = myApp.addView('#tab2',{
 	dynamicNavbar:true
 });
 var tabview3 = myApp.addView('#tab3');
-var tabview4 = myApp.addView('#tab4');
+var tabview4 = myApp.addView('#tab4',{
+    dynamicNavbar:true
+});
 var tabview5 = myApp.addView('#tab5');
 
 /*$$('#tab2').on('tab:show', function () {
@@ -23,14 +25,9 @@ var tabview5 = myApp.addView('#tab5');
 	 a[0].innerHTML = "";
 });*/
 
-// Callbacks to run specific code for specific pages, for example for About page:
-myApp.onPageInit('about', function (page) {
-	myApp.alert("pas");
-});
-
 $$('.sign-in-button').on('click', function () {
-	var email = $$('.login-screen input[name="email"]').val();
-	var password = $$('.login-screen input[name="password"]').val();
+	var email = $$('input[name="email"]').val();
+	var password = $$('input[name="password"]').val();
 	if(password === "" || email === ""){
 		myApp.alert("Please fill out both fields", "Error Message");
 	}else{
@@ -42,4 +39,26 @@ $$('.sign-in-button').on('click', function () {
     		myApp.closeModal('.login-screen');
     	}, 1000);
     }
+});
+
+myApp.onPageInit('fadderchat', function (page) {
+    $$('.tabbar').hide();   
+});
+
+$$('.yool').on('click', function (){
+    $$('.tabbar').show();
+})
+
+$$('.send-message').on('click', function () {
+   var name = 'Olof Englund'
+    var message = $$('input[name="message"]').val(); /*Ändra .test*/
+    $$('.test').append('<div class="message message-received message-first message-appear-from-bottom">'
+        + '<div class="message-name">'
+            + name
+        + '</div>'
+        + '<div class="message-text">'
+            + message
+        + '</div>'
+    + '</div>');
+    $$('input[name="message"]').val(''); 
 });

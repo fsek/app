@@ -5,11 +5,11 @@
 	height: 100%;
 	background-size: 100% 100%;
 	background-repeat: no-repeat;
-	background-image: url("../img/framsida_sjonsjon.png");
+	background-image: url("../img/framsida_kram.png");
 }
 
 .login-logo{
-		width: 55%;
+	width: 55%;
 	height: 30%;;
 	margin-left: 24%;
 	margin-top: 5%;
@@ -52,4 +52,18 @@ a:active{
 /* Change Status bar background when panel opened */
 body.with-panel-left-cover .statusbar-overlay {
     background: black;
+}
+
+.send-message{
+	color: orange;
+}
+
+.chatbox{
+	width: 100%;
+	height: 13%;
+	background-color: white;
+	text-align: center;
+	border: #FFF;
+	border-bottom: #e8e8e8;
+	border-style: solid;
 }

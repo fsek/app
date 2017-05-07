@@ -24,41 +24,56 @@ var tabview5 = myApp.addView('#tab5');
 	 var a = document.getElementsByClassName("badge");
 	 a[0].innerHTML = "";
 });*/
-
 $$('.sign-in-button').on('click', function () {
-	var email = $$('input[name="email"]').val();
-	var password = $$('input[name="password"]').val();
-	if(password === "" || email === ""){
-		myApp.alert("Please fill out both fields", "Error Message");
-	}else{
-    	//Lägg in kod för att jämföra med databasen här
-    	myApp.showPreloader('Logging in');
-    	setTimeout(function () {
-    		myApp.hidePreloader();
-    		myApp.alert('Email: ' + email + ', Password: ' + password);	
-    		myApp.closeModal('.login-screen');
-    	}, 1000);
+    var email = $$('input[name="email"]').val();
+    var password = $$('input[name="password"]').val();
+    if(password === "" || email === ""){
+        myApp.alert("Please fill out both fields", "Error Message");
+    }else{
+        //Lägg in kod för att jämföra med databasen här
+        myApp.showPreloader('Logging in');
+        setTimeout(function () {
+            myApp.hidePreloader();
+            myApp.alert('Email: ' + email + ', Password: ' + password); 
+            myApp.closeModal('.login-screen');
+        }, 1000);
     }
 });
 
-myApp.onPageInit('fadderchat', function (page) {
-    $$('.tabbar').hide();   
+$$(document).on('pageInit', function(e) {
+
+    var page = e.detail.page;
+    
+    if(page.name === 'fadderchat' || page.name === 'foschat'){
+        /*Send message in the chat*/
+        $$('.send-message').on('click', function () {
+            var name = 'Fredrik Lastow'
+            var message = $$('input[name="message"]').val();
+            $$('.messages').append('<div class="message message-sent message-first message-appear-from-bottom">'
+                + '<div class="message-name">'
+                    + name
+                + '</div>'
+                + '<div class="message-text">'
+                    + message
+                + '</div>'
+            + '</div>');
+            $$('input[name="message"]').val(''); 
+        });
+    }
 });
 
-$$('.yool').on('click', function (){
+myApp.onPageBack('fadderchat', function (page) {
     $$('.tabbar').show();
-})
+});
 
-$$('.send-message').on('click', function () {
-   var name = 'Olof Englund'
-    var message = $$('input[name="message"]').val(); /*Ändra .test*/
-    $$('.test').append('<div class="message message-received message-first message-appear-from-bottom">'
-        + '<div class="message-name">'
-            + name
-        + '</div>'
-        + '<div class="message-text">'
-            + message
-        + '</div>'
-    + '</div>');
-    $$('input[name="message"]').val(''); 
+myApp.onPageInit('fadderchat', function (page) {
+    $$('.tabbar').hide();
+});
+
+myApp.onPageBack('foschat', function (page) {
+    $$('.tabbar').show();
+});
+
+myApp.onPageInit('foschat', function (page) {
+    $$('.tabbar').hide();
 });

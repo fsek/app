@@ -13,6 +13,9 @@
     <link rel="stylesheet" href="css/my-app.css">
   </head>
   <body>
+    <?php
+      echo "hej"; 
+    ?>
     <!-- Status bar overlay for fullscreen mode-->
     <div class="statusbar-overlay"></div>
     <!-- Panels overlay-->
@@ -31,7 +34,7 @@
     </div>
     <!-- Views-->
     <div class="views tabs">
-      <div id="tab1" class="view tab">
+      <div id="tab1" class="view view-main tab active">
         <div class="navbar">
           <div class="navbar-inner">
             <div class="center sliding">1:a tabben</div>
@@ -121,7 +124,7 @@
           </div>
         </div>
       </div>
-      <div id="tab4" class="view view-main tab active">
+      <div id="tab4" class="view tab">
         <div class="navbar">
           <div class="navbar-inner">
             <div class="center sliding">Fudderchat</div>
@@ -215,7 +218,7 @@
         </div>
       </div>
     </div>
-    <div class="login-screen">
+    <div class="login-screen modal-in">
       <!-- Default view-page layout -->
       <div class="view">
         <div class="page">
@@ -230,7 +233,7 @@
                     <div class="item-inner">
                       <i class="icon icon-bars"></i>
                       <div class="item-input">
-                        <input type="email" name="email" placeholder="name@example.com">
+                        <input type="email" class="login-text" name="email" placeholder="name@example.com">
                       </div>
                     </div>
                   </li>
@@ -238,26 +241,26 @@
                     <div class="item-inner">
                       <i class="icon icon-bars"></i>
                       <div class="item-input">
-                        <input type="password" name="password" placeholder="password">
+                        <input type="password" class="login-text" name="password" placeholder="password">
                       </div>
                     </div>
                   </li>
                 </ul>
               </div>  
               <div class="list-block">
-                <div class="list-block-label">
+                <div class="list-block-label login-text">
                   <p>Forgot your password? 
-                    <a href="#" class="close-login-screen"> Click here</a>
+                    <a href="#" class="close-login-screen login-linktext"> Click here</a>
                   </p>
                 </div>
                 <ul>
                   <li>
-                    <a href="#" class="item-link list-button sign-in-button">Sign In</a>
+                    <a href="#" class="item-link list-button sign-in-button login-text">Sign In</a>
                   </li>
                 </ul>
-                <div class="list-block-label">
+                <div class="list-block-label login-text">
                   <p>Don't have an account? 
-                    <a href="#" class="close-login-screen"> Sign up here</a>
+                    <a href="#" class="close-login-screen login-linktext"> Sign up here</a>
                   </p>
                 </div>
               </div>    

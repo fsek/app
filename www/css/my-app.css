@@ -33,10 +33,18 @@
 	margin-left: 7.5%;
 	color: #FFF;
 }
+
+.login-text{
+	color: #FFF !important;
+}
+
+.login-linktext{
+	color: #eb7125;
+}
+
 input::-webkit-input-placeholder {
   color: white;
 }
-
 
 a:active{
 	color:#d35400;

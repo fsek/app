@@ -20,6 +20,8 @@ var tabview4 = myApp.addView('#tab4',{
 });
 var tabview5 = myApp.addView('#tab5');
 
+var sentMessage = 0; /*Sämsta lösningen ever*/
+
 /*$$('#tab2').on('tab:show', function () {
 	 var a = document.getElementsByClassName("badge");
 	 a[0].innerHTML = "";
@@ -45,18 +47,33 @@ $$(document).on('pageInit', function(e) {
     var page = e.detail.page;
     
     if(page.name === 'fadderchat' || page.name === 'foschat'){
+        sentMessage = 0;
         /*Send message in the chat*/
+        /*måste hålla koll på vem som skickade det senaste meddelandet*/
         $$('.send-message').on('click', function () {
             var name = 'Fredrik Lastow'
             var message = $$('input[name="message"]').val();
-            $$('.messages').append('<div class="message message-sent message-first message-appear-from-bottom">'
+            if(sentMessage === 0){
+                $$('.messages').append('<div class="message message-sent message-first message-appear-from-bottom">'
                 + '<div class="message-name">'
                     + name
                 + '</div>'
                 + '<div class="message-text">'
                     + message
                 + '</div>'
-            + '</div>');
+                + '</div>');
+                sentMessage = 1;
+            }else{
+                $$('.messages').append('<div class="message message-sent message-appear-from-bottom">'
+                + '<div class="message-name">'
+                    + name
+                + '</div>'
+                + '<div class="message-text">'
+                    + message
+                + '</div>'
+                + '</div>');
+            }
+            
             $$('input[name="message"]').val(''); 
         });
     }

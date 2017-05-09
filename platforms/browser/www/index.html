@@ -13,6 +13,9 @@
     <link rel="stylesheet" href="css/my-app.css">
   </head>
   <body>
+    <?php
+      echo "hej"; 
+    ?>
     <!-- Status bar overlay for fullscreen mode-->
     <div class="statusbar-overlay"></div>
     <!-- Panels overlay-->
@@ -31,7 +34,7 @@
     </div>
     <!-- Views-->
     <div class="views tabs">
-      <div id="tab1" class="view view-main tab active" data-page="index-1">
+      <div id="tab1" class="view view-main tab active">
         <div class="navbar">
           <div class="navbar-inner">
             <div class="center sliding">1:a tabben</div>
@@ -43,7 +46,7 @@
           </div>              
         </div>
         <div class="pages navbar-fixed">
-          <div class="page" data-page="index-1">
+          <div data-page="tab1" class="page">
             <div class="page-content">
             <div class="content-block-title">Side panels</div>
               <div class="content-block">
@@ -56,18 +59,18 @@
                   </div>
                 </div>
               </div>
-            </div>
+            </div>t
           </div>
         </div>
       </div>
-      <div id="tab2" class="view tab" data-page="index-2">
+      <div id="tab2" class="view tab">
         <div class="navbar">
           <div class="navbar-inner">
             <div class="center sliding">2:a tabben</div>
           </div>              
         </div>
         <div class="pages navbar-fixed">
-          <div class="page" data-page="index-2">
+          <div data-page="tab2" class="page">
             <div class="page-content">
               <div class="list-block">
                 <ul>
@@ -104,14 +107,14 @@
           </div>
         </div>
       </div>
-      <div id="tab3" class="view tab" data-page="index-3">
+      <div id="tab3" class="view tab">
         <div class="navbar">
           <div class="navbar-inner">
             <div class="center sliding">3:e tabben</div>
           </div>              
         </div>
         <div class="pages navbar-fixed">
-          <div class="page" data-page="index-3">
+          <div  data-page="tab3" class="page">
             <div class="page-content">
               <div class="content-block-title">Flupp</div>
               <div class="content-block">
@@ -121,31 +124,63 @@
           </div>
         </div>
       </div>
-      <div id="tab4" class="view tab" data-page="index-4">
+      <div id="tab4" class="view tab">
         <div class="navbar">
           <div class="navbar-inner">
-            <div class="center sliding">4:e tabben</div>
+            <div class="center sliding">Fudderchat</div>
           </div>              
         </div>
         <div class="pages navbar-fixed">
-          <div class="page" data-page="index-4">
+          <div data-page="tab4" class="page">
             <div class="page-content">
-              <div class="content-block-title">En fin historia</div>
-              <div class="content-block">
-                <p>Det var en gång en groda, quack!</p>
-              </div>
+              <a href="fadderchat.html">
+                <div class="chatbox">
+                  <div class="item-content">
+                    <div class="item-inner"> 
+                      <div class="item-title">Faddergrupp numero uno</div>
+                    </div>
+                  </div>
+                </div>
+              </a>
+              <a href="foschat.html">
+                <div class="chatbox">
+                  <div class="item-content">
+                    <div class="item-inner"> 
+                      <div class="item-title">Föset 2017</div>
+                    </div>
+                  </div>
+                </div>
+              </a>
+              <a href="foschat.html">
+                <div class="chatbox">
+                  <div class="item-content">
+                    <div class="item-inner"> 
+                      <div class="item-title">Chatt3</div>
+                    </div>
+                  </div>
+                </div>
+              </a>
+              <a href="foschat.html">
+                <div class="chatbox">
+                  <div class="item-content">
+                    <div class="item-inner"> 
+                      <div class="item-title">Chatt4</div>
+                    </div>
+                  </div>
+                </div>
+              </a>
             </div>
           </div>
         </div>
       </div>
-      <div id="tab5" class="view tab" data-page="index-5">
+      <div id="tab5" class="view tab">
         <div class="navbar">
           <div class="navbar-inner">
             <div class="center sliding">5:e tabben</div>
           </div>              
         </div>
         <div class="pages navbar-fixed">
-          <div class="page" data-page="index-5">
+          <div data-page="tab5" class="page">
             <div class="page-content">
               <div class="content-block-title">Plupp?</div>
               <div class="content-block">
@@ -198,7 +233,7 @@
                     <div class="item-inner">
                       <i class="icon icon-bars"></i>
                       <div class="item-input">
-                        <input type="email" name="email" placeholder="name@example.com">
+                        <input type="email" class="login-text" name="email" placeholder="name@example.com">
                       </div>
                     </div>
                   </li>
@@ -206,26 +241,26 @@
                     <div class="item-inner">
                       <i class="icon icon-bars"></i>
                       <div class="item-input">
-                        <input type="password" name="password" placeholder="password">
+                        <input type="password" class="login-text" name="password" placeholder="password">
                       </div>
                     </div>
                   </li>
                 </ul>
               </div>  
               <div class="list-block">
-                <div class="list-block-label">
+                <div class="list-block-label login-text">
                   <p>Forgot your password? 
-                    <a href="#" class="close-login-screen"> Click here</a>
+                    <a href="#" class="close-login-screen login-linktext"> Click here</a>
                   </p>
                 </div>
                 <ul>
                   <li>
-                    <a href="#" class="item-link list-button sign-in-button">Sign In</a>
+                    <a href="#" class="item-link list-button sign-in-button login-text">Sign In</a>
                   </li>
                 </ul>
-                <div class="list-block-label">
+                <div class="list-block-label login-text">
                   <p>Don't have an account? 
-                    <a href="#" class="close-login-screen"> Sign up here</a>
+                    <a href="#" class="close-login-screen login-linktext"> Sign up here</a>
                   </p>
                 </div>
               </div>    

@@ -19,4 +19,4 @@ http://docs.phonegap.com/getting-started/1-install-phonegap/cli/
 
 Run the webserver with
 $ phonegap serve
-while in the ../www server
+while in the ../www folder

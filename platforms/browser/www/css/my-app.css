@@ -5,22 +5,20 @@
 	height: 100%;
 	background-size: 100% 100%;
 	background-repeat: no-repeat;
-	background-image: url("../img/framsida_kram.png");
+	background-image: url("../img/login-background.png");
 }
 
 .login-logo{
 	width: 55%;
-	height: 30%;;
-	margin-left: 24%;
-	margin-top: 5%;
-	margin-bottom: 20%; 
-	background-position: fixed;
+	height: 30%;
+	margin: 0 auto;
+	margin-top: 30px;
 	background-size: contain;
 	background-repeat: no-repeat;
 	background-image: url("../img/f_logo.png");		
 }
 
-.sign-in-button{
+.sign-in-btn{
 	/*opacity: 0.7;*/
 	width: 90%;
 	background: #eb7125;
@@ -82,17 +80,11 @@ a:active{
 
 /*Calendar style*/
 .calendar{
-	background: #ffedcd !important;
+	background-image: url("../img/login-background.png") !important;
 	color: orange;
 	height: 300px; /*60px for weekCalendar*/
 	padding-top: 44px;
-}
-
-.day-content{
-	height: 150px;
-	width: 100%;
-	background-color: #88acff;
-	overflow: scroll;
+	
 }
 
 .day-title{
@@ -100,12 +92,31 @@ a:active{
 	height: 25px;
 }
 
-.event{
-	height: 50px;
-	background-color: white;
+.day-content{
+	height: 150px;
+	width: 100%;
+	background-color: #ff9500;
+	overflow: scroll;
 }
 
+.day-content-event{
+	height: 50px;
+	background-color: yellow;
+    margin-left: 10px;
+}
 
+.event-title, .event-time, .event-place, .event-dress-code, .event-food, 
+.event-drink, .event-price, .event-description{
+	height: 50px;
+	background: lightblue;
+	margin-top: 5px;
+}
+
+.event-signup-btn{
+	text-align: center;
+	margin-left: 70%;
+	margin-top: 5%;
+}
 
 
 .calendar-row{

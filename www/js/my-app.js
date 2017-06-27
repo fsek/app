@@ -1,11 +1,17 @@
+/*======================================================
+    ************        Content           ************
+                    1. Log in
+                    2. Calendar
+========================================================*/
+
 // Initialize your app
 var myApp = new Framework7({
-    /*preroute: function (view, options) {
+    preroute: function (view, options) {
         if (!userLoggedIn) {
             view.router.loadPage('event.html'); //load another page with auth form
             return false; //required to prevent default router action
         }
-    }*/
+    }
 });
 
 // Export selectors engine
@@ -14,157 +20,208 @@ var $$ = Dom7;
 // Add view
 var mainView = myApp.addView('.view-main');
 
-var tabview1 = myApp.addView('#tab1',{
+var tabView1 = myApp.addView('#tab1',{
     dynamicNavbar:true
 });
-var tabview2 = myApp.addView('#tab2',{
+var tabView2 = myApp.addView('#tab2',{
     dynamicNavbar:true
 });
-var tabview3 = myApp.addView('#tab3',{
+var tabView3 = myApp.addView('#tab3',{
     dynamicNavbar:true
 });
-/*var tabview4 = myApp.addView('#tab4',{
-    dynamicNavbar:true
-});*/
 
 
 
+$.auth.configure({
+  apiUrl: 'https://stage.fsektionen.se/api'
+});
 
-var sentMessage = 0; /*Sämsta lösningen ever*/
+
+/*var sentMessage = 0; Sämsta lösningen ever*/
 
 /*$$('#tab2').on('tab:show', function () {
 	 console.log('tab2 klickad');
 });*/
 
 
+/*======================================================
+    ************        Log in           ************
+========================================================*/
+var userLoggedIn = false;
+
+$$('.sign-in-btn').on('click', function () {
+    var email = $$('input[name="email"]').val();
+    var password = $$('input[name="password"]').val();
+    if(password === "" || email === ""){
+        myApp.alert("Please fill out both fields", "Login failed");
+    }else{
+        $.auth.emailSignIn({
+            email: email, 
+            password: password
+        })
+            .then(function() {
+                userLoggedIn = true;
+                myApp.closeModal('.login-screen');
+                console.log('Welcome ' + $.auth.user.firstname + '!', "Login successful");
+                initCalendar();
+            })
+            .fail(function(resp) {
+                console.log('Authentication failure: ' + resp.reason, "Login failed");
+            });
+    }
+});
+
+$$('.login-info').on('click', function () {
+    console.log('info click');
+});
+
+
 
 /*======================================================
     ************        Calendar           ************
 ========================================================*/
-var monthNames = ['Januari', 'Februari', 'Mars', 'April', 'Maj', 'Juni', 'Juli', 'Augusti' , 'September' , 'Oktober', 'November', 'December'];
-var eventDays = [new Date(2017,05,4), new Date(2017,05,10)]; 
-var clickedDay = new Date(); //datumet och tiden just nu
+var clickedEvent = '';
+var events = [];
+function initCalendar(){
+    if(userLoggedIn){
+        //Events
+        $.getJSON('https://stage.fsektionen.se/api/events')//OBSOBSOIBNS fixa så att man inte hämta all data samtidigt och sparar den!!!!
+            .then(function(resp) {
+                events = resp.events;
+                var eventDays = [];
+                for(i = 0; i < events.length; i++){
+                    var eventDate = JSON.stringify(events[i].start); //YYYY-MM-DDThh:mm:ss+02:00 <-- start date template
+                    eventDays.push(new Date(eventDate.substr(1, 4), eventDate.substr(6, 2)-1, eventDate.substr(9, 2)));
+                }
+                //eventDays.push(new Date(2017,5,27));
+                openCalendar(eventDays); //F7 initiseringen av kalendern
+            })
+            .fail(function(resp) {
+                console.log(resp.status, resp.statusText);
+            });
 
-var calendar = myApp.calendar({
-    container: '#calendar',
-    dateFormat: 'mm dd yyyy',
-    dayNamesShort: ['S', 'M', 'T', 'O', 'T', 'F', 'L'], 
-    touchmove: true,
-    weekHeader: true,
-    cssClass: 'calendar',
-    /*weekLayout: true,*/
-    events: eventDays,
-    toolbarTemplate:'',
-        /*'<div class="toolbar calendar-custom-toolbar">' +
-            '<div class="toolbar-inner">' +
-                '<div class="right">' +
-                    '<a href="#" class="link icon-only">Today</a>' +
-                '</div>' +
-            '</div>' +
-        '</div>',*/
+        myApp.onPageInit('event', function (page) {
+            console.log('event opened');
+            $$('.tabbar').hide();
+            $$('.toolbar').hide();
 
-    onOpen: function (p) {
-        $$('.calendar-custom-toolbar .left').text(monthNames[p.currentMonth] +', ' + p.currentYear);
-        $$('.calendar-custom-toolbar .right .link').on('click', function () {
-            myApp.alert('idag är det kalas');
+            $.getJSON('https://stage.fsektionen.se/api/events/' + clickedEvent, function(jd){
+                $$('.event-info').empty();
+                $$('.event-info').append(
+                    '<div class="event-title">' + jd.event.title + '</div>' +
+                    '<div class="event-time">' + jd.event.starts_at + '-' + jd.event.ends_at + '</div>' +
+                    '<div class="event-place">' + jd.event.place + '</div>' +
+                    '<div class="event-dress-code">' + jd.event.dress_code + '</div>' +
+                    '<div class="event-food">' + jd.event.food + '</div>' +
+                    '<div class="event-drink">' + jd.event.drink + '</div>' +
+                    '<div class="event-price">' + jd.event.price + '</div>' +
+                    '<div class="event-description">' + jd.event.description + '</div>'
+                );
+            })
+
+            $$('.back').on('click', function(){
+                $$('.event-info').empty();
+            })
+
+            $$('.event-signup-btn').on('click', function(){
+                console.log('signup pressed');
+                $.ajax({
+                    url: 'https://stage.fsektionen.se/api/events/1/event_users',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: {
+                      event_user: {group_custom: 'Godtycklig grupp'}
+                    },
+                    success: function(resp) {
+                      alert(JSON.stringify(resp));
+                    }
+                });
+            })
         });
-        console.log(clickedDay);
-        //$$('.weekday-content').scrollTop( $$('.weekday-content').offset().top, 500);
-    },
-    onMonthYearChangeStart: function (p) {
-        $$('.calendar-custom-toolbar .left').text(monthNames[p.currentMonth] +', ' + p.currentYear);
-    },
-    onDayClick: function(p, dayContainer, year, month, day) {
-        /*hämta event data från databasen om det klickade datumet*/
-        month++;
-        clickedDay = new Date(year,month,day);
-        console.log('Year: ' + clickedDay.getFullYear() + ', Month: ' + clickedDay.getMonth()
-         + ', Day: ' + clickedDay.getDate());
-        $$('.day-content').empty();
-        if(year == 2017 && month == 06 && day == 10){
-            $$('.day-content').append(
-                '<a href="event.html">' + 
-                    '<div class="row event">' + 'KALAS' + '</div>' +
-                '</a>'
-            );
-        }
-        else if(year == 2017 && month == 06 && day == 4){
-            $$('.day-content').append(
-                '<a href="event.html">' + 
-                    '<div class="row event">' + 'PLUGGZZZ' + '</div>' +
-                '</a>'+
-                '<a href="event.html">' + 
-                    '<div class="row event">' + 'PLUGGZZZ' + '</div>' +
-                '</a>'+
-                '<a href="event.html">' + 
-                    '<div class="row event">' + 'PLUGGZZZ' + '</div>' +
-                '</a>'+
-                '<a href="event.html">' + 
-                    '<div class="row event">' + 'PLUGGZZZ' + '</div>' +
-                '</a>'
-            );
-        }else{
-            $$('.day-content').append('Inga event idaoo :(');
-        }
-    }
-});
 
-$$('.week-month-trigger').on('click', function () {
+        myApp.onPageBack('event', function (page) {
+            $$('.tabbar').show();
+            $$('.toolbar').show();
+
+        });
+
+
+    }
+}
+
+function openCalendar(eventDays){
+    var monthNames = ['Januari', 'Februari', 'Mars', 'April', 'Maj', 'Juni', 'Juli', 
+        'Augusti' , 'September' , 'Oktober', 'November', 'December'];
+
+    //Initialization
+    var calendar = myApp.calendar({
+        container: '#calendar',
+        dayNamesShort: ['S', 'M', 'T', 'O', 'T', 'F', 'L'], 
+        touchmove: true,
+        weekHeader: true,
+        cssClass: 'calendar',
+        /*weekLayout: true,*/
+        events: eventDays,
+        toolbarTemplate:'',
+
+        //Callbacks
+        onOpen: function (p) {
+            var today = new Date();
+            $$('.calendar-custom-toolbar .left').text(monthNames[p.currentMonth] +', ' + p.currentYear);        
+            $$('.calendar-custom-toolbar .right .link').on('click', function () {
+                if(p.currentYear !== today.getFullYear() || p.currentMonth !== today.getMonth()){
+                    calendar.setYearMonth(today.getFullYear(), today.getMonth());
+                    calendar.setValue([today]);
+                }
+            });
+            var todayContainer = p.container[0].querySelector('.picker-calendar-day-today');
+            displayDayContent(todayContainer, today);
+        },
+        onMonthYearChangeStart: function (p) {
+            $$('.calendar-custom-toolbar .left').text(monthNames[p.currentMonth] +', ' + p.currentYear);
+        },
+        onDayClick: function(p, dayContainer, year, month, date) {
+            displayDayContent(dayContainer, new Date(year, month, date));
+        }
+    });
+}
+
+function displayDayContent(dayContainer, day){
+    var displayedEvents = [];
+    $$('.day-content').empty();
+    if(dayContainer.outerHTML.indexOf('picker-calendar-day-has-events') !== -1){
+        for(i = 0; i < events.length; i++){
+            var eventDate = JSON.stringify(events[i].start);
+            var tempDay = new Date(eventDate.substr(1, 4), eventDate.substr(6, 2)-1, eventDate.substr(9, 2));
+            if(day.getFullYear() === tempDay.getFullYear() && day.getMonth() === tempDay.getMonth() && day.getDate() === tempDay.getDate()){
+                $$('.day-content').append('<a href="event.html" class="day-content-event">' + JSON.stringify(events[i]) + '</a>');
+                displayedEvents.push(events[i].id);
+            }
+        }
+    }else{
+        $$('.day-content').append('inga event idaoo :(');
+    }
+
+    //konfiguration av event länken
+    $$('.day-content-event').on('click', function (e) {
+        console.log(displayedEvents);
+        var dayEvents = this.parentNode.childNodes;
+        for(i = 0; i < dayEvents.length; i++){
+            if(this == dayEvents[i]){
+                clickedEvent = displayedEvents[i];   
+            }
+        }
+    });
+}
+
+/*$$('.week-month-trigger').on('click', function () {
     if(calendar.weekLayoutToggle()){ //blir true om vi har bytt till weekLayout
         $$('.calendar').css('height', '60px');
     }else{
         $$('.calendar').css('height', '320px');
     }
     $$('.calendar').addClass('transition');
-});
-
-myApp.onPageBack('event', function (page) {
-    $$('.tabbar').show();
-    $$('.toolbar').show();
-});
-
-myApp.onPageInit('event', function (page) {
-    $$('.tabbar').hide();
-    $$('.toolbar').hide();
-});
-
-myApp.onPageInit('event', function (page) {
-    /*lägger in den specifika eventinfo som html för dagen 'clickedDay'*/
-    $$('.event-title').empty();
-    if(clickedDay.getFullYear() == 2017 && clickedDay.getMonth() == 6 && clickedDay.getDate() == 10){
-        $$('.event-title').append('KALAS');
-        $$('.event-info').append('<h2>' + 'KALAS JIPPIE' + '</h2>');
-    }
-    else if(clickedDay.getFullYear() == 2017 && clickedDay.getMonth() == 6 && clickedDay.getDate() == 4){
-        $$('.event-title').append('PLUGG');
-        $$('.event-info').append('<h2>' + 'PLUGGA NOOES' + '</h2>');
-    }
-});
-
-
-/*======================================================
-    ************        Log in           ************
-========================================================*/
-$$('.sign-in-button').on('click', function () {
-    var email = $$('input[name="email"]').val();
-    var password = $$('input[name="password"]').val();
-    if(password === "" || email === ""){
-        myApp.alert("Please fill out both fields", "Error Message");
-    }else{
-        //Lägg in kod för att jämföra med databasen här
-        myApp.showPreloader('Logging in');
-        setTimeout(function () {
-            myApp.hidePreloader();
-            myApp.alert('Email: ' + email + '; Password: ' + password); 
-            myApp.closeModal('.login-screen');
-        }, 1000);
-    }
-});
-
-$$('.login-info').on('click', function () {
-    myApp.closeModal('.login-screen');
-});
-
+});*/
 
 
 /*======================================================
@@ -173,6 +230,7 @@ $$('.login-info').on('click', function () {
 $$(document).on('pageInit', function(e) {
     var page = e.detail.page;
     if(page.name === 'fadderchat' || page.name === 'foschat'){
+        $$('.page-content messages-content').append('')...
         sentMessage = 0; /*senaste meddelandet*'/
         $$('.send-message').on('click', function () {
             var name = 'Fredrik Lastow' /*Hämta vad användaren heter*'/

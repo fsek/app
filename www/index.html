@@ -5,17 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *" />
-    <title>F-appen</title>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://stage.fsektionen.se https://fsektionen.se 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data:" />
+    <title>F-sektionen</title>
     <!-- Path to Framework7 Library CSS-->
-    <link rel="stylesheet" href="css/framework7.ios.min.css">
-    <link rel="stylesheet" href="css/framework7.ios.colors.min.css">
+    <link rel="stylesheet" href="css/framework7.material.min.css">
+    <link rel="stylesheet" href="css/framework7.material.colors.min.css">
+    <!-- IOS: <link rel="stylesheet" href="css/framework7.material.min.css"> -->
+    <!-- IOS: <link rel="stylesheet" href="css/framework7.material.colors.min.css"> -->
+    <!-- IOS: <link rel="stylesheet" href="css/framework7-icons.css"> -->
+    <link rel="stylesheet" href="css/material-icons.css">
     <!-- Path to your custom app styles-->
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/login.css">
     <link rel="stylesheet" href="css/calendar.css">
+    <link rel="stylesheet" href="css/notifications.css">
   </head>
-  <body>
+  <body class="theme-orange">
     <!-- Status bar overlay for fullscreen mode-->
     <div class="statusbar-overlay"></div>
     <!-- Panels overlay-->
@@ -101,15 +106,21 @@
       <div id="tab2" class="view tab">
         <div class="navbar">
           <div class="navbar-inner">
-            <div class="center sliding">Notifications</div>
+            <div class="center sliding">Notifikationer</div>
           </div>
         </div>
         <div class="pages navbar-fixed">
-          <div  data-page="tab2" class="page">
-            <div class="page-content">
-              <div class="content-block-title">Flupp</div>
-              <div class="content-block">
-                <a href="#" class="open-login-screen">Log in page</a>
+          <div data-page="tab2" class="page">
+            <div class="page-content infinite-scroll pull-to-refresh-content">
+              <div class="pull-to-refresh-layer">
+                <div class="preloader"></div>
+                <div class="pull-to-refresh-arrow"></div>
+              </div>
+              <div class="list-block media-list notification-list" id="notification-list">
+                <ul></ul>
+              </div>
+              <div class="infinite-scroll-preloader">
+                <div class="preloader"></div>
               </div>
             </div>
           </div>
@@ -193,22 +204,24 @@
       <div class="toolbar tabbar tabbar-labels">
           <div class="toolbar-inner">
             <a href="#tab1" class="tab-link active">
-                <i class="icon demo-icon-1"></i>
-                <span class="tabbar-label">Tab 1</span>
+              <!-- IOS: <i class="icon f7-icons">home</i> -->
+              <i class="icon material-icons">home</i>
+              <span class="tabbar-label">Start</span>
             </a>
             <a href="#tab2" class="tab-link">
-                <i class="icon demo-icon-2">
-                    <span class="badge bg-orange">1337</span>
-                </i>
-                <span class="tabbar-label">Tab 2</span>
+              <!-- IOS: <i class="icon f7-icons">bell -->
+              <i class="icon material-icons">notifications
+                <span class="badge" id="notification-badge"></span>
+              </i>
+              <span class="tabbar-label">Notifikationer</span>
             </a>
             <a href="#tab3" class="tab-link">
-                <i class="icon demo-icon-3"></i>
-                <span class="tabbar-label">Tab 3</span>
+              <!-- IOS: <i class="icon f7-icons">calendar</i> -->
+              <i class="icon material-icons">event</i>
+              <span class="tabbar-label">Kalender</span>
             </a>
             <!--<a href="#tab4" class="tab-link">
-                <i class="icon demo-icon-4"></i>
-                <span class="tabbar-label">Tab 4</span>
+              <i class="icon demo-icon-4"></i>
             </a>-->
         </div>
       </div>
@@ -265,6 +278,23 @@
       </div>
     </div>
 
+    <!-- Templates -->
+    <script type="text/template7" id="notificationTemplate">
+      <li id="{{id}}" {{#unless seen}} class="unseen" {{/unless}}>
+        <a href="#" class="item-link item-content">
+          <div class="item-inner">
+            <div class="item-title-row">
+              <div class="item-title">{{data.title}}</div>
+            </div>
+            <div class="item-subtitle">{{data.body}}</div>
+            <div class="item-text">{{data.extra}}</div>
+            <div class="item-created">Skickades {{js "new Date(this.created_at).toLocaleString()"}}</div>
+          </div>
+        </a>
+      </li>
+    </script>
+
+    <!-- External JS Libraries -->
     <script type="text/javascript" src='js/node_modules/jquery/dist/jquery.js'></script>
     <script type="text/javascript" src='js/node_modules/jquery.cookie/jquery.cookie.js'></script>
     <script type="text/javascript" src='js/node_modules/jquery-deparam/jquery-deparam.js'></script>
@@ -272,9 +302,12 @@
     <script type="text/javascript" src='js/node_modules/j-toker/dist/jquery.j-toker.js'></script>
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="js/framework7.min.js"></script>
-    <script type="text/javascript" src="js/push.js"></script>
+
+    <!-- Javascripts -->
     <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript" src="js/push.js"></script>
     <script type="text/javascript" src="js/calendar.js"></script>
     <script type="text/javascript" src="js/login.js"></script>
+    <script type="text/javascript" src="js/notifications.js"></script>
   </body>
 </html>

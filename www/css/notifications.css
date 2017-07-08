@@ -1,0 +1,35 @@
+.notification-list .unseen {
+  background-color: rgba(253, 133, 21, 0.12);
+}
+
+.notification-list .item-title {
+  font-size: 18px;
+}
+
+.notification-list .item-subtitle {
+  font-size: 15px;
+  overflow: auto;
+  white-space: normal;
+}
+
+.notification-list .item-text {
+  color: black;
+  font-size: 13px;
+  font-style: italic;
+  padding-top: 3px;
+}
+
+.notification-list .item-text:empty {
+  padding-top: 0;
+  height: 15px;
+}
+
+.notification-list .item-created {
+  font-size: 11px;
+  color: grey;
+}
+
+.notification-list .item-inner:after {
+  background-color: rgba(0, 0, 0, 0.25) !important;
+  margin-left: -5px;
+}

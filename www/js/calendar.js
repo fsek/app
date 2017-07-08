@@ -37,7 +37,7 @@ function initCalendar(){
             },
             onMonthYearChangeStart: function (p, year, month) {
                 //Updating current month's events
-                $.getJSON('https://stage.fsektionen.se/api/events')
+                $.getJSON(API + '/events')
                     .done(function(resp) {
                         p.params.events = [];
                         for(i = 0; i < resp.events.length; i++){
@@ -73,7 +73,7 @@ function initCalendar(){
 }
 
 function loadEvents(p, monthContainers){
-    $.getJSON('https://stage.fsektionen.se/api/events')
+    $.getJSON(API + '/events')
         .done(function(resp) {
             for(i = 0; i < resp.events.length; i++){
                 var JSONDate = JSON.stringify(resp.events[i].start);
@@ -137,7 +137,7 @@ myApp.onPageInit('event', function (page) {
     $('.tabbar').hide();
     $('.toolbar').hide();
 
-    $.getJSON('https://stage.fsektionen.se/api/events/' + clickedEvent)
+    $.getJSON(API + '/events/' + clickedEvent)
         .done(function(resp){
             eventData = resp;
             console.log(resp.event);
@@ -162,7 +162,7 @@ myApp.onPageInit('event', function (page) {
         .fail(function(resp){
             console.log(resp.statusText);
         });
-    
+
 
     $('.back').on('click', function(){
         $('.event-info').empty();
@@ -171,7 +171,7 @@ myApp.onPageInit('event', function (page) {
     $('.event-signup-btn').on('click', function(){
         console.log('signup pressed', eventData);
         $.ajax({
-            url: 'https://stage.fsektionen.se/api/events/' + clickedEvent + '/event_users',
+            url: API + '/events/' + clickedEvent + '/event_users',
             type: 'POST',
             dataType: 'json',
             data: {

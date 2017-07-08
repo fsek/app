@@ -112,6 +112,10 @@ a:active{
 	margin-top: 5px;
 }
 
+.event-signup{
+	background-color: gray; /*???????*/
+}
+
 .event-signup-btn{
 	text-align: center;
 	margin-left: 70%;

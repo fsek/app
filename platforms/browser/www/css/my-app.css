@@ -5,22 +5,20 @@
 	height: 100%;
 	background-size: 100% 100%;
 	background-repeat: no-repeat;
-	background-image: url("../img/framsida_kram.png");
+	background-image: url("../img/login-background.png");
 }
 
 .login-logo{
 	width: 55%;
-	height: 30%;;
-	margin-left: 24%;
-	margin-top: 5%;
-	margin-bottom: 20%; 
-	background-position: fixed;
+	height: 30%;
+	margin: 0 auto;
+	margin-top: 30px;
 	background-size: contain;
 	background-repeat: no-repeat;
 	background-image: url("../img/f_logo.png");		
 }
 
-.sign-in-button{
+.sign-in-btn{
 	/*opacity: 0.7;*/
 	width: 90%;
 	background: #eb7125;
@@ -42,6 +40,15 @@
 	color: #eb7125;
 }
 
+.login-info{
+	width: 10%;
+	height: 5%;
+	background-color: black;
+	position: absolute;
+	margin-left: 85%;
+	margin-top: 5%;
+}
+
 input::-webkit-input-placeholder {
   color: white;
 }
@@ -51,16 +58,10 @@ a:active{
 }
 
 .statusbar-overlay {
-    background: lightblue;
-    /* We can add transition for smooth color animation */
-    -webkit-transition: 400ms;
-    transition: 400ms;
+    background: #f7f7f8;
 }
  
-/* Change Status bar background when panel opened */
-body.with-panel-left-cover .statusbar-overlay {
-    background: black;
-}
+
 
 .send-message{
 	color: orange;
@@ -75,3 +76,69 @@ body.with-panel-left-cover .statusbar-overlay {
 	border-bottom: #e8e8e8;
 	border-style: solid;
 }
+
+
+/*Calendar style*/
+.calendar{
+	background-image: url("../img/login-background.png") !important;
+	color: orange;
+	height: 300px; /*60px for weekCalendar*/
+	padding-top: 44px;
+	
+}
+
+.day-title{
+	text-align: center;
+	height: 25px;
+}
+
+.day-content{
+	height: 150px;
+	width: 100%;
+	background-color: #ff9500;
+	overflow: scroll;
+}
+
+.day-content-event{
+	height: 50px;
+	background-color: yellow;
+    margin-left: 10px;
+}
+
+.event-title, .event-time, .event-place, .event-dress-code, .event-food, 
+.event-drink, .event-price, .event-description{
+	height: 50px;
+	background: lightblue;
+	margin-top: 5px;
+}
+
+.event-signup{
+	background-color: gray; /*???????*/
+}
+
+.event-signup-btn{
+	text-align: center;
+	margin-left: 70%;
+	margin-top: 5%;
+}
+
+
+.calendar-row{
+	height: 100%;
+}
+
+.week-month-trigger-button{
+	width: 10%;
+	height: 50%;
+	border-radius: 50px;
+	background-color: blue;
+	margin-left: 60%;
+	position: absolute;
+	top: 420px;
+}
+
+.transition{
+	transition: 0.3s linear
+}
+
+

@@ -13,9 +13,6 @@
     <link rel="stylesheet" href="css/my-app.css">
   </head>
   <body>
-    <?php
-      echo "hej"; 
-    ?>
     <!-- Status bar overlay for fullscreen mode-->
     <div class="statusbar-overlay"></div>
     <!-- Panels overlay-->
@@ -34,6 +31,7 @@
     </div>
     <!-- Views-->
     <div class="views tabs">
+      <!--Tab 1-->
       <div id="tab1" class="view view-main tab active">
         <div class="navbar">
           <div class="navbar-inner">
@@ -59,19 +57,6 @@
                   </div>
                 </div>
               </div>
-            </div>t
-          </div>
-        </div>
-      </div>
-      <div id="tab2" class="view tab">
-        <div class="navbar">
-          <div class="navbar-inner">
-            <div class="center sliding">2:a tabben</div>
-          </div>              
-        </div>
-        <div class="pages navbar-fixed">
-          <div data-page="tab2" class="page">
-            <div class="page-content">
               <div class="list-block">
                 <ul>
                   <li>
@@ -103,18 +88,21 @@
                   </li>
                 </ul>
               </div>
+              <button class="login-info"></button>
+              <a href="login-info.html">hej</a>
             </div>
           </div>
         </div>
       </div>
-      <div id="tab3" class="view tab">
+      <!--Tab 2 (Notifications)-->
+      <div id="tab2" class="view tab">
         <div class="navbar">
           <div class="navbar-inner">
-            <div class="center sliding">3:e tabben</div>
+            <div class="center sliding">Notifications</div>
           </div>              
         </div>
         <div class="pages navbar-fixed">
-          <div  data-page="tab3" class="page">
+          <div  data-page="tab2" class="page">
             <div class="page-content">
               <div class="content-block-title">Flupp</div>
               <div class="content-block">
@@ -124,6 +112,31 @@
           </div>
         </div>
       </div>
+      <!--Tab 3 (Calendar) -->
+      <div id="tab3" class="view tab">
+        <div class="navbar">
+          <div class="toolbar calendar-custom-toolbar">
+            <div class="toolbar-inner">
+               <div class="left"></div>
+                <div class="right">
+                   <a href="#" class="link icon-only">Today</a>
+                </div>
+            </div>
+          </div>
+          <!--<a href="#" class="week-month-trigger"><div class="week-month-trigger-button"></div></a>-->
+        </div>
+        <div class="pages navbar-fixed">
+          <div  data-page="tab3" class="page">
+            <div id="calendar">
+            </div>
+            <div class="row day-title">DAY TITLE</div>
+            <div class="day-content">
+              <a href="event.html" class="day-content-event">inga event idaoo :(</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--Tab 4
       <div id="tab4" class="view tab">
         <div class="navbar">
           <div class="navbar-inner">
@@ -172,24 +185,7 @@
             </div>
           </div>
         </div>
-      </div>
-      <div id="tab5" class="view tab">
-        <div class="navbar">
-          <div class="navbar-inner">
-            <div class="center sliding">5:e tabben</div>
-          </div>              
-        </div>
-        <div class="pages navbar-fixed">
-          <div data-page="tab5" class="page">
-            <div class="page-content">
-              <div class="content-block-title">Plupp?</div>
-              <div class="content-block">
-                <p>Plupp.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      </div>-->
       <!-- Tabbar -->
       <div class="toolbar tabbar tabbar-labels">
           <div class="toolbar-inner">
@@ -207,23 +203,19 @@
                 <i class="icon demo-icon-3"></i>
                 <span class="tabbar-label">Tab 3</span>
             </a>
-            <a href="#tab4" class="tab-link">
+            <!--<a href="#tab4" class="tab-link">
                 <i class="icon demo-icon-4"></i>
                 <span class="tabbar-label">Tab 4</span>
-            </a>
-            <a href="#tab5" class="tab-link">
-                <i class="icon demo-icon-4"></i>
-                <span class="tabbar-label">Tab 5</span>
-            </a>
+            </a>-->
         </div>
       </div>
     </div>
+    <!--Login page-->
     <div class="login-screen modal-in">
-      <!-- Default view-page layout -->
       <div class="view">
         <div class="page">
-          <!-- page-content has additional login-screen content -->
           <div class="page-content login-screen-content login-content">
+            <a href="login-info.html" class="login-info">hej</a>
             <div class="login-logo"></div>
             <!-- Login form -->
             <form class="login-input">
@@ -233,7 +225,7 @@
                     <div class="item-inner">
                       <i class="icon icon-bars"></i>
                       <div class="item-input">
-                        <input type="email" class="login-text" name="email" placeholder="name@example.com">
+                        <input type="email" class="login-text" name="email" placeholder="name@example.com" value="appuser@fsektionen.se">
                       </div>
                     </div>
                   </li>
@@ -241,7 +233,7 @@
                     <div class="item-inner">
                       <i class="icon icon-bars"></i>
                       <div class="item-input">
-                        <input type="password" class="login-text" name="password" placeholder="password">
+                        <input type="password" class="login-text" name="password" placeholder="password" value="hilbert6122">
                       </div>
                     </div>
                   </li>
@@ -255,7 +247,7 @@
                 </div>
                 <ul>
                   <li>
-                    <a href="#" class="item-link list-button sign-in-button login-text">Sign In</a>
+                    <a href="#" class="item-link list-button sign-in-btn login-text">Log In</a>
                   </li>
                 </ul>
                 <div class="list-block-label login-text">
@@ -269,9 +261,13 @@
         </div>
       </div>
     </div>
-    <!-- Path to Framework7 Library JS-->
+
+    <script src='/js/node_modules/jquery/dist/jquery.js'></script>
+    <script src='/js/node_modules/jquery.cookie/jquery.cookie.js'></script>
+    <script src='/js/node_modules/jquery-deparam/jquery-deparam.js'></script>
+    <script src='/js/node_modules/pubsub-js/src/pubsub.js'></script>
+    <script src='/js/node_modules/j-toker/dist/jquery.j-toker.js'></script>
     <script type="text/javascript" src="js/framework7.min.js"></script>
-    <!-- Path to your app js-->
     <script type="text/javascript" src="js/my-app.js"></script>
   </body>
 </html>

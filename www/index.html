@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *" />
     <title>F-appen</title>
     <!-- Path to Framework7 Library CSS-->
     <link rel="stylesheet" href="css/framework7.ios.min.css">
@@ -37,11 +38,11 @@
           <div class="navbar-inner">
             <div class="center sliding">1:a tabben</div>
             <div class="right">
-              <a href="#" class="link icon-only open-panel"> 
+              <a href="#" class="link icon-only open-panel">
                 <i class="icon icon-bars"></i>
               </a>
            </div>
-          </div>              
+          </div>
         </div>
         <div class="pages navbar-fixed">
           <div data-page="tab1" class="page">
@@ -62,7 +63,7 @@
                   <li>
                     <a href="about.html" class="item-link">
                       <div class="item-content">
-                        <div class="item-inner"> 
+                        <div class="item-inner">
                           <div class="item-title">About</div>
                         </div>
                       </div>
@@ -70,7 +71,7 @@
                   </li>
                   <li>
                     <a href="form.html" class="item-link">
-                      <div class="item-content"> 
+                      <div class="item-content">
                         <div class="item-inner">
                           <div class="item-title">Form</div>
                         </div>
@@ -79,7 +80,7 @@
                   </li>
                   <li>
                     <a href="services.html" class="item-link">
-                      <div class="item-content"> 
+                      <div class="item-content">
                         <div class="item-inner">
                           <div class="item-title">Services</div>
                         </div>
@@ -99,7 +100,7 @@
         <div class="navbar">
           <div class="navbar-inner">
             <div class="center sliding">Notifications</div>
-          </div>              
+          </div>
         </div>
         <div class="pages navbar-fixed">
           <div  data-page="tab2" class="page">
@@ -141,7 +142,7 @@
         <div class="navbar">
           <div class="navbar-inner">
             <div class="center sliding">Fudderchat</div>
-          </div>              
+          </div>
         </div>
         <div class="pages navbar-fixed">
           <div data-page="tab4" class="page">
@@ -149,7 +150,7 @@
               <a href="fadderchat.html">
                 <div class="chatbox">
                   <div class="item-content">
-                    <div class="item-inner"> 
+                    <div class="item-inner">
                       <div class="item-title">Faddergrupp numero uno</div>
                     </div>
                   </div>
@@ -158,7 +159,7 @@
               <a href="foschat.html">
                 <div class="chatbox">
                   <div class="item-content">
-                    <div class="item-inner"> 
+                    <div class="item-inner">
                       <div class="item-title">Föset 2017</div>
                     </div>
                   </div>
@@ -167,7 +168,7 @@
               <a href="foschat.html">
                 <div class="chatbox">
                   <div class="item-content">
-                    <div class="item-inner"> 
+                    <div class="item-inner">
                       <div class="item-title">Chatt3</div>
                     </div>
                   </div>
@@ -176,7 +177,7 @@
               <a href="foschat.html">
                 <div class="chatbox">
                   <div class="item-content">
-                    <div class="item-inner"> 
+                    <div class="item-inner">
                       <div class="item-title">Chatt4</div>
                     </div>
                   </div>
@@ -238,10 +239,10 @@
                     </div>
                   </li>
                 </ul>
-              </div>  
+              </div>
               <div class="list-block">
                 <div class="list-block-label login-text">
-                  <p>Forgot your password? 
+                  <p>Forgot your password?
                     <a href="#" class="close-login-screen login-linktext"> Click here</a>
                   </p>
                 </div>
@@ -251,23 +252,25 @@
                   </li>
                 </ul>
                 <div class="list-block-label login-text">
-                  <p>Don't have an account? 
+                  <p>Don't have an account?
                     <a href="#" class="close-login-screen login-linktext"> Sign up here</a>
                   </p>
                 </div>
-              </div>    
+              </div>
             </form>
           </div>
         </div>
       </div>
     </div>
 
-    <script src='/js/node_modules/jquery/dist/jquery.js'></script>
-    <script src='/js/node_modules/jquery.cookie/jquery.cookie.js'></script>
-    <script src='/js/node_modules/jquery-deparam/jquery-deparam.js'></script>
-    <script src='/js/node_modules/pubsub-js/src/pubsub.js'></script>
-    <script src='/js/node_modules/j-toker/dist/jquery.j-toker.js'></script>
+    <script type="text/javascript" src='js/node_modules/jquery/dist/jquery.js'></script>
+    <script type="text/javascript" src='js/node_modules/jquery.cookie/jquery.cookie.js'></script>
+    <script type="text/javascript" src='js/node_modules/jquery-deparam/jquery-deparam.js'></script>
+    <script type="text/javascript" src='js/node_modules/pubsub-js/src/pubsub.js'></script>
+    <script type="text/javascript" src='js/node_modules/j-toker/dist/jquery.j-toker.js'></script>
+    <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="js/framework7.min.js"></script>
+    <script type="text/javascript" src="js/push.js"></script>
     <script type="text/javascript" src="js/my-app.js"></script>
   </body>
 </html>

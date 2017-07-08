@@ -5,14 +5,7 @@
 ========================================================*/
 
 // Initialize your app
-var myApp = new Framework7({
-    preroute: function (view, options) {
-        if (!userLoggedIn) {
-            view.router.loadPage('event.html'); //load another page with auth form
-            return false; //required to prevent default router action
-        }
-    }
-});
+var myApp = new Framework7();
 
 // var $$ = Dom7;
 
@@ -29,12 +22,17 @@ var tabView3 = myApp.addView('#tab3',{
     dynamicNavbar:true
 });
 
-
-
+// Configure jToker
 $.auth.configure({
-  apiUrl: 'https://stage.fsektionen.se/api'
+  apiUrl: 'https://stage.fsektionen.se/api',
+  storage: 'localStorage'
 });
 
+// Redirect from the login screen if the user has signed in before
+$.auth.validateToken()
+  .done(function() {
+    afterSignIn();
+});
 
 /*var sentMessage = 0; Sämsta lösningen ever*/
 
@@ -46,27 +44,30 @@ $.auth.configure({
 /*======================================================
     ************        Log in           ************
 ========================================================*/
-var userLoggedIn = false;
 
-$('.sign-in-btn').on('click', function () {
-    var email = $('input[name="email"]').val();
-    var password = $('input[name="password"]').val();
+function afterSignIn() {
+  myApp.closeModal('.login-screen');
+  setupPush();
+  initCalendar();
+}
+
+$$('.sign-in-btn').on('click', function () {
+    var email = $$('input[name="email"]').val();
+    var password = $$('input[name="password"]').val();
+
     if(password === "" || email === ""){
         myApp.alert("Please fill out both fields", "Login failed");
-    }else{
+    } else {
         $.auth.emailSignIn({
-            email: email, 
+            email: email,
             password: password
         })
-            .then(function() {
-                userLoggedIn = true;
-                myApp.closeModal('.login-screen');
-                console.log('Welcome ' + $.auth.user.firstname + '!', "Login successful");
-                initCalendar();
-            })
-            .fail(function(resp) {
-                myApp.alert('Authentication failure: ' + resp.reason, "Login failed");
-            });
+        .done(function() {
+          afterSignIn();
+        })
+        .fail(function(resp) {
+            console.log('Authentication failure: ' + resp.reason, "Login failed");
+        });
     }
 });
 
@@ -81,12 +82,12 @@ $('.login-info').on('click', function () {
 ========================================================*/
 var clickedEvent = '';
 var firstInit = true;
- 
+
 function initCalendar(){
-    if(userLoggedIn){
+    if($.auth.user.signedIn) {
         var calendar = myApp.calendar({
             container: '#calendar',
-            dayNamesShort: ['S', 'M', 'T', 'O', 'T', 'F', 'L'], 
+            dayNamesShort: ['S', 'M', 'T', 'O', 'T', 'F', 'L'],
             touchmove: true,
             weekHeader: true,
             cssClass: 'calendar',
@@ -102,7 +103,7 @@ function initCalendar(){
                 //Adding events
                 loadEvents(p, $('.picker-calendar-month'));
 
-                //Today link 
+                //Today link
                 $('.calendar-custom-toolbar .right .link').on('click', function () {
                     if(p.currentYear !== today.getFullYear() || p.currentMonth !== today.getMonth()){
                         calendar.setYearMonth(p.currentYear, p.currentYear);
@@ -112,7 +113,7 @@ function initCalendar(){
 
                 //Display today's month + year in toolbar
                 $('.calendar-custom-toolbar .left').text(p.params.monthNames[today.getMonth()] +', ' + today.getFullYear());
-                
+
                 //Display today's event content
                 var todayContainer = $('.picker-calendar-month-current .picker-calendar-day-today');
                 displayDayContent(p, todayContainer, today);
@@ -127,7 +128,7 @@ function initCalendar(){
                             var eventDate = new Date(JSONDate.substr(1, 4), JSONDate.substr(6, 2)-1, JSONDate.substr(9, 2));
                             $('.picker-calendar-month-current .picker-calendar-day-has-events').not('.picker-calendar-day-prev, .picker-calendar-day-next').each(function(){
                                 var dayContainer = $(this);
-                                if(eventDate.getFullYear() == dayContainer.attr('data-year') && eventDate.getMonth() == dayContainer.attr('data-month') && eventDate.getDate() == dayContainer.attr('data-day')){ 
+                                if(eventDate.getFullYear() == dayContainer.attr('data-year') && eventDate.getMonth() == dayContainer.attr('data-month') && eventDate.getDate() == dayContainer.attr('data-day')){
                                     resp.events[i].start = eventDate;
                                     p.params.events.push(resp.events[i]);
                                 }
@@ -137,17 +138,17 @@ function initCalendar(){
                     .fail(function(resp) {
                         console.log(resp.statusText);
                     });
-                
+
                 //Month  and year text in navbar
                 $('.calendar-custom-toolbar .left').text(p.params.monthNames[p.currentMonth] + ', ' + p.currentYear);
-                
+
             },
             onMonthAdd: function (p, monthContainer) {
                 if(!firstInit){
                     loadEvents(p, $(monthContainer));
                 }
             },
-            onDayClick: function(p, dayContainer, year, month, date) {           
+            onDayClick: function(p, dayContainer, year, month, date) {
                 displayDayContent(p.params.events, $(dayContainer));
             }
         });
@@ -208,7 +209,7 @@ function displayDayContent(events, dayContainer){
     //Configuration of the event page link
     $('.day-content-event').on('click', function (e) {
         var index = Array.prototype.indexOf.call(this.parentNode.children, this);
-        clickedEvent = displayedEvents[index].id; 
+        clickedEvent = displayedEvents[index].id;
     });
 }
 
@@ -227,7 +228,7 @@ myApp.onPageInit('event', function (page) {
             if(keyValue !== null && keyValue.length !== 0 && keyValue !== false){
                 console.log(key + ':', resp.event[key]);
             }
-            
+
         }
         console.log(resp.event.length);
         $('.event-info').empty();
@@ -311,8 +312,8 @@ $(document).on('pageInit', function(e) {
                 + '</div>'
                 + '</div>');
             }
-            
-            $('input[name="message"]').val(''); 
+
+            $('input[name="message"]').val('');
         });
     }
 });

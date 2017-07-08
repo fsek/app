@@ -27,6 +27,7 @@ $$('.sign-in-btn').on('click', function () {
 function afterSignIn() {
     myApp.closeModal('.login-screen');
     setupPush();
+    initNotificationBadge();
     initCalendar();
 }
 

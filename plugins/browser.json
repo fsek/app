@@ -7,14 +7,14 @@
         "files": {}
     },
     "installed_plugins": {
-        "phonegap-plugin-push": {
-            "SENDER_ID": "223210674700",
-            "PACKAGE_NAME": "se.fsektionen.fapp"
-        },
         "cordova-plugin-dialogs": {
             "PACKAGE_NAME": "se.fsektionen.fapp"
         },
         "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "se.fsektionen.fapp"
+        },
+        "phonegap-plugin-push": {
+            "SENDER_ID": "223210674700",
             "PACKAGE_NAME": "se.fsektionen.fapp"
         }
     },

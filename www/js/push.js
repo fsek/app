@@ -27,12 +27,13 @@ function setupPush() {
   });
 
   push.on('notification', function(data) {
-    navigator.notification.alert(
+    /*navigator.notification.alert(
       data.message,         // message
       null,                 // callback
       data.title,           // title
       'OK'                  // buttonName
-    );
+    );*/
+    getNotifications(false);
   });
 }
 
@@ -46,7 +47,7 @@ function updatePushDevice(oldId, newId) {
 // Create a new push device for this user
 function createPushDevice(registrationId) {
   $.ajax({
-    url: 'https://stage.fsektionen.se/api/push_devices',
+    url: API + '/push_devices',
     type: 'POST',
     dataType: 'json',
     data: {push_device: {token: registrationId, system: cordova.platformId}},
@@ -59,7 +60,7 @@ function createPushDevice(registrationId) {
 // Delete a push device belonging to this user
 function deletePushDevice(registrationId) {
   $.ajax({
-    url: 'https://stage.fsektionen.se/api/push_devices',
+    url: API + '/push_devices',
     type: 'DELETE',
     dataType: 'json',
     data: {token: registrationId},

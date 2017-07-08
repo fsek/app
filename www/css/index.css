@@ -2,21 +2,19 @@ input::-webkit-input-placeholder {
   color: white;
 }
 
-a:active{
+a:active {
 	color:#d35400;
 }
 
 .statusbar-overlay {
     background: #f7f7f8;
 }
- 
 
-
-.send-message{
+.send-message {
 	color: orange;
 }
 
-.chatbox{
+.chatbox {
 	width: 100%;
 	height: 13%;
 	background-color: white;
@@ -25,5 +23,3 @@ a:active{
 	border-bottom: #e8e8e8;
 	border-style: solid;
 }
-
-

@@ -1,0 +1,29 @@
+input::-webkit-input-placeholder {
+  color: white;
+}
+
+a:active{
+	color:#d35400;
+}
+
+.statusbar-overlay {
+    background: #f7f7f8;
+}
+ 
+
+
+.send-message{
+	color: orange;
+}
+
+.chatbox{
+	width: 100%;
+	height: 13%;
+	background-color: white;
+	text-align: center;
+	border: #FFF;
+	border-bottom: #e8e8e8;
+	border-style: solid;
+}
+
+

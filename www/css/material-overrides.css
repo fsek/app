@@ -1,0 +1,11 @@
+.toolbar.messagebar {
+  background-color: white;
+}
+
+.messages .message-sent .message-text {
+  background-color: #cfd8dc;
+}
+
+.messages .message-sent .message-text:before {
+  border-bottom-color: #cfd8dc;
+}

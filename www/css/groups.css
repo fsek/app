@@ -1,0 +1,10 @@
+.groups-list .item-text {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.groups-list .item-text p {
+  display: none;
+}

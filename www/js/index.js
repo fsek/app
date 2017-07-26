@@ -1,12 +1,18 @@
 // Initialize app
 var myApp = new Framework7({
-    precompileTemplates: true
+    precompileTemplates: true,
+    material: true, // True for android
+    tapHold: true
 });
 
 var $$ = Dom7;
 
-// API URL
+// API URLS
 const API = 'https://stage.fsektionen.se/api'
+const AC_URL = 'wss://stage.fsektionen.se/cable'
+
+// ActionCable Token URL
+const AC_TOKEN_URL = API + '/messages/new_token';
 
 // Adding views
 var mainView = myApp.addView('.view-main');
@@ -20,10 +26,13 @@ var tabView2 = myApp.addView('#tab2',{
 var tabView3 = myApp.addView('#tab3',{
     dynamicNavbar:true
 });
+var tabView4 = myApp.addView('#tab4',{
+    dynamicNavbar:false
+});
 
 // Configure jToker
 $.auth.configure({
-    apiUrl: 'https://stage.fsektionen.se/api',
+    apiUrl: API,
     storage: 'localStorage'
 });
 

@@ -5,20 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://stage.fsektionen.se https://fsektionen.se 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data:" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://stage.fsektionen.se https://fsektionen.se wss://fsektionen.se wss://stage.fsektionen.se 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data:" />
     <title>F-sektionen</title>
-    <!-- Path to Framework7 Library CSS-->
+
+    <!-- Material Stylesheets -->
     <link rel="stylesheet" href="css/framework7.material.min.css">
     <link rel="stylesheet" href="css/framework7.material.colors.min.css">
-    <!-- IOS: <link rel="stylesheet" href="css/framework7.material.min.css"> -->
-    <!-- IOS: <link rel="stylesheet" href="css/framework7.material.colors.min.css"> -->
-    <!-- IOS: <link rel="stylesheet" href="css/framework7-icons.css"> -->
+    <link rel="stylesheet" href="css/material-overrides.css">
     <link rel="stylesheet" href="css/material-icons.css">
-    <!-- Path to your custom app styles-->
+
+    <!-- IOS Stylesheets
+    <link rel="stylesheet" href="css/framework7.ios.min.css">
+    <link rel="stylesheet" href="css/framework7.ios.colors.min.css">
+    <link rel="stylesheet" href="css/ios-overrides.css">
+    <link rel="stylesheet" href="css/framework7-icons.css"> -->
+
+    <!-- General stylesheets -->
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/login.css">
     <link rel="stylesheet" href="css/calendar.css">
     <link rel="stylesheet" href="css/notifications.css">
+    <link rel="stylesheet" href="css/messages.css">
+    <link rel="stylesheet" href="css/groups.css">
   </head>
   <body class="theme-orange">
     <!-- Status bar overlay for fullscreen mode-->
@@ -150,56 +158,23 @@
           </div>
         </div>
       </div>
-      <!--Tab 4
+      <!--Tab 4 (Messages) -->
       <div id="tab4" class="view tab">
-        <div class="navbar">
-          <div class="navbar-inner">
-            <div class="center sliding">Fudderchat</div>
-          </div>
-        </div>
-        <div class="pages navbar-fixed">
-          <div data-page="tab4" class="page">
+        <div class="pages">
+          <div data-page="tab4" class="page navbar-fixed">
+            <div class="navbar">
+              <div class="navbar-inner">
+                <div class="center sliding">Meddelanden</div>
+              </div>
+            </div>
             <div class="page-content">
-              <a href="fadderchat.html">
-                <div class="chatbox">
-                  <div class="item-content">
-                    <div class="item-inner">
-                      <div class="item-title">Faddergrupp numero uno</div>
-                    </div>
-                  </div>
-                </div>
-              </a>
-              <a href="foschat.html">
-                <div class="chatbox">
-                  <div class="item-content">
-                    <div class="item-inner">
-                      <div class="item-title">Föset 2017</div>
-                    </div>
-                  </div>
-                </div>
-              </a>
-              <a href="foschat.html">
-                <div class="chatbox">
-                  <div class="item-content">
-                    <div class="item-inner">
-                      <div class="item-title">Chatt3</div>
-                    </div>
-                  </div>
-                </div>
-              </a>
-              <a href="foschat.html">
-                <div class="chatbox">
-                  <div class="item-content">
-                    <div class="item-inner">
-                      <div class="item-title">Chatt4</div>
-                    </div>
-                  </div>
-                </div>
-              </a>
+              <div class="list-block media-list groups-list" id="groups-list">
+                <ul></ul>
+              </div>
             </div>
           </div>
         </div>
-      </div>-->
+      </div>
       <!-- Tabbar -->
       <div class="toolbar tabbar tabbar-labels">
           <div class="toolbar-inner">
@@ -220,9 +195,10 @@
               <i class="icon material-icons">event</i>
               <span class="tabbar-label">Kalender</span>
             </a>
-            <!--<a href="#tab4" class="tab-link">
-              <i class="icon demo-icon-4"></i>
-            </a>-->
+            <a href="#tab4" class="tab-link">
+              <i class="icon material-icons">messages</i>
+              <span class="tabbar-label">Meddelanden</span>
+            </a>
         </div>
       </div>
     </div>
@@ -294,14 +270,54 @@
       </li>
     </script>
 
+    <script type="text/template7" id="groupTemplate">
+      <li id="{{id}}">
+        <a href="#" class="item-link item-content">
+          <div class="item-inner">
+            <div class="item-title-row">
+              <div class="item-title">{{name}}</div>
+            </div>
+            {{#each messages}}
+              <div class="item-text">
+                <i>{{user.name}}</i>: {{content}}
+              </div>
+            {{/each}}
+          </div>
+        </a>
+      </li>
+    </script>
+
+    <script type="text/template7" id="messageTemplate">
+      {{#if dayHeader}}
+        <div class="messages-date">{{dayHeader}}</div>
+      {{/if}}
+      <div href="#" id="{{id}}" class="message message-{{type}}
+                                       {{#if avatar}}message-with-avatar{{/if}}
+                                       {{#if position}}message-appear-from-{{position}}{{/if}}
+                                       {{#if by_admin}}message-admin{{/if}}">
+        <div class="message-name">{{name}}</div>
+        <a href="#" class="taphold">
+          <div class="message-text">{{text}}</div>
+        </a>
+        {{#if avatar}}
+          <div class="message-avatar" style="background-image:url({{avatar}})"></div>
+        {{/if}}
+        {{#if updated_at}}
+          <div class="message-label message-updated">{{updated_at}}</div>
+        {{/if}}
+      </div>
+    </script>
+
     <!-- External JS Libraries -->
     <script type="text/javascript" src='js/node_modules/jquery/dist/jquery.js'></script>
     <script type="text/javascript" src='js/node_modules/jquery.cookie/jquery.cookie.js'></script>
     <script type="text/javascript" src='js/node_modules/jquery-deparam/jquery-deparam.js'></script>
     <script type="text/javascript" src='js/node_modules/pubsub-js/src/pubsub.js'></script>
     <script type="text/javascript" src='js/node_modules/j-toker/dist/jquery.j-toker.js'></script>
+    <script type="text/javascript" src='js/node_modules/actioncable/lib/assets/compiled/action_cable.js'></script>
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="js/framework7.min.js"></script>
+    <script type="text/javascript" src="js/action_cable_patch.js"></script>
 
     <!-- Javascripts -->
     <script type="text/javascript" src="js/index.js"></script>
@@ -309,5 +325,8 @@
     <script type="text/javascript" src="js/calendar.js"></script>
     <script type="text/javascript" src="js/login.js"></script>
     <script type="text/javascript" src="js/notifications.js"></script>
+    <script type="text/javascript" src="js/action_cable.js"></script>
+    <script type="text/javascript" src="js/groups.js"></script>
+    <script type="text/javascript" src="js/messages.js"></script>
   </body>
 </html>

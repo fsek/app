@@ -1,0 +1,16 @@
+.event-title, .event-time, .event-place, .event-dress-code, .event-food,
+.event-drink, .event-price, .event-description{
+  height: 50px;
+  background: lightblue;
+  margin-top: 5px;
+}
+
+.event-signup{
+  background-color: gray; /*???????*/
+}
+
+.event-signup-btn{
+  text-align: center;
+  margin-left: 70%;
+  margin-top: 5%;
+}

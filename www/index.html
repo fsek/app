@@ -27,6 +27,7 @@
     <link rel="stylesheet" href="css/notifications.css">
     <link rel="stylesheet" href="css/messages.css">
     <link rel="stylesheet" href="css/groups.css">
+    <link rel="stylesheet" href="css/event.css">
   </head>
   <body class="theme-orange">
     <!-- Status bar overlay for fullscreen mode-->
@@ -49,7 +50,7 @@
     <div class="views tabs">
       <!--Tab 1-->
       <div id="tab1" class="view view-main tab active">
-        <div class="navbar">
+        <div class="navbar android-hide">
           <div class="navbar-inner">
             <div class="center sliding">1:a tabben</div>
             <div class="right">
@@ -112,9 +113,9 @@
       </div>
       <!--Tab 2 (Notifications)-->
       <div id="tab2" class="view tab">
-        <div class="navbar">
+        <div class="navbar android-hide">
           <div class="navbar-inner">
-            <div class="center sliding">Notifikationer</div>
+            <div class="center sliding">Notiser</div>
           </div>
         </div>
         <div class="pages navbar-fixed">
@@ -136,25 +137,20 @@
       </div>
       <!--Tab 3 (Calendar) -->
       <div id="tab3" class="view tab">
-        <div class="navbar">
-          <div class="toolbar calendar-custom-toolbar">
-            <div class="toolbar-inner">
-               <div class="left"></div>
-                <div class="right">
-                   <a href="#" class="link icon-only">Today</a>
-                </div>
+        <div class="pages">
+          <div data-page="tab3" class="page toolbar-fixed navbar-fixed calendar-page">
+            <div class="navbar android-hide">
+              <div class="navbar-inner">
+                <div class="center sliding">Kalender</div>
+              </div>
             </div>
-          </div>
-          <!--<a href="#" class="week-month-trigger"><div class="week-month-trigger-button"></div></a>-->
-        </div>
-        <div class="pages navbar-fixed">
-          <div  data-page="tab3" class="page">
-            <div id="calendar">
+            <div class="content-block">
+              <div class="content-block-inner calendar-block">
+                <div id="calendar"></div>
+              </div>
             </div>
-            <div class="row day-title">DAY TITLE</div>
-            <div class="day-content">
-              <a href="event.html" class="day-content-event">inga event idaoo :(</a>
-            </div>
+            <div class="row day-title"></div>
+            <div class="day-content"></div>
           </div>
         </div>
       </div>
@@ -162,7 +158,7 @@
       <div id="tab4" class="view tab">
         <div class="pages">
           <div data-page="tab4" class="page navbar-fixed">
-            <div class="navbar">
+            <div class="navbar android-hide">
               <div class="navbar-inner">
                 <div class="center sliding">Meddelanden</div>
               </div>
@@ -176,7 +172,7 @@
         </div>
       </div>
       <!-- Tabbar -->
-      <div class="toolbar tabbar tabbar-labels">
+      <div class="toolbar tabbar tabbar-labels-fixed">
           <div class="toolbar-inner">
             <a href="#tab1" class="tab-link active">
               <!-- IOS: <i class="icon f7-icons">home</i> -->
@@ -188,7 +184,7 @@
               <i class="icon material-icons">notifications
                 <span class="badge" id="notification-badge"></span>
               </i>
-              <span class="tabbar-label">Notifikationer</span>
+              <span class="tabbar-label">Notiser</span>
             </a>
             <a href="#tab3" class="tab-link">
               <!-- IOS: <i class="icon f7-icons">calendar</i> -->
@@ -196,7 +192,7 @@
               <span class="tabbar-label">Kalender</span>
             </a>
             <a href="#tab4" class="tab-link">
-              <i class="icon material-icons">messages</i>
+              <i class="icon material-icons">chat</i>
               <span class="tabbar-label">Meddelanden</span>
             </a>
         </div>
@@ -308,6 +304,31 @@
       </div>
     </script>
 
+    <script type="text/template7" id="calToolbarTemplate">
+      <div class="toolbar calendar-custom-toolbar">
+        <div class="toolbar-inner">
+          <div class="left"></div>
+          <div class="right">
+            <a href="#" class="link icon-only">Idag</a>
+          </div>
+        </div>
+      </div>
+    </script>
+
+    <script type="text/template7" id="dayTemplate">
+        {{#each events}}
+          <a href="#" class="card day-content-event" data-event-id="{{id}}">
+            <div class="card-header">{{title}}</div>
+            <div class="card-content">
+              <div class="card-content-inner">
+                <span class="date">{{js "this.start.hmm()"}}</span>—
+                <span class="location">{{location}}</span>
+              </div>
+            </div>
+          </a>
+        {{/each}}
+    </script>
+
     <!-- External JS Libraries -->
     <script type="text/javascript" src='js/node_modules/jquery/dist/jquery.js'></script>
     <script type="text/javascript" src='js/node_modules/jquery.cookie/jquery.cookie.js'></script>
@@ -322,11 +343,13 @@
     <!-- Javascripts -->
     <script type="text/javascript" src="js/index.js"></script>
     <script type="text/javascript" src="js/push.js"></script>
+    <script type="text/javascript" src="js/date.js"></script>
     <script type="text/javascript" src="js/calendar.js"></script>
-    <script type="text/javascript" src="js/login.js"></script>
     <script type="text/javascript" src="js/notifications.js"></script>
+    <script type="text/javascript" src="js/login.js"></script>
     <script type="text/javascript" src="js/action_cable.js"></script>
     <script type="text/javascript" src="js/groups.js"></script>
     <script type="text/javascript" src="js/messages.js"></script>
+    <script type="text/javascript" src="js/event.js"></script>
   </body>
 </html>

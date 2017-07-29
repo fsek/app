@@ -9,3 +9,7 @@
 .messages .message-sent .message-text:before {
   border-bottom-color: #cfd8dc;
 }
+
+.android-hide {
+  display: none;
+}

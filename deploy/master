@@ -8,13 +8,13 @@ git config --global user.email 'circle@ci'
 ### ANDROID
 sed -i '/<link rel="stylesheet"/s/ios/material/' ./www/index.html
 git commit --amend --no-edit
-git push -f origin master-android
+git push -f origin master:master-android
 git reset --hard origin/master
 
 ### iOS
 sed -i '/<link rel="stylesheet"/s/material/ios/' ./www/index.html
 git commit --amend --no-edit
-git push -f origin master-ios
+git push -f origin master:master-ios
 
 ### DEPLOY WITH PHONEGAP BUILD
 # Todo

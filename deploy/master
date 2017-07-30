@@ -4,6 +4,7 @@
 git config --global -l
 git config --global user.name 'CircleCI'
 git config --global user.email 'circle@ci'
+git clean -f -d
 
 ### ANDROID
 git reset --hard origin/master

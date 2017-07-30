@@ -1,0 +1,9 @@
+test:
+  override:
+    - echo "No tests yet :("
+
+deployment:
+  master:
+    branch: master
+    commands:
+      - ./deploy/master

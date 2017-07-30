@@ -1,0 +1,20 @@
+#!/bin/bash
+
+### CONFIGURE GIT
+git config --global -l
+git config --global user.name 'CircleCI'
+git config --global user.email 'circle@ci'
+
+### ANDROID
+sed -i '/<link rel="stylesheet"/s/ios/material/' ./www/index.html
+git commit --amend --no-edit
+git push -f origin master-android
+git reset --hard origin/master
+
+### iOS
+sed -i '/<link rel="stylesheet"/s/material/ios/' ./www/index.html
+git commit --amend --no-edit
+git push -f origin master-ios
+
+### DEPLOY WITH PHONEGAP BUILD
+# Todo

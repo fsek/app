@@ -1,0 +1,28 @@
+.error-line{
+	height: 1px;
+	margin-top: -5px;
+	background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,rgba(255,0,0,0)), 
+		color-stop(50%,rgba(255,0,0,0.5)), color-stop(100%,rgba(255,0,0,0)));
+}
+
+ul li.item-content.error{
+	border-style: solid;
+  	border-width: 0px 0px 1px 0px;
+  	-webkit-border-image: -webkit-gradient(linear, left top, right bottom, color-stop(0%,rgba(255,0,0,0)), 
+		color-stop(50%,rgba(255,0,0,0.5)), color-stop(100%,rgba(255,0,0,0)));
+  	border-image-slice: 1;
+}
+
+.error i.icon{
+	color: red;
+}
+
+ul li.item-content.error-message{
+	min-height: 20px;
+	height:  20px;
+	border: none;
+	color: red;
+	margin-top: -5%;
+	margin-bottom: 5px;
+	font-size: 14px;
+}

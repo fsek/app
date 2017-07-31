@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="with-statusbar-overlay">
+<html>
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
@@ -8,15 +8,20 @@
     <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://stage.fsektionen.se https://fsektionen.se wss://fsektionen.se wss://stage.fsektionen.se 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data:" />
     <title>F-sektionen</title>
 
+
     <!-- Material/iOS stylesheets. Will be replaced on deploy -->
-    <link rel="stylesheet" href="css/framework7.material.min.css">
-    <link rel="stylesheet" href="css/framework7.material.colors.min.css">
-    <link rel="stylesheet" href="css/material-overrides.css">
-    <link rel="stylesheet" href="css/material-icons.css">
+    <link rel="stylesheet" href="css/framework7.ios.min.css">
+    <link rel="stylesheet" href="css/framework7.ios.colors.min.css">
+    <link rel="stylesheet" href="css/ios-overrides.css">
+    <link rel="stylesheet" href="css/framework7-icons.css">
 
     <!-- General stylesheets -->
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="css/signup.css">
+    <link rel="stylesheet" href="css/reset_password.css">
+    <link rel="stylesheet" href="css/login_help_confirmation.css">
+    <link rel="stylesheet" href="css/error.css">
     <link rel="stylesheet" href="css/calendar.css">
     <link rel="stylesheet" href="css/notifications.css">
     <link rel="stylesheet" href="css/messages.css">
@@ -28,19 +33,14 @@
     <div class="statusbar-overlay"></div>
     <!-- Panels overlay-->
     <div class="panel-overlay"></div>
-    <!-- Left panel with reveal effect-->
-    <div class="panel panel-left panel-reveal">
-      <div class="content-block">
-        <p>Left panel content goes here</p>
-      </div>
-    </div>
+
     <!-- Right panel with cover effect-->
     <div class="panel panel-right panel-cover">
       <div class="content-block">
         <p>Right panel content goes here</p>
       </div>
     </div>
-    <!-- Views-->
+
     <div class="views tabs">
       <!--Tab 1-->
       <div id="tab1" class="view view-main tab active">
@@ -48,21 +48,18 @@
           <div class="navbar-inner">
             <div class="center sliding">1:a tabben</div>
             <div class="right">
-              <a href="#" class="link icon-only open-panel">
-                <i class="icon icon-bars"></i>
+            	<a href="settings.html">
+                <i class="icon f7-icons">settings</i>
               </a>
-           </div>
+            </div>
           </div>
         </div>
         <div class="pages navbar-fixed">
-          <div data-page="tab1" class="page">
+          <div data-page="tab1" class="page cached no-swipeback">
             <div class="page-content">
             <div class="content-block-title">Side panels</div>
               <div class="content-block">
                 <div class="row">
-                  <div class="col-50">
-                    <a href="#" data-panel="left" class="button open-panel">Left Panel</a>
-                  </div>
                   <div class="col-50">
                     <a href="#" data-panel="right" class="button open-panel">Right Panel</a>
                   </div>
@@ -99,13 +96,11 @@
                   </li>
                 </ul>
               </div>
-              <button class="login-info"></button>
-              <a href="login-info.html">hej</a>
             </div>
           </div>
         </div>
       </div>
-      <!--Tab 2 (Notifications)-->
+      <!--Tab 2 (Notifications) -->
       <div id="tab2" class="view tab">
         <div class="navbar android-hide">
           <div class="navbar-inner">
@@ -169,77 +164,23 @@
       <div class="toolbar tabbar tabbar-labels-fixed">
           <div class="toolbar-inner">
             <a href="#tab1" class="tab-link active">
-              <!-- IOS: <i class="icon f7-icons">home</i> -->
-              <i class="icon material-icons">home</i>
-              <span class="tabbar-label">Start</span>
+              <i class="icon f7-icons">home</i>
+              <!-- <i class="icon material-icons">home</i> -->
             </a>
             <a href="#tab2" class="tab-link">
-              <!-- IOS: <i class="icon f7-icons">bell -->
-              <i class="icon material-icons">notifications
+              <!-- <i class="icon material-icons">notifications -->
+              <i class="icon f7-icons">bell
                 <span class="badge" id="notification-badge"></span>
               </i>
-              <span class="tabbar-label">Notiser</span>
             </a>
             <a href="#tab3" class="tab-link">
-              <!-- IOS: <i class="icon f7-icons">calendar</i> -->
-              <i class="icon material-icons">event</i>
-              <span class="tabbar-label">Kalender</span>
+              <!-- <i class="icon material-icons">event</i> -->
+              <i class="icon f7-icons">calendar</i>
             </a>
             <a href="#tab4" class="tab-link">
-              <i class="icon material-icons">chat</i>
-              <span class="tabbar-label">Meddelanden</span>
+              <i class="icon f7-icons">collection</i>
+              <!--<i class="icon material-icons">chat</i>-->
             </a>
-        </div>
-      </div>
-    </div>
-    <!--Login page-->
-    <div class="login-screen modal-in">
-      <div class="view">
-        <div class="page">
-          <div class="page-content login-screen-content login-content">
-            <a href="login-info.html" class="login-info"></a>
-            <div class="login-logo"></div>
-            <!-- Login form -->
-            <form class="login-input">
-              <div class="list-block theme-orange">
-                <ul>
-                  <li class="item-content">
-                    <div class="item-inner">
-                      <i class="icon icon-bars"></i>
-                      <div class="item-input">
-                        <input type="email" class="login-text" name="email" placeholder="name@example.com" value="appuser@fsektionen.se">
-                      </div>
-                    </div>
-                  </li>
-                  <li class="item-content">
-                    <div class="item-inner">
-                      <i class="icon icon-bars"></i>
-                      <div class="item-input">
-                        <input type="password" class="login-text" name="password" placeholder="password" value="hilbert6122">
-                      </div>
-                    </div>
-                  </li>
-                </ul>
-              </div>
-              <div class="list-block">
-                <div class="list-block-label login-text">
-                  <p>Forgot your password?
-                    <a href="#" class="close-login-screen login-linktext"> Click here</a>
-                  </p>
-                </div>
-                <ul>
-                  <li>
-                    <a href="#" class="item-link list-button sign-in-btn login-text">Log In</a>
-                  </li>
-                </ul>
-                <div class="list-block-label login-text">
-                  <p>Don't have an account?
-                    <a href="#" class="close-login-screen login-linktext"> Sign up here</a>
-                  </p>
-                </div>
-              </div>
-            </form>
-          </div>
         </div>
       </div>
     </div>
@@ -310,17 +251,17 @@
     </script>
 
     <script type="text/template7" id="dayTemplate">
-        {{#each events}}
-          <a href="#" class="card day-content-event" data-event-id="{{id}}">
-            <div class="card-header">{{title}}</div>
-            <div class="card-content">
-              <div class="card-content-inner">
-                <span class="date">{{js "this.start.hmm()"}}</span>—
-                <span class="location">{{location}}</span>
-              </div>
+      {{#each events}}
+        <a href="#" class="card day-content-event" data-event-id="{{id}}">
+          <div class="card-header">{{title}}</div>
+          <div class="card-content">
+            <div class="card-content-inner">
+              <span class="date">{{js "this.start.hmm()"}}</span>—
+              <span class="location">{{location}}</span>
             </div>
-          </a>
-        {{/each}}
+          </div>
+        </a>
+      {{/each}}
     </script>
 
     <!-- External JS Libraries -->
@@ -341,9 +282,12 @@
     <script type="text/javascript" src="js/calendar.js"></script>
     <script type="text/javascript" src="js/notifications.js"></script>
     <script type="text/javascript" src="js/login.js"></script>
+    <script type="text/javascript" src="js/signup.js"></script>
+    <script type="text/javascript" src="js/reset_password.js"></script>
     <script type="text/javascript" src="js/action_cable.js"></script>
     <script type="text/javascript" src="js/groups.js"></script>
     <script type="text/javascript" src="js/messages.js"></script>
     <script type="text/javascript" src="js/event.js"></script>
+    <script type="text/javascript" src="js/settings.js"></script>
   </body>
 </html>

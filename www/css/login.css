@@ -1,47 +1,128 @@
 .login-content{
-	color: #eb7125;
 	width: 100%;
 	height: 100%;
-	background-size: 100% 100%;
+	background-size: 200% 100%;
+	background-image: url("../img/login-background_full.png");
 	background-repeat: no-repeat;
-	background-image: url("../img/login-background.png");
+	overflow: hidden;
+}
+
+.open-login-info{
+	position: absolute;
+	margin-top: 10px;
+	margin-left: 10px;
+}
+
+.open-login-info span{
+	color: #fff;
+}
+
+.login-info-container{
+	height: 0;
+	width:  0;
+	background: #000;
+	opacity: 0.8;
+	position: absolute;
+	overflow: scroll;
+	z-index: 100;
+	text-align: center;
+	color: #eb7125;
+}
+
+.close-login-info{
+	margin-right: 10px;
+	margin-top: 10px;
+	position: absolute;
+	right: 0;
 }
 
 .login-logo{
-	width: 55%;
-	height: 30%;
+	width: 185px;
+	height: 185px;
 	margin: 0 auto;
-	margin-top: 30px;
+	margin-top: 17%;
 	background-size: contain;
 	background-repeat: no-repeat;
 	background-image: url("../img/f_logo.png");		
 }
 
-.sign-in-btn{
-	/*opacity: 0.7;*/
-	width: 90%;
-	background: #eb7125;
-	border-radius: 8px;
-	color: white;
+.login-content .list-block ul {
+	width: 80%;
+	margin-left: 10%;
+	color: #FFF;
+	background: none;
+	position: absolute;
+	top: 50%;
 }
 
-.login-input{
-	width: 85%;
-	margin-left: 7.5%;
+.login-content .list-block ul:before, .login-content .list-block ul:after{
+	display: none;
+}
+
+.login-content li.item-content{
+	border-style: solid;
+  	border-width: 0px 0px 1px 0px;
+  	-webkit-border-image: -webkit-gradient(linear, left top, right bottom, color-stop(0%,rgba(255,255,255,0)), 
+		color-stop(50%,rgba(200,200,200,0.5)), color-stop(100%,rgba(255,255,255,0)));
+  	border-image-slice: 1;
+  	margin-bottom: 6%;
+  	min-height: 45px;
+  	height: 45px;
+}
+
+.login-content .item-input input{
 	color: #FFF;
 }
 
-.login-text{
-	color: #FFF !important;
+.login-content ::-webkit-input-placeholder {
+    color: #fff;
 }
 
-.login-linktext{
+.login-content .list-block i.icon{
 	color: #eb7125;
+	margin-right: 10px;
 }
 
-.login-info{
-	background-color: black;
-	position: absolute;
-	margin-left: 85%;
-	margin-top: 5%;
+.login-btn{
+	width: 100%;
+	margin-top: 45px;
+	background: #eb7125;
+	border-radius: 25px;
+	padding: 0 !important;
+}
+
+.login-footer{
+	width: 80%;
+	margin-left: 10%;
+    margin-bottom: 7px;
+	bottom: 0;
+	position: fixed;
+	text-align: center;
+}
+
+.login-footer a{
+	color: #c5c0c0;
+	font-size: 12px;
+}
+
+
+.icon-email{
+	height: 25px;
+	width: 25px;
+	margin-right: 10px;
+	background: url("../img/icon-email.png");
+}
+
+.icon-key{
+	height: 25px;
+	width: 25px;
+	margin-right: 10px;
+	background: url("../img/icon-key.png");
+}
+
+.icon-login{
+	height: 24px;
+	width: 20px;
+	margin-top: -2px;
+	background: url("../img/icon-login.png");
 }

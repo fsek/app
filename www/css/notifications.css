@@ -1,3 +1,7 @@
+.notification-list{
+  margin: 0;
+}
+
 .notification-list .unseen {
   background-color: rgba(253, 133, 21, 0.12);
 }

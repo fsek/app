@@ -1,0 +1,31 @@
+.signup-confirm-content, .resetpw-confirm-content{
+	background: #60b0d8;
+	overflow: hidden;
+}
+
+.signup-confirm-content .content-block-title, .resetpw-confirm-content .content-block-title{
+	text-align: center;
+	color: #fff;
+	font-weight: bold;
+	font-size: 26px;
+	margin-top: 14%;
+	margin-bottom: 14%;
+}
+
+.signup-confirm-content .content-block-title p, .resetpw-confirm-content .content-block-title p{
+	color: #eb7125;
+	margin: 0;
+	margin-top: 10px;
+}
+
+.signup-confirm-content .content-block, .resetpw-confirm-content .content-block{
+	color: #fff;
+	width: 90%;
+	margin-left: 5%;
+
+}
+
+.signup-confirm-content a, .signup-confirm-content span, .resetpw-confirm-content a, .resetpw-confirm-content span{
+	color: #eb7125;
+	font-weight: bold;
+}

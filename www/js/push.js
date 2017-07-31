@@ -6,6 +6,8 @@ function setupPush() {
       "iconColor": "#EB7125"
     },
     "ios": {
+      "senderID": "509736475453",
+      "gcmSandbox": true, // True for development
       "sound": true,
       "alert": true,
       "badge": true

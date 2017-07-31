@@ -1,8 +1,14 @@
 // Initialize app
 var myApp = new Framework7({
     precompileTemplates: true,
-    material: true, // True for android
-    tapHold: true
+    template7Pages: true,
+    material: false, // True for android
+    tapHold: true,
+    onPageInit: function (app, page) {
+    	if(page.container.className.indexOf('no-tabbar') != -1){
+    		showHideTabbar(page.name);
+    	}
+  	}
 });
 
 var $$ = Dom7;
@@ -37,3 +43,14 @@ $.auth.configure({
 });
 
 const infScrollPreloader = '<div class="infinite-scroll-preloader"><div class="preloader"></div></div>';
+
+//configures page so the tabbar hides and shows
+function showHideTabbar(dataPage){
+	myApp.onPageAfterAnimation(dataPage, function (page) {
+		$('.tabbar').hide();
+	});
+
+	myApp.onPageBack(dataPage, function (page) {
+		$('.tabbar').show();
+	});
+}

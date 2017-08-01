@@ -1,128 +1,128 @@
 .login-content{
-	width: 100%;
-	height: 100%;
-	background-size: 200% 100%;
-	background-image: url("../img/login-background_full.png");
-	background-repeat: no-repeat;
-	overflow: hidden;
+  width: 100%;
+  height: 100%;
+  background-size: 200% 100%;
+  background-image: url("../img/login-background_full.png");
+  background-repeat: no-repeat;
+  overflow: hidden;
 }
 
 .open-login-info{
-	position: absolute;
-	margin-top: 10px;
-	margin-left: 10px;
+  position: absolute;
+  margin-top: 10px;
+  margin-left: 10px;
 }
 
 .open-login-info span{
-	color: #fff;
+  color: #fff;
 }
 
 .login-info-container{
-	height: 0;
-	width:  0;
-	background: #000;
-	opacity: 0.8;
-	position: absolute;
-	overflow: scroll;
-	z-index: 100;
-	text-align: center;
-	color: #eb7125;
+  height: 0;
+  width:  0;
+  background: #000;
+  opacity: 0.8;
+  position: absolute;
+  overflow: scroll;
+  z-index: 100;
+  text-align: center;
+  color: #eb7125;
 }
 
 .close-login-info{
-	margin-right: 10px;
-	margin-top: 10px;
-	position: absolute;
-	right: 0;
+  margin-right: 10px;
+  margin-top: 10px;
+  position: absolute;
+  right: 0;
 }
 
 .login-logo{
-	width: 185px;
-	height: 185px;
-	margin: 0 auto;
-	margin-top: 17%;
-	background-size: contain;
-	background-repeat: no-repeat;
-	background-image: url("../img/f_logo.png");		
+  width: 185px;
+  height: 185px;
+  margin: 0 auto;
+  margin-top: 17%;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-image: url("../img/f_logo.png");   
 }
 
 .login-content .list-block ul {
-	width: 80%;
-	margin-left: 10%;
-	color: #FFF;
-	background: none;
-	position: absolute;
-	top: 50%;
+  width: 80%;
+  margin-left: 10%;
+  color: #FFF;
+  background: none;
+  position: absolute;
+  top: 50%;
 }
 
 .login-content .list-block ul:before, .login-content .list-block ul:after{
-	display: none;
+  display: none;
 }
 
 .login-content li.item-content{
-	border-style: solid;
-  	border-width: 0px 0px 1px 0px;
-  	-webkit-border-image: -webkit-gradient(linear, left top, right bottom, color-stop(0%,rgba(255,255,255,0)), 
-		color-stop(50%,rgba(200,200,200,0.5)), color-stop(100%,rgba(255,255,255,0)));
-  	border-image-slice: 1;
-  	margin-bottom: 6%;
-  	min-height: 45px;
-  	height: 45px;
+  border-style: solid;
+  border-width: 0px 0px 1px 0px;
+  border-image:  linear-gradient(to right, rgba(200,200,200,0) 0%, rgba(230,230,230,0.4) 50%, rgba(200,200,200,0) 100%);
+  border-image-slice: 1;
+  margin-bottom: 6%;
+  min-height: 45px;
+  height: 45px;
 }
 
 .login-content .item-input input{
-	color: #FFF;
+  color: #fff;
 }
 
-.login-content ::-webkit-input-placeholder {
-    color: #fff;
+.login-content ::-webkit-input-placeholder{
+  color: #fff !important;
 }
 
 .login-content .list-block i.icon{
-	color: #eb7125;
-	margin-right: 10px;
+  color: #eb7125;
+  margin-right: 10px;
 }
 
 .login-btn{
-	width: 100%;
-	margin-top: 45px;
-	background: #eb7125;
-	border-radius: 25px;
-	padding: 0 !important;
+  width: 100%;
+  margin-top: 45px;
+  background: #eb7125;
+  border-radius: 25px;
+  padding: 0 !important;
+  text-align: center;
 }
 
 .login-footer{
-	width: 80%;
-	margin-left: 10%;
+  width: 80%;
+  margin-left: 10%;
     margin-bottom: 7px;
-	bottom: 0;
-	position: fixed;
-	text-align: center;
+  bottom: 0;
+  position: fixed;
+  text-align: center;
 }
 
 .login-footer a{
-	color: #c5c0c0;
-	font-size: 12px;
+  color: #c5c0c0;
+  font-size: 12px;
 }
 
 
 .icon-email{
-	height: 25px;
-	width: 25px;
-	margin-right: 10px;
-	background: url("../img/icon-email.png");
+  height: 25px;
+  width: 25px;
+  margin-right: 10px;
+  background: url("../img/icon-email.png");
 }
 
 .icon-key{
-	height: 25px;
-	width: 25px;
-	margin-right: 10px;
-	background: url("../img/icon-key.png");
+  height: 25px;
+  width: 25px;
+  margin-right: 10px;
+  background: url("../img/icon-key.png");
 }
 
 .icon-login{
-	height: 24px;
-	width: 20px;
-	margin-top: -2px;
-	background: url("../img/icon-login.png");
+  height: 24px;
+  width: 20px;
+  margin-top: -2px;
+  background: url("../img/icon-login.png");
 }

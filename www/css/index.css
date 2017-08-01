@@ -1,41 +1,18 @@
-.statusbar-overlay {
-    background:  #eb7125;
-}
-
-.tabbar{
-	background: #eb7125;
-	color: #ffe0b3;
-}
-
 a:active {
   color:#d35400;
-
 }
 
-.tabbar a.active, .tabbar a.active i{
-	color: #fff !important;
+.tabbar .badge{
+  background: #ffe0b3;
+  color: #eb7125
 }
 
-.badge{
-	background: #ffe0b3;
-	color: #eb7125
-}
-
-a.active .badge{
-	background: #fff;
+.tabbara.active .badge{
+  background: #fff;
 }
 
 .taphold {
   -moz-user-select: none;
   -webkit-user-select: none;
   user-select: none;
-}
-
-.navbar{
-	background: #eb7125;
-	color: #fff;
-}
-
-.navbar i.icon, .navbar a{
-	color: #fff;
 }

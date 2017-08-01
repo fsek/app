@@ -13,3 +13,7 @@
 .android-hide {
   display: none;
 }
+
+.content-block-title{
+	line-height: 1;
+}

@@ -6,3 +6,26 @@
 .day-content {
   margin-bottom: 44px;
 }
+
+.navbar{
+  background: #eb7125;
+  color: #fff;
+}
+
+.navbar i.icon, .navbar a{
+  color: #fff;
+}
+
+.statusbar-overlay {
+  background:  #eb7125;
+}
+
+.tabbar{
+  background: #eb7125;
+  color: #ffe0b3;
+}
+
+.tabbar a.active, .tabbar a.active i{
+  color: #fff !important;
+}
+

@@ -69,7 +69,7 @@ function afterSignIn() {
     pageName: 'tab1',
     animatePages: false
   });
-  setupPush();
+  pushAfterLogin();
   initNotificationBadge();
   initCalendar();
 }

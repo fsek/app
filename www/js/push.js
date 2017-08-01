@@ -1,5 +1,5 @@
 function setupPush() {
-  var push = PushNotification.init({
+  pushService = PushNotification.init({
     "android": {
       "senderID": "509736475453",
       "icon": "f",
@@ -14,21 +14,23 @@ function setupPush() {
     }
   });
 
-  // Create or update the registration id on the server
-  push.on('registration', function(data) {
+  // Get/update the registration id
+  pushService.on('registration', function(data) {
     var oldId = localStorage.getItem('registrationId');
 
     if (oldId !== data.registrationId) {
       localStorage.setItem('registrationId', data.registrationId);
-      updatePushDevice(oldId, data.registrationId);
+
+      // Create or update the registration id on the server if the user is signed in
+      if($.auth.user.signedIn) updatePushDevice(oldId, data.registrationId);
     }
   });
 
-  push.on('error', function(e) {
-    console.log("push error = " + e.message);
+  pushService.on('error', function(e) {
+    alert("push error = " + e.message);
   });
 
-  push.on('notification', function(data) {
+  pushService.on('notification', function(data) {
     /*navigator.notification.alert(
       data.message,         // message
       null,                 // callback
@@ -42,8 +44,7 @@ function setupPush() {
 function updatePushDevice(oldId, newId) {
   createPushDevice(newId);
 
-  if (oldId !== null)
-    deletePushDevice(oldId);
+  if(oldId !== null) deletePushDevice(oldId, null);
 }
 
 // Create a new push device for this user
@@ -60,7 +61,7 @@ function createPushDevice(registrationId) {
 }
 
 // Delete a push device belonging to this user
-function deletePushDevice(registrationId) {
+function deletePushDevice(registrationId, callback) {
   $.ajax({
     url: API + '/push_devices',
     type: 'DELETE',
@@ -68,6 +69,38 @@ function deletePushDevice(registrationId) {
     data: {token: registrationId},
     error: function(resp) {
       alert("Failed to delete push device id!");
+    },
+    always: function(resp) {
+      if(callback) callback();
     }
   });
 }
+
+// Send push device to server after sign in
+function pushAfterLogin() {
+  var registrationId = localStorage.getItem('registrationId');
+  if(registrationId !== null) updatePushDevice(null, registrationId);
+}
+
+function deletePushAndSignOut() {
+  var registrationId = localStorage.getItem('registrationId');
+
+  if (registrationId !== null) {
+    // Remove push device from the server
+    deletePushDevice(registrationId, $.auth.signOut);
+
+    // Unregister from firebase
+    pushService.unregister(function() {
+      // Success, all event listeners removed. Init the push service again
+      setupPush();
+    }, function() {
+      // Error
+      alert('Failed to unregisted from push service!');
+    });
+  } else {
+    $.auth.signOut();
+  }
+}
+
+// Always init Phonegap Push on startup
+document.addEventListener("deviceready", setupPush, false);

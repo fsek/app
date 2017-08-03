@@ -1,0 +1,30 @@
+.news-card .name {
+  font-style: italic;
+}
+
+.news-card .card-header {
+  color: #eb7125;
+}
+
+.news-card .card-footer:before {
+  content: none;
+}
+
+.news-card.card {
+  margin-bottom: 16px;
+}
+
+.subtab {
+  overflow-y: auto;
+}
+
+.subtab .infinite-scroll-preloader {
+  height: 37px;
+  margin-bottom: 10px;
+  overflow: hidden;
+  position: relative;
+}
+
+.subtab .day-title:not(:first-child) {
+  margin-top: 13px;
+}

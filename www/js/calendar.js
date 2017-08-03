@@ -1,5 +1,11 @@
-function initCalendar() {
+$$('#tab3').on('show', function() {
   var page = $$('.page.calendar-page');
+  if (page.find('#calendar').is(':empty')) {
+    initCalendar(page);
+  }
+});
+
+function initCalendar(page) {
   var toolbar = null;
   var firstInit = true;
 

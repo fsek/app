@@ -1,5 +1,6 @@
 // Swedish day and month names
 const dayNamesShort = ['S', 'M', 'T', 'O', 'T', 'F', 'L'];
+const dayNames = ['Söndag', 'Måndag', 'Tisdag', 'Onsdag', 'Torsdag', 'Fredag', 'Lördag'];
 const monthNames = ['Januari', 'Februari', 'Mars', 'April', 'Maj', 'Juni', 'Juli',
                     'Augusti' , 'September' , 'Oktober', 'November', 'December'];
 
@@ -28,7 +29,12 @@ Date.prototype.getFullMinutes = function() {
 // Get time in h:mm format from a date
 Date.prototype.hmm = function() {
   return this.getHours() + ':' + this.getFullMinutes();
-}
+};
+
+// Get the name of a day
+Date.prototype.getDayName = function() {
+  return dayNames[this.getDay()];
+};
 
 // Checks if two dates have the same day
 function sameDay(d1, d2) {

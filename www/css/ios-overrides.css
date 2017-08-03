@@ -29,3 +29,16 @@
   color: #fff !important;
 }
 
+.subtabs {
+  margin: 10px 0;
+  padding: 0 10px;
+}
+
+.subtab-container {
+  height: -webkit-calc(100vh - 150px);
+  height: calc(100vh - 150px);
+}
+
+.notification-list li:last-child {
+  margin-bottom: 53px;
+}

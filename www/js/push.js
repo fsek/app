@@ -53,26 +53,26 @@ function createPushDevice(registrationId) {
     url: API + '/push_devices',
     type: 'POST',
     dataType: 'json',
-    data: {push_device: {token: registrationId, system: cordova.platformId}},
-    error: function(resp) {
-      alert("Failed to create push device id!");
-    }
+    data: {push_device: {token: registrationId, system: cordova.platformId}}
+  })
+  .fail(function(resp) {
+    alert("Failed to create push device id!");
   });
 }
 
 // Delete a push device belonging to this user
-function deletePushDevice(registrationId, callback) {
+function deletePushDevice(registrationId, signOut) {
   $.ajax({
     url: API + '/push_devices',
     type: 'DELETE',
     dataType: 'json',
-    data: {token: registrationId},
-    error: function(resp) {
-      alert("Failed to delete push device id!");
-    },
-    always: function(resp) {
-      if(callback) callback();
-    }
+    data: {token: registrationId}
+  })
+  .fail(function(resp) {
+    alert("Failed to delete push device id!");
+  })
+  .always(function(resp) {
+    if(signOut) $.auth.signOut();
   });
 }
 
@@ -87,7 +87,7 @@ function deletePushAndSignOut() {
 
   if (registrationId !== null) {
     // Remove push device from the server
-    deletePushDevice(registrationId, $.auth.signOut);
+    deletePushDevice(registrationId, true);
 
     // Unregister from firebase
     pushService.unregister(function() {

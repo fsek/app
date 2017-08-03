@@ -5,17 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://stage.fsektionen.se https://fsektionen.se wss://fsektionen.se wss://stage.fsektionen.se 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data:" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://stage.fsektionen.se https://fsektionen.se wss://fsektionen.se wss://stage.fsektionen.se gap://ready 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' https://stage.fsektionen.se https://fsektionen.se data:" />
     <title>F-sektionen</title>
 
 
     <!-- Material/iOS stylesheets. Will be replaced on deploy -->
-    <link rel="stylesheet" href="css/framework7.material.min.css">
-    <link rel="stylesheet" href="css/framework7.material.colors.min.css">
-    <link rel="stylesheet" href="css/material-overrides.css">
-    <link rel="stylesheet" href="css/material-icons.css">
+    <link rel="stylesheet" href="css/framework7.ios.min.css">
+    <link rel="stylesheet" href="css/framework7.ios.colors.min.css">
+    <link rel="stylesheet" href="css/ios-overrides.css">
 
     <!-- General stylesheets -->
+    <link rel="stylesheet" href="css/framework7-icons.css">
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/login.css">
     <link rel="stylesheet" href="css/signup.css">
@@ -27,6 +27,7 @@
     <link rel="stylesheet" href="css/messages.css">
     <link rel="stylesheet" href="css/groups.css">
     <link rel="stylesheet" href="css/event.css">
+    <link rel="stylesheet" href="css/home.css">
   </head>
   <body class="theme-orange">
     <!-- Status bar overlay for fullscreen mode-->
@@ -42,59 +43,48 @@
     </div>
 
     <div class="views tabs">
-      <!--Tab 1-->
+      <!--Tab 1 (Start) -->
       <div id="tab1" class="view view-main tab active">
         <div class="navbar android-hide">
           <div class="navbar-inner">
-            <div class="center sliding">1:a tabben</div>
+            <div class="center sliding">Start</div>
           </div>
         </div>
         <div class="pages navbar-fixed">
-          <div data-page="tab1" class="page cached no-swipeback">
+          <div data-page="tab1" class="page no-swipeback">
             <div class="page-content">
-            <div class="content-block-title">Side panels</div>
-              <div class="content-block">
-                <div class="row">
-                  <div class="col-50">
-                    <a href="#" data-panel="right" class="button open-panel">Right Panel</a>
-                  </div>
-                  <div class="col-50">
-                    <a href="settings.html">
-                      <i class="icon f7-icons">settings</i>
-                    </a>
-                  </div>
+              <div class="content-block subtabs">
+                <div class="buttons-row">
+                  <a href="#subtab1" class="tab-link active button">Nyheter</a>
+                  <a href="#subtab2" class="tab-link button">Event</a>
+                  <a href="#subtab3" class="tab-link button">Oklart</a>
                 </div>
               </div>
-              <div class="list-block">
-                <ul>
-                  <li>
-                    <a href="about.html" class="item-link">
-                      <div class="item-content">
-                        <div class="item-inner">
-                          <div class="item-title">About</div>
+              <div class="tabs-swipeable-wrap subtab-container">
+                <div class="tabs">
+                  <div id="subtab1" class="tab subtab active infinite-scroll">
+                    <div class="news-list" id="news-list"></div>
+                    <div class="infinite-scroll-preloader">
+                      <div class="preloader"></div>
+                    </div>
+                  </div>
+                  <div id="subtab2" class="tab subtab">
+                  </div>
+                  <div id="subtab3" class="tab subtab">
+                    <div class="content-block">
+                      <div class="row">
+                        <div class="col-50">
+                          <a href="#" data-panel="right" class="button open-panel">Right Panel</a>
+                        </div>
+                        <div class="col-50">
+                          <a href="settings.html">
+                            <i class="icon f7-icons">settings</i>
+                          </a>
                         </div>
                       </div>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="form.html" class="item-link">
-                      <div class="item-content">
-                        <div class="item-inner">
-                          <div class="item-title">Form</div>
-                        </div>
-                      </div>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="services.html" class="item-link">
-                      <div class="item-content">
-                        <div class="item-inner">
-                          <div class="item-title">Services</div>
-                        </div>
-                      </div>
-                    </a>
-                  </li>
-                </ul>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -161,25 +151,21 @@
         </div>
       </div>
       <!-- Tabbar -->
-      <div class="toolbar tabbar tabbar-labels-fixed">
+      <div class="toolbar tabbar">
           <div class="toolbar-inner">
             <a href="#tab1" class="tab-link active">
               <i class="icon f7-icons">home</i>
-              <!-- <i class="icon material-icons">home</i> -->
             </a>
             <a href="#tab2" class="tab-link">
-              <!-- <i class="icon material-icons">notifications -->
               <i class="icon f7-icons">bell
                 <span class="badge" id="notification-badge"></span>
               </i>
             </a>
             <a href="#tab3" class="tab-link">
-              <!-- <i class="icon material-icons">event</i> -->
               <i class="icon f7-icons">calendar</i>
             </a>
             <a href="#tab4" class="tab-link">
               <i class="icon f7-icons">collection</i>
-              <!--<i class="icon material-icons">chat</i>-->
             </a>
         </div>
       </div>
@@ -264,6 +250,32 @@
       {{/each}}
     </script>
 
+    <script type="text/template7" id="dayTitleTemplate">
+      <div class="day-title">
+        {{js "this.date.getDayName()"}}
+      </div>
+    </script>
+
+    <script type="text/template7" id="newsTemplate">
+      {{#each news}}
+        <div class="card news-card">
+          <div class="card-header">{{title}}</div>
+          <div class="card-content">
+            <div class="card-content-inner">
+              {{content}}
+              {{#if image}}
+                <img class="img-responsive" src="{{image}}"></img>
+              {{/if}}
+            </div>
+          </div>
+          <div class="card-footer">
+            <span class="name">{{user.name}}</span>
+            <span class="date">{{js "new Date(this.created_at).yyyymmdd()"}}</span>
+          </div>
+        </div>
+      {{/each}}
+    </script>
+
     <!-- External JS Libraries -->
     <script type="text/javascript" src='js/node_modules/jquery/dist/jquery.js'></script>
     <script type="text/javascript" src='js/node_modules/jquery.cookie/jquery.cookie.js'></script>
@@ -281,6 +293,7 @@
     <script type="text/javascript" src="js/date.js"></script>
     <script type="text/javascript" src="js/calendar.js"></script>
     <script type="text/javascript" src="js/notifications.js"></script>
+    <script type="text/javascript" src="js/home.js"></script>
     <script type="text/javascript" src="js/login.js"></script>
     <script type="text/javascript" src="js/signup.js"></script>
     <script type="text/javascript" src="js/reset_password.js"></script>

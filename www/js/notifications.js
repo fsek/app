@@ -15,7 +15,7 @@ function getNotifications(refresh) {
       if(!infNotificationScroll) attachInfNotificationScroll();
 
       // Fill the screen if more notifications exist
-      if($$(window).height() >= $$(document).height()) moreNotifications();
+      if($$(window).height() >= $$('#notification-list').height()) moreNotifications();
     });
 }
 

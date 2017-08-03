@@ -71,5 +71,5 @@ function afterSignIn() {
   });
   pushAfterLogin();
   initNotificationBadge();
-  initCalendar();
+  loadHome();
 }

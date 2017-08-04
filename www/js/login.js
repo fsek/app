@@ -53,6 +53,28 @@ myApp.onPageInit('login', function (page) {
       "width": "-=100%"
     }, 300);
   });
+
+  if (myApp.device.android) {
+    $(page.container).on('focus', 'input', function(e) {
+      $('.open-login-info').fadeOut();
+      $('.login-footer').fadeOut();
+    });
+
+    $(page.container).on('blur', 'input', function(e) {
+      // Don't blur if we switched to another input field
+      if(e.relatedTarget) return;
+
+      setTimeout(function() {
+        $('.open-login-info').fadeIn();
+        $('.login-footer').fadeIn();
+      }, 250);
+    });
+  }
+
+  // Use a different statusbar color (just a test)
+  document.addEventListener('deviceready', function() {
+    StatusBar.backgroundColorByHexString("#7999d2");
+  }, false);
 });
 
 function loadLoginPage(){
@@ -65,6 +87,7 @@ function loadLoginPage(){
 function afterSignIn() {
   $('#tab1 .cached').removeClass('cached');
   $('.tabbar').show();
+  StatusBar.backgroundColorByHexString("#eb7125");
   mainView.router.back({ //close login screen
     pageName: 'tab1',
     animatePages: false

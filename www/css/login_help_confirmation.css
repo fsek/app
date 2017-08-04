@@ -7,9 +7,10 @@
 	text-align: center;
 	color: #fff;
 	font-weight: bold;
-	font-size: 26px;
+	font-size: 24px;
 	margin-top: 14%;
 	margin-bottom: 14%;
+	overflow: initial;
 }
 
 .signup-confirm-content .content-block-title p, .resetpw-confirm-content .content-block-title p{

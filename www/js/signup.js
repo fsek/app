@@ -29,10 +29,31 @@ myApp.onPageInit('signup', function (page) {
         var errorID = this.name.replace('signup-', '');
         handleInputError(this.name, resp.data.errors[errorID]);
       });
-    });        
+    });
   });
 
-  scaleTitle('signup');
+  var head = $(page.container);
+  var form = head.find('#signup-form');
+  var footer = head.find('.signup-footer');
+
+  head.on('focus', 'input', function(e) {
+    footer.fadeOut();
+
+    // Animated scroll for android
+    if(myApp.device.android) {
+      var scrollMargin = 65 * (form.find('input').index(this) - 1);
+      form.find('ul').animate({scrollTop: scrollMargin}, 250);
+    }
+  });
+
+  head.on('blur', 'input', function(e) {
+    // Don't continue if we switched to another input field
+    if(e.relatedTarget) return;
+
+    setTimeout(function() {
+      footer.fadeIn();
+    }, 250);
+  });
 });
 
 function handleInputError(name, error){
@@ -58,13 +79,3 @@ function handleInputError(name, error){
     item.next().remove();
   }
 }
-
-function scaleTitle(name){ //temporär lösning på skalningen av titeln (ville se hur det såg ut :))
-  var title = $('.' + name + '-content .content-block-title');
-  var fontSize = title.css('font-size').replace('px', '') * (title.width() / 290);
-  title.css('font-size', fontSize);
-}
-
-myApp.onPageInit('signup-confirmation', function (page) {
-  scaleTitle('signup-confirm');
-});

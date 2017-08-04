@@ -25,9 +25,13 @@ myApp.onPageInit('reset-password', function (page) {
     });
   });
 
-  scaleTitle('reset-password');
-});
+  $(page.container).on('focus', 'input', function(e) {
+    $('.reset-password-footer').fadeOut();
+  });
 
-myApp.onPageInit('reset-password-confirmation', function (page) {
-  scaleTitle('resetpw-confirm');
+  $(page.container).on('blur', 'input', function(e) {
+    setTimeout(function() {
+      $('.reset-password-footer').fadeIn();
+    }, 250);
+  });
 });

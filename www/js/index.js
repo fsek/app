@@ -1,9 +1,12 @@
+var isAndroid = Framework7.prototype.device.android === true;
+
 // Initialize app
 var myApp = new Framework7({
   precompileTemplates: true,
   template7Pages: true,
-  material: false, // True for android
+  material: isAndroid ? true : false,
   tapHold: true,
+  statusbarOverlay: false,
   onPageInit: function (app, page) {
   	if(page.container.className.indexOf('no-tabbar') != -1){
   		showHideTabbar(page.name);
@@ -54,3 +57,38 @@ function showHideTabbar(dataPage){
 		$('.tabbar').show();
 	});
 }
+
+// Handle the back button on android
+function onBackKey() {
+  var view = myApp.getCurrentView();
+  var page = view.activePage.name;
+
+  if (page == 'tab1') {
+    var activeSub =  $$('.subtab.active').attr('id');
+    if (activeSub.substr(activeSub.length - 1) != 1) {
+      myApp.showTab('#subtab1');
+    } else {
+      navigator.app.exitApp();
+    }
+  } else if (page == 'login') {
+    navigator.app.exitApp();
+  } else if (page.substr(0,3) == 'tab') {
+    myApp.showTab('#tab1');
+  } else if ($$('.popover, .actions-modal').length) {
+    myApp.closeModal('.popover, .actions-modal');
+  } else if($$('.popup').length && $$('.popup .view')[0].f7View) {
+    if ($$('.popup .view')[0].f7View.history.length > 1){
+      view.router.back();
+    } else {
+      myApp.closeModal('.popup');
+    }
+  } else if ($$('.popup').length) {
+    myApp.closeModal('.popup');
+  } else {
+    view.router.back();
+  }
+}
+
+document.addEventListener("deviceready", function() {
+  document.addEventListener('backbutton', onBackKey, false);
+}, false);

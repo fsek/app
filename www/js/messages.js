@@ -2,6 +2,7 @@ var group_app = null;
 
 myApp.onPageInit('messages', function (page) {
   $$('.tabbar').hide();
+
   var head = $(page.container); // We need jQuery on this page
   initMessages(head, page.query);
 });
@@ -167,8 +168,8 @@ function initMessages(head, query) {
     }
   });
 
- window.addEventListener('native.keyboardshow', function(e) {
-    F7msg.scrollMessages();
+  window.addEventListener('native.keyboardshow', function(e) {
+    F7msg.scrollMessages(0);
   });
 
   // Send message on enter

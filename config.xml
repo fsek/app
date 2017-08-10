@@ -34,17 +34,24 @@
         <icon height="120" src="res/icons/icon-40@3x.png" width="120" />
         <icon height="57" src="res/icons/icon.png" width="57" />
         <icon height="114" src="res/icons/icon@2x.png" width="114" />
-        <icon height="72" src="res/icons/icon-72.png" width="72"/>
+        <icon height="72" src="res/icons/icon-72.png" width="72" />
         <icon height="144" src="res/icons/icon-72@2x.png" width="144" />
         <icon height="50" src="res/icons/icon-50.png" width="50" />
         <icon height="100" src="res/icons/icon-50@2x.png" width="100" />
     </platform>
     <preference name="Orientation" value="portrait" />
     <preference name="DisallowOverscroll" value="true" />
+    <engine name="android" spec="^6.2.3" />
     <plugin name="cordova-plugin-dialogs" spec="~1.3.3" />
     <plugin name="cordova-plugin-whitelist" spec="~1.3.2" />
     <plugin name="ionic-plugin-keyboard" spec="^2.2.1" />
     <plugin name="phonegap-plugin-push" spec="~1.10.5">
         <variable name="SENDER_ID" value="509736475453" />
     </plugin>
+    <plugin name="cordova-plugin-statusbar" spec="^2.2.3" />
+    <feature name="StatusBar">
+        <param name="ios-package" value="CDVStatusBar" onload="true" />
+    </feature>
+    <preference name="StatusBarOverlaysWebView" value="false" />
+    <preference name="StatusBarBackgroundColor" value="#eb7125" />
 </widget>

@@ -19,6 +19,9 @@
         "phonegap-plugin-push": {
             "SENDER_ID": "223210674700",
             "PACKAGE_NAME": "se.fsektionen.fapp"
+        },
+        "cordova-plugin-statusbar": {
+            "PACKAGE_NAME": "se.fsektionen.fapp"
         }
     },
     "dependent_plugins": {}

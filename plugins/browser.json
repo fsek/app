@@ -13,11 +13,14 @@
         "cordova-plugin-whitelist": {
             "PACKAGE_NAME": "se.fsektionen.fapp"
         },
+        "ionic-plugin-keyboard": {
+            "PACKAGE_NAME": "se.fsektionen.fapp"
+        },
         "phonegap-plugin-push": {
             "SENDER_ID": "223210674700",
             "PACKAGE_NAME": "se.fsektionen.fapp"
         },
-        "ionic-plugin-keyboard": {
+        "cordova-plugin-statusbar": {
             "PACKAGE_NAME": "se.fsektionen.fapp"
         }
     },

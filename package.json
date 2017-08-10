@@ -1,22 +1,27 @@
 {
-  "name": "se.fsektionen.fapp",
-  "version": "1.0.0",
-  "displayName": "F-sektionen",
-  "cordova": {
-    "platforms": [],
-    "plugins": {
-      "cordova-plugin-dialogs": {},
-      "cordova-plugin-whitelist": {},
-      "phonegap-plugin-push": {
-        "SENDER_ID": "509736475453"
-      },
-      "ionic-plugin-keyboard": {}
+    "name": "se.fsektionen.fapp",
+    "version": "1.0.0",
+    "displayName": "F-sektionen",
+    "cordova": {
+        "platforms": [
+            "android"
+        ],
+        "plugins": {
+            "cordova-plugin-dialogs": {},
+            "cordova-plugin-whitelist": {},
+            "phonegap-plugin-push": {
+                "SENDER_ID": "509736475453"
+            },
+            "ionic-plugin-keyboard": {},
+            "cordova-plugin-statusbar": {}
+        }
+    },
+    "dependencies": {
+        "cordova-android": "^6.2.3",
+        "cordova-plugin-dialogs": "~1.3.3",
+        "cordova-plugin-statusbar": "^2.2.3",
+        "cordova-plugin-whitelist": "~1.3.2",
+        "ionic-plugin-keyboard": "^2.2.1",
+        "phonegap-plugin-push": "~1.10.5"
     }
-  },
-  "dependencies": {
-    "cordova-plugin-dialogs": "~1.3.3",
-    "cordova-plugin-whitelist": "~1.3.2",
-    "ionic-plugin-keyboard": "^2.2.1",
-    "phonegap-plugin-push": "~1.10.5"
-  }
 }

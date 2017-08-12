@@ -95,4 +95,5 @@ function afterSignIn() {
   pushAfterLogin();
   initNotificationBadge();
   loadHome();
+  getGroups();
 }

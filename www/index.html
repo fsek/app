@@ -10,9 +10,9 @@
 
 
     <!-- Material/iOS stylesheets. Will be replaced on deploy -->
-    <link rel="stylesheet" href="css/framework7.ios.min.css">
-    <link rel="stylesheet" href="css/framework7.ios.colors.min.css">
-    <link rel="stylesheet" href="css/ios-overrides.css">
+    <link rel="stylesheet" href="css/framework7.material.min.css">
+    <link rel="stylesheet" href="css/framework7.material.colors.min.css">
+    <link rel="stylesheet" href="css/material-overrides.css">
 
     <!-- General stylesheets -->
     <link rel="stylesheet" href="css/framework7-icons.css">
@@ -164,7 +164,9 @@
               <i class="icon f7-icons">calendar</i>
             </a>
             <a href="#tab4" class="tab-link">
-              <i class="icon f7-icons">collection</i>
+              <i class="icon f7-icons">collection
+                <span class="badge" id="group-badge"></span>
+              </i>
             </a>
         </div>
       </div>
@@ -172,7 +174,7 @@
 
     <!-- Templates -->
     <script type="text/template7" id="notificationTemplate">
-      <li id="{{id}}" {{#unless seen}} class="unseen" {{/unless}}>
+      <li id="{{id}}" {{#unless seen}} class="unseen"{{/unless}}>
         <a href="#" class="item-link item-content">
           <div class="item-inner">
             <div class="item-title-row">
@@ -187,7 +189,8 @@
     </script>
 
     <script type="text/template7" id="groupTemplate">
-      <li id="{{id}}">
+      <li id="{{id}}" {{#js_compare "this.group_user.unread_count > 0"}} class="unread"{{/js_compare}}
+          data-unread="{{group_user.unread_count}}">
         <a href="#" class="item-link item-content">
           <div class="item-inner">
             <div class="item-title-row">

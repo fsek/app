@@ -1,12 +1,17 @@
 function getGroups() {
   $.getJSON(API + '/groups')
     .then(function(resp) {
+      $$('#groups-list ul').html('');
       var groups = resp.groups.reverse();
+      var unread = 0;
 
       for (var group of groups) {
         var templateHTML = myApp.templates.groupTemplate(group);
         $$('#groups-list ul').append(templateHTML);
+        unread += group.group_user.unread_count;
       }
+
+      updateGroupBadge(unread);
     });
 }
 
@@ -20,8 +25,21 @@ $$('#groups-list').on('click', 'li', function() {
   var groupId = $$(this).attr('id');
   var groupName = $$(this).find('.item-title').html();
 
+  $$(this).removeClass('unread');
+  updateGroupBadge(parseInt($$('#group-badge').html()) - $$(this).data('unread'));
+
   tabView4.router.load({
     url: 'messages.html',
     query: {groupId: groupId, groupName: groupName}
   });
 });
+
+function updateGroupBadge(count) {
+  if (count > 0) {
+    $$('#group-badge').html(count);
+    $$('#group-badge').show();
+  } else {
+    $$('#group-badge').html(0);
+    $$('#group-badge').hide();
+  }
+}

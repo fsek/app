@@ -31,14 +31,42 @@ function setupPush() {
   });
 
   pushService.on('notification', function(data) {
-    /*navigator.notification.alert(
-      data.message,         // message
-      null,                 // callback
-      data.title,           // title
-      'OK'                  // buttonName
-    );*/
-    getNotifications(false);
+    if ('group_id' in data.additionalData) {
+      groupPush(data);
+    } else {
+      getNotifications(false);
+    }
   });
+
+  function groupPush(data) {
+    if (data.additionalData.foreground) {
+      getGroups();
+    } else if ($.auth.user.signedIn) {
+      openGroup(data);
+    } else {
+      // App is closed, wait for validation
+      var authEvent = PubSub.subscribe('auth.validation.success', function() {
+        PubSub.unsubscribe(authEvent);
+        openGroup(data);
+      });
+    }
+  }
+
+  function openGroup(data) {
+    myApp.showTab('#tab4');
+
+    var groupId = data.additionalData.group_id;
+    var page = tabView4.activePage;
+
+    if (page.name == 'messages' && page.query.groupId != groupId) {
+      tabView4.router.back({animatePages: false});
+    }
+
+    tabView4.router.load({
+      url: 'messages.html',
+      query: {groupId: data.additionalData.group_id, groupName: data.title}
+    });
+  }
 }
 
 function updatePushDevice(oldId, newId) {

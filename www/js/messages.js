@@ -1,17 +1,12 @@
 var group_app = null;
+var group_paused = false;
+var F7msg = null;
 
 myApp.onPageInit('messages', function (page) {
   $$('.tabbar').hide();
 
   var head = $(page.container); // We need jQuery on this page
   initMessages(head, page.query);
-});
-
-myApp.onPageBack('messages', function (page) {
-  $('.tabbar').show();
-  group_app.unsubscribe();
-  cable.disconnect();
-  group_app = null;
 });
 
 function initMessages(head, query) {
@@ -27,7 +22,7 @@ function initMessages(head, query) {
   head.find('#group-name').html(query.groupName);
 
   // Initialize Framework7 mesages
-  var F7msg = myApp.messages(messages, {
+  F7msg = myApp.messages(messages, {
     autoLayout: true,
     scrollMessages: true,
     messageTemplate: $$('#messageTemplate').html()
@@ -96,16 +91,19 @@ function initMessages(head, query) {
     }
   };
 
-  var loadMessages = function() {
+  function loadMessages() {
     $.getJSON(API + '/groups/' + groupId + '/messages/')
       .then(function(resp) {
+        F7msg.clean();
         batchAddMessages(resp.messages);
         totalPages = resp.meta.total_pages;
 
         // Fill the screen if more messages exist
         if($$(window).height() >= messages.height()) moreMessages();
       });
-  }();
+  }
+
+  loadMessages();
 
   // Functions for single messages
   var receivedMessage = function(message) {
@@ -169,7 +167,7 @@ function initMessages(head, query) {
   });
 
   window.addEventListener('native.keyboardshow', function(e) {
-    F7msg.scrollMessages(0);
+    F7msg.scrollMessages(350);
   });
 
   // Send message on enter
@@ -236,14 +234,40 @@ function initMessages(head, query) {
   infiniteScroll.on('infinite', function () {
     moreMessages();
   });
+
+  var pauseGroup = function() {
+    if (group_app) {
+      group_paused = true;
+      group_app.unsubscribe();
+    }
+  };
+
+  var resumeGroup = function() {
+    if(group_app && group_paused) {
+      group_paused = false;
+      loadMessages();
+      cable.subscriptions.add(group_app);
+    }
+  };
+
+  // Disconnect action cable if the app is paused. Reconnect when it's opened again.
+  document.addEventListener('pause', pauseGroup, false);
+  document.addEventListener('resume', resumeGroup, false);
+
+  var groupBack = myApp.onPageBack('messages', function (page) {
+    groupBack.remove();
+
+    $('.tabbar').show();
+    getGroups();
+
+    document.removeEventListener('pause', pauseGroup, false);
+    document.removeEventListener('resume', resumeGroup, false);
+
+    group_app.unsubscribe();
+    cable.disconnect();
+    group_paused = false;
+    group_app = null;
+    F7msg = null;
+  });
 }
 
-// Disconnect action cable if the app is minimized/paused
-document.addEventListener('pause', function() {
-  if(group_app) group_app.unsubscribe();
-}, false);
-
-// Reconnect when the app is opened again
-document.addEventListener('resume', function() {
-  if(group_app) cable.subscriptions.add(group_app);
-}, false);

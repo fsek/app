@@ -13,12 +13,14 @@
                 "SENDER_ID": "509736475453"
             },
             "ionic-plugin-keyboard": {},
-            "cordova-plugin-statusbar": {}
+            "cordova-plugin-statusbar": {},
+            "cordova-plugin-splashscreen": {}
         }
     },
     "dependencies": {
         "cordova-android": "^6.2.3",
         "cordova-plugin-dialogs": "~1.3.3",
+        "cordova-plugin-splashscreen": "^4.0.3",
         "cordova-plugin-statusbar": "^2.2.3",
         "cordova-plugin-whitelist": "~1.3.2",
         "ionic-plugin-keyboard": "^2.2.1",

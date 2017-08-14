@@ -56,6 +56,7 @@
     </feature>
     <preference name="StatusBarOverlaysWebView" value="false" />
     <preference name="StatusBarBackgroundColor" value="#eb7125" />
+    <preference name='phonegap-version' value='cli-7.0.1' />
     <engine name="android" spec="^6.2.3" />
     <plugin name="cordova-plugin-dialogs" spec="~1.3.3" />
     <plugin name="cordova-plugin-splashscreen" spec="^4.0.3" />

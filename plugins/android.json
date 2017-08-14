@@ -22,6 +22,9 @@
         },
         "cordova-plugin-statusbar": {
             "PACKAGE_NAME": "se.fsektionen.fapp"
+        },
+        "cordova-plugin-splashscreen": {
+            "PACKAGE_NAME": "se.fsektionen.fapp"
         }
     },
     "dependent_plugins": {}

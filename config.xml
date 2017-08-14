@@ -45,8 +45,8 @@
         <icon height="144" src="res/icons/icon-72@2x.png" width="144" />
         <icon height="50" src="res/icons/icon-50.png" width="50" />
         <icon height="100" src="res/icons/icon-50@2x.png" width="100" />
-        <splash src="res/screen/ios/Default@2x~universal~anyany.png" />
-        <splash src="res/screen/ios/Default@3x~universal~anyany.png" />
+        <splash src="res/splash/ios/Default@2x~universal~anyany.png" />
+        <splash src="res/splash/ios/Default@3x~universal~anyany.png" />
     </platform>
     <preference name="Orientation" value="portrait" />
     <preference name="DisallowOverscroll" value="true" />

@@ -39,8 +39,8 @@ Date.prototype.getFullHours = function() {
   return (h < 10) ? `0${h}` : h ;
 };
 
-// Get time in h:mm format from a date
-Date.prototype.hmm = function() {
+// Get time in hh:mm format from a date
+Date.prototype.hhmm = function() {
   return this.getFullHours() + ':' + this.getFullMinutes();
 };
 

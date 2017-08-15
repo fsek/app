@@ -53,10 +53,10 @@ function setupPush() {
   }
 
   function openGroup(data) {
-    myApp.showTab('#tab4');
+    myApp.showTab('#tab3');
 
     var groupId = data.additionalData.group_id;
-    var page = tabView4.activePage;
+    var page = tabView3.activePage;
 
     if (page.name == 'messages' && page.query.groupId != groupId) {
       tabView4.router.back({animatePages: false});

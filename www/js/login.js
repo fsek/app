@@ -78,9 +78,8 @@ myApp.onPageInit('login', function (page) {
   // Fix statusbar and close splash
   document.addEventListener('deviceready', function() {
     navigator.splashscreen.hide();
+    StatusBar.backgroundColorByHexString(loginBarColor);
     StatusBar.overlaysWebView(false);
-    StatusBar.styleLightContent();
-    StatusBar.backgroundColorByHexString("#7999d2");
   }, false);
 });
 
@@ -101,8 +100,7 @@ function afterSignIn() {
   document.addEventListener('deviceready', function() {
     navigator.splashscreen.hide();
     StatusBar.overlaysWebView(false);
-    StatusBar.styleLightContent();
-    StatusBar.backgroundColorByHexString("#eb7125");
+    StatusBar.backgroundColorByHexString(mainBarColor);
   }, false);
 
   //close login screen

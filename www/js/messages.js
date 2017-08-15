@@ -17,7 +17,7 @@ function initMessages(head, query) {
   var loadingMessages = false;
 
   // Set group name
-  head[0].f7RelatedNavbar.children['group-name'].innerHTML = query.groupName;
+  head.find('#group-name').html(query.groupName);
 
   // Initialize Framework7 mesages
   F7msg = myApp.messages(messages, {

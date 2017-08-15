@@ -15,9 +15,6 @@ var myApp = new Framework7({
 	}
 });
 
-window.addEventListener('native.keyboardhide', function(){
-                            window.scrollTo(0,0);
-                        });
 // Define Dom7
 var $$ = Dom7;
 

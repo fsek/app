@@ -3,11 +3,13 @@ $.auth.validateToken()
   .done(function() {
     afterSignIn();
   })
-  .fail(function(){
-    loadLoginPage();
+  .fail(function() {
+    loadLoginPage(false);
   });
 
 myApp.onPageInit('login', function (page) {
+  $('.navbar').hide();
+
   $('.login-content input').on('input',function(e){
     var email = $('input[name="login-email"]').val();
     var password = $('input[name="login-password"]').val();
@@ -36,7 +38,9 @@ myApp.onPageInit('login', function (page) {
       afterSignIn();
     })
     .fail(function(resp) {
+      $('input[name="login-password"]').val('');
       myApp.alert("Ogiltig E-post eller lösenord", "Inloggningen misslyckades");
+
     });
   });
 
@@ -77,21 +81,28 @@ myApp.onPageInit('login', function (page) {
   }, false);
 });
 
-function loadLoginPage(){
+function loadLoginPage(animate){
   mainView.router.load({
     url: 'login.html',
-    animatePages: false
+    animatePages: animate
   });
 }
 
 function afterSignIn() {
-  $('#tab1 .cached').removeClass('cached');
-  $('.tabbar').show();
+  var homePage = $('#tab1 .cached');
+  homePage.removeClass('cached');
+
+  $('.tabbar').show(); //if you have .show() before load it animates 
   StatusBar.backgroundColorByHexString("#eb7125");
-  mainView.router.back({ //close login screen
+  //close login screen
+  mainView.router.load({ 
     pageName: 'tab1',
     animatePages: false
   });
+
+  $('.navbar').show();
+  homePage.removeClass('page-on-left');
+
   pushAfterLogin();
   initNotificationBadge();
   loadHome();

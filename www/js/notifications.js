@@ -71,15 +71,15 @@ function lookNotification(id) {
 }
 
 function attachInfNotificationScroll() {
-  myApp.attachInfiniteScroll($$('#tab2 .infinite-scroll'));
-  $$('#tab2 .page-content').append(infScrollPreloader);
+  myApp.attachInfiniteScroll($$('#tab4 .infinite-scroll'));
+  $$('#tab4 .page-content').append(infScrollPreloader);
   infNotificationScroll = true;
 }
 
 function detachInfNotificationScroll() {
   infNotificationScroll = false;
-  myApp.detachInfiniteScroll($$('#tab2 .infinite-scroll'));
-  $$('#tab2 .infinite-scroll-preloader').remove();
+  myApp.detachInfiniteScroll($$('#tab4 .infinite-scroll'));
+  $$('#tab4 .infinite-scroll-preloader').remove();
 }
 
 function moreNotifications() {
@@ -90,17 +90,17 @@ function moreNotifications() {
   }
 }
 
-$$('#tab2').on('show', function() {
+$$('#tab4').on('show', function() {
   // Get notifications if we haven't done so already
   if($$('#notification-list ul').is(':empty'))
     getNotifications(false);
 });
 
-$$('#tab2 .pull-to-refresh-content').on('ptr:refresh', function() {
+$$('#tab4 .pull-to-refresh-content').on('ptr:refresh', function() {
   getNotifications(true);
 });
 
-$$('#tab2 .infinite-scroll').on('infinite', function() {
+$$('#tab4 .infinite-scroll').on('infinite', function() {
   moreNotifications();
 });
 

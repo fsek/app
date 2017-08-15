@@ -1,4 +1,4 @@
-var isAndroid = Framework7.prototype.device.android === true;
+var isAndroid = Framework7.prototype.device.android
 
 // Initialize app
 var myApp = new Framework7({
@@ -7,6 +7,7 @@ var myApp = new Framework7({
   material: isAndroid ? true : false,
   tapHold: true,
   statusbarOverlay: false,
+  modalButtonCancel: 'Avbryt',
   onPageInit: function (app, page) {
   	if(page.container.className.indexOf('no-tabbar') != -1){
   		showHideTabbar(page.name);
@@ -14,6 +15,10 @@ var myApp = new Framework7({
 	}
 });
 
+window.addEventListener('native.keyboardhide', function(){
+                            window.scrollTo(0,0);
+                        });
+// Define Dom7
 var $$ = Dom7;
 
 // API URLS
@@ -36,7 +41,7 @@ var tabView3 = myApp.addView('#tab3',{
   dynamicNavbar:true
 });
 var tabView4 = myApp.addView('#tab4',{
-  dynamicNavbar:false
+  dynamicNavbar:true
 });
 
 // Configure jToker

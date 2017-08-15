@@ -47,7 +47,9 @@
 }
 
 .signup-content li.item-content{
-  border-image:  linear-gradient(to right, rgba(200,200,200,0) 0%, rgba(230,230,230,0.4) 50%, rgba(200,200,200,0) 100%);
+  border-style: solid;
+  border-width: 0px 0px 1px 0px;
+  border-image:  linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0) 100%);
   border-image-slice: 1;
   border-style: solid;
   border-width: 0px 0px 1px 0px;

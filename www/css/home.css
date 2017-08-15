@@ -4,6 +4,7 @@
 
 .news-card .card-header {
   color: #eb7125;
+  font-weight: bold;
 }
 
 .news-card .card-footer:before {
@@ -26,5 +27,14 @@
 }
 
 .subtab .day-title:not(:first-child) {
-  margin-top: 13px;
+  margin-top: 13px !important;
+}
+
+#subtab2 .day-title{
+  background-color: #f7f7f8;
+  color: #eb7125;
+}
+
+#subtab2 p.disabled{
+  text-align: center;
 }

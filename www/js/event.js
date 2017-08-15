@@ -1,62 +1,384 @@
 //Configuration of the event page
 myApp.onPageInit('event', function (page) {
-  var clickedEvent = page.query.eventId;
-  var eventData = '';
-  console.log('event opened');
-  $('.tabbar').hide();
-  $('.toolbar').hide();
-
-  $.getJSON(API + '/events/' + clickedEvent)
+  var eventId = page.query.id;
+  $.getJSON(API + '/events/' + eventId)
   .done(function(resp){
-    eventData = resp;
-    console.log(resp.event);
-    for(var key in resp.event){
-      var keyValue = resp.event[key];
-      if(keyValue !== null && keyValue.length !== 0 && keyValue !== false){
-        console.log(key + ':', resp.event[key]);
-      }
-    }
-    $('.event-info').empty();
-    $('.event-info').append(
-      '<div class="event-title">' + resp.event.title + '</div>' +
-      '<div class="event-time">' + resp.event.starts_at + '-' + resp.event.ends_at + '</div>' +
-      '<div class="event-place">' + resp.event.location + '</div>' +
-      '<div class="event-dress-code">' + resp.event.dress_code + '</div>' +
-      '<div class="event-food">' + resp.event.food + '</div>' +
-      '<div class="event-drink">' + resp.event.drink + '</div>' +
-      '<div class="event-price">' + resp.event.price + ' kr</div>' +
-      '<div class="event-description">' + resp.event.description + '</div>'
-      );
+    initEventPage(resp.event);
   })
   .fail(function(resp){
     console.log(resp.statusText);
-  });
+  });  
+});
 
+function initEventPage(eventData){
+  generateAdditionalData(eventData); 
 
-  $('.back').on('click', function(){
-    $('.event-info').empty();
-  })
+  // Apply the event page content with template
+  var templateHTML = myApp.templates.eventPageTemplate({event: eventData});
+  $('.event-content').html(templateHTML);
 
-  $('.event-signup-btn').on('click', function(){
-    console.log('signup pressed', eventData);
-    $.ajax({
-      url: API + '/events/' + clickedEvent + '/event_users',
-      type: 'POST',
-      dataType: 'json',
-      data: {
-        event_user: {group_custom: 'Godtycklig grupp'}
-      },
-      success: function(resp) {
-        alert(JSON.stringify(resp));
-      },
-      fail: function(resp) {
-        console.log(resp.statusText);
+  // Description overflow toggle if container height = maxHeight
+  var descripContainer = $('.event-description-container');
+  if(descripContainer.height() == 80){
+    handleDescriptionOverflow(descripContainer);
+  }
+
+  // Setup picker and buttons for signup (if it exists)
+  if(eventData.can_signup){
+    var pickerGroup = setupGroupPicker(eventData);
+    if(eventData.event_user == null){
+      setupRegistrationBtn(eventData);
+    }else{
+      setupCancelRegistrationBtn(eventData);
+    }
+  }
+}
+
+function generateAdditionalData(eventData){
+  // Fix dates
+  eventData.starts_at = new Date(eventData.starts_at);
+  eventData.ends_at = new Date(eventData.ends_at);
+
+  // Need to add if event has dress code because template7 #if doesn't handle empty arrays
+  var hasDressCode = eventData.dress_code.length != 0 ? true : false;
+  eventData.hasDressCode = hasDressCode;
+
+  // Fix the start time with dots
+  switch(eventData.dot){
+    case '':
+      eventData.starts_at_dot = eventData.starts_at.timeDateString();
+      break;
+    case 'without':
+      eventData.starts_at_dot = eventData.starts_at.timeWithoutDot();
+      break;
+    case 'single':
+      eventData.starts_at_dot = eventData.starts_at.timeSingleDot();
+      break;
+    case 'double':
+      eventData.starts_at_dot = eventData.starts_at.timeDoubleDot();
+      break;
+  }
+
+  if(eventData.can_signup){
+    generateSignupData(eventData);
+  }
+}
+
+function generateSignupData(eventData){
+  // Fix dates
+  var eventSignup =  eventData.event_signup;
+  eventSignup.opens = new Date(eventSignup.opens);
+  eventSignup.closes = new Date(eventSignup.closes); 
+
+  // Save if event open time has passed
+  var signupOpened = !eventData.event_signup.open && !eventData.event_signup.closed ? false : true;
+  eventData.event_signup.opened = signupOpened;
+
+  // Save the registered text and the group name
+  if(eventData.event_user != null){
+    if(eventData.event_signup.closed){
+      if(eventData.event_user.reserve){
+        var registeredText = 'Du fick tyvärr ingen plats till eventet';
+      }else{
+        var registeredText = 'Du är anmäld och har fått en plats till eventet!';
+      }
+    }else{
+      var registeredText = 'Du är anmäld till eventet! Kom tillbaka hit när anmälan har stängt för att se om du fått en plats';
+    }
+
+    eventData.event_user.group_name = getGroupName(eventData.groups, eventData.event_user.group_id, eventData.event_user.group_custom);
+  }else{
+    var registeredText = 'Du är inte anmäld';
+  }
+  eventData.registered_text = registeredText;
+
+  // Save food preferences if there is food
+  if(eventData.food){
+    // Sometimes an empty preference comes from the form
+    var foodPreferences = $.auth.user.food_preferences
+
+    var index = foodPreferences.indexOf('');
+    if(index > -1){
+      foodPreferences.splice(index, 1);
+    }
+
+    if(foodPreferences.length === 0){
+      foodPreferences.push('Inga');
+    }
+    eventData.food_preferences = foodPreferences;
+  }
+  
+  // Save if there is any reserves and how many
+  if(eventData.event_signup.closed){
+    var reserves = eventData.event_user_count - eventData.event_signup.slots;
+    reserves = reserves <= 0 ? null : reserves;
+    eventData.event_signup.reserves = reserves;
+  }
+}
+
+function getGroupName(groups, groupId, groupCustom){
+  if(groupId != null){
+    var groupName = '';
+    groups.forEach(function(element){
+      if(element.id == groupId){
+        groupName = element.name;
       }
     });
-  })
-});
+    return groupName;
+  }else if(/\S/.test(groupCustom)){ // Check if empty or only whitespaces
+    return groupCustom;
+  }else{
+    return null;
+  }
+}
 
-myApp.onPageBack('event', function (page) {
-  $('.tabbar').show();
-  $('.toolbar').show();
-});
+function handleDescriptionOverflow(descripContainer){
+  var descripShowing = false;
+  descripContainer.append('<span><i class="icon f7-icons">down</i></span>');
+
+  descripContainer.on('click', function(e){
+    var content = descripContainer.find('.event-description');
+
+    if(!descripShowing){
+      // Calc total height of the text
+      var totalHeight = 0;
+      content.children().each(function(){
+        totalHeight += $(this).outerHeight(true);
+      });
+
+      // Expand content to the total text height
+      content.animate({
+        maxHeight: totalHeight
+      }, 300, function(){
+
+      });
+
+      descripShowing = true;
+    }else{
+      // Collapse content
+      content.animate({
+        maxHeight: "80px"
+      }, 300);
+
+      descripShowing = false;
+    }
+
+    //Adjust content during animation (måste ändras med awesome icons) 
+    setTimeout(function(){ 
+      var icon = descripContainer.find('.icon'); 
+      if(descripShowing){
+        content.removeClass('content-fade'); 
+        icon[0].innerHTML = 'up'; 
+      }else{
+        content.addClass('content-fade');
+        icon[0].innerHTML = 'down'; 
+      }
+    }, 150);
+  })
+}
+
+function setupGroupPicker(eventData){
+  var groupNames = [];
+  var groups = eventData.groups;
+  if(eventData.event_user === null){
+    $('#event-signup-group').find('.item-input').html('<input type="text" placeholder="Välj din grupp" readonly id="picker-group">');
+  }
+
+  groups.forEach(function(element){
+    groupNames.push(element.name);
+  });
+  groupNames.push('Annan');
+
+  var pickerGroup = myApp.picker({
+    input: '#picker-group',
+    toolbarCloseText: 'Klar',
+    cols: [
+      {
+        textAlign: 'center',
+        values: groupNames
+      }
+    ],
+    onClose: function(){
+      // Hide and show custom group input + save selected group id if not custom
+      var groupCustomContainer = $('#event-signup-groupcustom');
+      var value = this.cols[0].value;
+      if(value === 'Annan'){
+        if(groupCustomContainer.hasClass('hidden')){
+          groupCustomContainer.removeClass('hidden');
+        }
+
+        eventData.selectedGroupId = null;
+      }else{
+        if(!groupCustomContainer.hasClass('hidden')){
+          groupCustomContainer.addClass('hidden');
+        }
+
+        groups.forEach(function(element){
+          if(element.name === value){
+            eventData.selectedGroupId = element.id;
+          }
+        });
+      }
+    }
+  });
+}
+
+function setupCancelRegistrationBtn(eventData){
+  $('.event-signup-cancel-btn').on('click', function(){
+    myApp.confirm('Är du säker på att du vill avanmäla dig? Det finns inget sätt att få tillbaka platsen om evenemanget blivit fullt.', 'Avanmälan', function () {
+      $.ajax({
+        url: API + '/events/' + eventData.id + '/event_users/' + eventData.event_user.id,
+        type: 'DELETE',
+        dataType: 'json',
+        success: function(resp) {
+          myApp.alert('Du är nu avanmäld från eventet', 'Avanmälan');
+          updateSignupContent(eventData);
+        },
+        fail: function(resp) {
+          myApp.alert(resp.data.errors);
+        }
+      });
+    });
+  });
+}
+
+function setupRegistrationBtn(eventData){
+  $('.event-signup-btn').on('click', function(){
+    myApp.confirm('Kom ihåg att anmälan är bindande! Om du inte kan komma ska du avanmäla dig innan anmälan stänger.', 'Anmälan', function(){
+      // Get custom group if selected
+      if(eventData.selectedGroupId === null){
+        var customGroup = $('input[name="group-custom"]').val();
+      }
+
+      if(eventData.event_signup.question != ''){
+        myApp.prompt(eventData.event_signup.question, 'Anmälan', function (answer) {
+          signupToEvent(eventData, answer, customGroup);
+        });
+      }else{
+        signupToEvent(eventData, null, customGroup);
+      }
+    });
+  });
+}
+
+
+function signupToEvent(eventData, answer, groupCustom){
+  $.ajax({
+    url: API + '/events/' + eventData.id + '/event_users',
+    type: 'POST',
+    dataType: 'json',
+    data: {
+      event_user: {
+        answer: answer,
+        group_id: eventData.selectedGroupId,
+        group_custom: groupCustom
+      }
+    },
+    success: function(resp) {
+      myApp.alert('Du är nu anmäld till eventet', 'Anmälan');
+      updateSignupContent(eventData);
+    },
+    fail: function(resp) {
+      myApp.alert(resp.data.errors);
+    }
+  });
+}
+
+
+function updateSignupContent(eventData){
+  $.getJSON(API + '/events/' + eventData.id)
+    .done(function(resp) {
+      var oldEventData = eventData;
+      eventData = resp.event;
+
+      var registeredTextContainer = $('#event-registered-text');
+      var userCountContainer = $('#event-user-count');
+      var questionContainer = $('#event-question-answer');
+      var groupContainer = $('#event-signup-group');
+      var groupCustomContainer = $('#event-signup-groupcustom');
+      
+      if(eventData.event_user != null) {
+        // Update registered text and user count
+        registeredTextContainer.html('Du är anmäld till eventet! Kom tillbaka hit när anmälan har stängt för att se om du fått en plats');
+        userCountContainer.html('Anmälda: ' + eventData.event_user_count);
+
+        // Update question and answer if there is a question
+        if(eventData.event_signup.question != '') {
+          questionContainer.removeClass('hidden');
+          questionContainer.find('.item-inner').html(eventData.event_signup.question + ' ' + eventData.event_user.answer);
+        }
+
+        // Update group
+        // We remove #picker-group here and add it dynamically in setupGroupPicker() to update it with the new event data later
+        var group = getGroupName(eventData.groups, eventData.event_user.group_id, eventData.event_user.group_custom);
+        if(group != null){
+          if(eventData.event_user.group_id === null){
+            groupCustomContainer.addClass('hidden');
+          }
+
+          groupContainer.find('#event-signup-groupname').html(group);
+        }else{
+          if(!groupCustomContainer.hasClass('hidden')){
+            groupCustomContainer.addClass('hidden');
+          }
+          groupContainer.addClass('hidden');
+        }
+        groupContainer.find('input').remove();
+
+        // Update the register button to cancel registration
+        var registerBtn = $('.event-signup-btn');
+        registerBtn.after('<a href="#" class="button button-big event-signup-cancel-btn">Avanmäl</a>');
+        registerBtn.remove();
+        setupCancelRegistrationBtn(eventData);
+      }else {
+        // Update registered text and user count
+        registeredTextContainer.html('Du är inte anmäld');
+        userCountContainer.html('Anmälda: ' + eventData.event_user_count);
+
+        // Hide question if there is one
+        if(eventData.event_signup.question != '') {
+          questionContainer.addClass('hidden');
+        }
+
+        // Update group
+        var oldGroup = getGroupName(oldEventData.groups, oldEventData.event_user.group_id, oldEventData.event_user.group_custom);
+        if(oldGroup != null){
+          if(oldEventData.event_user.group_id === null){
+            groupCustomContainer.find('input').val('');
+          }
+
+          groupContainer.find('#event-signup-groupname').html('');
+        }else{
+          groupContainer.removeClass('hidden');
+        }
+        setupGroupPicker(eventData); // Need to setup the picker with the new event data (reinits it dynamically)
+
+        groupContainer.find('input').val('');
+
+        // Update the cancel registration button to register
+        var registerCancelBtn = $('.event-signup-cancel-btn');
+        registerCancelBtn.after('<a href="#" class="button button-big event-signup-btn">Anmäl</a>');
+        registerCancelBtn.remove();
+        setupRegistrationBtn(eventData);
+      }
+    })
+    .fail(function(resp){
+      console.log(resp.statusText);
+    });  
+}
+
+if(myApp.device.ios){
+  myApp.onPageBeforeAnimation('event', function (page) {
+    if(page.view.selector == '#tab2') {
+      $('#tab2 .navbar').removeClass('hidden');
+    }
+  });
+
+  myApp.onPageBack('event', function (page) {
+    if(page.view.selector == '#tab2') {
+      setTimeout(function(){ 
+        $('#tab2 .navbar').addClass('hidden');
+      }, 100); 
+    }
+  });
+}

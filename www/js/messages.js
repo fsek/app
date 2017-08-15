@@ -3,8 +3,6 @@ var group_paused = false;
 var F7msg = null;
 
 myApp.onPageInit('messages', function (page) {
-  $$('.tabbar').hide();
-
   var head = $(page.container); // We need jQuery on this page
   initMessages(head, page.query);
 });
@@ -19,7 +17,7 @@ function initMessages(head, query) {
   var loadingMessages = false;
 
   // Set group name
-  head.find('#group-name').html(query.groupName);
+  head[0].f7RelatedNavbar.children['group-name'].innerHTML = query.groupName;
 
   // Initialize Framework7 mesages
   F7msg = myApp.messages(messages, {

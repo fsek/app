@@ -2,6 +2,10 @@ a:active {
   color:#d35400;
 }
 
+.hidden{
+  display: none !important;
+}
+
 .tabbar .badge {
   background: #ffe0b3;
   color: #eb7125

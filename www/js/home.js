@@ -32,19 +32,26 @@ function initHome() {
   function initEventStream(events) {
     var lastDay = null;
 
-    for(var event of events) {
-      event.start = new Date(event.start);
+    if(events.length != 0){
+      for(var event of events) {
+        event.start = new Date(event.start);
+        event.end = new Date(event.end);
 
-      // Add header on new days. We only download events for one week - checking date is enough
-      if(lastDay != event.start.getDate()) {
-        dayHTML = myApp.templates.dayTitleTemplate({date: event.start});
-        eventTab.append(dayHTML);
+        // Add header on new days. We only download events for one week - checking date is enough
+        if(lastDay != event.start.getDate()) {
+          dayHTML = myApp.templates.dayTitleTemplate({date: event.start});
+          eventTab.append(dayHTML);
+        }
+
+        var templateHTML = myApp.templates.dayTemplate({hasEvents: true, events: [event]});
+        eventTab.append(templateHTML);
+        lastDay = event.start.getDate();
       }
-
-      var templateHTML = myApp.templates.dayTemplate({events: [event]});
+    }else{
+      var templateHTML = myApp.templates.dayTemplate({hasEvents: false});
       eventTab.append(templateHTML);
-      lastDay = event.start.getDate();
     }
+    
   }
 
   function detachInfinite() {

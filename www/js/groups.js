@@ -15,7 +15,7 @@ function getGroups() {
     });
 }
 
-$$('#tab4').on('show', function() {
+$$('#tab3').on('show', function() {
   // Get messages if we haven't done so already
   if($$('#groups-list ul').is(':empty')) getGroups();
 });
@@ -28,7 +28,7 @@ $$('#groups-list').on('click', 'li', function() {
   $$(this).removeClass('unread');
   updateGroupBadge(parseInt($$('#group-badge').html()) - $$(this).data('unread'));
 
-  tabView4.router.load({
+  tabView3.router.load({
     url: 'messages.html',
     query: {groupId: groupId, groupName: groupName}
   });

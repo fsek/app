@@ -8,7 +8,6 @@
     <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://stage.fsektionen.se https://fsektionen.se wss://fsektionen.se wss://stage.fsektionen.se gap://ready 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' https://stage.fsektionen.se https://fsektionen.se data:" />
     <title>F-sektionen</title>
 
-
     <!-- Material/iOS stylesheets. Will be replaced on deploy -->
     <link rel="stylesheet" href="css/framework7.material.min.css">
     <link rel="stylesheet" href="css/framework7.material.colors.min.css">
@@ -42,15 +41,15 @@
     </div>
 
     <div class="views tabs">
-      <!--Tab 1 (Start) -->
+      <!--Tab 1 (Hem) -->
       <div id="tab1" class="view view-main tab active">
         <div class="navbar android-hide">
           <div class="navbar-inner">
-            <div class="center sliding">Start</div>
+            <div class="center sliding">Hem</div>
           </div>
         </div>
         <div class="pages navbar-fixed">
-          <div data-page="tab1" class="page no-swipeback">
+          <div data-page="tab1" class="page no-swipeback cached">
             <div class="page-content">
               <div class="content-block subtabs">
                 <div class="buttons-row">
@@ -77,7 +76,7 @@
                         </div>
                         <div class="col-50">
                           <a href="settings.html">
-                            <i class="icon f7-icons">settings</i>
+                            <i class="icon f7-icons">gear</i>
                           </a>
                         </div>
                       </div>
@@ -89,15 +88,48 @@
           </div>
         </div>
       </div>
-      <!--Tab 2 (Notifications) -->
+      <!--Tab 2 (Calendar) -->
       <div id="tab2" class="view tab">
+        <div class="navbar android-hide hidden"></div>
+        <div class="pages navbar-fixed">
+          <div data-page="tab2" class="page calendar-page">
+            <div class="content-block">
+              <div class="content-block-inner calendar-block">
+                <div id="calendar"></div>
+              </div>
+            </div>
+            <div class="row day-title"></div>
+            <div class="day-content">
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--Tab 3 (Messages) -->
+      <div id="tab3" class="view tab">
+        <div class="pages">
+          <div data-page="tab3" class="page navbar-fixed">
+            <div class="navbar android-hide">
+              <div class="navbar-inner">
+                <div class="center sliding">Meddelanden</div>
+              </div>
+            </div>
+            <div class="page-content">
+              <div class="list-block media-list groups-list" id="groups-list">
+                <ul></ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--Tab 4 (Notifications) -->
+      <div id="tab4" class="view tab">
         <div class="navbar android-hide">
           <div class="navbar-inner">
-            <div class="center sliding">Notiser</div>
+            <div class="center sliding">Notifikationer</div>
           </div>
         </div>
         <div class="pages navbar-fixed">
-          <div data-page="tab2" class="page">
+          <div data-page="tab4" class="page">
             <div class="page-content infinite-scroll pull-to-refresh-content">
               <div class="pull-to-refresh-layer">
                 <div class="preloader"></div>
@@ -113,59 +145,23 @@
           </div>
         </div>
       </div>
-      <!--Tab 3 (Calendar) -->
-      <div id="tab3" class="view tab">
-        <div class="pages">
-          <div data-page="tab3" class="page toolbar-fixed navbar-fixed calendar-page">
-            <div class="navbar android-hide">
-              <div class="navbar-inner">
-                <div class="center sliding">Kalender</div>
-              </div>
-            </div>
-            <div class="content-block">
-              <div class="content-block-inner calendar-block">
-                <div id="calendar"></div>
-              </div>
-            </div>
-            <div class="row day-title"></div>
-            <div class="day-content"></div>
-          </div>
-        </div>
-      </div>
-      <!--Tab 4 (Messages) -->
-      <div id="tab4" class="view tab">
-        <div class="pages">
-          <div data-page="tab4" class="page navbar-fixed">
-            <div class="navbar android-hide">
-              <div class="navbar-inner">
-                <div class="center sliding">Meddelanden</div>
-              </div>
-            </div>
-            <div class="page-content">
-              <div class="list-block media-list groups-list" id="groups-list">
-                <ul></ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
       <!-- Tabbar -->
-      <div class="toolbar tabbar">
+      <div class="toolbar tabbar android-shadow">
           <div class="toolbar-inner">
             <a href="#tab1" class="tab-link active">
               <i class="icon f7-icons">home</i>
             </a>
             <a href="#tab2" class="tab-link">
-              <i class="icon f7-icons">bell
-                <span class="badge" id="notification-badge"></span>
-              </i>
-            </a>
-            <a href="#tab3" class="tab-link">
               <i class="icon f7-icons">calendar</i>
             </a>
-            <a href="#tab4" class="tab-link">
+            <a href="#tab3" class="tab-link">
               <i class="icon f7-icons">collection
                 <span class="badge" id="group-badge"></span>
+              </i>
+            </a>
+            <a href="#tab4" class="tab-link">
+              <i class="icon f7-icons">bell
+                <span class="badge" id="notification-badge"></span>
               </i>
             </a>
         </div>
@@ -173,19 +169,258 @@
     </div>
 
     <!-- Templates -->
-    <script type="text/template7" id="notificationTemplate">
-      <li id="{{id}}" {{#unless seen}} class="unseen"{{/unless}}>
-        <a href="#" class="item-link item-content">
-          <div class="item-inner">
-            <div class="item-title-row">
-              <div class="item-title">{{data.title}}</div>
+    <script type="text/template7" id="newsTemplate">
+      {{#each news}}
+        <div class="card news-card">
+          <div class="card-header">{{title}}</div>
+          <div class="card-content">
+            <div class="card-content-inner">
+              {{content}}
+              {{#if image}}
+                <img class="img-responsive" src="{{image}}"></img>
+              {{/if}}
             </div>
-            <div class="item-subtitle">{{data.body}}</div>
-            <div class="item-text">{{data.extra}}</div>
-            <div class="item-created">Skickades {{js "new Date(this.created_at).toLocaleString()"}}</div>
           </div>
-        </a>
-      </li>
+          <div class="card-footer">
+            <span class="name">{{user.name}}</span>
+            <span class="date">{{js "new Date(this.created_at).yyyymmdd()"}}</span>
+          </div>
+        </div>
+      {{/each}}
+    </script>
+
+    <script type="text/template7" id="calToolbarTemplate">
+      <div class="toolbar calendar-custom-toolbar">
+        <div class="toolbar-inner">
+          <div class="left"></div>
+          <div class="right">
+            <a href="#" class="link icon-only">Idag</a>
+          </div>
+        </div>
+      </div>
+    </script>
+            
+    <script type="text/template7" id="dayTemplate">
+      {{#if hasEvents}}
+        {{#each events}}
+          <a href="event.html?id={{id}}" class="card day-content-event">
+            <div class="card-header">{{title}}</div>
+            <div class="card-media">
+              <i class="icon f7-icons">chevron_right</i>
+            </div>
+            <div class="card-content">
+              <div class="card-content-inner">
+                <p class="date">
+                  <i class="icon f7-icons">time</i>
+                  {{js "this.start.hmm()"}} - {{js "this.end.hmm()"}}
+                </p>
+                <p class="location">
+                  <i class="icon f7-icons">compass</i>
+                  {{location}}
+                </p>
+              </div>
+            </div>
+          </a>
+        {{/each}}
+      {{else}}
+        <p class="disabled">Inga evenemang tillgängliga</p>
+      {{/if}}
+    </script>
+
+    <script type="text/template7" id="dayTitleTemplate">
+      <div class="day-title">
+        {{js "this.date.getDayMonthName()"}}
+      </div>
+    </script>
+
+    <script type="text/template7" id="eventPageTemplate">
+      {{#event}}
+        <div class="card event-info-container">
+          <div class="card-header event-title">
+            {{#if title_short}} {{title_short}} {{else}} {{title}} {{/if}}
+          </div>
+          <div class="card-content list-block">
+            <div class="list-group">
+              <ul>
+                <li class="item-content">
+                  <div class="item-media"><i class="icon f7-icons">time</i></div>
+                  <div class="item-inner">{{starts_at_dot}} - {{ends_at.timeDateString()}}</div>
+                </li>
+                <li class="item-content">
+                  <div class="item-media"><i class="icon f7-icons">time</i></div>
+                  <div class="item-inner">{{location}}</div>
+                </li>
+              </ul>
+            </div>
+            <div class="list-group">
+              <ul>
+                <li class="event-description-container">
+                  <div class="event-description content-fade">{{description}}</div>
+                </li>
+              </ul>
+            </div>
+            <div class="list-group">
+              <ul>
+                {{#if hasDressCode}}
+                  <li class="item-content">
+                    <div class="item-media"><i class="icon f7-icons">time</i></div>
+                    <div class="item-inner">{{join dress_code delimiter=" eller "}}</div>
+                  </li>
+                {{/if}}
+                {{#if cash}}
+                  <li class="item-content">
+                    <div class="item-media"><i class="icon f7-icons">time</i></div>
+                    <div class="item-inner">
+                      Kostar pengar {{#if price}} ({{price}} kr) {{/if}}
+                    </div>
+                  </li>
+                {{/if}}
+                {{#if food}}
+                  <li class="item-content">
+                    <div class="item-media"><i class="icon f7-icons">time</i></div>
+                    <div class="item-inner">Mat serveras</div>
+                  </li>
+                {{/if}}
+                {{#if drink}}
+                  <li class="item-content">
+                    <div class="item-media"><i class="icon f7-icons">time</i></div>
+                    <div class="item-inner">Alkohol serveras</div>
+                  </li>
+                {{/if}}
+              </ul>
+            </div>
+          </div>
+          {{#if contact}}
+            <div class="card-footer">
+              <div class="event-contact">Vid frågor om eventet, kontakta eventansvarig: <a href="https://www.fsektionen.se/kontakter/{{contact.id}}" class="external" target="_system">{{contact.name}}</a>
+              </div>
+            </div>
+          {{/if}}
+        </div>
+        {{#if can_signup}}
+          <div class="card event-signup-container">
+            <div class="card-header event-title">
+              Anmälan - {{#if event_signup.open}} Öppen {{else}} Stängd {{/if}}
+              <a href="#" data-popover=".popover-about" class="open-popover">
+                <i class="icon f7-icons">time</i>
+              </a>
+            </div>
+            <div class="card-content list-block {{#unless event_signup.open}} disabled {{/unless}}">
+              <div class="list-group">
+                <ul>
+                  <li class="item-content">
+                    <div class="item-media"><i class="icon f7-icons">time</i></div>
+                    <div id="event-registered-text" class="item-inner">{{registered_text}}</div>
+                  </li>
+                </ul>
+              </div>
+              <div class="list-group">
+                <ul>
+                  {{#if event_signup.opened}}
+                    <li class="item-content">
+                      <div class="item-media"><i class="icon f7-icons">time</i></div>
+                      <div id="event-user-count" class="item-inner">Anmälda: {{event_user_count}}</div>
+                    </li>
+                  {{/if}}
+                  <li class="item-content">
+                    <div class="item-media"><i class="icon f7-icons">time</i></div>
+                    <div class="item-inner">Antal platser: {{event_signup.slots}}</div>
+                  </li>
+                  {{#if event_signup.reserves}}
+                    <li class="item-content">
+                      <div class="item-media"><i class="icon f7-icons">time</i></div>
+                      <div class="item-inner">Antal reserver: {{event_signup.reserves}}</div>
+                    </li>
+                  {{/if}}
+                  <li class="item-content">
+                    <div class="item-media"><i class="icon f7-icons">time</i></div>
+                    <div class="item-inner">Anmälan 
+                      {{#if event_signup.opened}} öppnade: {{else}} öppnar: {{/if}}
+                      {{event_signup.opens.timeDateString()}}
+                    </div>
+                  </li>
+                  <li class="item-content">
+                    <div class="item-media"><i class="icon f7-icons">time</i></div>
+                    <div class="item-inner">Anmälan 
+                      {{#if event_signup.closed}} stängde: {{else}} stänger: {{/if}}
+                      {{event_signup.closes.timeDateString()}}
+                    </div>
+                  </li>
+                </ul>
+              </div>
+              {{#if event_signup.opened}}
+                <div class="list-group">
+                  <ul>
+                    {{#if food}}
+                      <li class="item-content">
+                        <div class="item-media"><i class="icon f7-icons">time</i></div>
+                        <div class="item-inner">
+                          Matpreferenser: {{join food_preferences delimiter=", "}}
+                        </div>
+                      </li>
+                    {{/if}}
+                    {{#if event_user}}
+                      <li id="event-question-answer" class="item-content">
+                        <div class="item-media"><i class="icon f7-icons">time</i></div>
+                        <div class="item-inner">
+                          {{event_signup.question}} 
+                          {{#if event_user}} {{event_user.answer}} {{/if}}
+                        </div>
+                      </li>
+                    {{else}}
+                      <li id="event-question-answer" class="item-content hidden">
+                        <div class="item-media"><i class="icon f7-icons">time</i></div>
+                        <div class="item-inner"></div>
+                      </li>
+                    {{/if}}
+                    {{#if event_user}}
+                      <li id="event-signup-group" class="item-content {{#unless event_user.group_name}} hidden {{/unless}}">
+                        <div class="item-media"><i class="icon f7-icons">time</i></div>
+                        <div class="item-inner">
+                          <span id="event-signup-groupname">{{event_user.group_name}}</span>
+                          <div class="item-input"><!--input is added dynamically--></div>
+                        </div>
+                      </li>                 
+                    {{else}}
+                      {{#if event_signup.open}}
+                        <li id="event-signup-group" class="item-content">
+                          <div class="item-media"><i class="icon f7-icons">time</i></div>
+                          <div class="item-inner">
+                            <span id="event-signup-groupname"></span>
+                            <div class="item-input"><!--input is added dynamically--></div>
+                          </div>
+                        </li>             
+                      {{/if}}
+                    {{/if}}
+                    </li>
+                    <li id="event-signup-groupcustom" class="item-content hidden">
+                      <div class="item-inner">
+                        <div class="item-input">
+                          <input type="text" name="group-custom" placeholder="Skriv in en annan grupp här">
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              {{/if}}
+              <a href="#" class="button button-big
+                {{#if event_user}}
+                  event-signup-cancel-btn">Avanmäl
+                {{else}}
+                  event-signup-btn">Anmäl
+                {{/if}}
+              </a>
+            </div>
+            <div class="card-footer">
+              <div class="event-contact">Vid tekniska problem med anmälan, hör vänligen av dig till: 
+              <a href="https://www.fsektionen.se/kontakter/1" class="external" target="_system">
+                <i class="icon f7-icons">time</i>Spindelmännen
+              </a>
+              </div>
+            </div>
+          </div>
+        {{/if}}
+      {{/event}}
     </script>
 
     <script type="text/template7" id="groupTemplate">
@@ -227,55 +462,19 @@
       </div>
     </script>
 
-    <script type="text/template7" id="calToolbarTemplate">
-      <div class="toolbar calendar-custom-toolbar">
-        <div class="toolbar-inner">
-          <div class="left"></div>
-          <div class="right">
-            <a href="#" class="link icon-only">Idag</a>
-          </div>
-        </div>
-      </div>
-    </script>
-
-    <script type="text/template7" id="dayTemplate">
-      {{#each events}}
-        <a href="#" class="card day-content-event" data-event-id="{{id}}">
-          <div class="card-header">{{title}}</div>
-          <div class="card-content">
-            <div class="card-content-inner">
-              <span class="date">{{js "this.start.hmm()"}}</span>—
-              <span class="location">{{location}}</span>
+    <script type="text/template7" id="notificationTemplate">
+      <li id="{{id}}" {{#unless seen}} class="unseen"{{/unless}}>
+        <a href="#" class="item-link item-content">
+          <div class="item-inner">
+            <div class="item-title-row">
+              <div class="item-title">{{data.title}}</div>
             </div>
+            <div class="item-subtitle">{{data.body}}</div>
+            <div class="item-text">{{data.extra}}</div>
+            <div class="item-created">Skickades {{js "new Date(this.created_at).toLocaleString()"}}</div>
           </div>
         </a>
-      {{/each}}
-    </script>
-
-    <script type="text/template7" id="dayTitleTemplate">
-      <div class="day-title">
-        {{js "this.date.getDayName()"}}
-      </div>
-    </script>
-
-    <script type="text/template7" id="newsTemplate">
-      {{#each news}}
-        <div class="card news-card">
-          <div class="card-header">{{title}}</div>
-          <div class="card-content">
-            <div class="card-content-inner">
-              {{content}}
-              {{#if image}}
-                <img class="img-responsive" src="{{image}}"></img>
-              {{/if}}
-            </div>
-          </div>
-          <div class="card-footer">
-            <span class="name">{{user.name}}</span>
-            <span class="date">{{js "new Date(this.created_at).yyyymmdd()"}}</span>
-          </div>
-        </div>
-      {{/each}}
+      </li>
     </script>
 
     <!-- External JS Libraries -->

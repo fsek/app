@@ -8,15 +8,11 @@ myApp.onPageInit('settings', function (page) {
       {
         text: 'Logga ut',
         color: 'red',
-        //loads settings page after second login, also buggs after logout to login help to login
         onClick: function(){
           $(calendar).empty();
-          // Delete push devices and sign out!
           deletePushAndSignOut();
           $('#tab1 .page-on-left').addClass('cached');
-          mainView.router.load({
-            url: 'login.html'
-          });
+          loadLoginPage(true);
         }
       }
     ];

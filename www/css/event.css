@@ -1,16 +1,64 @@
-.event-title, .event-time, .event-place, .event-dress-code, .event-food,
-.event-drink, .event-price, .event-description{
-  height: 50px;
-  background: lightblue;
-  margin-top: 5px;
+.event-content .card-content{
+  font-size: 14px;
 }
 
-.event-signup{
-  background-color: gray; /*???????*/
+.event-content .list-group ul:after{
+  background-color: #e1e1e1;
 }
 
-.event-signup-btn{
+.event-content .item-inner:after, .event-content ul:before, .event-content .list-group:last-of-type ul:after{
+  content: none;
+}
+
+.event-title{ 
+  font-size: 24px;
+  font-weight: bold;
+  color: #eb7125;
+  min-height: 50px; 
+}
+
+.event-description-container span{
+  position: absolute;
+  left: 0;
+  right: 0;
   text-align: center;
-  margin-left: 70%;
-  margin-top: 5%;
+  margin-top: -25px;
+}
+
+.event-description{
+  max-height: 80px;
+  overflow: hidden;
+  position: relative;
+  padding: 0 15px;
+}
+
+.event-description.content-fade:after{
+  position: absolute;
+  bottom: 0;  
+  left: 0;
+  height: 100%;
+  width: 100%;
+  content: "";
+  background: linear-gradient(to top, rgba(255, 255, 255, 0.95) 5%, rgba(255, 255, 255, 0) 80%);
+  pointer-events: none;
+}
+
+.event-description p:first-child{
+  margin-top: 8px;
+}
+
+.event-signup-container input{
+  font-size: 14px !important;
+}
+
+.event-signup-btn, .event-signup-cancel-btn{
+  background-color: #eb7125;
+  color: #fff !important;
+  margin: 15px;
+}
+
+#event-signup-groupcustom input{
+  background-color: #ececec;
+  padding-left: 10px;
+  border-radius: 4px;
 }

@@ -1,5 +1,10 @@
 .toolbar.messagebar {
-  background-color: white;
+  background-color: #fff !important;
+  position: fixed;
+}
+
+.toolbar{
+  background-color: #eb7125 !important; 
 }
 
 .messages .message-sent .message-text {
@@ -11,7 +16,7 @@
 }
 
 .android-hide {
-  display: none;
+  display: none !important;
 }
 
 .content-block-title{
@@ -19,7 +24,7 @@
 }
 
 .subtabs {
-  margin: 15px 0;
+  margin: 10px 0 2px 0;
   padding: 0 8px;
 }
 
@@ -39,4 +44,45 @@
 .subtabs .button.active:not(.button-fill) {
   background-color: #eb7125;
   color: white;
+}
+
+#subtab1 .news-card{
+  margin-top: 15px;
+}
+
+#subtab2 .day-title{
+  margin-top: 10px;
+}
+
+.android-shadow{
+  box-shadow: 0 2px 4px -1px rgba(0,0,0,.2), 0 4px 5px 0 rgba(0,0,0,.14),
+                0 1px 10px 0 rgba(0,0,0,.12);
+}
+
+.input-field:after, .item-input-field:after{
+  background-color: rgba(255,255,255,0) !important;
+}
+
+.picker-calendar .calendar-custom-toolbar {
+  box-shadow: 0 2px 4px -1px rgba(0,0,0,.2), 0 4px 5px 0 rgba(0,0,0,.14), 0 1px 10px 0 rgba(0,0,0,.12);
+}
+
+.picker-calendar .calendar-custom-toolbar .toolbar-inner {
+  padding-top: 10px;
+}
+
+.picker-calendar .picker-calendar-week-days {
+  color: #eb7125;
+}
+
+.picker-calendar {
+  color: #000;
+}
+
+.picker-calendar .picker-calendar-day-has-events span:after{
+  background-color: #ccc !important;
+}
+
+.event-content, .settings-content{
+  padding-top: 0 !important;
 }

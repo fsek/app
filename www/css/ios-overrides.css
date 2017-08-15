@@ -7,9 +7,18 @@
   margin-bottom: 44px;
 }
 
+.calendar-page .content-block{
+  margin-top: -1px;
+}
+
 .navbar{
   background: #eb7125;
   color: #fff;
+  font-weight: bold;
+}
+
+.navbar:after {
+  background:  #eb7125;
 }
 
 .navbar i.icon, .navbar a{
@@ -26,15 +35,38 @@
 }
 
 .subtabs {
-  margin: 10px 0;
-  padding: 0 10px;
+  margin: 0;
+  padding: 0px 10px 10px 10px;
+  background: #eb7125;
+}
+
+#subtab2 .day-title{
+  margin-top: 10px;
+}
+
+.subtabs .tab-link{
+  border-color: #fff !important;
+  color: #fff !important;
+}
+
+.subtabs .tab-link.active{
+  color: #eb7125 !important;
+  background-color: #fff !important;
 }
 
 .subtab-container {
-  height: -webkit-calc(100vh - 150px);
-  height: calc(100vh - 150px);
+  height: -webkit-calc(100vh - 125px);
+  height: calc(100vh - 125px);
 }
 
 .notification-list li:last-child {
   margin-bottom: 53px;
+}
+
+.picker-calendar {
+  color: #eb7125;
+}
+
+.picker-calendar .picker-calendar-day-today span{
+  background: none;
 }

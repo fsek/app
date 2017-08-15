@@ -1,8 +1,14 @@
-$$('#tab3').on('show', function() {
+//init calendar on tab3 show (if not already init:ed)
+$$('#tab2').on('show', function() {
+  $('.toolbar').removeClass('android-shadow');
   var page = $$('.page.calendar-page');
   if (page.find('#calendar').is(':empty')) {
     initCalendar(page);
   }
+});
+
+$$('#tab2').on('hide', function() {
+  $('.toolbar').addClass('android-shadow');
 });
 
 function initCalendar(page) {
@@ -60,6 +66,7 @@ function initCalendar(page) {
         dayContainer.addClass('picker-calendar-day-has-events');
 
         if (store && eventDate.getMonth() == p.currentMonth) {
+          event.end = new Date(event.end);
           event.start = eventDate;
           p.params.events.push(event);
         }
@@ -100,6 +107,7 @@ function initCalendar(page) {
 
   function displayDayContent(events, dayContainer) {
     var displayedEvents = [];
+    var hasEvents = false;
     var date = new Date(dayContainer.data('year'), dayContainer.data('month'), dayContainer.data('day'));
 
     if (dayContainer.hasClass('picker-calendar-day-has-events')) {
@@ -111,13 +119,14 @@ function initCalendar(page) {
       displayedEvents.sort(function(a, b) {
         return a.start.toLocaleString().localeCompare(b.start.toLocaleString());
       });
+
+      hasEvents = true;
     }
 
-    // Only set date title if there are any events
-    var title = displayedEvents.length ? date.dateString() : '';
+    var title = date.dateString();
 
     // Update day content
-    var templateHTML = myApp.templates.dayTemplate({events: displayedEvents, date: date});
+    var templateHTML = myApp.templates.dayTemplate({hasEvents: hasEvents, events: displayedEvents, date: date});
     page.find('.day-content').html(templateHTML);
     page.find('.day-title').html(title);
   }
@@ -128,12 +137,4 @@ function initCalendar(page) {
                                                     '[data-month="' + date.getMonth() + '"]' +
                                                     '[data-day="' + date.getDate() + '"]');
   }
-
-  // Redirect to event page on day-content click
-  page.on('click', '.day-content-event', function() {
-    tabView3.router.load({
-      url: 'event.html',
-      query: {eventId: $$(this).data('event-id')}
-    });
-  });
 }

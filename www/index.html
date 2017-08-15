@@ -9,9 +9,9 @@
     <title>F-sektionen</title>
 
     <!-- Material/iOS stylesheets. Will be replaced on deploy -->
-    <link rel="stylesheet" href="css/framework7.ios.min.css">
-    <link rel="stylesheet" href="css/framework7.ios.colors.min.css">
-    <link rel="stylesheet" href="css/ios-overrides.css">
+    <link rel="stylesheet" href="css/framework7.material.min.css">
+    <link rel="stylesheet" href="css/framework7.material.colors.min.css">
+    <link rel="stylesheet" href="css/material-overrides.css">
 
     <!-- General stylesheets -->
     <link rel="stylesheet" href="css/framework7-icons.css">
@@ -199,7 +199,7 @@
         </div>
       </div>
     </script>
-            
+
     <script type="text/template7" id="dayTemplate">
       {{#if hasEvents}}
         {{#each events}}
@@ -334,14 +334,14 @@
                   {{/if}}
                   <li class="item-content">
                     <div class="item-media"><i class="icon f7-icons">time</i></div>
-                    <div class="item-inner">Anmälan 
+                    <div class="item-inner">Anmälan
                       {{#if event_signup.opened}} öppnade: {{else}} öppnar: {{/if}}
                       {{event_signup.opens.timeDateString()}}
                     </div>
                   </li>
                   <li class="item-content">
                     <div class="item-media"><i class="icon f7-icons">time</i></div>
-                    <div class="item-inner">Anmälan 
+                    <div class="item-inner">Anmälan
                       {{#if event_signup.closed}} stängde: {{else}} stänger: {{/if}}
                       {{event_signup.closes.timeDateString()}}
                     </div>
@@ -363,7 +363,7 @@
                       <li id="event-question-answer" class="item-content">
                         <div class="item-media"><i class="icon f7-icons">time</i></div>
                         <div class="item-inner">
-                          {{event_signup.question}} 
+                          {{event_signup.question}}
                           {{#if event_user}} {{event_user.answer}} {{/if}}
                         </div>
                       </li>
@@ -380,7 +380,7 @@
                           <span id="event-signup-groupname">{{event_user.group_name}}</span>
                           <div class="item-input"><!--input is added dynamically--></div>
                         </div>
-                      </li>                 
+                      </li>
                     {{else}}
                       {{#if event_signup.open}}
                         <li id="event-signup-group" class="item-content">
@@ -389,7 +389,7 @@
                             <span id="event-signup-groupname"></span>
                             <div class="item-input"><!--input is added dynamically--></div>
                           </div>
-                        </li>             
+                        </li>
                       {{/if}}
                     {{/if}}
                     </li>
@@ -412,7 +412,7 @@
               </a>
             </div>
             <div class="card-footer">
-              <div class="event-contact">Vid tekniska problem med anmälan, hör vänligen av dig till: 
+              <div class="event-contact">Vid tekniska problem med anmälan, hör vänligen av dig till:
               <a href="https://www.fsektionen.se/kontakter/1" class="external" target="_system">
                 <i class="icon f7-icons">time</i>Spindelmännen
               </a>

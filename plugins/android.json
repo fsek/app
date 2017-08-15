@@ -25,6 +25,9 @@
         },
         "cordova-plugin-splashscreen": {
             "PACKAGE_NAME": "se.fsektionen.fapp"
+        },
+        "cordova-plugin-headercolor": {
+            "PACKAGE_NAME": "se.fsektionen.fapp"
         }
     },
     "dependent_plugins": {}

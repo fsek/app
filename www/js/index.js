@@ -94,3 +94,12 @@ function onBackKey() {
 document.addEventListener("deviceready", function() {
   document.addEventListener('backbutton', onBackKey, false);
 }, false);
+
+// Statusbar colors
+if (myApp.device.android) {
+  var loginBarColor = '#000000';
+  var mainBarColor = '#000000';
+} else {
+  var loginBarColor = '#7999d2';
+  var mainBarColor = '#eb7125';
+}

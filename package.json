@@ -14,12 +14,14 @@
             },
             "ionic-plugin-keyboard": {},
             "cordova-plugin-statusbar": {},
-            "cordova-plugin-splashscreen": {}
+            "cordova-plugin-splashscreen": {},
+            "cordova-plugin-headercolor": {}
         }
     },
     "dependencies": {
         "cordova-android": "^6.2.3",
         "cordova-plugin-dialogs": "~1.3.3",
+        "cordova-plugin-headercolor": "^1.0.0",
         "cordova-plugin-splashscreen": "^4.0.3",
         "cordova-plugin-statusbar": "^2.2.3",
         "cordova-plugin-whitelist": "~1.3.2",

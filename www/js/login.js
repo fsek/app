@@ -75,8 +75,11 @@ myApp.onPageInit('login', function (page) {
     });
   }
 
-  // Use a different statusbar color (just a test)
+  // Fix statusbar and close splash
   document.addEventListener('deviceready', function() {
+    navigator.splashscreen.hide();
+    StatusBar.overlaysWebView(false);
+    StatusBar.styleLightContent();
     StatusBar.backgroundColorByHexString("#7999d2");
   }, false);
 });
@@ -92,10 +95,18 @@ function afterSignIn() {
   var homePage = $('#tab1 .cached');
   homePage.removeClass('cached');
 
-  $('.tabbar').show(); //if you have .show() before load it animates 
-  StatusBar.backgroundColorByHexString("#eb7125");
+  $('.tabbar').show(); //if you have .show() before load it animates
+
+  // Fix statusbar and close splash
+  document.addEventListener('deviceready', function() {
+    navigator.splashscreen.hide();
+    StatusBar.overlaysWebView(false);
+    StatusBar.styleLightContent();
+    StatusBar.backgroundColorByHexString("#eb7125");
+  }, false);
+
   //close login screen
-  mainView.router.load({ 
+  mainView.router.load({
     pageName: 'tab1',
     animatePages: false
   });

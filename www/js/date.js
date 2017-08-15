@@ -24,7 +24,7 @@ Date.prototype.dateString = function() {
 
 // Convert date to 'hh:mm, d monthName'
 Date.prototype.timeDateString = function() {
-  return this.hmm() + ', ' + this.getDate() + ' ' + monthNames[this.getMonth()].toLowerCase();
+  return this.hhmm() + ', ' + this.getDate() + ' ' + monthNames[this.getMonth()].toLowerCase();
 };
 
 // Pads minutes with zeros if needed

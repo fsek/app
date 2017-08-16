@@ -48,6 +48,7 @@ var tabView4 = myApp.addView('#tab4',{
 });
 var loginView = myApp.addView('#login');
 
+
 // Configure jToker
 $.auth.configure({
   apiUrl: API,

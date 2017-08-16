@@ -5,8 +5,8 @@ ul li.item-content.error{
   border-image-slice: 1;
 }
 
-.error i.icon{
-  color: red;
+.error i{
+  color: #e74c3c;
 }
 
 ul li.item-content.error-message{

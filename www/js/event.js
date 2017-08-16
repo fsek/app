@@ -74,23 +74,28 @@ function generateSignupData(eventData){
   var signupOpened = !eventData.event_signup.open && !eventData.event_signup.closed ? false : true;
   eventData.event_signup.opened = signupOpened;
 
-  // Save the registered text and the group name
+  // Save the registered text + icon and the group name
   if(eventData.event_user != null){
     if(eventData.event_signup.closed){
       if(eventData.event_user.reserve){
-        var registeredText = 'Du fick tyvärr ingen plats till eventet';
+        var registeredStatusIcon = 'fa-times-circle';
+        var registeredStatus = 'Du fick tyvärr ingen plats till eventet';
       }else{
-        var registeredText = 'Du är anmäld och har fått en plats till eventet!';
+        var registeredStatusIcon = 'fa-check-circle';
+        var registeredStatus = 'Du är anmäld och har fått en plats till eventet!';
       }
     }else{
-      var registeredText = 'Du är anmäld till eventet! Kom tillbaka hit när anmälan har stängt för att se om du fått en plats';
+      var registeredStatusIcon = 'fa-question-circle';
+      var registeredStatus = 'Du är anmäld till eventet! Kom tillbaka hit när anmälan har stängt för att se om du fått en plats';
     }
 
     eventData.event_user.group_name = getGroupName(eventData.groups, eventData.event_user.group_id, eventData.event_user.group_custom);
   }else{
-    var registeredText = 'Du är inte anmäld';
+    var registeredStatusIcon = 'fa-exclamation-circle';
+    var registeredStatus = 'Du är inte anmäld';
   }
-  eventData.registered_text = registeredText;
+  eventData.registered_status_icon = registeredStatusIcon;
+  eventData.registered_status = registeredStatus;
 
   // Save food preferences if there is food
   if(eventData.food){
@@ -134,7 +139,7 @@ function getGroupName(groups, groupId, groupCustom){
 
 function handleDescriptionOverflow(descripContainer){
   var descripShowing = false;
-  descripContainer.append('<span><i class="icon f7-icons">down</i></span>');
+  descripContainer.append('<span><i class="fa fa-chevron-circle-down" aria-hidden="true"></i></span>');
 
   descripContainer.on('click', function(e){
     var content = descripContainer.find('.event-description');
@@ -163,15 +168,17 @@ function handleDescriptionOverflow(descripContainer){
       descripShowing = false;
     }
 
-    //Adjust content during animation (måste ändras med awesome icons) 
+    // Adjust content during animation
     setTimeout(function(){ 
-      var icon = descripContainer.find('.icon'); 
+      var icon = descripContainer.find('i'); 
       if(descripShowing){
         content.removeClass('content-fade'); 
-        icon[0].innerHTML = 'up'; 
+        icon.removeClass('fa-chevron-circle-down');
+        icon.addClass('fa-chevron-circle-up'); 
       }else{
         content.addClass('content-fade');
-        icon[0].innerHTML = 'down'; 
+        icon.removeClass('fa-chevron-circle-up');
+        icon.addClass('fa-chevron-circle-down'); 
       }
     }, 150);
   })
@@ -291,15 +298,20 @@ function updateSignupContent(eventData){
       var oldEventData = eventData;
       eventData = resp.event;
 
-      var registeredTextContainer = $('#event-registered-text');
+      var registeredStatusContainer = $('#event-registered-status');
       var userCountContainer = $('#event-user-count');
       var questionContainer = $('#event-question-answer');
       var groupContainer = $('#event-signup-group');
       var groupCustomContainer = $('#event-signup-groupcustom');
       
       if(eventData.event_user != null) {
-        // Update registered text and user count
-        registeredTextContainer.html('Du är anmäld till eventet! Kom tillbaka hit när anmälan har stängt för att se om du fått en plats');
+        // Update registered text + icon from ! to ?
+        registeredStatusContainer.find('.item-inner').html('Du är anmäld till eventet! Kom tillbaka hit när anmälan har stängt för att se om du fått en plats');
+        var icon = registeredStatusContainer.find('.item-media i')
+        icon.removeClass('fa-exclamation-circle');
+        icon.addClass('fa-question-circle');
+        
+        // Update user count
         userCountContainer.html('Anmälda: ' + eventData.event_user_count);
 
         // Update question and answer if there is a question
@@ -316,6 +328,7 @@ function updateSignupContent(eventData){
             groupCustomContainer.addClass('hidden');
           }
 
+          groupContainer.find('.item-input').addClass('hidden');
           groupContainer.find('#event-signup-groupname').html(group);
         }else{
           if(!groupCustomContainer.hasClass('hidden')){
@@ -331,8 +344,13 @@ function updateSignupContent(eventData){
         registerBtn.remove();
         setupCancelRegistrationBtn(eventData);
       }else {
-        // Update registered text and user count
-        registeredTextContainer.html('Du är inte anmäld');
+        // Update registered text + icon from ? to !
+        registeredStatusContainer.find('.item-inner').html('Du är inte anmäld');
+        var icon = registeredStatusContainer.find('.item-media i')
+        icon.removeClass('fa-question-circle');
+        icon.addClass('fa-exclamation-circle');
+
+        // Update user count
         userCountContainer.html('Anmälda: ' + eventData.event_user_count);
 
         // Hide question if there is one
@@ -351,6 +369,7 @@ function updateSignupContent(eventData){
         }else{
           groupContainer.removeClass('hidden');
         }
+        groupContainer.find('.item-input').removeClass('hidden');
         setupGroupPicker(eventData); // Need to setup the picker with the new event data (reinits it dynamically)
 
         groupContainer.find('input').val('');

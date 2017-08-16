@@ -16,15 +16,15 @@ function initMessages(head, query) {
   var totalPages = 37;
   var loadingMessages = false;
 
-  // Set group name
-  head.find('#group-name').html(query.groupName);
-
   // Initialize Framework7 mesages
   F7msg = myApp.messages(messages, {
     autoLayout: true,
     scrollMessages: true,
     messageTemplate: $$('#messageTemplate').html()
   });
+
+  // Set group name
+  $('#messages-group-name').html(query.groupName);
 
   // Initialize Framework7 message bar
   var msgBar = myApp.messagebar('.messagebar', {

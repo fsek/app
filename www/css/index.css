@@ -6,13 +6,41 @@ a:active {
   display: none !important;
 }
 
-.tabbar .badge {
-  background: #ffe0b3;
-  color: #eb7125
+.navbar{
+  background-color: #eb7125 !important;
+  color: #fff;
 }
 
-.tabbara.active .badge {
+.navbar .center{
+  font-weight: bold;
+}
+
+.tabbar .badge {
+  background: #ffe0b3;
+  color: #eb7125;
+  border: 1px solid #eb7125;
+  position: absolute;
+  top: 0;
+  margin-left: 17px;
+  margin-top: 2px;
+}
+
+.tabbar .active .badge {
   background: #fff;
+}
+
+.tabbar i{
+  font-size: 24px;
+  color: #f9d5be !important;
+}
+
+.tabbar i.fa-comments{
+  font-size: 30px;
+}
+
+.tabbar i.fa-home{
+  padding-top: 1px;
+  font-size: 32px;
 }
 
 .taphold {

@@ -15,6 +15,7 @@
 
 .open-login-info span{
   color: #fff;
+  vertical-align: 3px;
 }
 
 .login-info-container{
@@ -78,27 +79,40 @@ img.login-logo {
 
 .login-content .item-input input{
   color: #fff;
+  margin-left: 10px;
 }
 
 .login-content ::-webkit-input-placeholder{
   color: #fff !important;
 }
 
-.login-content .list-block i.icon{
+.login-content i{
   color: #eb7125;
-  margin-right: 10px;
+  font-size: 25px;
+  margin: auto;
+}
+
+.login-content .item-media{
+  width: 25px;
+}
+
+.login-content i.fa-lock{
+  font-size: 32px !important;
 }
 
 .login-btn{
-  width: 100%;
+  width: 96%;
+  margin-left: 2%;
   background: #eb7125;
   border-radius: 25px;
   padding: 0 !important;
   text-align: center;
 }
 
-.login-btn i.icon{
+.login-btn i{
   color: #fff !important;
+  font-size: 28px;
+  vertical-align: -16%;
 }
 
 .login-footer{

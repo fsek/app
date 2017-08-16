@@ -10,6 +10,24 @@
   content: none;
 }
 
+.event-content .item-media{
+  width: 20px;
+}
+
+.event-content a{
+  color: #eb7125;
+}
+
+.event-content i{
+  color: #eb7125;
+  font-size: 22px;
+  margin: auto;
+}
+
+.event-content .fa-envelope{
+  font-size: 17px;
+}
+
 .event-title{ 
   font-size: 24px;
   font-weight: bold;
@@ -17,12 +35,20 @@
   min-height: 50px; 
 }
 
+.event-info-place{
+  margin-top: -10px;
+}
+
 .event-description-container span{
   position: absolute;
   left: 0;
   right: 0;
   text-align: center;
-  margin-top: -25px;
+  margin-top: -28px;
+}
+
+.event-description-container i{
+  font-size: 25px;
 }
 
 .event-description{
@@ -51,14 +77,38 @@
   font-size: 14px !important;
 }
 
-.event-signup-btn, .event-signup-cancel-btn{
-  background-color: #eb7125;
-  color: #fff !important;
-  margin: 15px;
-}
-
 #event-signup-groupcustom input{
   background-color: #ececec;
   padding-left: 10px;
   border-radius: 4px;
+}
+
+.event-signup-btn{
+  background-color: #eb7125;
+  border-color: #eb7125 !important;
+  color: #fff !important;
+  margin: 15px;
+}
+
+.event-signup-cancel-btn{
+  background-color: #e74c3c;
+  border-color: #e74c3c !important;
+  color: #fff !important;
+  margin: 15px;
+}
+
+.popover-about-signup{
+  width: 300px;
+}
+
+.event-content .fa-check-circle{
+  color: #4e9d2d;
+}
+
+.event-content .fa-times-circle, .event-content .fa-exclamation-circle{
+  color: #e74c3c;
+}
+
+.event-contact{
+  color: #a7a7a7;
 }

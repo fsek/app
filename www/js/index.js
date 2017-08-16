@@ -17,6 +17,10 @@ var myApp = new Framework7({
 	}
 });
 
+Template7.global = {
+  android: isAndroid,
+};
+
 // Define Dom7
 var $$ = Dom7;
 

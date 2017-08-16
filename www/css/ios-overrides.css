@@ -11,12 +11,6 @@
   margin-top: -1px;
 }
 
-.navbar{
-  background: #eb7125;
-  color: #fff;
-  font-weight: bold;
-}
-
 .navbar:after {
   background:  #eb7125;
 }

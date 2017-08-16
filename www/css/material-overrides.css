@@ -4,7 +4,7 @@
 }
 
 .toolbar{
-  background-color: #eb7125 !important; 
+  background-color: #eb7125 !important;
 }
 
 .tabbar .badge {
@@ -36,8 +36,8 @@
 }
 
 .subtab-container {
-  height: -webkit-calc(100vh - 125px);
-  height: calc(100vh - 125px);
+  height: -webkit-calc(100vh - 104px);
+  height: calc(100vh - 104px);
 }
 
 .subtabs .buttons-row {

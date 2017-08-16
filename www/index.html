@@ -27,20 +27,9 @@
     <link rel="stylesheet" href="css/groups.css">
     <link rel="stylesheet" href="css/event.css">
     <link rel="stylesheet" href="css/home.css">
-
+    <link rel="stylesheet" href="css/settings.css">
   </head>
   <body class="theme-orange">
-    <!-- Status bar overlay for fullscreen mode-->
-    <!-- Panels overlay-->
-    <div class="panel-overlay"></div>
-
-    <!-- Right panel with cover effect-->
-    <div class="panel panel-right panel-cover">
-      <div class="content-block">
-        <p>Right panel content goes here</p>
-      </div>
-    </div>
-
     <div class="views tabs">
       <!-- Tab 1 (Hem) -->
       <div id="tab1" class="view view-main tab active">
@@ -56,7 +45,6 @@
                 <div class="buttons-row">
                   <a href="#subtab1" class="tab-link active button">Nyheter</a>
                   <a href="#subtab2" class="tab-link button">Event</a>
-                  <a href="#subtab3" class="tab-link button">Oklart</a>
                 </div>
               </div>
               <div class="tabs-swipeable-wrap subtab-container">
@@ -68,20 +56,6 @@
                     </div>
                   </div>
                   <div id="subtab2" class="tab subtab">
-                  </div>
-                  <div id="subtab3" class="tab subtab">
-                    <div class="content-block">
-                      <div class="row">
-                        <div class="col-50">
-                          <a href="#" data-panel="right" class="button open-panel">Right Panel</a>
-                        </div>
-                        <div class="col-50">
-                          <a href="settings.html">
-                            <i class="fa fa-cog" aria-hidden="true"></i>
-                          </a>
-                        </div>
-                      </div>
-                    </div>
                   </div>
                 </div>
               </div>
@@ -146,6 +120,80 @@
           </div>
         </div>
       </div>
+      <!--Tab 5 (Settings) -->
+      <div id="tab5" class="view tab">
+        <div class="navbar android-hide">
+          <div class="navbar-inner">
+            <div class="center sliding">Alternativ</div>
+          </div>
+        </div>
+        <div class="pages navbar-fixed">
+          <div data-page="tab5" class="page">
+            <div class="page-content settings-content">
+              <div class="content-block-title">Om</div>
+              <div class="list-block">
+                <ul>
+                  <li>
+                    <a href="about.html" class="item-link">
+                      <div class="item-content">
+                        <div class="item-inner">
+                          <div class="item-title"></div>
+                        </div>
+                      </div>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <div class="content-block-title">Inställningar</div>
+              <div class="list-block">
+                <div class="list-group">
+                  <ul>
+                    <li>
+                      <a href="https://fsektionen.se/anvandare" class="item-link external" target="_system">
+                        <div class="item-content">
+                          <div class="item-inner">
+                            <div class="item-title">Kontoinställningar</div>
+                          </div>
+                        </div>
+                      </a>
+                    </li>
+                    <li>
+                      <div class="item-content">
+                        <div class="item-inner">
+                          <div class="item-title label">Snygghet</div>
+                          <div class="item-input">
+                            <div class="range-slider">
+                              <input type="range" min="0" max="100" value="50" step="0.1">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="item-content">
+                        <div class="item-inner"> 
+                          <div class="item-title label">Bättre tur</div>
+                          <div class="item-input">
+                            <label class="label-switch">
+                              <input type="checkbox">
+                              <div class="checkbox"></div>
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+                <div class="list-group">
+                  <ul>
+                  </ul>
+                </div>
+              </div>
+              <a href="#" class="button button-big signout-btn">Logga ut</a>
+            </div>
+          </div>
+        </div>
+      </div>
       <!-- Login "tab" -->
       <div id="login" class="view tab">
         <div class="pages">
@@ -205,6 +253,7 @@
           </div>
         </div>
       </div>
+
       <!-- Tabbar -->
       <div class="toolbar tabbar android-shadow">
           <div class="toolbar-inner">
@@ -227,6 +276,9 @@
                 <span class="badge" id="notification-badge"></span>
               </i>
             
+            </a>
+            <a href="#tab5" class="tab-link">
+              <i class="icon f7-icons">bars</i>
             </a>
         </div>
       </div>

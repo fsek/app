@@ -14,7 +14,7 @@ myApp.onPageInit('signup', function (page) {
         password_confirmation: passwordConfirm
     })
     .done(function(){
-      mainView.router.load({
+      loginView.router.load({
         url: 'signup_confirmation.html',
         reload: true,
         context: {

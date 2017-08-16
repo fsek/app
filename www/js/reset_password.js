@@ -6,7 +6,7 @@ myApp.onPageInit('reset-password', function (page) {
       email: email
     })
     .done(function(){
-      mainView.router.load({
+      loginView.router.load({
         url: 'reset_password_confirmation.html',
         reload: true,
         context: {

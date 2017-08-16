@@ -11,8 +11,11 @@ myApp.onPageInit('settings', function (page) {
         onClick: function(){
           $(calendar).empty();
           deletePushAndSignOut();
-          $('#tab1 .page-on-left').addClass('cached');
-          loadLoginPage(true);
+          tabView1.router.back({
+            animatePages: false
+          });
+          myApp.showTab('#login');
+          myApp.showTab('#subtab1');
         }
       }
     ];

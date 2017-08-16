@@ -133,7 +133,13 @@ a.day-content-event {
 
 .day-content-event .date i, .day-content-event .location i{
   font-size: 18px;
-  padding-bottom: 3px;
+  color: #eb7125;
+  padding-right: 2px;
+}
+
+.day-content-event .location i{
+  padding-left: 2px;
+  padding-right: 5px;
 }
 
 /* Adjust calendar height for different screen sizes */

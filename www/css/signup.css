@@ -58,21 +58,36 @@
 
 .signup-content .item-input input{
   color: white;
+  margin-left: 10px;
 }
 
 .signup-content ::-webkit-input-placeholder {
   color: white !important;
 }
 
-.signup-content i.icon{
+.signup-content i{
   color: #eb7125;
-  margin-right: 10px;
+  font-size: 25px;
+  margin: auto;
+}
+
+.signup-content i.fa-lock{
+  font-size: 32px !important;
+}
+
+.signup-content i.fa-user{
+  font-size: 30px !important;
+}
+
+.signup-content .item-media{
+  width: 25px;
 }
 
 .signup-btn{
   width: 76%;
   margin-left: 12%;
   background: #eb7125;
+  border-color: #eb7125 !important;
   border-radius: 25px !important;
   color: #FFF !important;
 }

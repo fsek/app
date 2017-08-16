@@ -4,11 +4,11 @@ $.auth.validateToken()
     afterSignIn();
   })
   .fail(function() {
-    loadLoginPage(false);
+    myApp.showTab('#login');
   });
 
-myApp.onPageInit('login', function (page) {
-  $('.navbar').hide();
+$$('#login').on('tab:show', function () {
+  $('.tabbar').hide();
 
   $('.login-content input').on('input',function(e){
     var email = $('input[name="login-email"]').val();
@@ -83,19 +83,7 @@ myApp.onPageInit('login', function (page) {
   }, false);
 });
 
-function loadLoginPage(animate){
-  mainView.router.load({
-    url: 'login.html',
-    animatePages: animate
-  });
-}
-
 function afterSignIn() {
-  var homePage = $('#tab1 .cached');
-  homePage.removeClass('cached');
-
-  $('.tabbar').show(); //if you have .show() before load it animates
-
   // Fix statusbar and close splash
   document.addEventListener('deviceready', function() {
     navigator.splashscreen.hide();
@@ -104,13 +92,12 @@ function afterSignIn() {
   }, false);
 
   //close login screen
-  mainView.router.load({
-    pageName: 'tab1',
-    animatePages: false
-  });
+  myApp.showTab('#tab1');
+  $('.tabbar').show();
 
-  $('.navbar').show();
-  homePage.removeClass('page-on-left');
+  // Clear for next login
+  $('input[name="login-email"]').val('');
+  $('input[name="login-password"]').val('');
 
   pushAfterLogin();
   initNotificationBadge();

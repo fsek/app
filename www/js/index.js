@@ -10,7 +10,9 @@ var myApp = new Framework7({
   modalButtonCancel: 'Avbryt',
   onPageInit: function (app, page) {
   	if(page.container.className.indexOf('no-tabbar') != -1){
-  		showHideTabbar(page.name);
+      if($('#login').find(page.container).length === 0){
+        showHideTabbar(page.name);
+      }
   	}
 	}
 });
@@ -40,6 +42,7 @@ var tabView3 = myApp.addView('#tab3',{
 var tabView4 = myApp.addView('#tab4',{
   dynamicNavbar:true
 });
+var loginView = myApp.addView('#login');
 
 // Configure jToker
 $.auth.configure({
@@ -49,7 +52,7 @@ $.auth.configure({
 
 const infScrollPreloader = '<div class="infinite-scroll-preloader"><div class="preloader"></div></div>';
 
-//configures page so the tabbar hides and shows
+// Configures page so the tabbar hides and shows
 function showHideTabbar(dataPage){
 	myApp.onPageAfterAnimation(dataPage, function (page) {
 		$('.tabbar').hide();

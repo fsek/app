@@ -7,11 +7,11 @@ myApp.onPageInit('event', function (page) {
   })
   .fail(function(resp){
     console.log(resp.statusText);
-  });  
+  });
 });
 
 function initEventPage(eventData){
-  generateAdditionalData(eventData); 
+  generateAdditionalData(eventData);
 
   // Apply the event page content with template
   var templateHTML = myApp.templates.eventPageTemplate({event: eventData});
@@ -32,6 +32,15 @@ function initEventPage(eventData){
       setupCancelRegistrationBtn(eventData);
     }
   }
+
+  // Let us know if the popove is open so that the android back button can work
+  $$('.popover-about-signup').on('open', function() {
+    $$(this).addClass('popover-open');
+  });
+
+  $$('.popover-about-signup').on('close', function() {
+    $$(this).removeClass('popover-open');
+  });
 }
 
 function generateAdditionalData(eventData){
@@ -68,7 +77,7 @@ function generateSignupData(eventData){
   // Fix dates
   var eventSignup =  eventData.event_signup;
   eventSignup.opens = new Date(eventSignup.opens);
-  eventSignup.closes = new Date(eventSignup.closes); 
+  eventSignup.closes = new Date(eventSignup.closes);
 
   // Save if event open time has passed
   var signupOpened = !eventData.event_signup.open && !eventData.event_signup.closed ? false : true;
@@ -112,7 +121,7 @@ function generateSignupData(eventData){
     }
     eventData.food_preferences = foodPreferences;
   }
-  
+
   // Save if there is any reserves and how many
   if(eventData.event_signup.closed){
     var reserves = eventData.event_user_count - eventData.event_signup.slots;
@@ -169,16 +178,16 @@ function handleDescriptionOverflow(descripContainer){
     }
 
     // Adjust content during animation
-    setTimeout(function(){ 
-      var icon = descripContainer.find('i'); 
+    setTimeout(function(){
+      var icon = descripContainer.find('i');
       if(descripShowing){
-        content.removeClass('content-fade'); 
+        content.removeClass('content-fade');
         icon.removeClass('fa-chevron-circle-down');
-        icon.addClass('fa-chevron-circle-up'); 
+        icon.addClass('fa-chevron-circle-up');
       }else{
         content.addClass('content-fade');
         icon.removeClass('fa-chevron-circle-up');
-        icon.addClass('fa-chevron-circle-down'); 
+        icon.addClass('fa-chevron-circle-down');
       }
     }, 150);
   })
@@ -303,14 +312,14 @@ function updateSignupContent(eventData){
       var questionContainer = $('#event-question-answer');
       var groupContainer = $('#event-signup-group');
       var groupCustomContainer = $('#event-signup-groupcustom');
-      
+
       if(eventData.event_user != null) {
         // Update registered text + icon from ! to ?
         registeredStatusContainer.find('.item-inner').html('Du är anmäld till eventet! Kom tillbaka hit när anmälan har stängt för att se om du fått en plats');
         var icon = registeredStatusContainer.find('.item-media i')
         icon.removeClass('fa-exclamation-circle');
         icon.addClass('fa-question-circle');
-        
+
         // Update user count
         userCountContainer.html('Anmälda: ' + eventData.event_user_count);
 
@@ -383,7 +392,7 @@ function updateSignupContent(eventData){
     })
     .fail(function(resp){
       console.log(resp.statusText);
-    });  
+    });
 }
 
 if(myApp.device.ios){
@@ -395,9 +404,9 @@ if(myApp.device.ios){
 
   myApp.onPageBack('event', function (page) {
     if(page.view.selector == '#tab2') {
-      setTimeout(function(){ 
+      setTimeout(function(){
         $('#tab2 .navbar').addClass('hidden');
-      }, 100); 
+      }, 100);
     }
   });
 }

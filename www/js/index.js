@@ -83,7 +83,7 @@ function onBackKey() {
     navigator.app.exitApp();
   } else if (page.substr(0,3) == 'tab') {
     myApp.showTab('#tab1');
-  } else if ($$('.popover, .actions-modal').length) {
+  } else if ($$('.popover-open, .actions-modal').length) {
     myApp.closeModal('.popover, .actions-modal');
   } else if($$('.popup').length && $$('.popup .view')[0].f7View) {
     if ($$('.popup .view')[0].f7View.history.length > 1){

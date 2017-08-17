@@ -39,6 +39,7 @@ $$('#login').on('tab:show', function () {
     })
     .fail(function(resp) {
       $('input[name="login-password"]').val('');
+      $('.login-btn').addClass('disabled');
       myApp.alert("Ogiltig E-post eller lösenord", "Inloggningen misslyckades");
 
     });
@@ -48,14 +49,18 @@ $$('#login').on('tab:show', function () {
     $('.login-info-container').animate({
       "height": "+=100%",
       "width": "+=100%"
-    }, 300);
+    }, 250, function() {
+      $('.login-info-content').removeClass('hidden');
+    });
+    
   });
 
   $('.close-login-info').on('click', function () {
+    $('.login-info-content').addClass('hidden');
     $('.login-info-container').animate({
       "height": "-=100%",
       "width": "-=100%"
-    }, 300);
+    }, 250);
   });
 
   if (myApp.device.android) {

@@ -14,8 +14,8 @@
   width: 20px;
 }
 
-.event-content a{
-  color: #eb7125;
+.event-content .item-inner a{
+  color: #eb7125 !important;
 }
 
 .event-content i{
@@ -90,11 +90,19 @@
   margin: 15px;
 }
 
+.event-signup-btn.active-state{
+  background-color: #b95f26 !important;
+}
+
 .event-signup-cancel-btn{
   background-color: #e74c3c;
   border-color: #e74c3c !important;
   color: #fff !important;
   margin: 15px;
+}
+
+.event-signup-cancel-btn.active-state{
+  background-color: #a73529 !important;
 }
 
 .popover-about-signup{

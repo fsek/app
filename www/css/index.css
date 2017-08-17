@@ -11,10 +11,6 @@ a:active {
   color: #fff;
 }
 
-.navbar .center{
-  font-weight: bold;
-}
-
 .tabbar .badge {
   background: #ffe0b3;
   color: #eb7125;
@@ -22,7 +18,6 @@ a:active {
   position: absolute;
   top: 0;
   margin-left: 17px;
-  margin-top: 2px;
 }
 
 .tabbar .active .badge {
@@ -41,6 +36,10 @@ a:active {
 .tabbar i.fa-home{
   padding-top: 1px;
   font-size: 32px;
+}
+
+.tabbar i.fa-bars{
+  font-size: 27px;
 }
 
 .taphold {

@@ -3,6 +3,10 @@
   margin-bottom: 10px;
 }
 
+.message-sent .message-text{
+  background-color: #60b0d8;
+}
+
 .day-content {
   margin-bottom: 44px;
 }
@@ -10,7 +14,7 @@
 .calendar-page .content-block{
   margin-top: -1px;
 }
-
+  
 .navbar:after {
   background:  #eb7125;
 }
@@ -26,6 +30,12 @@
 
 .tabbar a.active, .tabbar a.active i{
   color: #fff !important;
+}
+
+.tabbar .badge {
+  margin-left: -14px !important;
+  margin-top: 3px;
+  height: 22px;
 }
 
 .subtabs {

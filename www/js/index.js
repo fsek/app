@@ -8,6 +8,7 @@ var myApp = new Framework7({
   tapHold: true,
   statusbarOverlay: false,
   modalButtonCancel: 'Avbryt',
+  showBarsOnPageScrollEnd: false,
   onPageInit: function (app, page) {
   	if(page.container.className.indexOf('no-tabbar') != -1){
       if($('#login').find(page.container).length === 0){
@@ -34,6 +35,7 @@ const AC_TOKEN_URL = API + '/messages/new_token';
 // Adding views
 var mainView = myApp.addView('.view-main');
 
+var loginView = myApp.addView('#login');
 var tabView1 = myApp.addView('#tab1',{
   dynamicNavbar:true
 });
@@ -46,7 +48,11 @@ var tabView3 = myApp.addView('#tab3',{
 var tabView4 = myApp.addView('#tab4',{
   dynamicNavbar:true
 });
-var loginView = myApp.addView('#login');
+var tabView5 = myApp.addView('#tab5',{
+  dynamicNavbar:true
+});
+
+
 
 
 // Configure jToker

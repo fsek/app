@@ -15,7 +15,7 @@ function initMessages(head, query) {
   var page = 2;
   var totalPages = 37;
   var loadingMessages = false;
-
+  //cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
   // Initialize Framework7 mesages
   F7msg = myApp.messages(messages, {
     autoLayout: true,
@@ -176,7 +176,7 @@ function initMessages(head, query) {
       e.preventDefault();
       return false;
     }
- });
+  });
 
   // Show popup editor for sent messages
   var popupEditor = function(messageId) {

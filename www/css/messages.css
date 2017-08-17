@@ -9,6 +9,7 @@
 .message-sent.message-admin .message-text,
 .message-received.message-admin .message-text {
   background-color: #ff9800;
+  color: #fff;
 }
 
 .message-sent.message-admin .message-text:before,

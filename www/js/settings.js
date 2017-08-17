@@ -1,5 +1,5 @@
-myApp.onPageInit('settings', function (page) {
-  $('.signout').on('click', function(){
+$$('#tab5').on('tab:show', function () {
+  $('.signout-btn').on('click', function(){
     var signoutBtn = [
       {
         text: 'Är du säker på att du vill logga ut?',
@@ -14,6 +14,7 @@ myApp.onPageInit('settings', function (page) {
           tabView1.router.back({
             animatePages: false
           });
+          $('.toolbar-inner').find('.active').removeClass('active');
           myApp.showTab('#login');
           myApp.showTab('#subtab1');
         }

@@ -4,7 +4,7 @@
 }
 
 .signup-title {
-  background: #60b0d8;
+  background: #60b0d8 /*#875f66*/;
   bottom: auto;
   color: #fff;
   font-size: 24px;
@@ -90,6 +90,10 @@
   border-color: #eb7125 !important;
   border-radius: 25px !important;
   color: #FFF !important;
+}
+
+.signup-btn.active-state{
+  background-color: #b95f26 !important;
 }
 
 .signup-footer{

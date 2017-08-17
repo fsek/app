@@ -9,7 +9,7 @@
 
 .tabbar .badge {
   height: 18px;
-  margin-top: 4px !important;
+  margin-top: 4px;
   padding-top: 3px;
   padding-left: 7px;
 }
@@ -90,6 +90,6 @@
   background-color: #ccc !important;
 }
 
-.event-content, .settings-content{
+.event-content{
   padding-top: 0 !important;
 }

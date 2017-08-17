@@ -5,6 +5,7 @@ var infNotificationScroll = true;
 function getNotifications(refresh) {
   $.getJSON(API + '/notifications')
     .then(function(resp) {
+      console.log(resp);
       $$('#notification-list ul').html('');
 
       appendNotifications(resp.notifications);

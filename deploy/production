@@ -1,0 +1,45 @@
+#!/bin/bash
+
+### CONFIGURE GIT
+git config --global -l
+git config --global user.name 'CircleCI'
+git config --global user.email 'circle@ci'
+git clean -f -d
+git checkout production
+
+### ANDROID
+git reset --hard origin/production
+sed -i '/<link rel="stylesheet"/s/ios/material/' ./www/index.html
+sed -i '/<platform name="ios">/,/<\/platform>/d' ./config.xml
+sed -i 's/509736475453/178540363026/' ./config.xml
+sed -i 's/se.fsektionen.fapp/se.fsektionen.fappprod/' ./config.xml
+sed -i 's/509736475453/178540363026/' ./package.json
+sed -i 's/509736475453/178540363026/' ./www/js/push.js
+sed -i 's/stage.fsektionen.se/fsektionen.se/' ./www/js/index.js
+
+git add -A
+git commit -m 'Automatic Android Production deploy'
+git push -f origin production:production-android
+
+### iOS
+git reset --hard origin/production
+sed -i '/<link rel="stylesheet"/s/material/ios/' ./www/index.html
+sed -i '/<platform name="android">/,/<\/platform>/d' ./config.xml
+sed -i 's/509736475453/178540363026/' ./config.xml
+sed -i 's/se.fsektionen.fapp/se.fsektionen.fappprod/' ./config.xml
+sed -i 's/509736475453/178540363026/' ./package.json
+sed -i 's/509736475453/178540363026/' ./www/js/push.js
+sed -i 's/"gcmSandbox": true/"gcmSandbox": false/' ./www/js/push.js
+sed -i 's/stage.fsektionen.se/fsektionen.se/' ./www/js/index.js
+
+git add -A
+git commit -m 'Automatic iOS Production deploy'
+git push -f origin production:production-ios
+git reset --hard origin/production
+
+### DEPLOY TO PHONEGAP BUILD
+curl spindelman@fsektionen.se -X PUT -d 'data={"pull":"true"}' \
+  "https://build.phonegap.com/api/v1/apps/2759564?auth_token=${phonegap_build_token}"
+
+curl spindelman@fsektionen.se -X PUT -d 'data={"pull":"true"}' \
+  "https://build.phonegap.com/api/v1/apps/2759566?auth_token=${phonegap_build_token}"

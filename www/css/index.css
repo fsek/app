@@ -18,7 +18,7 @@ a:active {
   position: absolute;
   top: 0;
   margin-left: 17px;
-  display: hidden;
+  display: none;
 }
 
 .tabbar .active .badge {

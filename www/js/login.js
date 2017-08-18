@@ -7,7 +7,7 @@ $.auth.validateToken()
     myApp.showTab('#login');
   });
 
-myApp.onPageInit('login', function(){
+myApp.onPageInit('login', function(page){
   $('.login-content input').on('input',function(e){
     var email = $('input[name="login-email"]').val();
     var password = $('input[name="login-password"]').val();
@@ -62,12 +62,13 @@ myApp.onPageInit('login', function(){
   });
 
   if (myApp.device.android) {
-    $(page.container).on('focus', 'input', function(e) {
+    var loginContainer = $('.login-container');
+    loginContainer.on('focus', 'input', function(e) {
       $('.open-login-info').fadeOut();
       $('.login-footer').fadeOut();
     });
 
-    $(page.container).on('blur', 'input', function(e) {
+    loginContainer.on('blur', 'input', function(e) {
       // Don't blur if we switched to another input field
       if(e.relatedTarget) return;
 
@@ -80,6 +81,7 @@ myApp.onPageInit('login', function(){
 }).trigger();
 
 $$('#login').on('tab:show', function(){
+  console.log('hej');
   $('.tabbar').hide();
   
    // Fix statusbar and close splash

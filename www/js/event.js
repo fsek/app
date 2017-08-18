@@ -152,6 +152,7 @@ function getGroupName(groups, groupId, groupCustom){
 function handleDescriptionOverflow(descripContainer){
   var descripShowing = false;
   descripContainer.append('<span><i class="fa fa-chevron-circle-down" aria-hidden="true"></i></span>');
+  descripContainer.find('.event-description').addClass('content-fade');
 
   descripContainer.on('click', function(e){
     var content = descripContainer.find('.event-description');

@@ -43,6 +43,7 @@ function appendNotifications(notifications) {
 
 function initNotificationBadge() {
   if ($.auth.user.notifications_count > 0) {
+    $$('#notification-badge').show();
     $$('#notification-badge').html($.auth.user.notifications_count);
   } else {
     $$('#notification-badge').hide();

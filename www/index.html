@@ -326,7 +326,9 @@
               <div class="card-content-inner">
                 <p class="date">
                   <i class="fa fa-clock-o" aria-hidden="true"></i>
-                  {{js "this.start.hhmm()"}} - {{js "this.end.hhmm()"}}
+                  {{#unless allday}}
+                    {{js "this.start.hhmm()"}} - {{js "this.end.hhmm()"}}
+                  {{else}} Hela dagen {{/unless}}
                 </p>
                 <p class="location">
                   <i class="fa fa-map-marker" aria-hidden="true"></i>
@@ -361,7 +363,11 @@
                     <i class="fa fa-clock-o" aria-hidden="true"></i>
                   </div>
                   <div class="item-inner">
-                    {{starts_at_dot}} - {{ends_at.timeDateString()}}
+                    {{#unless all_day}}
+                      {{starts_at_dot}} - {{ends_at.timeDateString()}}
+                    {{else}}
+                      {{starts_at.dateString()}}
+                    {{/unless}}
                   </div>
                 </li>
                 <li class="item-content event-info-place">
@@ -375,7 +381,7 @@
             <div class="list-group">
               <ul>
                 <li class="event-description-container">
-                  <div class="event-description content-fade">{{description}}</div>
+                  <div class="event-description">{{description}}</div>
                 </li>
               </ul>
             </div>

@@ -10,37 +10,7 @@ var myApp = new Framework7({
   modalButtonCancel: 'Avbryt',
   showBarsOnPageScrollEnd: false,
   onPageInit: function (app, page) {
-    if(page.name === 'tab5'){
-      $('.signout-btn').on('click', function(){
-        var signoutBtn = [
-          {
-            text: 'Är du säker på att du vill logga ut?',
-            label: true
-          },
-          {
-            text: 'Logga ut',
-            color: 'red',
-            onClick: function(){
-              $(calendar).empty();
-              deletePushAndSignOut();
-              tabView1.router.back({
-                animatePages: false
-              });
-              $('.toolbar-inner').find('.active').removeClass('active');
-              myApp.showTab('#login');
-              myApp.showTab('#subtab1');
-            }
-          }
-        ];
-        var cancel = [
-            {
-              text: 'Avbryt'
-            }
-        ];
-        var signoutAction = [signoutBtn, cancel];
-        myApp.actions(this, signoutAction);
-      });
-    }else if(page.container.className.indexOf('no-tabbar') != -1){
+    if(page.container.className.indexOf('no-tabbar') != -1){
       if($('#login').find(page.container).length === 0){
         showHideTabbar(page.name);
       }

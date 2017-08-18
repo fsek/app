@@ -7,9 +7,7 @@ $.auth.validateToken()
     myApp.showTab('#login');
   });
 
-$$('#login').on('tab:show', function () {
-  $('.tabbar').hide();
-
+myApp.onPageInit('login', function(){
   $('.login-content input').on('input',function(e){
     var email = $('input[name="login-email"]').val();
     var password = $('input[name="login-password"]').val();
@@ -86,6 +84,10 @@ $$('#login').on('tab:show', function () {
     StatusBar.backgroundColorByHexString(loginBarColor);
     StatusBar.overlaysWebView(false);
   }, false);
+}).trigger();
+
+$$('#login').on('tab:show', function(){
+  $('.tabbar').hide();
 });
 
 function afterSignIn() {

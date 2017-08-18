@@ -81,7 +81,6 @@ myApp.onPageInit('login', function(page){
 }).trigger();
 
 $$('#login').on('tab:show', function(){
-  console.log('hej');
   $('.tabbar').hide();
   
    // Fix statusbar and close splash

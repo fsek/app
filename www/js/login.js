@@ -77,17 +77,19 @@ myApp.onPageInit('login', function(){
       }, 250);
     });
   }
+}).trigger();
 
-  // Fix statusbar and close splash
+$$('#login').on('tab:show', function(){
+  $('.tabbar').hide();
+  $$('#group-badge').hide();
+  $$('#notification-badge').hide();
+  
+   // Fix statusbar and close splash
   document.addEventListener('deviceready', function() {
     navigator.splashscreen.hide();
     StatusBar.backgroundColorByHexString(loginBarColor);
     StatusBar.overlaysWebView(false);
   }, false);
-}).trigger();
-
-$$('#login').on('tab:show', function(){
-  $('.tabbar').hide();
 });
 
 function afterSignIn() {

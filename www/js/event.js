@@ -57,6 +57,9 @@ function generateAdditionalData(eventData){
     case '':
       eventData.starts_at_dot = eventData.starts_at.timeDateString();
       break;
+    case null:
+      eventData.starts_at_dot = eventData.starts_at.timeDateString();
+      break;
     case 'without':
       eventData.starts_at_dot = eventData.starts_at.timeWithoutDot();
       break;

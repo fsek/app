@@ -81,8 +81,6 @@ myApp.onPageInit('login', function(){
 
 $$('#login').on('tab:show', function(){
   $('.tabbar').hide();
-  $$('#group-badge').hide();
-  $$('#notification-badge').hide();
   
    // Fix statusbar and close splash
   document.addEventListener('deviceready', function() {

@@ -26,10 +26,6 @@ function setupPush() {
     }
   });
 
-  pushService.on('error', function(e) {
-    alert("push error = " + e.message);
-  });
-
   pushService.on('notification', function(data) {
     if ('group_id' in data.additionalData) {
       groupPush(data);
@@ -82,9 +78,6 @@ function createPushDevice(registrationId) {
     type: 'POST',
     dataType: 'json',
     data: {push_device: {token: registrationId, system: cordova.platformId}}
-  })
-  .fail(function(resp) {
-    alert("Failed to create push device id!");
   });
 }
 
@@ -95,9 +88,6 @@ function deletePushDevice(registrationId, signOut) {
     type: 'DELETE',
     dataType: 'json',
     data: {token: registrationId}
-  })
-  .fail(function(resp) {
-    alert("Failed to delete push device id!");
   })
   .always(function(resp) {
     if(signOut) $.auth.signOut();
@@ -123,7 +113,6 @@ function deletePushAndSignOut() {
       setupPush();
     }, function() {
       // Error
-      alert('Failed to unregisted from push service!');
     });
   } else {
     $.auth.signOut();

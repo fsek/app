@@ -90,10 +90,14 @@
   background-color: #ccc !important;
 }
 
-.event-content{
-  padding-top: 0 !important;
-}
-
 .pages {
   background: #efeff4;
+}
+
+.message-name{
+  z-index: 100;
+}
+
+.navbar a.link{
+  padding-right: 0;
 }

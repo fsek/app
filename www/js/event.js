@@ -399,18 +399,31 @@ function updateSignupContent(eventData){
     });
 }
 
-if(myApp.device.ios){
-  myApp.onPageBeforeAnimation('event', function (page) {
-    if(page.view.selector == '#tab2') {
-      $('#tab2 .navbar').removeClass('hidden');
-    }
-  });
 
-  myApp.onPageBack('event', function (page) {
-    if(page.view.selector == '#tab2') {
+var navbar = $('#tab2 .navbar');
+myApp.onPageBeforeAnimation('event', function (page) {
+  if(page.view.selector == '#tab2') {
+    navbar.removeClass('hidden');
+    if(myApp.device.android){
       setTimeout(function(){
-        $('#tab2 .navbar').addClass('hidden');
+        navbar.fadeOut(250);
       }, 100);
     }
-  });
-}
+  }
+});
+
+myApp.onPageBack('event', function (page) {
+  if(page.view.selector == '#tab2') {
+    if(myApp.device.android){
+      navbar.fadeIn(0);
+      setTimeout(function(){
+        navbar.addClass('hidden');
+      }, 200);
+    }else{
+      navbar.fadeOut(200, function(){
+        navbar.addClass('hidden');
+        navbar.fadeIn(0);
+      });
+    }
+  }
+});

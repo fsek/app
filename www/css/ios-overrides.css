@@ -28,10 +28,6 @@
   color: #ffe0b3;
 }
 
-.tabbar a.active, .tabbar a.active i{
-  color: #fff !important;
-}
-
 .tabbar .badge {
   margin-top: 3px;
   height: 22px;
@@ -72,4 +68,8 @@
 
 .picker-calendar .picker-calendar-day-today span{
   background: none;
+}
+
+.ios-hide{
+  display: none !important;
 }

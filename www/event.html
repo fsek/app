@@ -1,27 +1,27 @@
-<div class="navbar">
-  <div class="navbar-inner">
-    <div class="left sliding">
-      <a href="#" class="back link"> 
-        <i class="icon icon-back"></i>
-        <span>Tillbaka</span>
-      </a>
+<div data-page="event" class="page no-tabbar">
+  <div class="navbar">
+    <div class="navbar-inner">
+      <div class="left sliding">
+        <a href="#" class="back link"> 
+          <i class="icon icon-back"></i>
+          {{#unless @global.android}}<span>Tillbaka</span>{{/unless}}
+        </a>
+      </div>
+      {{#if @global.android}}<div class="center sliding">Evenemang</div>{{/if}}
     </div>
   </div>
-</div>
-
-<div data-page="event" class="page no-tabbar">
   <div class="page-content event-content hide-navbar-on-scroll">
   </div>
   <div class="popover popover-about-signup">
-  <div class="popover-angle"></div>
-  <div class="popover-inner">
-    <div class="content-block-title">Viktigt om anmälan</div>
-    <div class="content-block">
-      <p>Vid anmälan använder vi ibland prioriteringar för vissa grupper. Därav är din plats garanterad först då anmälan har stängt.</p>
-      <p>Observera att anmälan är bindande och att du inte kan avanmäla dig när anmälan har stängt. Om anmälan är stängd och du verkligen inte kan komma ska du kontakta eventansvarig.</p>
+    <div class="popover-angle"></div>
+    <div class="popover-inner">
+      <div class="content-block-title">Viktigt om anmälan</div>
+      <div class="content-block">
+        <p>Vid anmälan använder vi ibland prioriteringar för vissa grupper. Därav är din plats garanterad först då anmälan har stängt.</p>
+        <p>Observera att anmälan är bindande och att du inte kan avanmäla dig när anmälan har stängt. Om anmälan är stängd och du verkligen inte kan komma ska du kontakta eventansvarig.</p>
+      </div>
     </div>
   </div>
-</div>
 </div>
 
 

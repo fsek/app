@@ -168,7 +168,18 @@ function initMessages(head, query) {
 
   window.addEventListener('native.keyboardshow', function(e) {
     F7msg.scrollMessages(350);
+
+    if (myApp.device.android) {
+      infiniteScroll.find('.infinite-scroll-preloader').hide();
+    }
   });
+
+  if (myApp.device.android) {
+    window.addEventListener('native.keyboardhide', function() {
+      infiniteScroll.find('.infinite-scroll-preloader').show();
+      F7msg.scrollMessages(0);
+    });
+  }
 
   // Send message on enter
   msgBar.textarea.on('keypress', function(e) {

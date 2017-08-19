@@ -21,6 +21,10 @@ a:active {
   display: none;
 }
 
+.tabbar a.active, .tabbar a.active i{
+  color: #fff !important;
+}
+
 .tabbar .active .badge {
   background: #fff;
 }

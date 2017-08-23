@@ -10,6 +10,7 @@ myApp.onPageInit('tab5', function(page){
         color: 'red',
         onClick: function(){
           $(calendar).empty();
+          $('#notification-list ul').empty();
           deletePushAndSignOut();
           tabView1.router.back({
             animatePages: false

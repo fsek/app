@@ -4,13 +4,17 @@ function getGroups() {
       $$('#groups-list ul').html('');
       var groups = resp.groups.reverse();
       var unread = 0;
-
-      for (var group of groups) {
-        var templateHTML = myApp.templates.groupTemplate(group);
-        $$('#groups-list ul').append(templateHTML);
-        unread += group.group_user.unread_count;
+      if(groups.length !== 0){
+        for (var group of groups) {
+          var templateHTML = myApp.templates.groupTemplate({group: group, hasGroups: true});
+          $$('#groups-list ul').append(templateHTML);
+          unread += group.group_user.unread_count;
+        }
+      }else if($('.no-groups').length === 0){
+        var templateHTML = myApp.templates.groupTemplate({hasGroups: false});
+        $('#groups-list').after(templateHTML);
       }
-
+      
       updateGroupBadge(unread);
     });
 }

@@ -41,3 +41,11 @@
   background-color: rgba(0, 0, 0, 0.25) !important;
   margin-left: -5px;
 }
+
+.notification-list .disabled{
+  text-align: center;
+}
+
+.no-notifications{
+  text-align: center;
+}

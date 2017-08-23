@@ -102,7 +102,6 @@ function pushAfterLogin() {
 
 function deletePushAndSignOut() {
   var registrationId = localStorage.getItem('registrationId');
-
   if (registrationId !== null) {
     // Remove push device from the server
     deletePushDevice(registrationId, true);

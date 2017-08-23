@@ -5,7 +5,6 @@ var infNotificationScroll = true;
 function getNotifications(refresh) {
   $.getJSON(API + '/notifications')
     .then(function(resp) {
-      console.log(resp);
       $$('#notification-list ul').html('');
 
       appendNotifications(resp.notifications);
@@ -35,9 +34,15 @@ function getMoreNotifications() {
 }
 
 function appendNotifications(notifications) {
-  for(notification of notifications) {
-    templateHTML = myApp.templates.notificationTemplate(notification);
-    $$('#notification-list ul').append(templateHTML);
+  var notificationList = $$('#notification-list ul');
+  if (notifications.length !== 0) {
+    for(notification of notifications) {
+      templateHTML = myApp.templates.notificationTemplate({notification: notification, hasNotifications: true});
+      notificationList.append(templateHTML);
+    }
+  }else if($('.no-notifications').length === 0){
+    templateHTML = myApp.templates.notificationTemplate({hasNotifications: false});
+    $('#notification-list').after(templateHTML);
   }
 }
 

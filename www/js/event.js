@@ -33,7 +33,7 @@ function initEventPage(eventData){
     }
   }
 
-  // Let us know if the popove is open so that the android back button can work
+  // Let us know if the popover is open so that the android back button can work
   $$('.popover-about-signup').on('open', function() {
     $$(this).addClass('popover-open');
   });
@@ -159,14 +159,15 @@ function handleDescriptionOverflow(descripContainer){
 
     if(!descripShowing){
       // Calc total height of the text
-      var totalHeight = 0;
+      var totalHeight = 13; // Buffer for the icon
       content.children().each(function(){
         totalHeight += $(this).outerHeight(true);
       });
 
       // Expand content to the total text height
       content.animate({
-        maxHeight: totalHeight
+        maxHeight: totalHeight,
+        height: totalHeight
       }, 300, function(){
 
       });
@@ -281,7 +282,6 @@ function setupRegistrationBtn(eventData){
   });
 }
 
-
 function signupToEvent(eventData, answer, groupCustom){
   $.ajax({
     url: API + '/events/' + eventData.id + '/event_users',
@@ -303,7 +303,6 @@ function signupToEvent(eventData, answer, groupCustom){
     }
   });
 }
-
 
 function updateSignupContent(eventData){
   $.getJSON(API + '/events/' + eventData.id)
@@ -341,14 +340,14 @@ function updateSignupContent(eventData){
             groupCustomContainer.addClass('hidden');
           }
 
-          groupContainer.find('.item-input').addClass('hidden');
           groupContainer.find('#event-signup-groupname').html(group);
         }else{
           if(!groupCustomContainer.hasClass('hidden')){
             groupCustomContainer.addClass('hidden');
           }
-          groupContainer.addClass('hidden');
+          groupContainer.find('#event-signup-groupname').html('Ingen grupp vald');
         }
+        groupContainer.find('.item-input').addClass('hidden');
         groupContainer.find('input').remove();
 
         // Update the register button to cancel registration
@@ -373,15 +372,10 @@ function updateSignupContent(eventData){
 
         // Update group
         var oldGroup = getGroupName(oldEventData.groups, oldEventData.event_user.group_id, oldEventData.event_user.group_custom);
-        if(oldGroup != null){
-          if(oldEventData.event_user.group_id === null){
-            groupCustomContainer.find('input').val('');
-          }
-
-          groupContainer.find('#event-signup-groupname').html('');
-        }else{
-          groupContainer.removeClass('hidden');
+        if(oldGroup != null && oldEventData.event_user.group_id === null){
+          groupCustomContainer.find('input').val('');
         }
+        groupContainer.find('#event-signup-groupname').html('');
         groupContainer.find('.item-input').removeClass('hidden');
         setupGroupPicker(eventData); // Need to setup the picker with the new event data (reinits it dynamically)
 
@@ -398,7 +392,6 @@ function updateSignupContent(eventData){
       console.log(resp.statusText);
     });
 }
-
 
 var navbar = $('#tab2 .navbar');
 myApp.onPageBeforeAnimation('event', function (page) {

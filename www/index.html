@@ -9,9 +9,9 @@
     <title>F-sektionen</title>
 
     <!-- Material/iOS stylesheets. Will be replaced on deploy -->
-    <link rel="stylesheet" href="css/framework7.material.min.css">
-    <link rel="stylesheet" href="css/framework7.material.colors.min.css">
-    <link rel="stylesheet" href="css/material-overrides.css">
+    <link rel="stylesheet" href="css/framework7.ios.min.css">
+    <link rel="stylesheet" href="css/framework7.ios.colors.min.css">
+    <link rel="stylesheet" href="css/ios-overrides.css">
 
     <!-- General stylesheets -->
     <link rel="stylesheet" href="css/font-awesome.min.css">
@@ -536,13 +536,21 @@
                       </li>
                     {{/if}}
                     {{#if event_user}}
-                      <li id="event-signup-group" class="item-content {{#unless event_user.group_name}} hidden {{/unless}}">
+                      <li id="event-signup-group" class="item-content">
                         <div class="item-media">
                           <i class="fa fa-users" aria-hidden="true"></i>
                         </div>
                         <div class="item-inner">
-                          <span id="event-signup-groupname">{{event_user.group_name}}</span>
-                          <div class="item-input hidden"><!--input is added dynamically--></div>
+                          <span id="event-signup-groupname">
+                            {{#if event_user.group_name}}
+                              {{event_user.group_name}}
+                            {{else}}
+                              Ingen grupp vald
+                            {{/if}}
+                          </span>
+                          <div class="item-input hidden">
+                            <!--<input> is added dynamically-->
+                          </div>
                         </div>
                       </li>
                     {{else}}
@@ -553,7 +561,9 @@
                           </div>
                           <div class="item-inner">
                             <span id="event-signup-groupname"></span>
-                            <div class="item-input"><!--input is added dynamically--></div>
+                            <div class="item-input">
+                              <!--<input> is added dynamically-->
+                            </div>
                           </div>
                         </li>
                       {{/if}}
@@ -592,21 +602,27 @@
     </script>
 
     <script type="text/template7" id="groupTemplate">
-      <li id="{{id}}" {{#js_compare "this.group_user.unread_count > 0"}} class="unread"{{/js_compare}}
-          data-unread="{{group_user.unread_count}}">
-        <a href="#" class="item-link item-content">
-          <div class="item-inner">
-            <div class="item-title-row">
-              <div class="item-title">{{name}}</div>
-            </div>
-            {{#each messages}}
-              <div class="item-text">
-                <i>{{user.name}}</i>: {{content}}
+      {{#if hasGroups}}
+        {{#group}}
+          <li id="{{id}}" {{#js_compare "this.group_user.unread_count > 0"}} class="unread"{{/js_compare}}
+              data-unread="{{group_user.unread_count}}">
+            <a href="#" class="item-link item-content">
+              <div class="item-inner">
+                <div class="item-title-row">
+                  <div class="item-title">{{name}}</div>
+                </div>
+                {{#each messages}}
+                  <div class="item-text">
+                    <i>{{user.name}}</i>: {{content}}
+                  </div>
+                {{/each}}
               </div>
-            {{/each}}
-          </div>
-        </a>
-      </li>
+            </a>
+          </li>
+        {{/group}}
+      {{else}}
+        <p class="disabled no-groups">Inga gruppchatter tillgängliga</p>
+      {{/if}}
     </script>
 
     <script type="text/template7" id="messageTemplate">
@@ -631,18 +647,24 @@
     </script>
 
     <script type="text/template7" id="notificationTemplate">
-      <li id="{{id}}" {{#unless seen}} class="unseen"{{/unless}}>
-        <a href="event.html?id={{event_id}}" class="item-link item-content">
-          <div class="item-inner">
-            <div class="item-title-row">
-              <div class="item-title">{{data.title}}</div>
-            </div>
-            <div class="item-subtitle">{{data.body}}</div>
-            <div class="item-text">{{data.extra}}</div>
-            <div class="item-created">Skickades {{js "new Date(this.created_at).toLocaleString()"}}</div>
-          </div>
-        </a>
-      </li>
+      {{#if hasNotifications}}
+        {{#notification}}
+          <li id="{{id}}" {{#unless seen}} class="unseen"{{/unless}}>
+            <a href="event.html?id={{event_id}}" class="item-link item-content">
+              <div class="item-inner">
+                <div class="item-title-row">
+                  <div class="item-title">{{data.title}}</div>
+                </div>
+                <div class="item-subtitle">{{data.body}}</div>
+                <div class="item-text">{{data.extra}}</div>
+                <div class="item-created">Skickades {{js "new Date(this.created_at).toLocaleString()"}}</div>
+              </div>
+            </a>
+          </li>
+        {{/notification}}
+      {{else}}
+        <p class="disabled no-notifications">Inga notifikationer tillgängliga</p>
+      {{/if}}
     </script>
 
     <!-- External JS Libraries -->

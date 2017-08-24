@@ -25,7 +25,8 @@ function initEventPage(eventData){
 
   // Setup picker and buttons for signup (if it exists)
   if(eventData.can_signup){
-    var pickerGroup = setupGroupPicker(eventData);
+    setupGroupPicker(eventData);
+    setupUserTypePicker(eventData);
     if(eventData.event_user == null){
       setupRegistrationBtn(eventData);
     }else{
@@ -85,6 +86,8 @@ function generateSignupData(eventData){
   // Save if event open time has passed
   var signupOpened = !eventData.event_signup.open && !eventData.event_signup.closed ? false : true;
   eventData.event_signup.opened = signupOpened;
+
+  eventData.selected_user_type = null;
 
   // Save the registered text + icon and the group name
   if(eventData.event_user != null){
@@ -228,7 +231,7 @@ function setupGroupPicker(eventData){
           groupCustomContainer.removeClass('hidden');
         }
 
-        eventData.selectedGroupId = null;
+        eventData.selected_group_id = null;
       }else{
         if(!groupCustomContainer.hasClass('hidden')){
           groupCustomContainer.addClass('hidden');
@@ -236,9 +239,44 @@ function setupGroupPicker(eventData){
 
         groups.forEach(function(element){
           if(element.name === value){
-            eventData.selectedGroupId = element.id;
+            eventData.selected_group_id = element.id;
           }
         });
+      }
+    }
+  });
+}
+
+function setupUserTypePicker(eventData){
+  if(eventData.event_user === null){
+    $('#event-usertype').find('.item-input').html('<input type="text" placeholder="Vad är du?" readonly id="picker-usertype">');
+  }
+
+  var userTypes = [];
+  eventData.user_types.forEach(function(element){
+    userTypes.push(element[0]);
+  });
+  userTypes.push('Övrig');
+
+  var pickerUserType = myApp.picker({
+    input: '#picker-usertype',
+    toolbarCloseText: 'Klar',
+    cols: [
+      {
+        textAlign: 'center',
+        values: userTypes
+      }
+    ],
+    onClose: function(){
+      var value = this.cols[0].value;
+      if(value !== 'Övrig'){
+        eventData.user_types.forEach(function(element){
+          if(value === element[0]){
+            eventData.selected_user_type = element[1];
+          }
+        });
+      }else{
+        eventData.selected_user_type = null;
       }
     }
   });
@@ -267,7 +305,7 @@ function setupRegistrationBtn(eventData){
   $('.event-signup-btn').on('click', function(){
     myApp.confirm('Kom ihåg att anmälan är bindande! Om du inte kan komma ska du avanmäla dig innan anmälan stänger.', 'Anmälan', function(){
       // Get custom group if selected
-      if(eventData.selectedGroupId === null){
+      if(eventData.selected_group_id === null){
         var customGroup = $('input[name="group-custom"]').val();
       }
 
@@ -290,8 +328,9 @@ function signupToEvent(eventData, answer, groupCustom){
     data: {
       event_user: {
         answer: answer,
-        group_id: eventData.selectedGroupId,
-        group_custom: groupCustom
+        group_id: eventData.selected_group_id,
+        group_custom: groupCustom,
+        user_type: eventData.selected_user_type
       }
     },
     success: function(resp) {
@@ -311,8 +350,9 @@ function updateSignupContent(eventData){
       eventData = resp.event;
 
       var registeredStatusContainer = $('#event-registered-status');
-      var userCountContainer = $('#event-user-count');
+      var userCountContainer = $('#event-usercount');
       var questionContainer = $('#event-question-answer');
+      var userTypeContainer = $('#event-usertype');
       var groupContainer = $('#event-signup-group');
       var groupCustomContainer = $('#event-signup-groupcustom');
 
@@ -332,6 +372,12 @@ function updateSignupContent(eventData){
           questionContainer.find('.item-inner').html(eventData.event_signup.question + ' ' + eventData.event_user.answer);
         }
 
+        // Update user type
+        userTypeContainer.find('.item-input').addClass('hidden');
+        userTypeContainer.find('input').remove();
+        userTypeContainer.find('span').html(eventData.event_user.user_type);
+        userTypeContainer.removeClass('input-showing');
+
         // Update group
         // We remove #picker-group here and add it dynamically in setupGroupPicker() to update it with the new event data later
         var group = getGroupName(eventData.groups, eventData.event_user.group_id, eventData.event_user.group_custom);
@@ -340,15 +386,16 @@ function updateSignupContent(eventData){
             groupCustomContainer.addClass('hidden');
           }
 
-          groupContainer.find('#event-signup-groupname').html(group);
+          groupContainer.find('span').html(group);
         }else{
           if(!groupCustomContainer.hasClass('hidden')){
             groupCustomContainer.addClass('hidden');
           }
-          groupContainer.find('#event-signup-groupname').html('Ingen grupp vald');
+          groupContainer.find('span').html('Ingen grupp vald');
         }
         groupContainer.find('.item-input').addClass('hidden');
         groupContainer.find('input').remove();
+        groupContainer.removeClass('input-showing');
 
         // Update the register button to cancel registration
         var registerBtn = $('.event-signup-btn');
@@ -356,7 +403,7 @@ function updateSignupContent(eventData){
         registerBtn.remove();
         setupCancelRegistrationBtn(eventData);
       }else {
-        // Update registered text + icon from ? to !
+        // Update registered text and icon from '?' to '!'
         registeredStatusContainer.find('.item-inner').html('Du är inte anmäld');
         var icon = registeredStatusContainer.find('.item-media i')
         icon.removeClass('fa-question-circle');
@@ -370,16 +417,21 @@ function updateSignupContent(eventData){
           questionContainer.addClass('hidden');
         }
 
+        // Update user type
+        userTypeContainer.find('.item-input').removeClass('hidden');
+        userTypeContainer.find('span').html('');
+        userTypeContainer.addClass('input-showing');
+        setupUserTypePicker(eventData);
+
         // Update group
         var oldGroup = getGroupName(oldEventData.groups, oldEventData.event_user.group_id, oldEventData.event_user.group_custom);
         if(oldGroup != null && oldEventData.event_user.group_id === null){
           groupCustomContainer.find('input').val('');
         }
-        groupContainer.find('#event-signup-groupname').html('');
+        groupContainer.find('span').html('');
         groupContainer.find('.item-input').removeClass('hidden');
+        groupContainer.addClass('input-showing');
         setupGroupPicker(eventData); // Need to setup the picker with the new event data (reinits it dynamically)
-
-        groupContainer.find('input').val('');
 
         // Update the cancel registration button to register
         var registerCancelBtn = $('.event-signup-cancel-btn');
@@ -393,6 +445,7 @@ function updateSignupContent(eventData){
     });
 }
 
+// Configure the navbar during page animation
 var navbar = $('#tab2 .navbar');
 myApp.onPageBeforeAnimation('event', function (page) {
   if(page.view.selector == '#tab2') {

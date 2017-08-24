@@ -88,6 +88,13 @@
   text-align: center;
 }
 
+.day-content .preloader{
+  margin-left: calc(50% - 15px);
+  margin-top: 5vh;
+  height: 30px;
+  width: 30px;
+}
+
 .day-content-event:first-child {
   margin-top: 8px;
 }

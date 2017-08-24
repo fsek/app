@@ -28,6 +28,13 @@
   font-size: 17px;
 }
 
+.event-content .preloader{
+  margin-left: calc(50% - 20px);
+  margin-top: calc(50% - 20px);
+  height: 40px;
+  width: 40px;
+}
+
 .event-title{ 
   font-size: 24px;
   font-weight: bold;
@@ -77,7 +84,11 @@
   font-size: 14px !important;
 }
 
-#event-signup-groupcustom input{
+.event-signup-container .input-showing{
+  margin-top: 8px;
+}
+
+#event-signup-groupcustom input, #event-signup-group input, #event-usertype input{
   background-color: #ececec;
   padding-left: 10px;
   border-radius: 4px;

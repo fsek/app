@@ -9,9 +9,9 @@
     <title>F-sektionen</title>
 
     <!-- Material/iOS stylesheets. Will be replaced on deploy -->
-    <link rel="stylesheet" href="css/framework7.ios.min.css">
-    <link rel="stylesheet" href="css/framework7.ios.colors.min.css">
-    <link rel="stylesheet" href="css/ios-overrides.css">
+    <link rel="stylesheet" href="css/framework7.material.min.css">
+    <link rel="stylesheet" href="css/framework7.material.colors.min.css">
+    <link rel="stylesheet" href="css/material-overrides.css">
 
     <!-- General stylesheets -->
     <link rel="stylesheet" href="css/font-awesome.min.css">
@@ -144,6 +144,7 @@
             </div>
             <div class="row day-title"></div>
             <div class="day-content">
+              <span class="preloader"></span>
             </div>
           </div>
         </div>
@@ -183,7 +184,6 @@
                 <ul></ul>
               </div>
               <div class="infinite-scroll-preloader">
-                <div class="preloader"></div>
               </div>
             </div>
           </div>
@@ -462,7 +462,7 @@
                       <div class="item-media">
                         <i class="fa fa-user" aria-hidden="true"></i>
                       </div>
-                      <div id="event-user-count" class="item-inner">Anmälda: {{event_user_count}}</div>
+                      <div id="event-usercount" class="item-inner">Anmälda: {{event_user_count}}</div>
                     </li>
                   {{/if}}
                   <li class="item-content">
@@ -515,52 +515,70 @@
                         </div>
                       </li>
                     {{/if}}
-                    {{#if event_user}}
-                      {{#if event_signup.question}}
+                    {{#if event_signup.question}}
+                      {{#if event_user}}
                         <li id="event-question-answer" class="item-content">
                           <div class="item-media">
                             <i class="fa fa-question" aria-hidden="true"></i>
                           </div>
                           <div class="item-inner">
                             {{event_signup.question}}
-                            {{#if event_user}} {{event_user.answer}} {{/if}}
+                            {{event_user.answer}}
                           </div>
                         </li>
+                      {{else}}
+                        <li id="event-question-answer" class="item-content hidden">
+                          <div class="item-media">
+                            <i class="fa fa-question" aria-hidden="true"></i>
+                          </div>
+                          <div class="item-inner"></div>
+                        </li>
                       {{/if}}
-                    {{else}}
-                      <li id="event-question-answer" class="item-content hidden">
-                        <div class="item-media">
-                          <i class="fa fa-question" aria-hidden="true"></i>
-                        </div>
-                        <div class="item-inner"></div>
-                      </li>
                     {{/if}}
                     {{#if event_user}}
+                      <li id="event-usertype" class="item-content">
+                        <div class="item-media">
+                          <i class="fa fa-user-circle" aria-hidden="true"></i>
+                        </div>
+                        <div class="item-inner">
+                          <span>{{event_user.user_type}}</span>
+                          <div class="item-input hidden"></div>
+                        </div>
+                      </li>
                       <li id="event-signup-group" class="item-content">
                         <div class="item-media">
                           <i class="fa fa-users" aria-hidden="true"></i>
                         </div>
                         <div class="item-inner">
-                          <span id="event-signup-groupname">
+                          <span>
                             {{#if event_user.group_name}}
                               {{event_user.group_name}}
                             {{else}}
                               Ingen grupp vald
                             {{/if}}
                           </span>
-                          <div class="item-input hidden">
-                            <!--<input> is added dynamically-->
-                          </div>
+                          <div class="item-input hidden"></div>
                         </div>
                       </li>
                     {{else}}
                       {{#if event_signup.open}}
-                        <li id="event-signup-group" class="item-content">
+                        <li id="event-usertype" class="item-content input-showing">
+                          <div class="item-media">
+                            <i class="fa fa-user-circle-o" aria-hidden="true"></i>
+                          </div>
+                          <div class="item-inner">
+                            <span></span>
+                            <div class="item-input">
+                              <!--<input> is added dynamically-->
+                            </div>
+                          </div>
+                        </li>
+                        <li id="event-signup-group" class="item-content input-showing">
                           <div class="item-media">
                             <i class="fa fa-users" aria-hidden="true"></i>
                           </div>
                           <div class="item-inner">
-                            <span id="event-signup-groupname"></span>
+                            <span></span>
                             <div class="item-input">
                               <!--<input> is added dynamically-->
                             </div>

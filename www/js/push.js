@@ -13,7 +13,7 @@ function setupPush() {
       "badge": true
     }
   });
-
+      
   // Get/update the registration id
   pushService.on('registration', function(data) {
     var oldId = localStorage.getItem('registrationId');

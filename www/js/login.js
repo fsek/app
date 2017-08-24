@@ -33,6 +33,7 @@ myApp.onPageInit('login', function(page){
       password: password
     })
     .done(function() {
+      myApp.showPreloader('Loggar in');
       afterSignIn();
     })
     .fail(function(resp) {
@@ -112,3 +113,7 @@ function afterSignIn() {
   loadHome();
   getGroups();
 }
+
+$$('#tab1').on('tab:show', function(){
+  myApp.hidePreloader();
+});

@@ -36,10 +36,6 @@ function initCalendar(page) {
 
       // Initialize "today click" listener
       toolbar.find('.right').on('click', todayClick);
-
-      // Display today's event content
-      var todayContainer = page.find('.picker-calendar-day-today');
-      displayDayContent(p.params.event, todayContainer);
     },
     onMonthYearChangeStart: function (p, year, month) {
       p.params.events = [];

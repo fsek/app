@@ -70,6 +70,15 @@
   background-color: rgba(255,255,255,0) !important;
 }
 
+.modal .input-field:after {
+  background-color: black !important;
+}
+
+.modal .input-field.focus-state:after,
+.modal .input-field.not-empty-state:after {
+    background-color: #eb7125 !important;
+}
+
 .picker-calendar .calendar-custom-toolbar {
   box-shadow: 0 2px 4px -1px rgba(0,0,0,.2), 0 4px 5px 0 rgba(0,0,0,.14), 0 1px 10px 0 rgba(0,0,0,.12);
 }

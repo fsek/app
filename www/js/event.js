@@ -13,9 +13,11 @@ myApp.onPageInit('event', function (page) {
 function initEventPage(eventData){
   generateAdditionalData(eventData);
 
+  var eventContent = $('.event-content');
+
   // Apply the event page content with template
   var templateHTML = myApp.templates.eventPageTemplate({event: eventData});
-  $('.event-content').html(templateHTML);
+  eventContent.html(templateHTML);
 
   // Description overflow toggle if container height = maxHeight
   var descripContainer = $('.event-description-container');
@@ -42,6 +44,16 @@ function initEventPage(eventData){
   $$('.popover-about-signup').on('close', function() {
     $$(this).removeClass('popover-open');
   });
+
+  if (myApp.device.android) {
+    window.addEventListener('native.keyboardshow', function() {
+      if($$('.modal.modal-in').length) return;
+
+      eventContent.animate({
+        scrollTop: $$('.event-signup-btn').offset().top + 100
+      }, 350);
+    });
+  }
 }
 
 function generateAdditionalData(eventData){

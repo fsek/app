@@ -128,6 +128,11 @@ function generateSignupData(eventData){
   if(eventData.food){
     // Sometimes an empty preference comes from the form
     var foodPreferences = $.auth.user.food_preferences
+    var foodPrefCustom = $.auth.user.food_custom;
+
+    if(foodPrefCustom != ''){
+      foodPreferences.push(foodPrefCustom.toLowerCase());
+    }
 
     var index = foodPreferences.indexOf('');
     if(index > -1){

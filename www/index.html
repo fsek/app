@@ -562,17 +562,19 @@
                       </li>
                     {{else}}
                       {{#if event_signup.open}}
-                        <li id="event-usertype" class="item-content input-showing">
-                          <div class="item-media">
-                            <i class="fa fa-user-circle-o" aria-hidden="true"></i>
-                          </div>
-                          <div class="item-inner">
-                            <span></span>
-                            <div class="item-input">
-                              <!--<input> is added dynamically-->
+                        {{#if user_types}}
+                          <li id="event-usertype" class="item-content input-showing">
+                            <div class="item-media">
+                              <i class="fa fa-user-circle-o" aria-hidden="true"></i>
                             </div>
-                          </div>
-                        </li>
+                            <div class="item-inner">
+                              <span></span>
+                              <div class="item-input">
+                                <!--<input> is added dynamically-->
+                              </div>
+                            </div>
+                          </li>
+                        {{/if}}
                         <li id="event-signup-group" class="item-content input-showing">
                           <div class="item-media">
                             <i class="fa fa-users" aria-hidden="true"></i>

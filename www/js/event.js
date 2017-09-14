@@ -12,7 +12,6 @@ myApp.onPageInit('event', function (page) {
 
 function initEventPage(eventData){
   generateAdditionalData(eventData);
-  console.log(eventData);
 
   var eventContent = $('.event-content');
 

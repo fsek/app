@@ -12,6 +12,7 @@ myApp.onPageInit('event', function (page) {
 
 function initEventPage(eventData){
   generateAdditionalData(eventData);
+  console.log(eventData);
 
   var eventContent = $('.event-content');
 
@@ -28,7 +29,11 @@ function initEventPage(eventData){
   // Setup picker and buttons for signup (if it exists)
   if(eventData.can_signup){
     setupGroupPicker(eventData);
-    setupUserTypePicker(eventData);
+
+    if(eventData.user_types != null){
+      setupUserTypePicker(eventData);
+    }
+
     if(eventData.event_user == null){
       setupRegistrationBtn(eventData);
     }else{
@@ -99,8 +104,15 @@ function generateSignupData(eventData){
   var signupOpened = !eventData.event_signup.open && !eventData.event_signup.closed ? false : true;
   eventData.event_signup.opened = signupOpened;
 
-  eventData.selected_user_type = null;
-
+  //
+  if(eventData.user_types != null){
+    if(eventData.user_types.length == 0){
+      eventData.user_types = null;
+    }else{
+      eventData.selected_user_type = null;
+    }
+    
+  }
   // Save the registered text + icon and the group name
   if(eventData.event_user != null){
     if(eventData.event_signup.closed){
@@ -130,7 +142,7 @@ function generateSignupData(eventData){
     var foodPreferences = $.auth.user.food_preferences
     var foodPrefCustom = $.auth.user.food_custom;
 
-    if(foodPrefCustom != ''){
+    if(foodPrefCustom != '' && foodPrefCustom != null){
       foodPreferences.push(foodPrefCustom.toLowerCase());
     }
 
@@ -390,10 +402,12 @@ function updateSignupContent(eventData){
         }
 
         // Update user type
-        userTypeContainer.find('.item-input').addClass('hidden');
-        userTypeContainer.find('input').remove();
-        userTypeContainer.find('span').html(eventData.event_user.user_type);
-        userTypeContainer.removeClass('input-showing');
+        if(eventData.user_types != null){
+          userTypeContainer.find('.item-input').addClass('hidden');
+          userTypeContainer.find('input').remove();
+          userTypeContainer.find('span').html(eventData.event_user.user_type);
+          userTypeContainer.removeClass('input-showing');
+        }
 
         // Update group
         // We remove #picker-group here and add it dynamically in setupGroupPicker() to update it with the new event data later
@@ -435,10 +449,13 @@ function updateSignupContent(eventData){
         }
 
         // Update user type
-        userTypeContainer.find('.item-input').removeClass('hidden');
-        userTypeContainer.find('span').html('');
-        userTypeContainer.addClass('input-showing');
-        setupUserTypePicker(eventData);
+        if(eventData.user_types != null){
+          userTypeContainer.find('.item-input').removeClass('hidden');
+          userTypeContainer.find('span').html('');
+          userTypeContainer.addClass('input-showing');
+
+          setupUserTypePicker(eventData);
+        }
 
         // Update group
         var oldGroup = getGroupName(oldEventData.groups, oldEventData.event_user.group_id, oldEventData.event_user.group_custom);

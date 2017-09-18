@@ -51,7 +51,6 @@ function initHome() {
       var templateHTML = myApp.templates.dayTemplate({hasEvents: false});
       eventTab.append(templateHTML);
     }
-    
   }
 
   function detachInfinite() {

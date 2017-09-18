@@ -8,7 +8,8 @@ $.auth.validateToken()
   });
 
 myApp.onPageInit('login', function(page){
-  $('.login-content input').on('input',function(e){
+  // Activate the login button if we have text in the input field, otherwise disable it
+  $('.login-content input').on('input', function(e){
     var email = $('input[name="login-email"]').val();
     var password = $('input[name="login-password"]').val();
     var loginBtn = $('.login-btn');
@@ -24,44 +25,54 @@ myApp.onPageInit('login', function(page){
     }
   });
 
+  // Send an sign in request to the API when the login button is clicked.
+  // We also display error messages on fail and add preloaders after 1 s of loading
   $('.login-btn').on('click', function () {
     var email = $('input[name="login-email"]').val();
     var password = $('input[name="login-password"]').val();
+    var abort = false;
+
+    var preloadTimeout = setTimeout(function(){
+      myApp.showPreloader('Mutar spindelmännen...');
+    }, 1000);
+
+    // Aborts the preloader and request after 20s 
+    var abortTimeout = setTimeout(function(){
+      clearTimeout(preloadTimeout);
+      myApp.hidePreloader();
+      abort = true;
+      myApp.alert("Begäran tog för lång tid. Kontrollera din internetanslutning (eduroam räknas inte) :'(", "Inloggningen misslyckades")
+    }, 20000);
 
     $.auth.emailSignIn({
       email: email,
       password: password
     })
     .done(function() {
-      myApp.showPreloader('Loggar in');
-      afterSignIn();
+      if(!abort){
+        afterSignIn();
+        clearTimeout(preloadTimeout);
+        clearTimeout(abortTimeout);
+        myApp.hidePreloader();
+      }
     })
     .fail(function(resp) {
-      $('input[name="login-password"]').val('');
-      $('.login-btn').addClass('disabled');
-      myApp.alert("Ogiltig E-post eller lösenord", "Inloggningen misslyckades");
-
+      if(!abort){
+        if(typeof resp.data.errors == 'undefined'){ // Is undefined if we don't get a response from the server
+          myApp.alert("Oväntat fel uppstod. Kontrollera din internetanslutning :(", "Inloggningen misslyckades");
+        }else{
+          $('input[name="login-password"]').val('');
+          $('.login-btn').addClass('disabled');
+          myApp.alert("Ogiltig E-post eller lösenord", "Inloggningen misslyckades");
+        }
+        clearTimeout(preloadTimeout);
+        clearTimeout(abortTimeout);
+        myApp.hidePreloader();
+      }
     });
   });
 
-  $('.open-login-info').on('click', function () {
-    $('.login-info-container').animate({
-      "height": "+=100%",
-      "width": "+=100%"
-    }, 250, function() {
-      $('.login-info-content').removeClass('hidden');
-    });
-    
-  });
-
-  $('.close-login-info').on('click', function () {
-    $('.login-info-content').addClass('hidden');
-    $('.login-info-container').animate({
-      "height": "-=100%",
-      "width": "-=100%"
-    }, 250);
-  });
-
+  // Fade parts of the UI when the keyboard is displayed on android
   if (myApp.device.android) {
     var loginContainer = $('.login-container');
     loginContainer.on('focus', 'input', function(e) {
@@ -87,7 +98,7 @@ myApp.onPageInit('login', function(page){
 
 $$('#login').on('tab:show', function(){
   $('.tabbar').hide();
-  
+
    // Fix statusbar and close splash
   document.addEventListener('deviceready', function() {
     navigator.splashscreen.hide();
@@ -104,7 +115,7 @@ function afterSignIn() {
     StatusBar.backgroundColorByHexString(mainBarColor);
   }, false);
 
-  //close login screen
+  // Close login screen
   myApp.showTab('#tab1');
   $('.tabbar').show();
 
@@ -117,7 +128,3 @@ function afterSignIn() {
   loadHome();
   getGroups();
 }
-
-$$('#tab1').on('tab:show', function(){
-  myApp.hidePreloader();
-});

@@ -8,7 +8,9 @@ var myApp = new Framework7({
   tapHold: true,
   statusbarOverlay: false,
   modalButtonCancel: 'Avbryt',
+  modalPreloaderTitle: 'Laddar...',
   showBarsOnPageScrollEnd: false,
+  smartSelectBackText: 'Tillbaka'
 });
 
 Template7.global = {
@@ -19,6 +21,7 @@ Template7.global = {
 var $$ = Dom7;
 
 // API URLS
+const BASE_URL = 'https://stage.fsektionen.se'
 const API = 'https://stage.fsektionen.se/api'
 const AC_URL = 'wss://stage.fsektionen.se/cable'
 

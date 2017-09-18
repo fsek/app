@@ -73,3 +73,20 @@
 .ios-hide{
   display: none !important;
 }
+
+.user-content {
+  background: linear-gradient(to bottom,#eb7125 50%, #efeff4 51%);
+}
+
+#user-form {
+  background-color: #efeff4;
+}
+
+.user-foodpref-info{
+  font-size: 14px;
+}
+
+.user-list-title {
+  color: #8f8f94;
+  padding: 15px 15px 0;
+}

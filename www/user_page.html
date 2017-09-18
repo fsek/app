@@ -1,0 +1,157 @@
+<div data-page="user-page" class="page no-tabbar">
+  <div class="navbar">
+    <div class="navbar-inner">
+      <div class="left sliding">
+        <a href="#" class="song-back link">
+          <i class="icon icon-back"></i>
+          {{#unless @global.android}}<span>Tillbaka</span>{{/unless}}
+        </a>
+      </div>
+      <div class="center sliding">Inställningar</div>
+      <div class="right sliding">
+        <a href="#" class="user-update link">Spara</a>
+      </div>
+    </div>
+  </div>
+  <div class="page-content user-content">
+    <div class="user-container">
+      <div class="user-avatar"></div>
+      <p>firstname lastname (this changes with js)</p>
+    </div>
+    <form id="user-form" class="list-block">
+      <ul>
+        <li>
+          <div class="item-content">
+            <div class="item-inner">
+              <div class="item-title label">Förnamn*</div>
+              <div class="item-input">
+                <input name="firstname" type="text" placeholder="Förnamn">
+              </div>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="item-content">
+            <div class="item-inner">
+              <div class="item-title label">Efternamn*</div>
+              <div class="item-input">
+                <input name="lastname" type="text" placeholder="Efternamn">
+              </div>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="item-content">
+            <div class="item-inner">
+              <div class="item-title label">Program</div>
+              <div class="item-input">
+                <input id="user-program-input" name="program" type="text" placeholder="Program">
+              </div>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="item-content">
+            <div class="item-inner">
+              <div class="item-title label">Startår</div>
+              <div class="item-input">
+                <input id="user-startyear-input" name="start_year" type="text" placeholder="Startår">
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+      <div class="user-list-title">Nedanstående fält används endast för sektionsval, bilbokning samt arbete i Hilbert Café. Kan ses av styrelse, administratörer samt ansvariga för val, bokning eller caféet.</div>
+      <ul>
+        <li>
+          <div class="item-content">
+            <div class="item-inner">
+              <div class="item-title label">LUCAT-id</div>
+              <div class="item-input">
+                <input name="student_id" type="text" placeholder="exempel hi6122al">
+              </div>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="item-content">
+            <div class="item-inner">
+              <div class="item-title label">Telefon</div>
+              <div class="item-input">
+                <input name="phone" type="tel" pattern="[0-9]*" placeholder="Telefon">
+              </div>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="item-content user-switch">
+            <div class="item-inner">
+              <div class="item-title label">Visa tel. för gruppmedlemmar</div>
+              <div class="item-input">
+                <label class="label-switch">
+                  <input name="display_phone" type="checkbox" value="on">
+                  <div class="checkbox"></div>
+                </label>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li>
+          <a href="#" class="item-link smart-select">
+            <select name="food_preferences" multiple>
+              <option type="text">Vegetarian</option>
+              <option type="text">Vegan</option>
+              <option type="text">Pescetarian</option>
+              <option type="text">Mjölkallergi</option>
+              <option type="text">Gluten</option>
+              <option type="text">Annat</option>
+            </select>
+            <div class="item-content user-food-pref">
+              <div class="item-inner">
+                <div class="item-title label">Matpreferenser</div>
+                <div class="item-after"></div>
+              </div>
+            </div>
+          </a>
+        </li>
+        <li>
+          <div class="item-content">
+            <div class="item-inner user-foodpref-info">
+              Matpreferenser kan endast ses av de som arrangerar evenemang som du anmält dig till.
+            </div>
+          </div>
+        </li>
+      </ul>
+      <div class="user-list-title">Följande fält avgör vilka push-notiser som skickas till dina mobila enheter. Notifikationerna går alltid att se på webbsidan och i appen.</div>
+      <ul>
+        <li>
+          <div class="item-content user-switch">
+            <div class="item-inner">
+              <div class="item-title label">Notiser för eventanmälan</div>
+              <div class="item-input">
+                <label class="label-switch">
+                  <input name="notify_event_users" type="checkbox" value="on">
+                  <div class="checkbox"></div>
+                </label>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="item-content user-switch">
+            <div class="item-inner">
+              <div class="item-title label">Notiser för meddelanden</div>
+              <div class="item-input">
+                <label class="label-switch">
+                  <input name="notify_messages" type="checkbox" value="on">
+                  <div class="checkbox"></div>
+                </label>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+      <div id="user-member-at" class="list-block-label">Member date (this changes with js)</div>
+    </form>
+  </div>
+</div>

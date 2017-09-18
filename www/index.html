@@ -28,6 +28,7 @@
     <link rel="stylesheet" href="css/event.css">
     <link rel="stylesheet" href="css/home.css">
     <link rel="stylesheet" href="css/settings.css">
+    <link rel="stylesheet" href="css/user_page.css">
   </head>
   <body class="theme-orange">
     <div class="views tabs">
@@ -36,29 +37,6 @@
         <div class="pages">
           <div data-page="login" class="page no-tabbar">
             <div class="page-content login-content">
-              <a href="#" class="open-login-info">
-                <i class="fa fa-info-circle" aria-hidden="true"></i>
-                <span>Är du nolla?</span>
-              </a>
-              <div class="login-info-container">
-                <div class="login-info-content hidden">
-                  <div class="login-info-title">
-                    Välkommen till Schamannollningen!
-                  </div>
-                  <a href="#" class="close-login-info">
-                      <i class="fa fa-times-circle-o" aria-hidden="true"></i>
-                  </a>
-                  <p>Vi vill härmed varmt välkomna dig till årets nollning på F-sektionen, Schamannnollningen. Vi på sektionen är superglada över att just du vill vara med.</p>
-
-                  <p>I år har vi, med hjälp av spindelmännen, lanserat vår alldeles egna app. Den är till för att just du ska kunna ta del av nollningen på det allra bekvämaste vis. Här kan du göra allt ifrån eventanmälningar till att chatta med din faddergrupp. Vi kommer även använda appen för att sprida viktig information så att man inte missar något!</p>
-
-                  <p>Återigen, är du varmt välkommen till F-sektionen. Vi hoppas och tror att de kommande åren kommer bli några av de bästa i ditt liv!</p>
-
-                  <p>Om du vill veta mer om nollningen går det jättebra att surfa in på vår hemsida:
-                  <a href="https://www.fsektionen.se/nollning" class="external" target="_system">www.fsektionen.se/nollning</a>
-                  </p>
-                </div>
-              </div>
               <div class="login-container">
                 <img class="login-logo" src="./img/f_logo.png"></img>
                 <div class="list-block">
@@ -225,7 +203,7 @@
               <div class="list-block">
                 <ul>
                   <li>
-                    <a href="https://fsektionen.se/anvandare" class="item-link external" target="_system">
+                    <a href="user_page.html" class="item-link">
                       <div class="item-content">
                         <div class="item-inner">
                           <div class="item-title">Konto</div>
@@ -256,7 +234,7 @@
       </div>
 
       <!-- Tabbar -->
-      <div class="toolbar tabbar android-shadow">
+      <div class="toolbar tabbar">
         <div class="toolbar-inner">
           <a href="#tab1" id="home-btn" class="tab-link active">
             <i class="fa fa-home" aria-hidden="true"></i>
@@ -344,7 +322,9 @@
 
     <script type="text/template7" id="dayTitleTemplate">
       <div class="day-title">
-        {{date.getDayMonthName()}}
+        {{#if date}}
+          {{date.getDayMonthName()}}
+        {{/if}}
       </div>
     </script>
 
@@ -711,8 +691,8 @@
     <script type="text/javascript" src="js/groups.js"></script>
     <script type="text/javascript" src="js/messages.js"></script>
     <script type="text/javascript" src="js/event.js"></script>
-    <script type="text/javascript" src="js/settings.js"></script>
-    <script type="text/javascript" src="js/spinninglogo.js"></script>
+    <script type="text/javascript" src="js/settings.js"></script> 
     <script type="text/javascript" src="js/6122.js"></script>
+    <script type="text/javascript" src="js/user_page.js"></script>
   </body>
 </html>

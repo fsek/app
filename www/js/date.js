@@ -17,6 +17,11 @@ Date.prototype.yyyymmdd = function() {
          ].join('-');
 };
 
+// Convert date to 'hh:mm, d monthName yyyy'
+Date.prototype.fullDate= function() {
+  return this.hhmm() + ', ' + this.dateString();
+};
+
 // Convert date to 'd monthName yyyy'
 Date.prototype.dateString = function() {
   return this.getDate() + ' ' + monthNames[this.getMonth()].toLowerCase() + ' ' + this.getFullYear();

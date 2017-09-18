@@ -53,21 +53,20 @@
   color: white;
 }
 
-#subtab1 .news-card{
+#subtab1 .news-card {
   margin-top: 15px;
 }
 
-#subtab2 .day-title{
+#subtab2 .day-title {
   margin-top: 10px;
 }
 
-.android-shadow{
-  box-shadow: 0 2px 4px -1px rgba(0,0,0,.2), 0 4px 5px 0 rgba(0,0,0,.14),
-                0 1px 10px 0 rgba(0,0,0,.12);
+.input-field:after, .item-input-field:after {
+  background-color: rgba(255,255,255,0) !important;
 }
 
-.input-field:after, .item-input-field:after{
-  background-color: rgba(255,255,255,0) !important;
+.user-content .input-field:after, .user-content .item-input-field:after {
+  background-color: rgba(0,0,0,.12) !important;
 }
 
 .modal .input-field:after {
@@ -77,10 +76,6 @@
 .modal .input-field.focus-state:after,
 .modal .input-field.not-empty-state:after {
     background-color: #eb7125 !important;
-}
-
-.picker-calendar .calendar-custom-toolbar {
-  box-shadow: 0 2px 4px -1px rgba(0,0,0,.2), 0 4px 5px 0 rgba(0,0,0,.14), 0 1px 10px 0 rgba(0,0,0,.12);
 }
 
 .picker-calendar .calendar-custom-toolbar .toolbar-inner {
@@ -95,7 +90,7 @@
   color: #000;
 }
 
-.picker-calendar .picker-calendar-day-has-events span:after{
+.picker-calendar .picker-calendar-day-has-events span:after {
   background-color: #ccc !important;
 }
 
@@ -103,10 +98,64 @@
   background: #efeff4;
 }
 
-.message-name{
+.message-name {
   z-index: 100;
 }
 
-.navbar a.link{
-  padding-right: 0;
+.user-avatar {
+  border: none;
+}
+
+.navbar{
+  box-shadow: none !important;
+}
+
+.list-block .focus-state.item-inner .label {
+  color: #eb7125;
+}
+
+.user-content {
+  background-color: #f3f3f3;
+}
+
+.user-content ul:before{
+  display: none;
+}
+
+#user-form {
+  background-color: #fff;
+}
+
+.user-food-pref .item-after{
+  float: right;
+}
+
+.user-foodpref-info{
+  font-size: 13px;
+}
+
+.user-switch .label-switch {
+  margin-top: 3px;
+}
+
+.user-switch {
+  padding-right: 16px;
+}
+
+.user-switch .item-inner, .user-food-pref .item-inner{
+  display: flex !important;
+  border-bottom: 1px solid #e6e6e6;
+  padding-bottom: 7px !important;
+  padding-right: 5px;
+}
+
+.user-list-title {
+  padding: 30px 15px 15px;
+  background-color: #f3f3f3;
+  color: #4a4a4e;
+  border-top: 1px solid #f0f0f0;
+}
+
+#user-member-at {
+  background-color: #f3f3f3;
 }

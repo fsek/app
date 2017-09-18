@@ -281,4 +281,3 @@ function initMessages(head, query) {
     F7msg = null;
   });
 }
-

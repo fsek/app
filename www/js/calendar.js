@@ -1,14 +1,9 @@
 //init calendar on tab3 show (if not already init:ed)
 $$('#tab2').on('show', function() {
-  $('.toolbar').removeClass('android-shadow');
   var page = $$('.page.calendar-page');
   if (page.find('#calendar').is(':empty')) {
     initCalendar(page);
   }
-});
-
-$$('#tab2').on('hide', function() {
-  $('.toolbar').addClass('android-shadow');
 });
 
 function initCalendar(page) {

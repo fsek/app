@@ -110,8 +110,8 @@ function generateSignupData(eventData){
     }else{
       eventData.selected_user_type = null;
     }
-    
   }
+
   // Save the registered text + icon and the group name
   if(eventData.event_user != null){
     if(eventData.event_signup.closed){
@@ -137,17 +137,18 @@ function generateSignupData(eventData){
 
   // Save food preferences if there is food
   if(eventData.food){
-    // Sometimes an empty preference comes from the form
-    var foodPreferences = $.auth.user.food_preferences
+    var foodPreferences = $.auth.user.food_preferences;
     var foodPrefCustom = $.auth.user.food_custom;
+
 
     if(foodPrefCustom != '' && foodPrefCustom != null){
       foodPreferences.push(foodPrefCustom.toLowerCase());
     }
 
-    var index = foodPreferences.indexOf('');
-    if(index > -1){
-      foodPreferences.splice(index, 1);
+    // Sometimes an empty preference comes from the form
+    var emptyIndex = foodPreferences.indexOf('');
+    if(emptyIndex > -1){
+      foodPreferences.splice(emptyIndex, 1);
     }
 
     if(foodPreferences.length === 0){
@@ -199,9 +200,7 @@ function handleDescriptionOverflow(descripContainer){
       content.animate({
         maxHeight: totalHeight,
         height: totalHeight
-      }, 300, function(){
-
-      });
+      }, 300);
 
       descripShowing = true;
     }else{

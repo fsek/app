@@ -7,61 +7,6 @@
   height: 100%;
 }
 
-.open-login-info{
-  position: absolute;
-  margin-top: 10px;
-  margin-left: 10px;
-}
-
-.open-login-info span{
-  color: #fff;
-  vertical-align: 3px;
-}
-
-.login-info-container{
-  height: 0;
-  width:  0;
-  background: #60b0d8;
-  position: absolute;
-  overflow: scroll;
-  z-index: 100;
-  color: #fff;
-}
-
-.login-info-content{
-  padding: 0 20px;
-}
-
-.login-info-content i {
-  font-size: 31px !important;
-}
-
-.login-info-content a {
-  color: #eb7125;
-  font-weight: bold;
-}
-
-.login-info-title{
-  color: #eb7125;
-  font-size: 24px;
-  font-weight: bold;
-  padding: 30px 0 10px 0;
-  text-align: center;
-  text-transform: uppercase;
-  top: 0;
-  width: 100%;
-  margin-left: -5px;
-  z-index: 9999;
-}
-
-.close-login-info{
-  margin-top: 7px;
-  margin-right: 10px;
-  position: absolute;
-  right: 0;
-  top: 0;
-}
-
 .login-container {
   display: block;
   left: 50%;

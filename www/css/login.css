@@ -76,6 +76,12 @@ img.login-logo {
   margin: 0 auto;
   min-width: 150px;
   width: 35vw;
+  transition: 1s;
+}
+
+img.login-logo:hover {
+  transition: 1s;
+  transform:rotate(360deg);
 }
 
 .login-container .list-block {

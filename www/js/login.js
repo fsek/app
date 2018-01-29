@@ -79,6 +79,10 @@ myApp.onPageInit('login', function(page){
       }, 250);
     });
   }
+
+  $('.login-logo').on('touchstart touchend', function(e) {
+      $(this).toggleClass('login-logo-spin');
+  });
 }).trigger();
 
 $$('#login').on('tab:show', function(){

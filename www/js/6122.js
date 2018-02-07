@@ -2,6 +2,7 @@ var inc = 0;
 $('#home-btn, #cal-btn, #not-btn, #msg-btn').on('click', function() {
   var id = $(this).attr('id');
   var idtrans;
+  
   switch (id) {
     case 'home-btn':
       idtrans = 0;

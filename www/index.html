@@ -29,6 +29,8 @@
     <link rel="stylesheet" href="css/home.css">
     <link rel="stylesheet" href="css/settings.css">
     <link rel="stylesheet" href="css/user_page.css">
+    <link rel="stylesheet" href="css/songbook.css">
+
   </head>
   <body class="theme-orange">
     <div class="views tabs">
@@ -176,6 +178,19 @@
         <div class="pages navbar-fixed">
           <div data-page="tab5" class="page">
             <div class="page-content">
+              <div class="list-block">
+                <ul>
+                  <li>
+                    <a href="songbook.html" class="item-link">
+                      <div class="item-content">
+                        <div class="item-inner">
+                          <div class="item-title">Sångbok</div>
+                        </div>
+                      </div>
+                    </a>
+                  </li>
+                </ul>
+              </div>
               <div class="content-block-title">Om</div>
               <div class="list-block">
                 <ul>
@@ -199,6 +214,7 @@
                   </li>
                 </ul>
               </div>
+              
               <div class="content-block-title">Inställningar</div>
               <div class="list-block">
                 <ul>
@@ -666,6 +682,44 @@
       {{/if}}
     </script>
 
+    <script type="text/template7" id="songbookTemplate">
+      {{#each letter}}
+        <div class="list-group">
+          <ul>
+            <li class="list-group-title">{{firstLetter}}</li>
+            {{#each songs}}
+              <li>
+                <a href="song.html?id={{id}}" class="item-link item-content">
+                    <div class="item-inner">
+                      <div class="item-title">{{title}}</div>
+                    </div>
+                </a>
+              </li>
+            {{/each}}
+          </ul>
+        </div>
+      {{/each}}
+    </script>
+
+    <script type="text/template7" id="songTemplate">
+      {{#each song}}
+        <div class="content-block-title">{{title}}</div>
+        <div class="content-block">
+          {{#if melody}}
+            <p class="auth-mel"><span>Melodi:</span> {{melody}}</p>
+          {{/if}}
+          {{#if author}}
+            <p class="auth-mel"><span>Författare:</span> {{author}}</p>
+          {{/if}}
+        </div>
+        <div class="content-block song-text">
+          <div class="content-block-inner">
+            {{content}}
+          </div>
+        </div>
+      {{/each}}
+    </script>
+
     <!-- External JS Libraries -->
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src='js/node_modules/jquery/dist/jquery.js'></script>
@@ -694,5 +748,6 @@
     <script type="text/javascript" src="js/settings.js"></script> 
     <script type="text/javascript" src="js/6122.js"></script>
     <script type="text/javascript" src="js/user_page.js"></script>
+    <script type="text/javascript" src="js/songbook.js"></script>
   </body>
 </html>

@@ -1,0 +1,57 @@
+.songbook-content{
+  margin-top: auto;
+}
+
+.songbook-content ul::after{
+  background-color: #fff;
+}
+
+.songbook-content .item-content{
+  color: #000;
+  background-color: #fff;
+}
+
+.song-content .content-block-title{
+  font-size: 27px;
+  color: #eb7125;
+  white-space: initial;
+  text-transform: initial;
+  height: auto;
+  padding-bottom: 5px;
+  margin-bottom: 5px;
+  margin-top: 20px;
+}
+
+.song-content .content-block .auth-mel{
+  font-size: 16px;
+  color: #000;
+  margin: 3px 0px 3px;
+}
+
+.song-content .content-block {
+  margin: 15px 0px 15px;
+}
+
+.song-content .content-block p{
+  color: #000;
+  font-size: 16px;
+  margin:2px 2px 14px;
+}
+
+.song-content .content-block p:last-child{
+  margin-bottom: 2px;
+}
+
+.song-content .content-block span{
+  color: #eb7125;
+}
+
+.searchbar-songbook .searchbar-not-found p{
+  margin-top: auto px;
+  font-size: 30px;
+  align-content: center;
+}
+
+.searchbar-songbook .searchbar-cancel{
+  color: #fff !important;
+}

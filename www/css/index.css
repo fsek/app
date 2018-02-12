@@ -57,11 +57,16 @@ a:active {
   overflow: hidden;
 }
 
+a.external {
+  word-break: break-all;
+  overflow-wrap: break-word;
+}
+
 img.img-responsive {
   display: block;
   height: auto;
   margin: 0 auto;
-  width: 80%;
+  width: 95%;
 }
 
 @media screen and (min-width: 767px) {

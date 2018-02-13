@@ -192,3 +192,7 @@
 .searchbar-songbook .searchbar-clear{
   background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20fill%3D'%23b2b2b2'%20height%3D'24'%20viewBox%3D'0%200%2024%2024'%20width%3D'24'%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%3E%3Cpath%20d%3D'M19%206.41L17.59%205%2012%2010.59%206.41%205%205%206.41%2010.59%2012%205%2017.59%206.41%2019%2012%2013.41%2017.59%2019%2019%2017.59%2013.41%2012z'%2F%3E%3Cpath%20d%3D'M0%200h24v24H0z'%20fill%3D'none'%2F%3E%3C%2Fsvg%3E") !important;
 }
+
+.settings-content {
+  padding-bottom: 25px;
+}

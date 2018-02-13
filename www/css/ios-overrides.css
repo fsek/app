@@ -75,7 +75,7 @@
 }
 
 .user-content {
-  background: linear-gradient(to bottom,#eb7125 50%, #efeff4 51%);
+  background: linear-gradient(to bottom,#eb7125 60%, #efeff4 61%);
 }
 
 #user-form {
@@ -89,4 +89,8 @@
 .user-list-title {
   color: #8f8f94;
   padding: 15px 15px 0;
+}
+
+.settings-content {
+  padding-bottom: 65px;
 }

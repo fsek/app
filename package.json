@@ -19,7 +19,7 @@
     }
   },
   "dependencies": {
-    "cordova-android": "^7.0.0",
+    "cordova-android": "^6.4.0",
     "cordova-plugin-dialogs": "^2.0.1",
     "cordova-plugin-headercolor": "^1.0.0",
     "cordova-plugin-splashscreen": "^4.0.3",

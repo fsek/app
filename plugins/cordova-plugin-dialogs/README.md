@@ -21,9 +21,9 @@ description: Use native dialog UI elements
 #         under the License.
 -->
 
-|Android 4.4|Android 5.1|Android 6.0|iOS 9.3|iOS 10.0|Windows 10 Store|Travis CI|
-|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
-|[![Build Status](http://cordova-ci.cloudapp.net:8080/buildStatus/icon?job=cordova-periodic-build/PLATFORM=android-4.4,PLUGIN=cordova-plugin-dialogs)](http://cordova-ci.cloudapp.net:8080/job/cordova-periodic-build/PLATFORM=android-4.4,PLUGIN=cordova-plugin-dialogs/)|[![Build Status](http://cordova-ci.cloudapp.net:8080/buildStatus/icon?job=cordova-periodic-build/PLATFORM=android-5.1,PLUGIN=cordova-plugin-dialogs)](http://cordova-ci.cloudapp.net:8080/job/cordova-periodic-build/PLATFORM=android-5.1,PLUGIN=cordova-plugin-dialogs/)|[![Build Status](http://cordova-ci.cloudapp.net:8080/buildStatus/icon?job=cordova-periodic-build/PLATFORM=android-6.0,PLUGIN=cordova-plugin-dialogs)](http://cordova-ci.cloudapp.net:8080/job/cordova-periodic-build/PLATFORM=android-6.0,PLUGIN=cordova-plugin-dialogs/)|[![Build Status](http://cordova-ci.cloudapp.net:8080/buildStatus/icon?job=cordova-periodic-build/PLATFORM=ios-9.3,PLUGIN=cordova-plugin-dialogs)](http://cordova-ci.cloudapp.net:8080/job/cordova-periodic-build/PLATFORM=ios-9.3,PLUGIN=cordova-plugin-dialogs/)|[![Build Status](http://cordova-ci.cloudapp.net:8080/buildStatus/icon?job=cordova-periodic-build/PLATFORM=ios-10.0,PLUGIN=cordova-plugin-dialogs)](http://cordova-ci.cloudapp.net:8080/job/cordova-periodic-build/PLATFORM=ios-10.0,PLUGIN=cordova-plugin-dialogs/)|[![Build Status](http://cordova-ci.cloudapp.net:8080/buildStatus/icon?job=cordova-periodic-build/PLATFORM=windows-10-store,PLUGIN=cordova-plugin-dialogs)](http://cordova-ci.cloudapp.net:8080/job/cordova-periodic-build/PLATFORM=windows-10-store,PLUGIN=cordova-plugin-dialogs/)|[![Build Status](https://travis-ci.org/apache/cordova-plugin-dialogs.svg?branch=master)](https://travis-ci.org/apache/cordova-plugin-dialogs)|
+|AppVeyor|Travis CI|
+|:-:|:-:|
+|[![Build status](https://ci.appveyor.com/api/projects/status/github/apache/cordova-plugin-dialogs?branch=master)](https://ci.appveyor.com/project/ApacheSoftwareFoundation/cordova-plugin-dialogs)|[![Build Status](https://travis-ci.org/apache/cordova-plugin-dialogs.svg?branch=master)](https://travis-ci.org/apache/cordova-plugin-dialogs)|
 
 # cordova-plugin-dialogs
 
@@ -82,31 +82,10 @@ function, which is typically less customizable.
 
 ### Supported Platforms
 
-- Amazon Fire OS
 - Android
-- BlackBerry 10
 - Browser
-- Firefox OS
 - iOS
-- Tizen
-- Windows Phone 7 and 8
-- Windows 8
 - Windows
-
-### Windows Phone 7 and 8 Quirks
-
-- There is no built-in browser alert, but you can bind one as follows to call `alert()` in the global scope:
-
-        window.alert = navigator.notification.alert;
-
-- Both `alert` and `confirm` are non-blocking calls, results of which are only available asynchronously.
-
-### Firefox OS Quirks:
-
-Both native-blocking `window.alert()` and non-blocking `navigator.notification.alert()` are available.
-
-### BlackBerry 10 Quirks
-`navigator.notification.alert('text', callback, 'title', 'text')` callback parameter is passed the number 1.
 
 ## navigator.notification.confirm
 
@@ -147,34 +126,20 @@ indexing, so the value is `1`, `2`, `3`, etc.
 
 ### Supported Platforms
 
-- Amazon Fire OS
 - Android
-- BlackBerry 10
 - Browser
-- Firefox OS
 - iOS
-- Tizen
-- Windows Phone 7 and 8
-- Windows 8
 - Windows
 
-### Windows Phone 7 and 8 Quirks
+### Android Quirks
 
-- There is no built-in browser function for `window.confirm`, but you can bind it by assigning:
-
-        window.confirm = navigator.notification.confirm;
-
-- Calls to `alert` and `confirm` are non-blocking, so the result is only available asynchronously.
+- Android supports a maximum of three buttons, and ignores any more than that.
 
 ### Windows Quirks
 
 - On Windows8/8.1 it is not possible to add more than three buttons to MessageDialog instance.
 
 - On Windows Phone 8.1 it's not possible to show dialog with more than two buttons.
-
-### Firefox OS Quirks:
-
-Both native-blocking `window.confirm()` and non-blocking `navigator.notification.confirm()` are available.
 
 ## navigator.notification.prompt
 
@@ -220,13 +185,9 @@ contains the following properties:
 
 ### Supported Platforms
 
-- Amazon Fire OS
 - Android
 - Browser
-- Firefox OS
 - iOS
-- Windows Phone 7 and 8
-- Windows 8
 - Windows
 
 ### Android Quirks
@@ -238,10 +199,6 @@ contains the following properties:
 ### Windows Quirks
 
 - On Windows prompt dialog is html-based due to lack of such native api.
-
-### Firefox OS Quirks:
-
-Both native-blocking `window.prompt()` and non-blocking `navigator.notification.prompt()` are available.
 
 ## navigator.notification.beep
 
@@ -258,29 +215,11 @@ The device plays a beep sound.
 
 ### Supported Platforms
 
-- Amazon Fire OS
 - Android
-- BlackBerry 10
 - Browser
 - iOS
-- Tizen
-- Windows Phone 7 and 8
 - Windows 8
-
-### Amazon Fire OS Quirks
-
-- Amazon Fire OS plays the default __Notification Sound__ specified under the __Settings/Display & Sound__ panel.
 
 ### Android Quirks
 
 - Android plays the default __Notification ringtone__ specified under the __Settings/Sound & Display__ panel.
-
-### Windows Phone 7 and 8 Quirks
-
-- Relies on a generic beep file from the Cordova distribution.
-
-### Tizen Quirks
-
-- Tizen implements beeps by playing an audio file via the media API.
-
-- The beep file must be short, must be located in a `sounds` subdirectory of the application's root directory, and must be named `beep.wav`.

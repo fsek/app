@@ -190,10 +190,10 @@ myApp.onPageInit('user-page', function (page) {
   $('.song-back').on('click', function(e){
     if(settingsChanged){
       myApp.confirm('Alla opsarade inställningar kommer förintas. Är du säker på att du vill överge din ändringar?', 'Osparade ändringar', function () {
-        tabView5.router.back();
+        myApp.getCurrentView().router.back();
       });
     }else{
-      tabView5.router.back();
+      myApp.getCurrentView().router.back();
     }
   })
 

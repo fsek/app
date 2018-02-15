@@ -93,8 +93,8 @@ myApp.onPageInit('user-page', function (page) {
 
   // Create array with start year alternatives (all years from 1954)
   var startYears = [];
-  var thisYear = new Date().getFullYear() + 1;  // Adds + 1 due to website has the coming year as an alternative
-  for(var i = 0; i <= thisYear - 1954; i++){
+  var thisYear = new Date().getFullYear();
+  for(var i = 0; i <= thisYear - 1961; i++){
     startYears[i] = thisYear - i;
   }
 
@@ -174,12 +174,12 @@ myApp.onPageInit('user-page', function (page) {
         }else{
           hidePreloader = true;
         }
-        console.log('success', resp)
+        //console.log(resp)
       },
-      fail: function(resp) {
+      error: function(resp) {
         myApp.hidePreloader();
-        myApp.alert('Kunde inte uppdatera dina användarinställningar. Kontrollera din internetanslutning och försök igen :(', 'Misslyckades att spara')
-        console.log("fail", resp)
+        myApp.alert('Kunde inte uppdatera dina användarinställningar. Kontrollera dina fält.', 'Misslyckades att spara')
+        //console.log(resp)
       }
     });
 

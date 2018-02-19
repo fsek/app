@@ -118,3 +118,10 @@ $$('#notification-list').on('click', 'li', function() {
   }
   // Redirect to event/notifyable here
 });
+
+//DELETE THIS IN WITH V2
+myApp.onPageInit('tab4', function(page){
+  if($$('#notification-list ul').is(':empty')) {
+    getNotifications(false);
+  }
+});

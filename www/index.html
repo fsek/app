@@ -30,6 +30,7 @@
     <link rel="stylesheet" href="css/settings.css">
     <link rel="stylesheet" href="css/user_page.css">
     <link rel="stylesheet" href="css/songbook.css">
+    <link rel="stylesheet" href="css/contact.css">
   </head>
   <body class="theme-orange">
     <div class="views tabs">
@@ -232,10 +233,10 @@
               <div class="list-block">
                 <ul>
                   <li>
-                    <a href="https://fsektionen.se/kontakter/1" class="item-link external" target="_system">
+                    <a href="contact.html" class="item-link">
                       <div class="item-content">
                         <div class="item-inner">
-                          <div class="item-title">Rapportera ett problem</div>
+                          <div class="item-title">Kontakt</div>
                         </div>
                       </div>
                     </a>
@@ -422,7 +423,8 @@
             <div class="card-footer">
               <div class="event-contact">
                 Vid frågor om eventet, kontakta eventansvarig:
-                <a href="https://www.fsektionen.se/kontakter/{{contact.id}}" class="external" target="_system">
+                <a href="contact.html?id={{contact.id}}">
+                  <br>
                   <i class="fa fa-envelope" aria-hidden="true"></i>
                   {{contact.name}}
                 </a>
@@ -605,7 +607,7 @@
             <div class="card-footer">
               <div class="event-contact">
                 Vid tekniska problem med anmälan, hör vänligen av dig till:
-                <a href="https://www.fsektionen.se/kontakter/1" class="external" target="_system">
+                <a href="contact.html?id=1">
                   <i class="fa fa-envelope" aria-hidden="true"></i> Spindelmännen
                 </a>
               </div>
@@ -719,6 +721,24 @@
       {{/each}}
     </script>
 
+    <script type="text/template7" id="contactTemplate">
+      <select name="contacts">
+        {{#each contact}}
+          {{#if selected}}
+            <option value="{{name}}" selected>{{name}}</option>
+          {{else}}
+            <option value="{{name}}">{{name}}</option>
+          {{/if}}
+        {{/each}}
+      </select>
+      <div class="item-content">
+        <div class="item-inner contact-selected">
+          <div class="item-title">Kontaktperson</div>
+          <div class="item-after">{{selectedName}}</div>
+        </div>
+      </div>
+    </script>
+
     <!-- External JS Libraries -->
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src='js/node_modules/jquery/dist/jquery.js'></script>
@@ -748,5 +768,6 @@
     <script type="text/javascript" src="js/6122.js"></script>
     <script type="text/javascript" src="js/user_page.js"></script>
     <script type="text/javascript" src="js/songbook.js"></script>
+    <script type="text/javascript" src="js/contact.js"></script>
   </body>
 </html>

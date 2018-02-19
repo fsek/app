@@ -1,3 +1,8 @@
+//DELETE THIS IN WITH V2
+myApp.onPageInit('tab1', function(page){
+  initHome();
+});
+
 function loadHome() {
   if (!$$('#tab1').hasClass('loaded')) {
     $$('#tab1').addClass('loaded');

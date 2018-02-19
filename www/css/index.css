@@ -11,6 +11,10 @@ a:active {
   color: #fff;
 }
 
+.searchbar .searchbar-cancel{
+  color: #fff !important;
+}
+
 .tabbar .badge {
   background: #ffe0b3;
   color: #eb7125;

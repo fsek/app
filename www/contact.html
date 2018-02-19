@@ -1,0 +1,41 @@
+<div data-page="contact" class="page no-tabbar">
+  <div class="navbar">
+    <div class="navbar-inner">
+      <div class="left sliding">
+        <a href="#" class="back link">
+          <i class="icon icon-back"></i>
+          {{#unless @global.android}}<span>Tillbaka</span>{{/unless}}
+        </a>
+      </div>
+      <div class="center sliding">Kontakt</div>
+    </div>
+  </div>
+  <div class="page-content contact-content">
+    <div class="infinite-scroll-preloader">
+      <div class="preloader"></div>
+    </div>
+    <div class="block-title" id="contact-description-title"></div>
+    <div class="content-block" id="contact-description"></div>
+    <form id="contact-form" class="list-block">
+      <ul>
+        <li>
+          <a href="#" class="item-link smart-select" data-open-in="popup" data-searchbar="true" data-searchbar-placeholder="Sök efter kontaktperson" data-searchbar-cancel="Avbryt" id="contact-select">
+          </a>
+        </li>
+      </ul>
+      <div class="block-title">Meddelande</div>
+      <ul>
+        <li>
+          <div class="item-content">
+            <div class="item-inner">
+              <div class="item-input contact-text">
+                <textarea name="message" placeholder="Skriv här"></textarea>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+      <a href="#" class="button button-big button-fill contact-button">Skicka</a>
+    </form>
+  </div>
+</div>

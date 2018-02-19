@@ -10,7 +10,8 @@ var myApp = new Framework7({
   modalButtonCancel: 'Avbryt',
   modalPreloaderTitle: 'Laddar...',
   showBarsOnPageScrollEnd: false,
-  smartSelectBackText: 'Tillbaka'
+  smartSelectBackText: 'Tillbaka',
+  smartSelectPopupCloseText: 'Tillbaka'
 });
 
 Template7.global = {

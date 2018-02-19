@@ -6,6 +6,15 @@ $$('#tab2').on('show', function() {
   }
 });
 
+//DELETE THIS IN WITH V2
+//init function doesn't run first time
+myApp.onPageInit('tab2', function(page){
+  var page = $$('.page.calendar-page');
+  if (page.find('#calendar').is(':empty')) {
+    initCalendar(page);
+  }
+});
+
 function initCalendar(page) {
   var toolbar = null;
   var firstInit = true;

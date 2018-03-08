@@ -25,8 +25,8 @@
 
 .picker-calendar .calendar-custom-toolbar {
   margin-bottom: 3px;
-  background-color: #eb7125;
-  color: #fff;
+  background-color: $fsek-orange;
+  color: $white;
 }
 
 .picker-calendar .calendar-custom-toolbar .toolbar-inner {
@@ -34,7 +34,7 @@
 }
 
 .picker-calendar .calendar-custom-toolbar .toolbar-inner a{
-  color: #fff;
+  color: $white;
 }
 
 .picker-calendar .calendar-custom-toolbar .toolbar-inner .left{
@@ -42,15 +42,15 @@
 }
 
 .picker-calendar .picker-calendar-day-selected span{
-  background-color: #eb7125 !important;
+  background-color: $fsek-orange !important;
 }
 
 .picker-calendar .picker-calendar-day-today:not(.picker-calendar-day-selected) span{
-  color: #eb7125 !important;
+  color: $fsek-orange !important;
 }
 
 .picker-calendar .picker-calendar-day-has-events.picker-calendar-day-today span:after{
-  background-color: #eb7125 !important;
+  background-color: $fsek-orange !important;
 }
 
 /* Overrides F7 default: (100% - 3*48px) = three toolbars. We only have one */
@@ -71,8 +71,8 @@
   height: 23px;
   min-height: 23px;
   padding: 5px 0 2px 10px;
-  background-color: #eb7125;
-  color: #fff;
+  background-color: $fsek-orange;
+  color: $white;
   font-weight: bold;
   box-shadow: 0 1px 2px rgba(0,0,0,.3);
 }
@@ -100,9 +100,9 @@
 }
 
 a.day-content-event {
-  color: #eb7125;
+  color: $fsek-orange;
   display: block;
-  background-color: #fff;
+  background-color: $white;
   margin: 7px 10px;
 }
 
@@ -130,7 +130,7 @@ a.day-content-event {
 }
 
 .day-content-event i.icon{
-  color: #eb7125;
+  color: $fsek-orange;
 }
 
 .day-content-event .date, .day-content-event .location{
@@ -140,7 +140,7 @@ a.day-content-event {
 
 .day-content-event .date i, .day-content-event .location i{
   font-size: 18px;
-  color: #eb7125;
+  color: $fsek-orange;
   padding-right: 2px;
 }
 

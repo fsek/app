@@ -1,10 +1,12 @@
+@import 'partials/variables';
+
 .toolbar.messagebar {
-  background-color: #fff !important;
+  background-color: $white !important;
   position: fixed;
 }
 
 .toolbar{
-  background-color: #eb7125 !important;
+  background-color: $fsek-orange !important;
 }
 
 .tabbar .badge {
@@ -49,8 +51,8 @@
 }
 
 .subtabs .button.active:not(.button-fill) {
-  background-color: #eb7125;
-  color: white;
+  background-color: $fsek-orange;
+  color: $white;
 }
 
 #subtab1 .news-card {
@@ -75,7 +77,7 @@
 
 .modal .input-field.focus-state:after,
 .modal .input-field.not-empty-state:after {
-    background-color: #eb7125 !important;
+    background-color: $fsek-orange !important;
 }
 
 .picker-calendar .calendar-custom-toolbar .toolbar-inner {
@@ -83,7 +85,7 @@
 }
 
 .picker-calendar .picker-calendar-week-days {
-  color: #eb7125;
+  color: $fsek-orange;
 }
 
 .picker-calendar {
@@ -111,7 +113,7 @@
 }
 
 .list-block .focus-state.item-inner .label {
-  color: #eb7125;
+  color: $fsek-orange;
 }
 
 .user-content {
@@ -123,7 +125,7 @@
 }
 
 #user-form {
-  background-color: #fff;
+  background-color: $white;
 }
 
 .user-food-pref .item-after{
@@ -169,11 +171,11 @@
 }
 
 .song-content .song-text{
-  background-color: #fff ;
+  background-color: $white ;
 }
 
 .searchbar-songbook{
-  background-color: #fff !important;
+  background-color: $white !important;
   box-shadow: 0px 0px 0px !important;
   border-bottom: 1px solid #dedede;
 }

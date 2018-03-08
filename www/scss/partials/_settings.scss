@@ -1,7 +1,7 @@
 .signout-btn{
   background-color: #e74c3c;
   border-color: #e74c3c !important;
-  color: #fff !important;
+  color: $white !important;
 }
 
 .signout-btn.active-state{
@@ -11,7 +11,6 @@
 .about-title{
   font-size: 24px;
   font-weight: bold;
-  color: #eb7125;
+  color: $fsek-orange;
   overflow: visible;
 }
-

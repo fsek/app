@@ -1,5 +1,21 @@
+@import 'partials/variables';
+@import 'partials/login';
+@import 'partials/signup';
+@import 'partials/reset_password';
+@import 'partials/login_help_confirmation';
+@import 'partials/error';
+@import 'partials/calendar';
+@import 'partials/notifications';
+@import 'partials/messages';
+@import 'partials/groups';
+@import 'partials/event';
+@import 'partials/home';
+@import 'partials/settings';
+@import 'partials/user_page';
+@import 'partials/songbook';
+
 a:active {
-  color:#d35400;
+  color: $link-active;
 }
 
 .hidden{
@@ -7,14 +23,14 @@ a:active {
 }
 
 .navbar{
-  background-color: #eb7125 !important;
-  color: #fff;
+  background-color: $fsek-orange !important;
+  color: $white;
 }
 
 .tabbar .badge {
   background: #ffe0b3;
-  color: #eb7125;
-  border: 1px solid #eb7125;
+  color: $fsek-orange;
+  border: 1px solid $fsek-orange;
   position: absolute;
   top: 0;
   margin-left: 17px;
@@ -22,11 +38,11 @@ a:active {
 }
 
 .tabbar a.active, .tabbar a.active i{
-  color: #fff !important;
+  color: $white !important;
 }
 
 .tabbar .active .badge {
-  background: #fff;
+  background: $white;
 }
 
 .tabbar i{

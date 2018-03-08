@@ -7,6 +7,7 @@
       "android"
     ],
     "plugins": {
+      "cordova-plugin-dialogs": {},
       "cordova-plugin-whitelist": {},
       "phonegap-plugin-push": {
         "SENDER_ID": "509736475453"
@@ -14,9 +15,12 @@
       "ionic-plugin-keyboard": {},
       "cordova-plugin-statusbar": {},
       "cordova-plugin-splashscreen": {},
-      "cordova-plugin-headercolor": {},
-      "cordova-plugin-dialogs": {}
+      "cordova-plugin-headercolor": {}
     }
+  },
+  "scripts": {
+    "postinstall": "echo 'Run [npm install gulp-cli -g] to use scss'",
+    "start": "node start.js"
   },
   "dependencies": {
     "cordova-android": "^6.4.0",
@@ -27,5 +31,10 @@
     "cordova-plugin-whitelist": "~1.3.2",
     "ionic-plugin-keyboard": "^2.2.1",
     "phonegap-plugin-push": "~1.10.5"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-sass": "^3.1.0",
+    "gulp-watch": "^5.0.0"
   }
 }

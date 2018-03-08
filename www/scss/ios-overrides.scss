@@ -1,3 +1,5 @@
+@import 'partials/variables';
+
 .messages-auto-layout .message-label.message-updated {
   display: inline;
   margin-bottom: 10px;
@@ -16,15 +18,15 @@
 }
   
 .navbar:after {
-  background:  #eb7125;
+  background:  $fsek-orange;
 }
 
 .navbar i.icon, .navbar a{
-  color: #fff;
+  color: $white;
 }
 
 .tabbar{
-  background: #eb7125;
+  background: $fsek-orange;
   color: #ffe0b3;
 }
 
@@ -36,7 +38,7 @@
 .subtabs {
   margin: 0;
   padding: 0px 10px 10px 10px;
-  background: #eb7125;
+  background: $fsek-orange;
 }
 
 #subtab2 .day-title{
@@ -44,13 +46,13 @@
 }
 
 .subtabs .tab-link{
-  border-color: #fff !important;
-  color: #fff !important;
+  border-color: $white !important;
+  color: $white !important;
 }
 
 .subtabs .tab-link.active{
-  color: #eb7125 !important;
-  background-color: #fff !important;
+  color: $fsek-orange !important;
+  background-color: $white !important;
 }
 
 .subtab-container {
@@ -63,7 +65,7 @@
 }
 
 .picker-calendar {
-  color: #eb7125;
+  color: $fsek-orange;
 }
 
 .picker-calendar .picker-calendar-day-today span{
@@ -75,7 +77,7 @@
 }
 
 .user-content {
-  background: linear-gradient(to bottom,#eb7125 60%, #efeff4 61%);
+  background: linear-gradient(to bottom,$fsek-orange 60%, #efeff4 61%);
 }
 
 #user-form {

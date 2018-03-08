@@ -15,11 +15,11 @@
 }
 
 .event-content .item-inner a{
-  color: #eb7125 !important;
+  color: $fsek-orange !important;
 }
 
 .event-content i{
-  color: #eb7125;
+  color: $fsek-orange;
   font-size: 22px;
   margin: auto;
 }
@@ -38,7 +38,7 @@
 .event-title{ 
   font-size: 24px;
   font-weight: bold;
-  color: #eb7125;
+  color: $fsek-orange;
   min-height: 50px; 
 }
 
@@ -95,9 +95,9 @@
 }
 
 .event-signup-btn{
-  background-color: #eb7125;
-  border-color: #eb7125 !important;
-  color: #fff !important;
+  background-color: $fsek-orange;
+  border-color: $fsek-orange !important;
+  color: $white !important;
   margin: 15px;
 }
 
@@ -108,7 +108,7 @@
 .event-signup-cancel-btn{
   background-color: #e74c3c;
   border-color: #e74c3c !important;
-  color: #fff !important;
+  color: $white !important;
   margin: 15px;
 }
 

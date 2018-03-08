@@ -5,7 +5,7 @@
 
 .signup-confirm-content .content-block-title, .resetpw-confirm-content .content-block-title{
 	text-align: center;
-	color: #fff;
+	color: $white;
 	font-weight: bold;
 	font-size: 24px;
 	margin-top: 14%;
@@ -14,19 +14,19 @@
 }
 
 .signup-confirm-content .content-block-title p, .resetpw-confirm-content .content-block-title p{
-	color: #eb7125;
+	color: $fsek-orange;
 	margin: 0;
 	margin-top: 10px;
 }
 
 .signup-confirm-content .content-block, .resetpw-confirm-content .content-block{
-	color: #fff;
+	color: $white;
 	width: 90%;
 	margin-left: 5%;
 
 }
 
 .signup-confirm-content a, .signup-confirm-content span, .resetpw-confirm-content a, .resetpw-confirm-content span{
-	color: #eb7125;
+	color: $fsek-orange;
 	font-weight: bold;
 }

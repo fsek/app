@@ -1,6 +1,6 @@
 // We need to add the selected attribute on the food pref options before init otherwise
 // the smart select page wont load the options properly
-myApp.onPageBeforeInit('user-page', function (page) {
+$$(document).on('page:beforeInit', '.page[data-name="user-page"]', function (page) {
   var options = $('.user-content option');
   var foodPreferences = $.auth.user.food_preferences
 
@@ -35,7 +35,7 @@ myApp.onPageBeforeInit('user-page', function (page) {
   }
 });
 
-myApp.onPageInit('user-page', function (page) {
+$$(document).on('page:init', '.page[data-name="user-page"]', function (page) {
   var user = $.auth.user;
   var settingsChanged = false;
   var userContent = $('.user-content');
@@ -74,10 +74,10 @@ myApp.onPageInit('user-page', function (page) {
     'notify_messages': user.notify_messages ? 'on' : 'off',
     'notify_event_closing': user.notify_event_closing ? 'on' : 'off',
   };
-  myApp.formFromData('#user-form', formData);
+  app.formFromData('#user-form', formData);
 
   // Setup program picker
-  var programPicker = myApp.picker({
+  var programPicker = app.picker({
     input: '#user-program-input',
     toolbarCloseText: 'Klar',
     cols: [
@@ -100,7 +100,7 @@ myApp.onPageInit('user-page', function (page) {
   }
 
   // Setup start year picker
-  var startYearPicker = myApp.picker({ // ON OPEN VISAR INTE RÄTT VÄRDE
+  var startYearPicker = app.picker({ // ON OPEN VISAR INTE RÄTT VÄRDE
     input: '#user-startyear-input',
     toolbarCloseText: 'Klar',
     cols: [
@@ -117,11 +117,11 @@ myApp.onPageInit('user-page', function (page) {
 
   $('.user-update').on('click', function(){
     // Open preloader that closes after 0.8s and updates the name text
-    myApp.showPreloader('Sparar inställningar');
+    app.showPreloader('Sparar inställningar');
     var hidePreloader = false;
     setTimeout(function(){
       if(hidePreloader){
-        myApp.hidePreloader();
+        app.hidePreloader();
         userContent.find('.user-container p').html(user.firstname + ' ' + user.lastname);
       }else{
         hidePreloader = true;
@@ -129,7 +129,7 @@ myApp.onPageInit('user-page', function (page) {
     }, 800);
 
     // Get data from the form
-    var formData = myApp.formToData('#user-form');
+    var formData = app.formToData('#user-form');
 
     // Edit the form data and update formData and the user object
     for(var key in formData){
@@ -170,7 +170,7 @@ myApp.onPageInit('user-page', function (page) {
       data: user_data,
       success: function(resp) {
         if(hidePreloader){
-          myApp.hidePreloader();
+          app.hidePreloader();
           userContent.find('.user-container p').html(user.firstname + ' ' + user.lastname);
         }else{
           hidePreloader = true;
@@ -178,7 +178,7 @@ myApp.onPageInit('user-page', function (page) {
       },
       error: function(resp) {
         myApp.hidePreloader();
-        myApp.alert('Kunde inte uppdatera dina användarinställningar. Kontrollera dina fält.', 'Misslyckades att spara')
+        myApp.alert('Kunde inte uppdatera dina användarinställningar. Kontrollera dina fält och internetanslutning.', 'Misslyckades att spara')
       }
     });
 
@@ -188,11 +188,11 @@ myApp.onPageInit('user-page', function (page) {
   // Alert if anything has changed and go back to previous page (the settings tab)
   $('.song-back').on('click', function(e){
     if(settingsChanged){
-      myApp.confirm('Alla opsarade inställningar kommer förintas. Är du säker på att du vill överge din ändringar?', 'Osparade ändringar', function () {
-        myApp.getCurrentView().router.back();
+      app.confirm('Alla opsarade inställningar kommer förintas. Är du säker på att du vill överge din ändringar?', 'Osparade ändringar', function () {
+        app.getCurrentView().router.back();
       });
     }else{
-      myApp.getCurrentView().router.back();
+      app.getCurrentView().router.back();
     }
   })
 

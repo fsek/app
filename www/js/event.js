@@ -1,5 +1,5 @@
 //Configuration of the event page
-myApp.onPageInit('event', function (page) {
+$$(document).on('page:init', '.page[data-name="event"]', function (page) {
   var eventId = page.query.id;
   $.getJSON(API + '/events/' + eventId)
   .done(function(resp){
@@ -16,7 +16,7 @@ function initEventPage(eventData){
   var eventContent = $('.event-content');
 
   // Apply the event page content with template
-  var templateHTML = myApp.templates.eventPageTemplate({event: eventData});
+  var templateHTML = app.templates.eventPageTemplate({event: eventData});
   eventContent.html(templateHTML);
 
   // Description overflow toggle if container height = maxHeight
@@ -51,7 +51,7 @@ function initEventPage(eventData){
     $$(this).removeClass('popover-open');
   });
 
-  if (myApp.device.android) {
+  if (app.device.android) {
     window.addEventListener('native.keyboardshow', function() {
       if($$('.modal.modal-in').length) return;
 
@@ -252,7 +252,7 @@ function setupGroupPicker(eventData){
   });
   groupNames.push('Annan');
 
-  var pickerGroup = myApp.picker({
+  var pickerGroup = app.picker({
     input: '#picker-group',
     toolbarCloseText: 'Klar',
     cols: [
@@ -297,7 +297,7 @@ function setupUserTypePicker(eventData){
   });
   userTypes.push('Övrig');
 
-  var pickerUserType = myApp.picker({
+  var pickerUserType = app.picker({
     input: '#picker-usertype',
     toolbarCloseText: 'Klar',
     cols: [
@@ -323,17 +323,17 @@ function setupUserTypePicker(eventData){
 
 function setupCancelRegistrationBtn(eventData){
   $('.event-signup-cancel-btn').on('click', function(){
-    myApp.confirm('Är du säker på att du vill avanmäla dig? Det finns inget sätt att få tillbaka platsen om evenemanget blivit fullt.', 'Avanmälan', function () {
+    app.confirm('Är du säker på att du vill avanmäla dig? Det finns inget sätt att få tillbaka platsen om evenemanget blivit fullt.', 'Avanmälan', function () {
       $.ajax({
         url: API + '/events/' + eventData.id + '/event_users/' + eventData.event_user.id,
         type: 'DELETE',
         dataType: 'json',
         success: function(resp) {
-          myApp.alert('Du är nu avanmäld från eventet', 'Avanmälan');
+          app.alert('Du är nu avanmäld från eventet', 'Avanmälan');
           updateSignupContent(eventData);
         },
         fail: function(resp) {
-          myApp.alert(resp.data.errors);
+          app.alert(resp.data.errors);
         }
       });
     });
@@ -342,14 +342,14 @@ function setupCancelRegistrationBtn(eventData){
 
 function setupRegistrationBtn(eventData){
   $('.event-signup-btn').on('click', function(){
-    myApp.confirm('Kom ihåg att anmälan är bindande! Om du inte kan komma ska du avanmäla dig innan anmälan stänger.', 'Anmälan', function(){
+    app.confirm('Kom ihåg att anmälan är bindande! Om du inte kan komma ska du avanmäla dig innan anmälan stänger.', 'Anmälan', function(){
       // Get custom group if selected
       if(eventData.selected_group_id === null){
         var customGroup = $('input[name="group-custom"]').val();
       }
 
       if(eventData.event_signup.question != ''){
-        myApp.prompt(eventData.event_signup.question, 'Anmälan', function (answer) {
+        app.prompt(eventData.event_signup.question, 'Anmälan', function (answer) {
           signupToEvent(eventData, answer, customGroup);
         });
       }else{
@@ -373,11 +373,11 @@ function signupToEvent(eventData, answer, groupCustom){
       }
     },
     success: function(resp) {
-      myApp.alert('Du är nu anmäld till eventet', 'Anmälan');
+      app.alert('Du är nu anmäld till eventet', 'Anmälan');
       updateSignupContent(eventData);
     },
     fail: function(resp) {
-      myApp.alert(resp.data.errors);
+      app.alert(resp.data.errors);
     }
   });
 }
@@ -491,10 +491,10 @@ function updateSignupContent(eventData){
 
 // Configure the navbar during page animation
 var navbar = $('#tab2 .navbar');
-myApp.onPageBeforeAnimation('event', function (page) {
+$$(document).on('page:beforeAnmiation', '.page[data-name="event"]', function (e) {
   if(page.view.selector == '#tab2') {
     navbar.removeClass('hidden');
-    if(myApp.device.android){
+    if(app.device.android){
       setTimeout(function(){
         navbar.fadeOut(250);
       }, 100);
@@ -502,9 +502,9 @@ myApp.onPageBeforeAnimation('event', function (page) {
   }
 });
 
-myApp.onPageBack('event', function (page) {
+$$(document).on('page:back', '.page[data-name="event"]', function (e) {
   if(page.view.selector == '#tab2') {
-    if(myApp.device.android){
+    if(app.device.android){
       navbar.fadeIn(0);
       setTimeout(function(){
         navbar.addClass('hidden');

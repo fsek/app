@@ -1,5 +1,5 @@
 //init calendar on tab3 show (if not already init:ed)
-$$('#tab2').on('show', function() {
+$$('#tab2').on('tab:show', function() {
   var page = $$('.page.calendar-page');
   if (page.find('#calendar').is(':empty')) {
     initCalendar(page);
@@ -20,7 +20,7 @@ function initCalendar(page) {
   var firstInit = true;
 
   // Initialize F7 calendar
-  var calendar = myApp.calendar({
+  var calendar = app.calendar({
     container: page.find('#calendar'),
     value: [new Date()],
     events: [],
@@ -28,7 +28,7 @@ function initCalendar(page) {
     monthNames: monthNames,
     touchmove: true,
     weekHeader: true,
-    toolbarTemplate: myApp.templates.calToolbarTemplate(),
+    toolbarTemplate: app.templates.calToolbarTemplate(),
 
     onOpen: function (p) {
       firstInit = false;
@@ -126,7 +126,7 @@ function initCalendar(page) {
     var title = date.dateString();
 
     // Update day content
-    var templateHTML = myApp.templates.dayTemplate({hasEvents: hasEvents, events: displayedEvents, date: date});
+    var templateHTML = app.templates.dayTemplate({hasEvents: hasEvents, events: displayedEvents, date: date});
     page.find('.day-content').html(templateHTML);
     page.find('.day-title').html(title);
   }

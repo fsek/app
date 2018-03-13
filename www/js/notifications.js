@@ -11,7 +11,7 @@ function getNotifications(refresh) {
       updateNotificationBadge(resp.meta.unread);
       nextPage = resp.meta.next_page;
 
-      if(refresh) myApp.pullToRefreshDone();
+      if(refresh) app.pullToRefreshDone();
       if(!infNotificationScroll) attachInfNotificationScroll();
 
       // Fill the screen if more notifications exist
@@ -37,11 +37,11 @@ function appendNotifications(notifications) {
   var notificationList = $$('#notification-list ul');
   if (notifications.length !== 0) {
     for(notification of notifications) {
-      templateHTML = myApp.templates.notificationTemplate({notification: notification, hasNotifications: true});
+      templateHTML = app.templates.notificationTemplate({notification: notification, hasNotifications: true});
       notificationList.append(templateHTML);
     }
   }else if($('.no-notifications').length === 0){
-    templateHTML = myApp.templates.notificationTemplate({hasNotifications: false});
+    templateHTML = app.templates.notificationTemplate({hasNotifications: false});
     $('#notification-list').after(templateHTML);
   }
 }
@@ -78,14 +78,14 @@ function lookNotification(id) {
 }
 
 function attachInfNotificationScroll() {
-  myApp.attachInfiniteScroll($$('#tab4 .infinite-scroll'));
+  app.attachInfiniteScroll($$('#tab4 .infinite-scroll'));
   $$('#tab4 .page-content').append(infScrollPreloader);
   infNotificationScroll = true;
 }
 
 function detachInfNotificationScroll() {
   infNotificationScroll = false;
-  myApp.detachInfiniteScroll($$('#tab4 .infinite-scroll'));
+  app.detachInfiniteScroll($$('#tab4 .infinite-scroll'));
   $$('#tab4 .infinite-scroll-preloader').remove();
 }
 

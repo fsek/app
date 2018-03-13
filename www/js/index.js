@@ -1,22 +1,18 @@
-var isAndroid = Framework7.prototype.device.android
-
 // Initialize app
-var myApp = new Framework7({
-  precompileTemplates: true,
-  template7Pages: true,
-  material: isAndroid ? true : false,
-  tapHold: true,
-  statusbarOverlay: false,
-  modalButtonCancel: 'Avbryt',
-  modalPreloaderTitle: 'Laddar...',
-  showBarsOnPageScrollEnd: false,
-  smartSelectBackText: 'Tillbaka',
-  smartSelectPopupCloseText: 'Tillbaka'
+var app = new Framework7({
+  root: '#app',
+  routes: [
+    {
+      name: 'index',
+      path: '/',
+      url: './index.html',
+    },
+  ],
+  touch: {
+    tapHold: true //enable tap hold events
+  },
+  /*statusbarOverlay: false,*/
 });
-
-Template7.global = {
-  android: isAndroid,
-};
 
 // Define Dom7
 var $$ = Dom7;
@@ -30,24 +26,29 @@ const AC_URL = 'wss://stage.fsektionen.se/cable'
 const AC_TOKEN_URL = API + '/messages/new_token';
 
 // Adding views
-var mainView = myApp.addView('.view-main');
+var mainView = app.views.create('.view-main');
 
-var loginView = myApp.addView('#login');
-var tabView1 = myApp.addView('#tab1',{
-  dynamicNavbar:true
-});
-var tabView2 = myApp.addView('#tab2',{
-  dynamicNavbar:true
-});
-var tabView3 = myApp.addView('#tab3',{
-  dynamicNavbar:true
-});
-var tabView4 = myApp.addView('#tab4',{
-  dynamicNavbar:true
-});
-var tabView5 = myApp.addView('#tab5',{
-  dynamicNavbar:true
-});
+var loginView = app.views.create('#login');
+var homeView = app.views.create('#view-home');
+var calendarView = app.views.create('#view-calendar');
+var messagesView = app.views.create('#view-messages');
+var notificationsView = app.views.create('#view-notifications');
+var alternativesView = app.views.create('#view-alternatives');
+
+// Complie templates
+var templateNames = ['calToolbarTemplate', 'dayTemplate', 'dayTitleTemplate', 'eventPageTemplate', 'groupTemplate', 'messageTemplate', 
+  'newsTemplate', 'notificationTemplate', 'songbookTemplate', 'songTemplate'];
+app.templates = compileTemplates(templateNames);
+
+function compileTemplates(templateNames){
+  var compiledTemplates = {};
+  for (var name of templateNames) {
+    var template = $('script#' + name).html();
+    compiledTemplates[name] = Template7.compile(template);
+  }
+
+  return compiledTemplates;
+}
 
 // Configure jToker
 $.auth.configure({
@@ -57,35 +58,32 @@ $.auth.configure({
 
 const infScrollPreloader = '<div class="infinite-scroll-preloader"><div class="preloader"></div></div>';
 
-// Configures page so the tabbar hides and shows
-
-
 // Handle the back button on android
 function onBackKey() {
-  var view = myApp.getCurrentView();
+  var view = app.getCurrentView();
   var page = view.activePage.name;
 
   if (page == 'tab1') {
     var activeSub =  $$('.subtab.active').attr('id');
     if (activeSub.substr(activeSub.length - 1) != 1) {
-      myApp.showTab('#subtab1');
+      app.showTab('#subtab1');
     } else {
       navigator.app.exitApp();
     }
   } else if (page == 'login') {
     navigator.app.exitApp();
   } else if (page.substr(0,3) == 'tab') {
-    myApp.showTab('#tab1');
+    app.showTab('#tab1');
   } else if ($$('.popover-open, .actions-modal').length) {
-    myApp.closeModal('.popover, .actions-modal');
+    app.closeModal('.popover, .actions-modal');
   } else if($$('.popup').length && $$('.popup .view')[0].f7View) {
     if ($$('.popup .view')[0].f7View.history.length > 1){
       view.router.back();
     } else {
-      myApp.closeModal('.popup');
+      app.closeModal('.popup');
     }
   } else if ($$('.popup').length) {
-    myApp.closeModal('.popup');
+    app.closeModal('.popup');
   } else {
     view.router.back();
   }
@@ -96,7 +94,7 @@ document.addEventListener("deviceready", function() {
 }, false);
 
 // Statusbar colors
-if (myApp.device.android) {
+if (app.device.android) {
   var loginBarColor = '#000000';
   var mainBarColor = '#000000';
 } else {

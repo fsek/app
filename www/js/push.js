@@ -49,7 +49,7 @@ function setupPush() {
   }
 
   function openGroup(data) {
-    myApp.showTab('#tab3');
+    app.showTab('#tab3');
 
     var groupId = data.additionalData.group_id;
     var page = tabView3.activePage;

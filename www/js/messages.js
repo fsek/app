@@ -2,7 +2,7 @@ var group_app = null;
 var group_paused = false;
 var F7msg = null;
 
-myApp.onPageInit('messages', function (page) {
+$$(document).on('page:init', '.page[data-name="messages"]', function (page) {
   var head = $(page.container); // We need jQuery on this page
   initMessages(head, page.query);
 });
@@ -17,7 +17,7 @@ function initMessages(head, query) {
   var loadingMessages = false;
   //cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
   // Initialize Framework7 mesages
-  F7msg = myApp.messages(messages, {
+  F7msg = app.messages(messages, {
     autoLayout: true,
     scrollMessages: true,
     messageTemplate: $$('#messageTemplate').html()
@@ -25,11 +25,11 @@ function initMessages(head, query) {
 
   // Set group name
   $('#messages-group-name').html(query.groupName);
-  myApp.sizeNavbars($('#tab3'));
+  app.sizeNavbars($('#tab3'));
 
 
   // Initialize Framework7 message bar
-  var msgBar = myApp.messagebar('.messagebar', {
+  var msgBar = app.messagebar('.messagebar', {
     maxHeight: 75
   });
 
@@ -37,7 +37,7 @@ function initMessages(head, query) {
   var infiniteScroll = head.find('.infinite-scroll');
 
   var detachInftScroll = function() {
-    myApp.detachInfiniteScroll(infiniteScroll);
+    app.detachInfiniteScroll(infiniteScroll);
     infiniteScroll.find('.infinite-scroll-preloader').remove();
   };
 
@@ -169,12 +169,12 @@ function initMessages(head, query) {
   window.addEventListener('native.keyboardshow', function(e) {
     F7msg.scrollMessages(350);
 
-    if (myApp.device.android) {
+    if (app.device.android) {
       infiniteScroll.find('.infinite-scroll-preloader').hide();
     }
   });
 
-  if (myApp.device.android) {
+  if (app.device.android) {
     window.addEventListener('native.keyboardhide', function() {
       infiniteScroll.find('.infinite-scroll-preloader').show();
       F7msg.scrollMessages(0);
@@ -194,7 +194,7 @@ function initMessages(head, query) {
   // Show popup editor for sent messages
   var popupEditor = function(messageId) {
     $$.get('message_editor.html', function(data) {
-      var popup = $(myApp.popup(data, true));
+      var popup = $(app.popup(data, true));
       var editor = popup.find('#message-editor');
 
       // Get unformatted message content
@@ -205,7 +205,7 @@ function initMessages(head, query) {
         },
         error: function(resp) {
           alert("Could not get message data.");
-          myApp.closeModal(popup);
+          app.closeModal(popup);
         }
       });
 
@@ -214,7 +214,7 @@ function initMessages(head, query) {
         var content = editor.val();
         group_app.updateMessage(messageId, content);
 
-        myApp.closeModal(popup);
+        app.closeModal(popup);
       });
     });
   };
@@ -238,7 +238,7 @@ function initMessages(head, query) {
       }
     }];
 
-    myApp.actions($$(this), buttons);
+    app.actions($$(this), buttons);
   });
 
   // Enable infinite scroll
@@ -265,7 +265,7 @@ function initMessages(head, query) {
   document.addEventListener('pause', pauseGroup, false);
   document.addEventListener('resume', resumeGroup, false);
 
-  var groupBack = myApp.onPageBack('messages', function (page) {
+  var groupBack = app.onPageBack('messages', function (page) {
     groupBack.remove();
 
     $('.tabbar').show();

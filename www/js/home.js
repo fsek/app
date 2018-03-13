@@ -30,7 +30,7 @@ function initHome() {
   }();
 
   function addNews(news) {
-    var templateHTML = myApp.templates.newsTemplate({news: news});
+    var templateHTML = app.templates.newsTemplate({news: news});
     $(templateHTML).hide().appendTo(newsList).fadeIn(1000);
   }
 
@@ -44,22 +44,22 @@ function initHome() {
 
         // Add header on new days. We only download events for one week - checking date is enough
         if(lastDay != event.start.getDate()) {
-          dayHTML = myApp.templates.dayTitleTemplate({date: event.start});
+          dayHTML = app.templates.dayTitleTemplate({date: event.start});
           eventTab.append(dayHTML);
         }
 
-        var templateHTML = myApp.templates.dayTemplate({hasEvents: true, events: [event]});
+        var templateHTML = app.templates.dayTemplate({hasEvents: true, events: [event]});
         eventTab.append(templateHTML);
         lastDay = event.start.getDate();
       }
     }else{
-      var templateHTML = myApp.templates.dayTemplate({hasEvents: false});
+      var templateHTML = app.templates.dayTemplate({hasEvents: false});
       eventTab.append(templateHTML);
     }
   }
 
   function detachInfinite() {
-    myApp.detachInfiniteScroll(newsTab);
+    app.detachInfiniteScroll(newsTab);
     newsTab.find('.infinite-scroll-preloader').remove();
   }
 

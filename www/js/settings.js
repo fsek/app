@@ -1,4 +1,4 @@
-myApp.onPageInit('tab5', function(page){
+$$(document).on('page:init', '.page[data-name="tab5"]', function (page) {
   $('.signout-btn').on('click', function(){
     var signoutBtn = [
       {
@@ -16,8 +16,8 @@ myApp.onPageInit('tab5', function(page){
             animatePages: false
           });
           $('.toolbar-inner').find('.active').removeClass('active');
-          myApp.showTab('#login');
-          myApp.showTab('#subtab1');
+          app.showTab('#login');
+          app.showTab('#subtab1');
         }
       }
     ];
@@ -27,6 +27,6 @@ myApp.onPageInit('tab5', function(page){
         }
     ];
     var signoutAction = [signoutBtn, cancel];
-    myApp.actions(this, signoutAction);
+    app.actions(this, signoutAction);
   });
 }).trigger();

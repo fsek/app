@@ -1,4 +1,4 @@
-myApp.onPageInit('signup', function (page) {
+$$(document).on('page:init', '.page[data-name="signup"]', function (page) {
   $('.signup-btn').on('click', function(){
     var firstName = $('input[name="signup-firstname"]').val();
     var lastName = $('input[name="signup-lastname"]').val();
@@ -40,7 +40,7 @@ myApp.onPageInit('signup', function (page) {
     footer.fadeOut();
 
     // Animated scroll for android
-    if(myApp.device.android) {
+    if(app.device.android) {
       var scrollMargin = 65 * (form.find('input').index(this) - 1);
       form.find('ul').animate({scrollTop: scrollMargin}, 250);
     }

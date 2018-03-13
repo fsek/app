@@ -1,5 +1,5 @@
 var inc = 0;
-$('#home-btn, #cal-btn, #not-btn, #msg-btn').on('click', function() {
+$('#home-btn, #cal-btn, #noti-btn, #msg-btn').on('click', function() {
   var id = $(this).attr('id');
   var idtrans;
   switch (id) {
@@ -24,7 +24,7 @@ $('#home-btn, #cal-btn, #not-btn, #msg-btn').on('click', function() {
     inc= 0
   }
   if(inc==10){
-    myApp.alert('Gratulerar! Du har hittat ett av appens easter eggs!','Ett Easter Egg!');
+    app.alert('Gratulerar! Du har hittat ett av appens easter eggs!','Ett Easter Egg!');
   } else {
     inc++;
   }

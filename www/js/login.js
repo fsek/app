@@ -4,10 +4,10 @@ $.auth.validateToken()
     afterSignIn();
   })
   .fail(function() {
-    myApp.showTab('#login');
+    app.showTab('#login');
   });
 
-myApp.onPageInit('login', function(page){
+$$(document).on('page:init', '.page[data-name="login"]', function (page) {
   // Activate the login button if we have text in the input field, otherwise disable it
   $('.login-content input').on('input', function(e){
     var email = $('input[name="login-email"]').val();
@@ -33,15 +33,15 @@ myApp.onPageInit('login', function(page){
     var abort = false;
 
     var preloadTimeout = setTimeout(function(){
-      myApp.showPreloader('Mutar spindelmännen...');
+      app.showPreloader('Mutar spindelmännen...');
     }, 1000);
 
     // Aborts the preloader and request after 20s 
     var abortTimeout = setTimeout(function(){
       clearTimeout(preloadTimeout);
-      myApp.hidePreloader();
+      app.hidePreloader();
       abort = true;
-      myApp.alert("Begäran tog för lång tid. Kontrollera din internetanslutning (eduroam räknas inte) :'(", "Inloggningen misslyckades")
+      app.alert("Begäran tog för lång tid. Kontrollera din internetanslutning (eduroam räknas inte) :'(", "Inloggningen misslyckades")
     }, 20000);
 
     $.auth.emailSignIn({
@@ -53,27 +53,27 @@ myApp.onPageInit('login', function(page){
         afterSignIn();
         clearTimeout(preloadTimeout);
         clearTimeout(abortTimeout);
-        myApp.hidePreloader();
+        app.hidePreloader();
       }
     })
     .fail(function(resp) {
       if(!abort){
         if(typeof resp.data.errors == 'undefined'){ // Is undefined if we don't get a response from the server
-          myApp.alert("Oväntat fel uppstod. Kontrollera din internetanslutning :(", "Inloggningen misslyckades");
+          app.alert("Oväntat fel uppstod. Kontrollera din internetanslutning :(", "Inloggningen misslyckades");
         }else{
           $('input[name="login-password"]').val('');
           $('.login-btn').addClass('disabled');
-          myApp.alert("Ogiltig E-post eller lösenord", "Inloggningen misslyckades");
+          app.alert("Ogiltig E-post eller lösenord", "Inloggningen misslyckades");
         }
         clearTimeout(preloadTimeout);
         clearTimeout(abortTimeout);
-        myApp.hidePreloader();
+        app.hidePreloader();
       }
     });
   });
 
   // Fade parts of the UI when the keyboard is displayed on android
-  if (myApp.device.android) {
+  if (app.device.android) {
     var loginContainer = $('.login-container');
     loginContainer.on('focus', 'input', function(e) {
       $('.open-login-info').fadeOut();
@@ -116,7 +116,7 @@ function afterSignIn() {
   }, false);
 
   // Close login screen
-  myApp.showTab('#tab1');
+  app.showTab('#tab1');
   $('.tabbar').show();
 
   // Clear for next login

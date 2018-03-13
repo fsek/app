@@ -9,9 +9,8 @@
     <title>F-sektionen</title>
 
     <!-- Material/iOS stylesheets. Will be replaced on deploy -->
-    <link rel="stylesheet" href="css/framework7.ios.min.css">
-    <link rel="stylesheet" href="css/framework7.ios.colors.min.css">
-    <link rel="stylesheet" href="css/ios-overrides.css">
+    <link rel="stylesheet" href="lib/framework7/css/framework7.min.css">
+    <link rel="stylesheet" href="css/material-overrides.css">
 
     <!-- General stylesheets -->
     <link rel="stylesheet" href="css/font-awesome.min.css">
@@ -33,269 +32,250 @@
     <link rel="stylesheet" href="css/contact.css">
   </head>
   <body class="theme-orange">
-    <div class="views tabs">
-      <!-- Tab 0 (Login) -->
-      <div id="login" class="view tab">
-        <div class="pages">
-          <div data-page="login" class="page no-tabbar">
-            <div class="page-content login-content">
-              <div class="login-container">
-                <img class="login-logo" src="./img/f_logo.png"></img>
+    <div id="app">
+      <div class="views tabs">
+        <!-- Tabbar -->
+        <div class="toolbar tabbar">
+          <div class="toolbar-inner">
+            <a href="#view-home" id="home-btn" class="tab-link tab-link-active">
+              <i class="fa fa-home" aria-hidden="true"></i>
+            </a>
+            <a href="#view-calendar" id="cal-btn" class="tab-link">
+              <i class="fa fa-calendar" aria-hidden="true"></i>
+            </a>
+            <a href="#view-messages" id="msg-btn" class="tab-link">
+              <i class="fa fa-comments" aria-hidden="true">
+                <span class="badge" id="group-badge"></span>
+              </i>
+            </a>
+            <a href="#view-notifications" id="noti-btn" class="tab-link">
+              <i class="fa fa-bell" aria-hidden="true">
+                <span class="badge" id="notification-badge"></span>
+              </i>
+            </a>
+            <a href="#view-alternatives" class="tab-link">
+              <i class="fa fa-bars" aria-hidden="true"></i>
+            </a>
+          </div>
+        </div>
+        <!-- Tab 0 (Login) -->
+        <div id="login" class="view tab">
+          <div class="pages">
+            <div data-name="login" class="page no-tabbar">
+              <div class="page-content login-content">
+                <div class="login-container">
+                  <img class="login-logo" src="./img/f_logo.png"></img>
+                  <div class="list-block">
+                    <ul>
+                      <li class="item-content">
+                        <div class="item-media">
+                           <i class="fa fa-envelope" aria-hidden="true"></i>
+                        </div>
+                        <div class="item-input">
+                          <input type="email" name="login-email" placeholder="E-postadress">
+                        </div>
+                      </li>
+                      <li class="item-content">
+                        <div class="item-media">
+                          <i class="fa fa-lock" aria-hidden="true"></i>
+                        </div>
+                        <div class="item-input">
+                          <input type="password" name="login-password" placeholder="Lösenord">
+                        </div>
+                      </li>
+                      <li>
+                        <a href="#" class="item-link list-button login-btn disabled">
+                          <i class="fa fa-sign-in" aria-hidden="true"></i>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="login-footer row">
+                  <div class="col-45">
+                    <p><a href="signup.html">Skapa ett konto</a></p>
+                  </div>
+                  <div class="col-55">
+                    <p><a href="reset_password.html">Glömt ditt lösenord?</a></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Tab 1 (Home) -->
+        <div id="view-home" class="view view-main tab tab-active">
+          <div class="navbar android-hide">
+            <div class="navbar-inner">
+              <div class="center sliding android-hide">Hem</div>
+            </div>
+          </div>
+          <div class="pages navbar-fixed">
+            <div data-name="tab1" class="page">
+              <div class="page-content">
+                <div class="content-block subtabs">
+                  <div class="buttons-row">
+                    <a href="#subtab1" class="tab-link active button">Nyheter</a>
+                    <a href="#subtab2" class="tab-link button">Evenemang</a>
+                  </div>
+                </div>
+                <div class="tabs-swipeable-wrap subtab-container">
+                  <div class="tabs">
+                    <div id="subtab1" class="tab subtab active infinite-scroll">
+                      <div class="news-list" id="news-list"></div>
+                      <div class="infinite-scroll-preloader">
+                        <div class="preloader"></div>
+                      </div>
+                    </div>
+                    <div id="subtab2" class="tab subtab">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Tab 2 (Calendar) -->
+        <div id="view-calendar" class="view tab">
+          <div class="navbar hidden"></div>
+          <div class="pages navbar-fixed">
+            <div data-name="tab2" class="page calendar-page">
+              <div class="content-block">
+                <div class="content-block-inner calendar-block">
+                  <div id="calendar"></div>
+                </div>
+              </div>
+              <div class="row day-title"></div>
+              <div class="day-content">
+                <span class="preloader"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Tab 3 (Messages) -->
+        <div id="view-messages" class="view tab">
+          <div class="navbar android-hide">
+            <div class="navbar-inner">
+              <div class="center sliding">Meddelanden</div>
+            </div>
+          </div>
+          <div class="pages">
+            <div data-name="tab3" class="page navbar-fixed">
+              <div class="page-content">
+                <div class="list-block media-list groups-list" id="groups-list">
+                  <ul></ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Tab 4 (Notifications) -->
+        <div id="view-notifications" class="view tab">
+          <div class="navbar android-hide">
+            <div class="navbar-inner">
+              <div class="center sliding android-hide">Notifikationer</div>
+            </div>
+          </div>
+          <div class="pages navbar-fixed">
+            <div data-name="tab4" class="page">
+              <div class="page-content infinite-scroll pull-to-refresh-content">
+                <div class="pull-to-refresh-layer">
+                  <div class="preloader"></div>
+                  <div class="pull-to-refresh-arrow"></div>
+                </div>
+                <div class="list-block media-list notification-list" id="notification-list">
+                  <ul></ul>
+                </div>
+                <div class="infinite-scroll-preloader">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--Tab 5 (Settings) -->
+        <div id="view-alternatives" class="view tab">
+          <div class="navbar android-hide">
+            <div class="navbar-inner">
+              <div class="center sliding android-hide">Alternativ</div>
+            </div>
+          </div>
+          <div class="pages navbar-fixed">
+            <div data-name="tab5" class="page">
+              <div class="page-content settings-content">
                 <div class="list-block">
                   <ul>
-                    <li class="item-content">
-                      <div class="item-media">
-                         <i class="fa fa-envelope" aria-hidden="true"></i>
-                      </div>
-                      <div class="item-input">
-                        <input type="email" name="login-email" placeholder="E-postadress">
-                      </div>
-                    </li>
-                    <li class="item-content">
-                      <div class="item-media">
-                        <i class="fa fa-lock" aria-hidden="true"></i>
-                      </div>
-                      <div class="item-input">
-                        <input type="password" name="login-password" placeholder="Lösenord">
-                      </div>
-                    </li>
                     <li>
-                      <a href="#" class="item-link list-button login-btn disabled">
-                        <i class="fa fa-sign-in" aria-hidden="true"></i>
+                      <a href="songbook.html" class="item-link">
+                        <div class="item-content">
+                          <div class="item-inner">
+                            <div class="item-title">Sångbok</div>
+                          </div>
+                        </div>
                       </a>
                     </li>
                   </ul>
                 </div>
-              </div>
-              <div class="login-footer row">
-                <div class="col-45">
-                  <p><a href="signup.html">Skapa ett konto</a></p>
+                <div class="content-block-title">Om</div>
+                <div class="list-block">
+                  <ul>
+                    <li>
+                      <a href="about_section.html" class="item-link">
+                        <div class="item-content">
+                          <div class="item-inner">
+                            <div class="item-title">F-sektionen</div>
+                          </div>
+                        </div>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="about_app.html" class="item-link">
+                        <div class="item-content">
+                          <div class="item-inner">
+                            <div class="item-title">F-appen</div>
+                          </div>
+                        </div>
+                      </a>
+                    </li>
+                  </ul>
                 </div>
-                <div class="col-55">
-                  <p><a href="reset_password.html">Glömt ditt lösenord?</a></p>
+                
+                <div class="content-block-title">Inställningar</div>
+                <div class="list-block">
+                  <ul>
+                    <li>
+                      <a href="user_page.html" class="item-link">
+                        <div class="item-content">
+                          <div class="item-inner">
+                            <div class="item-title">Konto</div>
+                          </div>
+                        </div>
+                      </a>
+                    </li>
+                  </ul>
                 </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- Tab 1 (Home) -->
-      <div id="tab1" class="view view-main tab active">
-        <div class="navbar android-hide">
-          <div class="navbar-inner">
-            <div class="center sliding android-hide">Hem</div>
-          </div>
-        </div>
-        <div class="pages navbar-fixed">
-          <div data-page="tab1" class="page">
-            <div class="page-content">
-              <div class="content-block subtabs">
-                <div class="buttons-row">
-                  <a href="#subtab1" class="tab-link active button">Nyheter</a>
-                  <a href="#subtab2" class="tab-link button">Evenemang</a>
+                <div class="content-block-title">Support</div>
+                <div class="list-block">
+                  <ul>
+                    <li>
+                      <a href="https://fsektionen.se/kontakter/1" class="item-link external" target="_system">
+                        <div class="item-content">
+                          <div class="item-inner">
+                            <div class="item-title">Rapportera ett problem</div>
+                          </div>
+                        </div>
+                      </a>
+                    </li>
+                  </ul>
                 </div>
-              </div>
-              <div class="tabs-swipeable-wrap subtab-container">
-                <div class="tabs">
-                  <div id="subtab1" class="tab subtab active infinite-scroll">
-                    <div class="news-list" id="news-list"></div>
-                    <div class="infinite-scroll-preloader">
-                      <div class="preloader"></div>
-                    </div>
-                  </div>
-                  <div id="subtab2" class="tab subtab">
-                  </div>
-                </div>
+                <a href="#" class="button button-big signout-btn">Logga ut</a>
               </div>
             </div>
           </div>
-        </div>
-      </div>
-      <!-- Tab 2 (Calendar) -->
-      <div id="tab2" class="view tab">
-        <div class="navbar hidden"></div>
-        <div class="pages navbar-fixed">
-          <div data-page="tab2" class="page calendar-page">
-            <div class="content-block">
-              <div class="content-block-inner calendar-block">
-                <div id="calendar"></div>
-              </div>
-            </div>
-            <div class="row day-title"></div>
-            <div class="day-content">
-              <span class="preloader"></span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- Tab 3 (Messages) -->
-      <div id="tab3" class="view tab">
-        <div class="navbar android-hide">
-          <div class="navbar-inner">
-            <div class="center sliding">Meddelanden</div>
-          </div>
-        </div>
-        <div class="pages">
-          <div data-page="tab3" class="page navbar-fixed">
-            <div class="page-content">
-              <div class="list-block media-list groups-list" id="groups-list">
-                <ul></ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- Tab 4 (Notifications) -->
-      <div id="tab4" class="view tab">
-        <div class="navbar android-hide">
-          <div class="navbar-inner">
-            <div class="center sliding android-hide">Notifikationer</div>
-          </div>
-        </div>
-        <div class="pages navbar-fixed">
-          <div data-page="tab4" class="page">
-            <div class="page-content infinite-scroll pull-to-refresh-content">
-              <div class="pull-to-refresh-layer">
-                <div class="preloader"></div>
-                <div class="pull-to-refresh-arrow"></div>
-              </div>
-              <div class="list-block media-list notification-list" id="notification-list">
-                <ul></ul>
-              </div>
-              <div class="infinite-scroll-preloader">
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!--Tab 5 (Settings) -->
-      <div id="tab5" class="view tab">
-        <div class="navbar android-hide">
-          <div class="navbar-inner">
-            <div class="center sliding android-hide">Alternativ</div>
-          </div>
-        </div>
-        <div class="pages navbar-fixed">
-          <div data-page="tab5" class="page">
-            <div class="page-content settings-content">
-              <div class="list-block">
-                <ul>
-                  <li>
-                    <a href="songbook.html" class="item-link">
-                      <div class="item-content">
-                        <div class="item-inner">
-                          <div class="item-title">Sångbok</div>
-                        </div>
-                      </div>
-                    </a>
-                  </li>
-                </ul>
-              </div>
-              <div class="content-block-title">Om</div>
-              <div class="list-block">
-                <ul>
-                  <li>
-                    <a href="about_section.html" class="item-link">
-                      <div class="item-content">
-                        <div class="item-inner">
-                          <div class="item-title">F-sektionen</div>
-                        </div>
-                      </div>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="about_app.html" class="item-link">
-                      <div class="item-content">
-                        <div class="item-inner">
-                          <div class="item-title">F-appen</div>
-                        </div>
-                      </div>
-                    </a>
-                  </li>
-                </ul>
-              </div>
-              
-              <div class="content-block-title">Inställningar</div>
-              <div class="list-block">
-                <ul>
-                  <li>
-                    <a href="user_page.html" class="item-link">
-                      <div class="item-content">
-                        <div class="item-inner">
-                          <div class="item-title">Konto</div>
-                        </div>
-                      </div>
-                    </a>
-                  </li>
-                </ul>
-              </div>
-              <div class="content-block-title">Support</div>
-              <div class="list-block">
-                <ul>
-                  <li>
-                    <a href="contact.html" class="item-link">
-                      <div class="item-content">
-                        <div class="item-inner">
-                          <div class="item-title">Kontakt</div>
-                        </div>
-                      </div>
-                    </a>
-                  </li>
-                </ul>
-              </div>
-              <a href="#" class="button button-big signout-btn">Logga ut</a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Tabbar -->
-      <div class="toolbar tabbar">
-        <div class="toolbar-inner">
-          <a href="#tab1" id="home-btn" class="tab-link active">
-            <i class="fa fa-home" aria-hidden="true"></i>
-          </a>
-          <a href="#tab2" id="cal-btn" class="tab-link">
-            <i class="fa fa-calendar" aria-hidden="true"></i>
-          </a>
-          <a href="#tab3" id="msg-btn" class="tab-link">
-            <i class="fa fa-comments" aria-hidden="true">
-              <span class="badge" id="group-badge"></span>
-            </i>
-          </a>
-          <a href="#tab4" id="not-btn" class="tab-link">
-            <i class="fa fa-bell" aria-hidden="true">
-              <span class="badge" id="notification-badge"></span>
-            </i>
-          </a>
-          <a href="#tab5" class="tab-link">
-            <i class="fa fa-bars" aria-hidden="true"></i>
-          </a>
         </div>
       </div>
     </div>
-
+    
     <!-- Templates -->
-    <script type="text/template7" id="newsTemplate">
-      {{#each news}}
-        <div class="card news-card">
-          <div class="card-header">{{title}}</div>
-          <div class="card-content">
-            <div class="card-content-inner">
-              {{content}}
-              {{#if image}}
-                <img class="img-responsive" src="{{image}}"></img>
-              {{/if}}
-            </div>
-          </div>
-          <div class="card-footer">
-            <span class="name">{{user.name}}</span>
-            <span class="date">{{js "new Date(this.created_at).yyyymmdd()"}}</span>
-          </div>
-        </div>
-      {{/each}}
-    </script>
-
     <script type="text/template7" id="calToolbarTemplate">
       <div class="toolbar calendar-custom-toolbar">
         <div class="toolbar-inner">
@@ -306,11 +286,11 @@
         </div>
       </div>
     </script>
-
+    
     <script type="text/template7" id="dayTemplate">
       {{#if hasEvents}}
         {{#each events}}
-          <a href="event.html?id={{id}}" class="card day-content-event">
+          <a href="/event/{{id}}/" class="card day-content-event">
             <div class="card-header">{{title}}</div>
             <div class="card-media">
               <i class="fa fa-chevron-right" aria-hidden="true"></i>
@@ -350,7 +330,7 @@
           <div class="card-header event-title">
             {{#if title_short}} {{title_short}} {{else}} {{title}} {{/if}}
           </div>
-          <div class="card-content list-block">
+          <div class="card-content list">
             <div class="list-group">
               <ul>
                 <li class="item-content">
@@ -434,7 +414,7 @@
                 <i class="fa fa-info-circle" aria-hidden="true"></i>
               </a>
             </div>
-            <div class="card-content list-block">
+            <div class="card-content list">
               <div class="list-group">
                 <ul>
                   <li id="event-registered-status" class="item-content">
@@ -635,6 +615,47 @@
       {{/if}}
     </script>
 
+    <script type="text/template7" id="newsTemplate">
+      {{#each news}}
+        <div class="card news-card">
+          <div class="card-header">{{title}}</div>
+          <div class="card-content">
+            <div class="card-content-inner">
+              {{content}}
+              {{#if image}}
+                <img class="img-responsive" src="{{image}}"></img>
+              {{/if}}
+            </div>
+          </div>
+          <div class="card-footer">
+            <span class="name">{{user.name}}</span>
+            <span class="date">{{js "new Date(this.created_at).yyyymmdd()"}}</span>
+          </div>
+        </div>
+      {{/each}}
+    </script>
+
+    <script type="text/template7" id="notificationTemplate">
+      {{#if hasNotifications}}
+        {{#notification}}
+          <li id="{{id}}" {{#unless seen}} class="unseen"{{/unless}}>
+            <a href="/event/{{event_id}}/" class="item-link item-content">
+              <div class="item-inner">
+                <div class="item-title-row">
+                  <div class="item-title">{{data.title}}</div>
+                </div>
+                <div class="item-subtitle">{{data.body}}</div>
+                <div class="item-text">{{data.extra}}</div>
+                <div class="item-created">Skickades {{js "new Date(this.created_at).toLocaleString()"}}</div>
+              </div>
+            </a>
+          </li>
+        {{/notification}}
+      {{else}}
+        <p class="disabled no-notifications">Inga notifikationer tillgängliga</p>
+      {{/if}}
+    </script>
+
     <script type="text/template7" id="messageTemplate">
       {{#if dayHeader}}
         <div class="messages-date">{{dayHeader}}</div>
@@ -656,27 +677,6 @@
       </div>
     </script>
 
-    <script type="text/template7" id="notificationTemplate">
-      {{#if hasNotifications}}
-        {{#notification}}
-          <li id="{{id}}" {{#unless seen}} class="unseen"{{/unless}}>
-            <a href="event.html?id={{event_id}}" class="item-link item-content">
-              <div class="item-inner">
-                <div class="item-title-row">
-                  <div class="item-title">{{data.title}}</div>
-                </div>
-                <div class="item-subtitle">{{data.body}}</div>
-                <div class="item-text">{{data.extra}}</div>
-                <div class="item-created">Skickades {{js "new Date(this.created_at).toLocaleString()"}}</div>
-              </div>
-            </a>
-          </li>
-        {{/notification}}
-      {{else}}
-        <p class="disabled no-notifications">Inga notifikationer tillgängliga</p>
-      {{/if}}
-    </script>
-
     <script type="text/template7" id="songbookTemplate">
       {{#each letter}}
         <div class="list-group">
@@ -684,7 +684,7 @@
             <li class="list-group-title">{{firstLetter}}</li>
             {{#each songs}}
               <li>
-                <a href="song.html?id={{id}}" class="item-link item-content">
+                <a href="/song/{{id}}" class="item-link item-content">
                     <div class="item-inner">
                       <div class="item-title">{{title}}</div>
                     </div>
@@ -735,16 +735,16 @@
 
     <!-- External JS Libraries -->
     <script type="text/javascript" src="cordova.js"></script>
-    <script type="text/javascript" src='js/node_modules/jquery/dist/jquery.js'></script>
-    <script type="text/javascript" src='js/node_modules/jquery.cookie/jquery.cookie.js'></script>
-    <script type="text/javascript" src='js/node_modules/jquery-deparam/jquery-deparam.js'></script>
-    <script type="text/javascript" src='js/node_modules/pubsub-js/src/pubsub.js'></script>
-    <script type="text/javascript" src='js/node_modules/j-toker/dist/jquery.j-toker.js'></script>
-    <script type="text/javascript" src='js/node_modules/actioncable/lib/assets/compiled/action_cable.js'></script>
-    <script type="text/javascript" src="js/framework7.min.js"></script>
-    <script type="text/javascript" src="js/action_cable_patch.js"></script>
+    <script type="text/javascript" src='lib/node_modules/jquery/dist/jquery.js'></script>
+    <script type="text/javascript" src='lib/node_modules/jquery.cookie/jquery.cookie.js'></script>
+    <script type="text/javascript" src='lib/node_modules/jquery-deparam/jquery-deparam.js'></script>
+    <script type="text/javascript" src='lib/node_modules/pubsub-js/src/pubsub.js'></script>
+    <script type="text/javascript" src='lib/node_modules/j-toker/dist/jquery.j-toker.js'></script>
+    <script type="text/javascript" src='lib/node_modules/actioncable/lib/assets/compiled/action_cable.js'></script>
+    <script type="text/javascript" src="lib/framework7/js/framework7.min.js"></script>
 
     <!-- Javascripts -->
+    <script type="text/javascript" src="js/action_cable_patch.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
     <script type="text/javascript" src="js/push.js"></script>
     <script type="text/javascript" src="js/date.js"></script>

@@ -1,4 +1,4 @@
-myApp.onPageInit('songbook', function (page) {
+$$(document).on('page:init', '.page[data-name="songbook"]', function (page) {
   $.getJSON(API + '/songs')
   .done(function(resp) {
     initSongList(resp.songs);
@@ -24,17 +24,17 @@ function initSongList(songdata) {
       songList[counter].songs.push(element);
     }
   })
-  var templateHTML = myApp.templates.songbookTemplate({letter: songList});
+  var templateHTML = app.templates.songbookTemplate({letter: songList});
   var songbookContent = $('.songbook-content');
   songbookContent.html(templateHTML);
   //Get height of songbook-content and set overlay height accordingly
   $('.searchbar-overlay').height(songbookContent.height());
 }
 
-myApp.onPageInit('song', function (page) {
+$$(document).on('page:init', '.page[data-name="song"]', function (page) {
   $.getJSON(API + '/songs/' + page.query.id)
   .done(function(resp) {
-    var templateHTML = myApp.templates.songTemplate({song:resp});
+    var templateHTML = app.templates.songTemplate({song:resp});
     var songContent = $('.song-content');
     songContent.html(templateHTML);
   })

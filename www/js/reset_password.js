@@ -1,4 +1,4 @@
-myApp.onPageInit('reset-password', function (page) {
+$$(document).on('page:init', '.page[data-name="reset-passworc"]', function (page) {
   $('.reset-password-btn').on('click', function(){
     var email = $('input[name="reset-password-email"]').val();
 

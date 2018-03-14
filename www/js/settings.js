@@ -16,7 +16,7 @@ $$(document).on('page:init', '.page[data-name="tab5"]', function (page) {
             animatePages: false
           });
           $('.toolbar-inner').find('.active').removeClass('active');
-          app.showTab('#login');
+          loginScreen.open();
           app.showTab('#subtab1');
         }
       }

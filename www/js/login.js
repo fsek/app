@@ -1,20 +1,33 @@
+var loginScreen = app.loginScreen.create({
+  el: '.login-screen',
+  on: {
+    opened: function () {
+      // Fix statusbar and close splash
+      document.addEventListener('deviceready', function() {
+        navigator.splashscreen.hide();
+        StatusBar.backgroundColorByHexString(loginBarColor);
+        StatusBar.overlaysWebView(false);
+      }, false);
+    }
+  }
+})
+
 // Redirect from the login screen if the user has signed in before
 $.auth.validateToken()
   .done(function() {
     afterSignIn();
   })
   .fail(function() {
-    app.showTab('#login');
+    loginScreen.open(false); // true if animation
   });
 
 $$(document).on('page:init', '.page[data-name="login"]', function (page) {
   // Activate the login button if we have text in the input field, otherwise disable it
-  $('.login-content input').on('input', function(e){
-    var email = $('input[name="login-email"]').val();
-    var password = $('input[name="login-password"]').val();
+  $('.login-screen-content input').on('input',function(e){
+    var loginFormData = app.form.convertToData('#login-form');
     var loginBtn = $('.login-btn');
 
-    if(email != '' && password != ''){
+    if(loginFormData.email != '' && loginFormData.password != ''){
       if(loginBtn.hasClass('disabled')){
         loginBtn.removeClass('disabled');
       }
@@ -25,50 +38,48 @@ $$(document).on('page:init', '.page[data-name="login"]', function (page) {
     }
   });
 
-  // Send an sign in request to the API when the login button is clicked.
-  // We also display error messages on fail and add preloaders after 1 s of loading
   $('.login-btn').on('click', function () {
-    var email = $('input[name="login-email"]').val();
-    var password = $('input[name="login-password"]').val();
     var abort = false;
 
+    // Adds preloader after 1 s of loading
     var preloadTimeout = setTimeout(function(){
-      app.showPreloader('Mutar spindelmännen...');
+      app.dialog.preloader('Mutar spindelmännen...');
     }, 1000);
 
     // Aborts the preloader and request after 20s 
     var abortTimeout = setTimeout(function(){
       clearTimeout(preloadTimeout);
-      app.hidePreloader();
+      app.dialog.close();
+      $('#login-form input[name="password"]').val('');
       abort = true;
-      app.alert("Begäran tog för lång tid. Kontrollera din internetanslutning (eduroam räknas inte) :'(", "Inloggningen misslyckades")
-    }, 20000);
+      app.dialog.alert("Begäran tog för lång tid. Kontrollera din internetanslutning (eduroam räknas inte) :'(", "Inloggningen misslyckades");
+    }, 5000);
 
-    $.auth.emailSignIn({
-      email: email,
-      password: password
-    })
-    .done(function() {
-      if(!abort){
-        afterSignIn();
-        clearTimeout(preloadTimeout);
-        clearTimeout(abortTimeout);
-        app.hidePreloader();
-      }
-    })
-    .fail(function(resp) {
-      if(!abort){
-        if(typeof resp.data.errors == 'undefined'){ // Is undefined if we don't get a response from the server
-          app.alert("Oväntat fel uppstod. Kontrollera din internetanslutning :(", "Inloggningen misslyckades");
-        }else{
-          $('input[name="login-password"]').val('');
-          $('.login-btn').addClass('disabled');
-          app.alert("Ogiltig E-post eller lösenord", "Inloggningen misslyckades");
+    // Get the input data and send a sign in request. If successful we initialize stuff in afterSignIn()
+    // otherwise we alert error messages and clear pw field. We also clear the preloader timeouts.
+    var loginFormData = app.form.convertToData('#login-form');
+    $.auth.emailSignIn(loginFormData)
+      .done(function() {
+        if(!abort){
+          afterSignIn();
+          clearTimeout(preloadTimeout);
+          clearTimeout(abortTimeout);
+          app.dialog.close();
         }
-        clearTimeout(preloadTimeout);
-        clearTimeout(abortTimeout);
-        app.hidePreloader();
-      }
+      })
+      .fail(function(resp) {
+        if(!abort){
+          app.dialog.close(); // Close the preloader
+          if(typeof resp.data.errors == 'undefined'){ // Is undefined if we don't get a response from the server
+            app.dialog.alert("Oväntat fel uppstod. Kontrollera din internetanslutning :(", "Inloggningen misslyckades");
+          }else{
+            $('.login-btn').addClass('disabled');
+            app.dialog.alert("Ogiltig E-post eller lösenord", "Inloggningen misslyckades");
+          }
+          $('#login-form input[name="password"]').val('');
+          clearTimeout(preloadTimeout);
+          clearTimeout(abortTimeout);
+        }
     });
   });
 
@@ -92,20 +103,10 @@ $$(document).on('page:init', '.page[data-name="login"]', function (page) {
   }
 
   $('.login-logo').on('touchstart touchend', function(e) {
-      $(this).toggleClass('login-logo-spin');
+    $(this).toggleClass('login-logo-spin');
   });
-}).trigger();
+})
 
-$$('#login').on('tab:show', function(){
-  $('.tabbar').hide();
-
-   // Fix statusbar and close splash
-  document.addEventListener('deviceready', function() {
-    navigator.splashscreen.hide();
-    StatusBar.backgroundColorByHexString(loginBarColor);
-    StatusBar.overlaysWebView(false);
-  }, false);
-});
 
 function afterSignIn() {
   // Fix statusbar and close splash
@@ -116,12 +117,12 @@ function afterSignIn() {
   }, false);
 
   // Close login screen
-  app.showTab('#tab1');
-  $('.tabbar').show();
+  loginScreen.close();
 
   // Clear for next login
-  $('input[name="login-email"]').val('');
-  $('input[name="login-password"]').val('');
+  $('#login-form input[name="email"]').val('');
+  $('#login-form input[name="password"]').val('');
+  $('.login-btn').addClass('disabled');
 
   pushAfterLogin();
   initNotificationBadge();

@@ -1,20 +1,23 @@
-ul li.item-content.error{
-  border-style: solid;
-  border-width: 0px 0px 1px 0px;
-  border-image:  linear-gradient(to right, rgba(255,0,0,0) 0%, rgba(255,0,0,1) 50%, rgba(255,0,0,0) 100%);
-  border-image-slice: 1;
+.signup-content .item-content.error:after, .reset-password-content .item-content.error:after {
+  background-image:  none, linear-gradient(to right, rgba(255,0,0,0) 0%, rgba(255,0,0,1) 50%, rgba(255,0,0,0) 100%);
 }
 
-.error i{
+.error i {
   color: #e74c3c;
 }
 
-ul li.item-content.error-message{
-  min-height: 20px;
-  height:  20px;
-  border: none;
-  color: red;
+ul li.item-content.error-message {
+  color: red;  
+  font-size: 14px;
+}
+
+.signup-content .item-content.error-message {
   margin-top: -15px;
   margin-bottom: 5px;
-  font-size: 14px;
+  min-height: 20px;
+  height: 20px; 
+}
+
+.reset-password-content li.item-content.error {
+  margin-bottom: 0;
 }

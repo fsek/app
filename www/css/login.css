@@ -1,4 +1,4 @@
-.login-content{
+.login-screen-content {
   background-size: 200% 100%;
   background-image: url("../img/login-background_full.png");
   background-repeat: no-repeat;
@@ -29,54 +29,57 @@ img.login-logo-spin {
   transform:rotate(21600deg);
 }
 
-.login-container .list-block {
-  margin: 15px 0;
-}
-
-.login-container .list-block ul {
+.login-container .list ul {
   width: 80vw;
   color: #FFF;
   background: none;
+  max-width: 480px;
 }
 
-.login-content .list-block ul:before, .login-content .list-block ul:after{
+.login-screen-content .list ul:before, .login-container ul:after, .login-container .list .item-inner:after, .login-container .item-input-wrap:after {
   display: none;
 }
 
-.login-content li.item-content{
-  border-style: solid;
-  border-width: 0px 0px 1px 0px;
-  border-image:  linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0) 100%);
-  border-image-slice: 1;
+.login-screen-content li.item-content {
   margin-bottom: 15px;
   min-height: 45px;
   height: 45px;
 }
 
-.login-content .item-input input{
-  color: #fff;
+.login-screen-content .item-content:after {
+  content: '';
+  position: absolute;
+  background-image: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0) 100%);
+  bottom: 0;
+  left: 0;
+  height: 1px;
+  width: 100%;
+}
+
+.login-screen-content .item-input input {
+  color: #fff !important;
   margin-left: 10px;
 }
 
-.login-content ::-webkit-input-placeholder{
+.login-screen-content ::-webkit-input-placeholder {
   color: #fff !important;
 }
 
-.login-content i{
+.login-screen-content i {
   color: #eb7125;
   font-size: 25px;
   margin: auto;
 }
 
-.login-content .item-media{
+.login-screen-content .item-media {
   width: 25px;
 }
 
-.login-content i.fa-lock{
+.login-screen-content i.fa-lock {
   font-size: 32px !important;
 }
 
-.login-btn{
+.login-btn {
   width: 96%;
   margin-left: 2%;
   background: #eb7125;
@@ -85,17 +88,17 @@ img.login-logo-spin {
   text-align: center;
 }
 
-.login-btn.active-state{
+.login-btn.active-state {
   background-color: #b95f26 !important;
 }
 
-.login-btn i{
+.login-btn i {
   color: #fff !important;
   font-size: 28px;
   vertical-align: -16%;
 }
 
-.login-footer{
+.login-footer {
   width: 80%;
   margin-left: 10%;
   margin-bottom: 7px;
@@ -104,8 +107,8 @@ img.login-logo-spin {
   text-align: center;
 }
 
-.login-footer a{
-  color: #c5c0c0;
+.login-footer a {
+  color: #c5c0c0 !important;
   font-size: 12px;
 }
 

@@ -1,35 +1,46 @@
 $$(document).on('page:init', '.page[data-name="signup"]', function (page) {
-  $('.signup-btn').on('click', function(){
-    var firstName = $('input[name="signup-firstname"]').val();
-    var lastName = $('input[name="signup-lastname"]').val();
-    var email = $('input[name="signup-email"]').val();
-    var password = $('input[name="signup-password"]').val();
-    var passwordConfirm = $('input[name="signup-password_confirmation"]').val();
+  $('#signup-form input').on('input', function(e) {
+    var inputFilled = true;
+    var signupBtn = $('.signup-btn');
+    var signupFormData = app.form.convertToData('#signup-form');
 
-    $.auth.emailSignUp({
-        firstname: firstName,
-        lastname: lastName,
-        email: email,
-        password: password,
-        password_confirmation: passwordConfirm
-    })
-    .done(function(){
-      loginView.router.load({
-        url: 'signup_confirmation.html',
-        reload: true,
-        context: {
-          firstname: firstName,
-          lastname: lastName,
-          email: email,
-        }
+    // Check if all fields a filled in
+    for(var key in signupFormData){
+      if(signupFormData[key] == ''){
+        inputFilled = false;
+        break;
+      }
+    }
+    
+    // If filled in, enable else diable
+    if(inputFilled) {
+      if(signupBtn.hasClass('disabled')) {
+        signupBtn.removeClass('disabled');
+      }
+    }else {
+      if(!signupBtn.hasClass('disabled')) {
+        signupBtn.addClass('disabled');
+      }
+    }
+  });
+
+  // Get the input data from the form and pass it in the auth request. If it fails we add errors,
+  // otherwise we load the confirmation page with the input data as context to be displayed
+  $('.signup-btn').on('click', function(){
+    var signupFormData = app.form.convertToData('#signup-form');
+
+    $.auth.emailSignUp(signupFormData)
+      .done(function(){
+        loginView.router.navigate('signup_confirm/', {
+          context: signupFormData
+        });
+      })
+      .fail(function(resp){
+        $('#signup-form input').each(function(){
+          var error = resp.data.errors[this.name]
+          handleInputError(this, error);
+        })
       });
-    })
-    .fail(function(resp){
-      $('.signup-content input').each(function(){
-        var errorID = this.name.replace('signup-', '');
-        handleInputError(this.name, resp.data.errors[errorID]);
-      });
-    });
   });
 
   var head = $(page.container);
@@ -56,23 +67,26 @@ $$(document).on('page:init', '.page[data-name="signup"]', function (page) {
   });
 });
 
-function handleInputError(name, error){
-  var item = $('input[name="' + name + '"]').parents('.item-content');
+// Add the error class (becomes red) and error message below the 
+// input field if there is an error otherwise remove it
+function handleInputError(inputEl, error){
+  console.log(error);
+  var item = $(inputEl).parents('.item-content')
   if(error != null){
     if(!item.hasClass('error')){
       item.addClass('error');
       item.after(
         '<li class="item-content error-message">'+
-            '<div class="item-title">' + '* ' + error + '</div>' +
-          '</li>'
-        );
+          '<div class="item-title">' + '* ' + error + '</div>' +
+        '</li>'
+      );
     }else{
       item.next()[0].innerText = '* ' + error; //updating error message
     }
 
-    if(name == 'signup-password' || name == 'signup-password_confirmation'){
-      $('input[name="signup-password"]')[0].value = '';
-      $('input[name="signup-password_confirmation"]')[0].value = '';
+    if(inputEl.name == 'password' || inputEl.name == 'password_confirmation'){
+      $('#signup-form input[name="password"]').val('');
+      $('#signup-form input[name="password_confirmation"]').val('');
     }
   }else if(item.hasClass('error')){
     item.removeClass('error');

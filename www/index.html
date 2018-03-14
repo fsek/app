@@ -33,6 +33,55 @@
   </head>
   <body class="theme-orange">
     <div id="app">
+      <div class="login-screen">
+        <div id="login" class="view">
+          <div data-name="login" class="page">
+            <div class="page-content login-screen-content">
+              <div class="login-container">
+                <img class="login-logo" src="./img/f_logo.png"></img>
+                <form id="login-form" class="list">
+                  <ul>
+                    <li class="item-content item-input">
+                      <div class="item-media">
+                         <i class="fa fa-envelope" aria-hidden="true"></i>
+                      </div>
+                      <div class="item-inner">
+                        <div class="item-input-wrap">
+                          <input type="email" name="email" placeholder="E-postadress" value="admin@fsektionen.se">
+                        </div>
+                      </div>
+                    </li>
+                    <li class="item-content item-input">
+                      <div class="item-media">
+                        <i class="fa fa-lock" aria-hidden="true"></i>
+                      </div>
+                      <div class="item-inner">
+                        <div class="item-input-wrap">
+                          <input type="password" name="password" placeholder="Lösenord" value="asspass">
+                        </div>
+                      </div>
+                    </li>
+                    <li>
+                      <a href="#" class="item-link list-button login-btn disabled">
+                        <i class="fa fa-sign-in" aria-hidden="true"></i>
+                      </a>
+                    </li>
+                  </ul>
+                </form>
+              </div>
+              <div class="login-footer row">
+                <div class="col-45">
+                  <p><a href="/signup/">Skapa ett konto</a></p>
+                </div>
+                <div class="col-55">
+                  <p><a href="/reset_password/">Glömt ditt lösenord?</a></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Tabs -->
       <div class="views tabs">
         <!-- Tabbar -->
         <div class="toolbar tabbar">
@@ -56,51 +105,6 @@
             <a href="#view-alternatives" class="tab-link">
               <i class="fa fa-bars" aria-hidden="true"></i>
             </a>
-          </div>
-        </div>
-        <!-- Tab 0 (Login) -->
-        <div id="login" class="view tab">
-          <div class="pages">
-            <div data-name="login" class="page no-tabbar">
-              <div class="page-content login-content">
-                <div class="login-container">
-                  <img class="login-logo" src="./img/f_logo.png"></img>
-                  <div class="list-block">
-                    <ul>
-                      <li class="item-content">
-                        <div class="item-media">
-                           <i class="fa fa-envelope" aria-hidden="true"></i>
-                        </div>
-                        <div class="item-input">
-                          <input type="email" name="login-email" placeholder="E-postadress">
-                        </div>
-                      </li>
-                      <li class="item-content">
-                        <div class="item-media">
-                          <i class="fa fa-lock" aria-hidden="true"></i>
-                        </div>
-                        <div class="item-input">
-                          <input type="password" name="login-password" placeholder="Lösenord">
-                        </div>
-                      </li>
-                      <li>
-                        <a href="#" class="item-link list-button login-btn disabled">
-                          <i class="fa fa-sign-in" aria-hidden="true"></i>
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-                <div class="login-footer row">
-                  <div class="col-45">
-                    <p><a href="signup.html">Skapa ett konto</a></p>
-                  </div>
-                  <div class="col-55">
-                    <p><a href="reset_password.html">Glömt ditt lösenord?</a></p>
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
         <!-- Tab 1 (Home) -->
@@ -200,7 +204,7 @@
             </div>
           </div>
           <div class="pages navbar-fixed">
-            <div data-name="tab5" class="page">
+            <div data-name="tab-alt" class="page">
               <div class="page-content settings-content">
                 <div class="list-block">
                   <ul>
@@ -286,7 +290,7 @@
         </div>
       </div>
     </script>
-    
+
     <script type="text/template7" id="dayTemplate">
       {{#if hasEvents}}
         {{#each events}}
@@ -765,3 +769,41 @@
     <script type="text/javascript" src="js/contact.js"></script>
   </body>
 </html>
+
+<!--  
+ 
+                                
+                          
+                                     _____
+                                ____/     \____
+                             __/               \__
+                            /       _             \
+                          _/      _/        _      \_
+                         /       /           \       \
+                         |                   |       |
+                         |          \__      /       |
+                         \__                       __/
+         _____              \       _      _      /         
+        / _ _ \              \_____/ |    | \____/ 
+       |  o o  |                |    |    |  
+       | \___/ |                |    |    |       __
+        \_____/                 |    |    |      |OO|
+           |                  / | \  |    |___/__\__/__   
+       ____|____            \_\(_)/_/|    |       VV
+           |                 _//"\\_ |    |  
+           |                  /   \  |    |
+          / \                        |    |
+         /   \                       |    |
+       _/     \_                   _/      \_
+wWwwWwwwwWwWwwWwwWwwWwwWWwWWWwWWWWWwWWWWwwwWwwwwWwwwwWwwWwwWwWw
+     _________           ______     _______     _______    
+    |   ______|         /      \   |   __  \   |   __  \   
+    |  |               /   __   \  |  |  |  |  |  |  |  |  
+    |  |____           |  |  |  |  |  |__/  |  |  |__/  |  
+    |   ____|   ____   |  |__|  |  |   ____/   |   ____/   
+    |  |       |____|  |   __   |  |  |        |  |        
+    |  |               |  |  |  |  |  |        |  |        
+    |  |               |  |  |  |  |  |        |  |        
+    |__|               |__|  |__|  |__|        |__|        
+
+-->

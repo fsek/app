@@ -1,53 +1,63 @@
-<div data-name="signup" class="page no-tabbar no-navbar">
+<div data-name="signup" class="page">
   <div class="page-content signup-content">
     <div class="signup-title">Skapa ett konto</div>
-    <div class="list-block" id="signup-form">
+    <form id="signup-form" class="list">
       <ul>
-        <li class="item-content">
+        <li class="item-content item-input">
           <div class="item-media">
             <i class="fa fa-user" aria-hidden="true"></i>
           </div>
-          <div class="item-input">
-            <input type="text" name="signup-firstname"  placeholder="Förnamn">
+          <div class="item-inner">
+            <div class="item-input-wrap">
+              <input type="text" name="firstname" placeholder="Förnamn">
+            </div>
           </div>
         </li>
-        <li class="item-content">
+        <li class="item-content item-input">
           <div class="item-media">
             <i class="fa fa-user" aria-hidden="true"></i>
           </div>
-          <div class="item-input">
-            <input type="text" name="signup-lastname" placeholder="Efternamn">
+          <div class="item-inner">
+            <div class="item-input-wrap">
+              <input type="text" name="lastname" placeholder="Efternamn">
+            </div>
           </div>
         </li>
-        <li class="item-content">
+        <li class="item-content item-input">
           <div class="item-media">
             <i class="fa fa-envelope" aria-hidden="true"></i>
           </div>
-          <div class="item-input">
-            <input type="email" name="signup-email" placeholder="E-postadress">
+          <div class="item-inner">
+            <div class="item-input-wrap">
+              <input type="email" name="email" placeholder="E-postadress">
+            </div>
           </div>
         </li>
-        <li class="item-content">
+         <li class="item-content item-input">
           <div class="item-media">
             <i class="fa fa-lock" aria-hidden="true"></i>
           </div>
-          <div class="item-input">
-            <input type="password" name="signup-password" placeholder="Lösenord">
+          <div class="item-inner">
+            <div class="item-input-wrap">
+              <input type="password" name="password" placeholder="Lösenord">
+            </div>
           </div>
         </li>
-        <li class="item-content">
+        <li class="item-content item-input">
           <div class="item-media">
             <i class="fa fa-lock" aria-hidden="true"></i>
           </div>
-          <div class="item-input">
-            <input type="password" name="signup-password_confirmation" placeholder="Bekräfta lösenord">
+          <div class="item-inner">
+            <div class="item-input-wrap">
+              <input type="password" name="password_confirmation" placeholder="Bekräfta lösenord">
+            </div>
           </div>
         </li>
-        <a href="#" class="item-link button button-big signup-btn">Registrera</a>
+        <a href="#" class="item-link button button-big signup-btn disabled">Registrera</a>
       </ul>
-    </div>
+    </form>
     <div class="signup-footer">
-      <p>Har du redan ett konto?<a href="#" class="back link"> Logga in här.</a></p>
+      <p>Har du redan ett konto? <a href="#" class="back link"> Logga in här.</a></p>
     </div>
   </div>
 </div>

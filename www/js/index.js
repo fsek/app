@@ -25,10 +25,36 @@ const AC_URL = 'wss://stage.fsektionen.se/cable'
 // ActionCable Token URL
 const AC_TOKEN_URL = API + '/messages/new_token';
 
-// Adding views
+// Creating views and defining their routes
 var mainView = app.views.create('.view-main');
-
-var loginView = app.views.create('#login');
+var loginView = app.views.create('#login', {
+  routesAdd: [
+    {
+      name: 'reset_password',
+      path: '/reset_password/',
+      url: './reset_password.html',
+      routes: [
+        {
+          name: 'reset_password_confirm',
+          path: 'reset_password_confirm/',
+          componentUrl: './reset_password_confirmation.html'
+        }
+      ]
+    },
+    {
+      name: 'signup',
+      path: '/signup/',
+      url: './signup.html',
+      routes: [
+        {
+          name: 'signup_confirm',
+          path: 'signup_confirm/',
+          componentUrl: './signup_confirmation.html'
+        }
+      ]
+    }
+  ]
+});
 var homeView = app.views.create('#view-home');
 var calendarView = app.views.create('#view-calendar');
 var messagesView = app.views.create('#view-messages');

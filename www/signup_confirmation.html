@@ -1,13 +1,15 @@
-<div data-name="signup-confirmation" class="page no-tabbar no-navbar no-swipeback">
-  <div class="page-content signup-confirm-content">
-    <div class="content-block-title">Välkommen till<p>F-sektionen</p></div>
-    <div class="content-block">
-      <p>Hej, <span>{{firstname}} {{lastname}}</span></p>
-      <p>Vi här på sektionen skulle vilja gratulera dig till att du har lyckats registrera ett konto. Det visar en härdig intelligens och vi tror därför att du kommer klara dig väldigt bra här. Det enda som står mellan oss nu är din e-postbekräftelse.</p>
-      <p>Vi har skickat ett mail till <span>{{email}}</span> med en bekräftelselänk.</p>
-    </div>
-    <div class="content-block">
-      <p>Har du bekräftat din e-post? <a href="#" class="back link">Logga in här.</a><p>
+<template>
+  <div data-name="signup-confirm" class="page">
+    <div class="page-content signup-confirm-content">
+      <div class="block-title">Välkommen till<p>F-sektionen</p></div>
+      <div class="block">
+        <p>Hej, <span>{{firstname}} {{lastname}}</span></p>
+        <p>Vi här på sektionen skulle vilja gratulera dig till lyckad kontoregistrering. Det visar en härdig intelligens och en otrolig potential. Vi tror därför att du kommer klara dig väldigt bra här. Det enda som står mellan oss nu är din e-postbekräftelse.</p>
+        <p>Vi har skickat ett mail till <span>{{email}}</span> med en bekräftelselänk.</p>
+      </div>
+      <div class="block">
+        <p>Har du bekräftat din e-post? <a href="/" data-force="true" class="back link">Logga in här.</a><p>
+      </div>
     </div>
   </div>
-</div>
+</template>

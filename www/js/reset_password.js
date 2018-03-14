@@ -1,28 +1,36 @@
-$$(document).on('page:init', '.page[data-name="reset-passworc"]', function (page) {
-  $('.reset-password-btn').on('click', function(){
-    var email = $('input[name="reset-password-email"]').val();
+$$(document).on('page:init', '.page[data-name="reset-password"]', function (page) {
+  // Enable button if the input field isn't empty 
+  $('#reset-password-form input').on('input', function(e) {
+    var resetPwBtn = $('.reset-password-btn');
+    var resetPwFormData = app.form.convertToData('#reset-password-form');
 
-    $.auth.requestPasswordReset({
-      email: email
-    })
-    .done(function(){
-      loginView.router.load({
-        url: 'reset_password_confirmation.html',
-        reload: true,
-        context: {
-          email: email
-        }
-      });
-    })
-    .fail(function(resp){
-      var error = '';
-      if(email != ''){
-        error = 'Ogiltig e-postaddress';
-      }else{
-        error = 'Måste anges';
+    if(resetPwFormData.email != '') {
+      if(resetPwBtn.hasClass('disabled')) {
+        resetPwBtn.removeClass('disabled');
       }
-      handleInputError('reset-password-email', error);
-    });
+    }else{
+      if(!resetPwBtn.hasClass('disabled')) {
+        resetPwBtn.addClass('disabled');
+      }
+    }
+  });
+
+  // Get the input data from the form and pass it in the auth request. If it fails we add errors,
+  // otherwise we load the confirmation page with the input data as context to be displayed
+  $('.reset-password-btn').on('click', function() {
+    var resetPwFormData = app.form.convertToData('#reset-password-form');
+    
+    $.auth.requestPasswordReset(resetPwFormData)
+      .done(function(){
+        loginView.router.navigate('reset_password_confirm/', {
+          context: resetPwFormData
+        });
+      })
+      .fail(function(resp){
+        var error = 'Ogiltig e-postaddress';
+        var inputEl = $('#reset-password-form input');
+        handleInputError(inputEl, error);     // Defined in signup.js
+      });
   });
 
   $(page.container).on('focus', 'input', function(e) {

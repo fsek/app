@@ -10,7 +10,7 @@
 
     <!-- Material/iOS stylesheets. Will be replaced on deploy -->
     <link rel="stylesheet" href="lib/framework7/css/framework7.min.css">
-    <link rel="stylesheet" href="css/material-overrides.css">
+    <link rel="stylesheet" href="css/ios-overrides.css">
 
     <!-- General stylesheets -->
     <link rel="stylesheet" href="css/font-awesome.min.css">
@@ -109,31 +109,29 @@
         </div>
         <!-- Tab 1 (Home) -->
         <div id="view-home" class="view view-main tab tab-active">
-          <div class="navbar android-hide">
-            <div class="navbar-inner">
-              <div class="center sliding android-hide">Hem</div>
-            </div>
-          </div>
-          <div class="pages navbar-fixed">
-            <div data-name="tab1" class="page">
-              <div class="page-content">
-                <div class="content-block subtabs">
-                  <div class="buttons-row">
-                    <a href="#subtab1" class="tab-link active button">Nyheter</a>
-                    <a href="#subtab2" class="tab-link button">Evenemang</a>
+          <div data-name="home" class="page">
+            <div class="navbar">
+              <div class="navbar-inner sliding">
+                <div class="title android-hide">Hem</div>
+                <div class="subnavbar home-subnavbar">
+                  <div class="subnavbar-inner">
+                    <div class="segmented segmented-raised">
+                      <a href="#subtab1" class="button tab-link tab-link-active">Nyheter</a>
+                      <a href="#subtab2" class="button tab-link">Evenemang</a>
+                    </div>
                   </div>
                 </div>
-                <div class="tabs-swipeable-wrap subtab-container">
-                  <div class="tabs">
-                    <div id="subtab1" class="tab subtab active infinite-scroll">
-                      <div class="news-list" id="news-list"></div>
-                      <div class="infinite-scroll-preloader">
-                        <div class="preloader"></div>
-                      </div>
-                    </div>
-                    <div id="subtab2" class="tab subtab">
-                    </div>
+              </div>
+            </div>
+            <div class="tabs-animated-wrap subtab-container">
+              <div class="tabs">
+                <div id="subtab1" class="tab subtab tab-active infinite-scroll-content page-content">
+                  <div class="news-list" id="news-list"></div>
+                  <div class="infinite-scroll-preloader">
+                    <div class="preloader"></div>
                   </div>
+                </div>
+                <div id="subtab2" class="tab subtab page-content">
                 </div>
               </div>
             </div>
@@ -623,13 +621,11 @@
       {{#each news}}
         <div class="card news-card">
           <div class="card-header">{{title}}</div>
-          <div class="card-content">
-            <div class="card-content-inner">
-              {{content}}
-              {{#if image}}
-                <img class="img-responsive" src="{{image}}"></img>
-              {{/if}}
-            </div>
+          <div class="card-content card-content-padding">
+            {{content}}
+            {{#if image}}
+              <img class="img-responsive" src="{{image}}"></img>
+            {{/if}}
           </div>
           <div class="card-footer">
             <span class="name">{{user.name}}</span>

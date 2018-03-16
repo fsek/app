@@ -26,7 +26,6 @@ const AC_URL = 'wss://stage.fsektionen.se/cable'
 const AC_TOKEN_URL = API + '/messages/new_token';
 
 // Creating views and defining their routes
-var mainView = app.views.create('.view-main');
 var loginView = app.views.create('#login', {
   routesAdd: [
     {
@@ -55,7 +54,15 @@ var loginView = app.views.create('#login', {
     }
   ]
 });
-var homeView = app.views.create('#view-home');
+var homeView = app.views.create('#view-home', {
+  routesAdd: [
+    {
+      name: 'event',
+      path: '/event/:eventId',
+      url: './event.html',
+    },
+  ]
+});
 var calendarView = app.views.create('#view-calendar');
 var messagesView = app.views.create('#view-messages');
 var notificationsView = app.views.create('#view-notifications');

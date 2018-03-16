@@ -1,11 +1,6 @@
-//DELETE THIS IN WITH V2
-myApp.onPageInit('tab1', function(page){
-  initHome();
-});
-
 function loadHome() {
-  if (!$$('#tab1').hasClass('loaded')) {
-    $$('#tab1').addClass('loaded');
+  if (!$$('#view-home').hasClass('loaded')) {
+    $$('#view-home').addClass('loaded');
     initHome();
   }
 }
@@ -58,14 +53,15 @@ function initHome() {
     }
   }
 
-  function detachInfinite() {
-    app.detachInfiniteScroll(newsTab);
+  function destroyInfinite() {
+    app.infiniteScroll.destroy(newsTab);
     newsTab.find('.infinite-scroll-preloader').remove();
   }
 
   function loadMoreNews() {
     $.getJSON(API + '/news?page=' + page)
       .then(function(resp) {
+
         addNews(resp.news);
         page++;
         loadingNews = false;
@@ -78,7 +74,7 @@ function initHome() {
         loadingNews = true;
         loadMoreNews();
       } else {
-        detachInfinite();
+        destroyInfinite();
       }
     }
   }

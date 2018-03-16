@@ -16,7 +16,7 @@
 }
   
 .navbar:after {
-  background:  #eb7125;
+  display: none !important;
 }
 
 .navbar i.icon, .navbar a{
@@ -24,7 +24,7 @@
 }
 
 .tabbar{
-  background: #eb7125;
+  background: #eb7125 !important;
   color: #ffe0b3;
 }
 
@@ -33,29 +33,14 @@
   height: 22px;
 }
 
-.subtabs {
-  margin: 0;
-  padding: 0px 10px 10px 10px;
-  background: #eb7125;
-}
-
-#subtab2 .day-title{
-  margin-top: 10px;
-}
-
-.subtabs .tab-link{
-  border-color: #fff !important;
-  color: #fff !important;
-}
-
-.subtabs .tab-link.active{
-  color: #eb7125 !important;
-  background-color: #fff !important;
+.home-subnavbar {
+  margin-top: -12px !important;
 }
 
 .subtab-container {
-  height: -webkit-calc(100vh - 125px);
-  height: calc(100vh - 125px);
+  margin-top: 77px;
+  height: -webkit-calc(100vh - 120px);
+  height: calc(100vh - 120px);
 }
 
 .notification-list li:last-child {

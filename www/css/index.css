@@ -2,11 +2,11 @@ a:active {
   color:#d35400;
 }
 
-.hidden{
+.hidden {
   display: none !important;
 }
 
-.navbar{
+.navbar {
   background-color: #eb7125 !important;
   color: #fff;
 }
@@ -25,7 +25,7 @@ a:active {
   display: none;
 }
 
-.tabbar a.active, .tabbar a.active i{
+.tabbar a.tab-link-active, .tabbar a.tab-link-active i {
   color: #fff !important;
 }
 
@@ -33,21 +33,21 @@ a:active {
   background: #fff;
 }
 
-.tabbar i{
+.tabbar i {
   font-size: 24px;
   color: #f9d5be !important;
 }
 
-.tabbar i.fa-comments{
+.tabbar i.fa-comments {
   font-size: 30px;
 }
 
-.tabbar i.fa-home{
+.tabbar i.fa-home {
   padding-top: 1px;
   font-size: 32px;
 }
 
-.tabbar i.fa-bars{
+.tabbar i.fa-bars {
   font-size: 27px;
 }
 

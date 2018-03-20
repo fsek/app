@@ -11,8 +11,20 @@
   margin-bottom: 44px;
 }
 
-.calendar-page .content-block{
-  margin-top: -1px;
+#calendar {
+  margin-top: 44px;
+}
+
+.calendar, .calendar .calendar-week-header {
+  background-color: #fff;
+}
+
+.calendar-page .calendar-day-today span {
+  background: none !important;
+}
+
+.calendar-page .calendar-custom-toolbar {
+  background-color: #eb7125;
 }
   
 .navbar:after {
@@ -45,14 +57,6 @@
 
 .notification-list li:last-child {
   margin-bottom: 53px;
-}
-
-.picker-calendar {
-  color: #eb7125;
-}
-
-.picker-calendar .picker-calendar-day-today span{
-  background: none;
 }
 
 .ios-hide{

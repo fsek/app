@@ -109,7 +109,7 @@
         </div>
         <!-- Tab 1 (Home) -->
         <div id="view-home" class="view view-main tab tab-active">
-          <div data-name="home" class="page">
+          <div data-name="home" class="page page-with-subnavbar">
             <div class="navbar">
               <div class="navbar-inner sliding">
                 <div class="title android-hide">Hem</div>
@@ -139,18 +139,19 @@
         </div>
         <!-- Tab 2 (Calendar) -->
         <div id="view-calendar" class="view tab">
-          <div class="navbar hidden"></div>
-          <div class="pages navbar-fixed">
-            <div data-name="tab2" class="page calendar-page">
-              <div class="content-block">
-                <div class="content-block-inner calendar-block">
-                  <div id="calendar"></div>
+          <div data-name="calendar" class="page calendar-page">
+            <div class="navbar calendar-navbar">
+              <div class="navbar-inner sliding">
+                <div class="left">Månad År</div>
+                <div class="right">
+                  <a href="#" class="link">Idag</a>
                 </div>
               </div>
-              <div class="row day-title"></div>
-              <div class="day-content">
-                <span class="preloader"></span>
-              </div>
+            </div>
+            <div id="calendar"></div>
+            <div class="row day-title"></div>
+            <div class="day-content">
+              <span class="preloader"></span>
             </div>
           </div>
         </div>
@@ -278,17 +279,6 @@
     </div>
     
     <!-- Templates -->
-    <script type="text/template7" id="calToolbarTemplate">
-      <div class="toolbar calendar-custom-toolbar">
-        <div class="toolbar-inner">
-          <div class="left"></div>
-          <div class="right">
-            <a href="#" class="link icon-only">Idag</a>
-          </div>
-        </div>
-      </div>
-    </script>
-
     <script type="text/template7" id="dayTemplate">
       {{#if hasEvents}}
         {{#each events}}

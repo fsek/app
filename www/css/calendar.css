@@ -3,65 +3,37 @@
   flex-direction: column;
 }
 
-.calendar-page .content-block{
-  margin-bottom: 25px;
-}
-
-.calendar-block {
-  margin-bottom: -25px;
-  margin-right: -16px;
-  padding: 0;
-  width: auto;
-}
-
-.picker-calendar.picker-modal-inline {
+.calendar.calendar-inline {
   height: 310px;
 }
 
-.picker-calendar .picker-header,
-.picker-calendar .picker-footer {
-  display: none;
+.calendar .calendar-week-header {
+  height: 20px;
+  color: #eb7125;
 }
 
-.picker-calendar .calendar-custom-toolbar {
-  margin-bottom: 3px;
-  background-color: #eb7125;
-  color: #fff;
-}
-
-.picker-calendar .calendar-custom-toolbar .toolbar-inner {
-  padding-left: 10px;
-}
-
-.picker-calendar .calendar-custom-toolbar .toolbar-inner a{
-  color: #fff;
-}
-
-.picker-calendar .calendar-custom-toolbar .toolbar-inner .left{
-  font-weight: bold;
-}
-
-.picker-calendar .picker-calendar-day-selected span{
+.calendar .calendar-day-selected span{
   background-color: #eb7125 !important;
 }
 
-.picker-calendar .picker-calendar-day-today:not(.picker-calendar-day-selected) span{
+.calendar .calendar-day-today:not(.calendar-day-selected) span{
   color: #eb7125 !important;
 }
 
-.picker-calendar .picker-calendar-day-has-events.picker-calendar-day-today span:after{
-  background-color: #eb7125 !important;
+.calendar .calendar-day-has-events.calendar-day-today span:after{
+  background: #eb7125 !important;
 }
 
-/* Overrides F7 default: (100% - 3*48px) = three toolbars. We only have one */
-.picker-modal .picker-header+.picker-footer+.toolbar+.picker-modal-inner {
-  height: -webkit-calc(100% - 48px);
-  height: -moz-calc(100% - 48px);
-  height: calc(100% - 48px);
+.calendar .calendar-day-has-events span:after{
+  background: #ccc !important;
+}
+
+.calendar .calendar-day-has-events.calendar-day-selected span:after{
+  background: none !important;
 }
 
 /* Overrides F7 default: Without "-1px" some content overflows! */
-.picker-calendar-row {
+.calendar-row {
   height: -webkit-calc(100% / 6 - 1px);
   height: -moz-calc(100% / 6 - 1px);
   height: calc(100% / 6 - 1px);
@@ -74,14 +46,12 @@
   background-color: #eb7125;
   color: #fff;
   font-weight: bold;
-  box-shadow: 0 1px 2px rgba(0,0,0,.3);
 }
 
 .day-content {
   flex: 1 1 auto;
   overflow-y: auto;
   width: 100%;
-  margin-top: 1px;
 }
 
 .day-content .disabled{
@@ -100,7 +70,7 @@
 }
 
 a.day-content-event {
-  color: #eb7125;
+  color: #eb7125 !important;
   display: block;
   background-color: #fff;
   margin: 7px 10px;
@@ -151,43 +121,43 @@ a.day-content-event {
 
 /* Adjust calendar height for different screen sizes */
 @media screen and (min-height: 600px) {
-  .picker-calendar.picker-modal-inline {
+  .calendar.calendar-inline {
     height: 340px;
   }
 }
 
 @media screen and (min-height: 650px) {
-  .picker-calendar.picker-modal-inline {
+  .calendar.calendar-inline {
     height: 350px;
   }
 }
 
 @media screen and (min-height: 700px) {
-  .picker-calendar.picker-modal-inline {
+  .calendar.calendar-inline {
     height: 380px;
   }
 }
 
 @media screen and (min-height: 750px) {
-  .picker-calendar.picker-modal-inline {
+  .calendar.calendar-inline {
     height: 400px;
   }
 }
 
 @media screen and (min-height: 850px) {
-  .picker-calendar.picker-modal-inline {
+  .calendar.calendar-inline {
     height: 425px;
   }
 }
 
 @media screen and (min-height: 1000px) {
-  .picker-calendar.picker-modal-inline {
+  .calendar.calendar-inline {
     height: 575px;
   }
 }
 
 @media screen and (min-height: 1300px) {
-  .picker-calendar.picker-modal-inline {
+  .calendar.calendar-inline {
     height: 775px;
   }
 }

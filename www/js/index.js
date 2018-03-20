@@ -63,13 +63,21 @@ var homeView = app.views.create('#view-home', {
     },
   ]
 });
-var calendarView = app.views.create('#view-calendar');
+var calendarView = app.views.create('#view-calendar', {
+  routesAdd: [
+    {
+      name: 'event',
+      path: '/event/:eventId',
+      url: './event.html',
+    },
+  ]
+});
 var messagesView = app.views.create('#view-messages');
 var notificationsView = app.views.create('#view-notifications');
 var alternativesView = app.views.create('#view-alternatives');
 
 // Complie templates
-var templateNames = ['calToolbarTemplate', 'dayTemplate', 'dayTitleTemplate', 'eventPageTemplate', 'groupTemplate', 'messageTemplate', 
+var templateNames = ['contactTemplate', 'dayTemplate', 'dayTitleTemplate', 'eventPageTemplate', 'groupTemplate', 'messageTemplate', 
   'newsTemplate', 'notificationTemplate', 'songbookTemplate', 'songTemplate'];
 app.templates = compileTemplates(templateNames);
 

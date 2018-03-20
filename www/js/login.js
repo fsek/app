@@ -124,8 +124,10 @@ function afterSignIn() {
   $('#login-form input[name="password"]').val('');
   $('.login-btn').addClass('disabled');
 
-  pushAfterLogin();
-  initNotificationBadge();
+  //pushAfterLogin();
+  //initNotificationBadge();
   loadHome();
   getGroups();
+  if (page.find('#calendar').is(':empty')) initCalendar($('.page.calendar-page'));
+  getNotifications(false);
 }

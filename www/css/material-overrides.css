@@ -66,24 +66,27 @@
     background-color: #eb7125 !important;
 }
 
-.picker-calendar .calendar-custom-toolbar .toolbar-inner {
-  padding-top: 10px;
-}
-
-.picker-calendar .picker-calendar-week-days {
+.calendar .calendar-week-header {
   color: #eb7125;
 }
 
-.picker-calendar {
+.calendar {
   color: #000;
+  margin-top: 88px;
 }
 
-.picker-calendar .picker-calendar-day-has-events span:after {
-  background-color: #ccc !important;
+.calendar-navbar {
+  height: 88px !important;
+  font-size: 16px !important;
 }
 
-.pages {
-  background: #efeff4;
+.calendar-navbar .navbar-inner {
+  height: 40px;
+  margin-top: 48px;
+}
+
+.calendar-navbar .left {
+  margin-left: 16px;
 }
 
 .message-name {

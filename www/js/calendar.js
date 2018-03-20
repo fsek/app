@@ -1,69 +1,63 @@
-//init calendar on tab3 show (if not already init:ed)
-$$('#tab2').on('tab:show', function() {
-  var page = $$('.page.calendar-page');
-  if (page.find('#calendar').is(':empty')) {
-    initCalendar(page);
-  }
-});
+// Init calendar if not already inited
+$$(document).on('page:init', '.page[data-name="calendar"]', function (e) {
+  var page = $('.page.calendar-page');
 
-//DELETE THIS IN WITH V2
-//init function doesn't run first time
-myApp.onPageInit('tab2', function(page){
-  var page = $$('.page.calendar-page');
-  if (page.find('#calendar').is(':empty')) {
+  // If signed in and calendar container is empty
+  if(!jQuery.isEmptyObject($.auth.user) && page.find('#calendar').is(':empty')) {   
     initCalendar(page);
   }
 });
 
 function initCalendar(page) {
-  var toolbar = null;
+  var navbar = null;
   var firstInit = true;
 
   // Initialize F7 calendar
-  var calendar = app.calendar({
-    container: page.find('#calendar'),
+  var calendar = app.calendar.create({
+    containerEl: page.find('#calendar'),
     value: [new Date()],
     events: [],
     dayNamesShort: dayNamesShort,
     monthNames: monthNames,
-    touchmove: true,
+    touchMove: true,
     weekHeader: true,
-    toolbarTemplate: app.templates.calToolbarTemplate(),
+    toolbar: false,
+    on: {
+      open: function (p) {
+        firstInit = false;
+        navbar = $(app.navbar.getElByPage(page));
 
-    onOpen: function (p) {
-      firstInit = false;
-      toolbar = page.find('.calendar-custom-toolbar');
+        // Adding events
+        loadEvents(p, page.find('.calendar-month'), true);
+        setNavbarDate(p);
 
-      // Adding events
-      loadEvents(p, page.find('.picker-calendar-month'), true);
-      setToolbarDate(p);
-
-      // Initialize "today click" listener
-      toolbar.find('.right').on('click', todayClick);
-    },
-    onMonthYearChangeStart: function (p, year, month) {
-      p.params.events = [];
-      loadEvents(p, page.find('.picker-calendar-month'), true);
-      setToolbarDate(p);
-    },
-    onMonthAdd: function (p, monthContainer) {
-      if(!firstInit) loadEvents(p, $$(monthContainer), false);
-    },
-    onDayClick: function(p, dayContainer) {
-      displayDayContent(p.params.events, $$(dayContainer));
+        // Initialize "today click" listener
+        navbar.find('.right').on('click', todayClick);
+      },
+      monthYearChangeStart: function (p, year, month) {
+        p.params.events = [];
+        loadEvents(p, page.find('.calendar-month'), true);
+        setNavbarDate(p);
+      },
+      monthAdd: function (p, monthContainer) {
+        if(!firstInit) loadEvents(p, $$(monthContainer), false);
+      },
+      dayClick: function(p, dayContainer) {
+        displayDayContent(p.params.events, $$(dayContainer));
+      }
     }
   });
 
   function loadEvents(p, monthContainers, store) {
-    var start = new Date(p.currentYear, p.currentMonth -1, 1).yyyymmdd();
-    var end = new Date(p.currentYear, p.currentMonth +2, 0).yyyymmdd();
+    var start = new Date(p.currentYear, p.currentMonth - 1, 1).yyyymmdd();
+    var end = new Date(p.currentYear, p.currentMonth + 2, 0).yyyymmdd();
 
     $.getJSON(API + '/events?start=' + start + '&end=' + end)
-    .then(function(resp) {
+    .done(function(resp) {
       for (var event of resp.events) {
         var eventDate = new Date(event.start);
         var dayContainer = findDay(eventDate, monthContainers);
-        dayContainer.addClass('picker-calendar-day-has-events');
+        dayContainer.addClass('calendar-day-has-events');
 
         if (store && eventDate.getMonth() == p.currentMonth) {
           event.end = new Date(event.end);
@@ -86,19 +80,19 @@ function initCalendar(page) {
     if (calendar.currentYear !== today.getFullYear() || calendar.currentMonth !== today.getMonth()) {
       calendar.setYearMonth(today.getFullYear(), today.getMonth());
     } else {
-      var dayContainer = page.find('.picker-calendar-day-today');
+      var dayContainer = page.find('.calendar-day-today');
       displayDayContent(calendar.params.events, dayContainer);
     }
   }
 
-  // Sets toolbar to active month and year
-  function setToolbarDate(p) {
-    toolbar.find('.left').text(monthNames[p.currentMonth] + ' ' + p.currentYear);
+  // Sets navbar to active month and year
+  function setNavbarDate(p) {
+    navbar.find('.left').text(monthNames[p.currentMonth] + ' ' + p.currentYear);
   }
 
-  // Updates selected day if it's in the month currently viewed
+  // Updates selected day if it's in the month currently pageed
   function updateDayContent(p) {
-    var selectedDay = page.find('.picker-calendar-day-selected');
+    var selectedDay = page.find('.calendar-day-selected');
 
     if (selectedDay.data('year') == p.currentYear && selectedDay.data('month') == p.currentMonth) {
       displayDayContent(p.params.events, selectedDay);
@@ -110,7 +104,7 @@ function initCalendar(page) {
     var hasEvents = false;
     var date = new Date(dayContainer.data('year'), dayContainer.data('month'), dayContainer.data('day'));
 
-    if (dayContainer.hasClass('picker-calendar-day-has-events')) {
+    if (dayContainer.hasClass('calendar-day-has-events')) {
       for (event of events) {
         if(sameDay(event.start, date)) displayedEvents.push(event);
       }
@@ -123,17 +117,18 @@ function initCalendar(page) {
       hasEvents = true;
     }
 
-    var title = date.dateString();
-
     // Update day content
-    var templateHTML = app.templates.dayTemplate({hasEvents: hasEvents, events: displayedEvents, date: date});
-    page.find('.day-content').html(templateHTML);
+    var title = date.dateString();
     page.find('.day-title').html(title);
+
+    var templateHTML = app.templates.dayTemplate({hasEvents: hasEvents, events: displayedEvents});
+    page.find('.day-content').html(templateHTML);
+    
   }
 
   // Finds the div for `date` in `monthContainers`
   function findDay(date, monthContainers) {
-    return monthContainers.find('.picker-calendar-day[data-year="' + date.getFullYear() + '"]' +
+    return monthContainers.find('.calendar-day[data-year="' + date.getFullYear() + '"]' +
                                                     '[data-month="' + date.getMonth() + '"]' +
                                                     '[data-day="' + date.getDate() + '"]');
   }

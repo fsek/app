@@ -189,11 +189,6 @@
                       </div>
                     </a>
                   </li>
-                </ul>
-              </div>
-              <div class="content-block-title">Om</div>
-              <div class="list-block">
-                <ul>
                   <li>
                     <a href="achievements.html" class="item-link">
                       <div class="item-content">
@@ -203,6 +198,11 @@
                       </div>
                     </a>
                   </li>
+                </ul>
+              </div>
+              <div class="content-block-title">Om</div>
+              <div class="list-block">
+                <ul>
                   <li>
                     <a href="about_section.html" class="item-link">
                       <div class="item-content">
@@ -729,6 +729,39 @@
       {{/each}}
     </script>
 
+    <script type="text/template7" id="achievementTemplate">
+      <ul>
+        {{#each kalle}}
+        <li>
+          <a href="achievement_page.html" class="item-link item-content">
+            <div class="item-content">
+              <div class="item-media"><img src="..." width="44"></div>
+              <div class="item-inner">
+                <div class="item-title-row">
+                  <div class="item-title">{{name}}</div>
+                </div>
+                <div class="item-subtitle">{{points}}</div>
+              </div>
+            </div>
+          </a>
+        </li>
+        {{/each}}
+      </ul>
+    </script>
+
+     <script type="text/template7" id="achievementpageTemplate">
+      {{#each kallepage}}
+        <div class="content-block-title">{{title}}</div>
+        <div class="content-block">
+          <div class="content-block song-text">
+          <div class="content-block-inner">
+            {{text}}
+          </div>
+        </div>
+        </div>
+      {{/each}
+    </script>
+
     <!-- External JS Libraries -->
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src='js/node_modules/jquery/dist/jquery.js'></script>
@@ -759,5 +792,6 @@
     <script type="text/javascript" src="js/user_page.js"></script>
     <script type="text/javascript" src="js/songbook.js"></script>
     <script type="text/javascript" src="js/spinninglogo.js"></script>
+    <script type="text/javascript" src="js/achievements.js"></script>
   </body>
 </html>

@@ -1,3 +1,65 @@
 .achievements-content .item-title {
   white-space: initial;
 }
+
+  .progress-bar {
+    background-color: #1a1a1a;
+    height: 20px;
+    padding: 2px;
+    margin: 0px 0;         
+    border-radius: 5px;
+    box-shadow: 0 1px 5px #000 inset, 0 1px 0 #444;           
+}
+
+.progress-bar span {
+    display: inline-block;
+    height: 100%;
+    border-radius: 3px;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, .5) inset;
+    transition: width .4s ease-in-out;    
+}
+
+.progress-text span{
+  border-radius: 3px;
+}
+
+.orange span {
+      background-color: #eb7125;
+      background-image: linear-gradient(top, #fecf23, #fd9215);  
+}   
+
+
+.krans {
+  width:200px;
+  margin:auto;
+  display:block;
+}
+
+.achievementpage-content .content-block-title{
+  font-size: 27px;
+  color: #eb7125;
+  white-space: initial;
+  text-transform: initial;
+  height: auto;
+  padding-bottom: 5px;
+  margin-bottom: 5px;
+  margin-top: 20px;
+}
+
+.achievementpage-content .content-block {
+  margin: 15px 0px 15px;
+}
+
+.achievementpage-content .content-block p{
+  color: #000;
+  font-size: 16px;
+  margin:2px 2px 14px;
+}
+
+.achievementpage-content .content-block p:last-child{
+  margin-bottom: 2px;
+}
+
+.achievementpage-content .content-block span{
+  color: #eb7125;
+}

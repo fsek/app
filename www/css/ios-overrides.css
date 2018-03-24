@@ -26,7 +26,11 @@
 .calendar-page .calendar-custom-toolbar {
   background-color: #eb7125;
 }
-  
+
+#event-signup-groupcustom, .event-signup-container .input-showing{
+  margin-top: 8px;
+}
+
 .navbar:after {
   display: none !important;
 }

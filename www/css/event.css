@@ -1,16 +1,26 @@
-.event-content .card-content{
-  font-size: 14px;
+.event-content .card-content .item-inner:after, .event-content .card-content ul:before, .event-content .list-group:last-of-type ul:after {
+  display: none;
 }
 
-.event-content .list-group ul:after{
-  background-color: #e1e1e1;
+.event-content .fa-envelope {
+  font-size: 17px;
 }
 
-.event-content .item-inner:after, .event-content ul:before, .event-content .list-group:last-of-type ul:after{
-  content: none;
+.event-content .fa-check-circle {
+  color: #4e9d2d;
 }
 
-.event-content .item-media{
+.event-content .fa-times-circle, .event-content .fa-exclamation-circle {
+  color: #e74c3c;
+}
+
+.event-content i {
+  color: #eb7125;
+  font-size: 22px;
+  margin: auto;
+}
+
+.event-content .item-media {
   width: 20px;
 }
 
@@ -18,116 +28,111 @@
   color: #eb7125 !important;
 }
 
-.event-content i{
-  color: #eb7125;
-  font-size: 22px;
-  margin: auto;
+.event-content .item-title {
+  white-space: initial;
 }
 
-.event-content .fa-envelope{
-  font-size: 17px;
+.event-content .list-group ul:after{
+  background-color: #e1e1e1;
 }
 
-.event-content .preloader{
+.event-content .preloader {
   margin-left: calc(50% - 20px);
   margin-top: calc(50% - 20px);
   height: 40px;
   width: 40px;
 }
 
-.event-title{ 
-  font-size: 24px;
-  font-weight: bold;
-  color: #eb7125;
-  min-height: 50px; 
-}
-
-.event-info-place{
-  margin-top: -10px;
-}
-
-.event-description-container span{
-  position: absolute;
-  left: 0;
-  right: 0;
-  text-align: center;
-  margin-top: -28px;
-}
-
-.event-description-container i{
-  font-size: 25px;
-}
-
-.event-description{
+.event-description {
   max-height: 100px;
   overflow: hidden;
-  padding: 0 15px;
   transition: 500ms;
 }
 
-.event-description.content-fade:after{
+.event-description.content-fade:after {
   position: absolute;
   bottom: 0;  
   left: 0;
   height: 100%;
   width: 100%;
   content: "";
-  background: linear-gradient(to top, rgba(255, 255, 255, 0.95) 5%, rgba(255, 255, 255, 0) 80%);
+  background: linear-gradient(to top, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 90%);
   pointer-events: none;
 }
 
-.event-description p:first-child{
+.event-description p:first-child {
   margin-top: 8px;
 }
 
-.event-signup-container input{
+.event-description-container {
+  padding: 0 15px;
+}
+
+.event-description-container i {
+  padding-bottom: 5px;
+  font-size: 25px;
+}
+
+.event-description-container span {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  text-align: center;
+}
+
+.event-signup-container input {
   font-size: 14px !important;
 }
 
-.event-signup-container .input-showing{
-  margin-top: 8px;
-}
-
-#event-signup-groupcustom input, #event-signup-group input, #event-usertype input{
-  background-color: #ececec;
-  padding-left: 10px;
-  border-radius: 4px;
-}
-
-.event-signup-btn{
+.event-signup-btn {
   background-color: #eb7125;
   border-color: #eb7125 !important;
   color: #fff !important;
   margin: 15px;
 }
 
-.event-signup-btn.active-state{
+.event-signup-btn.active-state {
   background-color: #b95f26 !important;
 }
 
-.event-signup-cancel-btn{
+.event-signup-cancel-btn {
   background-color: #e74c3c;
   border-color: #e74c3c !important;
   color: #fff !important;
   margin: 15px;
 }
 
-.event-signup-cancel-btn.active-state{
+.event-signup-cancel-btn.active-state {
   background-color: #a73529 !important;
 }
 
-.popover-about-signup{
-  width: 300px;
+#event-signup-group input, #event-signup-groupcustom input, #event-usertype input {
+  background-color: #ececec;
+  padding-left: 10px;
+  border-radius: 4px;
 }
 
-.event-content .fa-check-circle{
-  color: #4e9d2d;
+.event-title { 
+  font-size: 24px !important;
+  white-space: initial;
+  font-weight: bold;
+  color: #eb7125;
 }
 
-.event-content .fa-times-circle, .event-content .fa-exclamation-circle{
-  color: #e74c3c;
+.ios .event-contact a, .md .event-contact a {
+  color: #eb7125;
 }
 
-.event-contact{
-  color: #a7a7a7;
+.ios .event-content .list, .md .event-content .list {
+  font-size: 14px;
+}
+
+.popover-about-signup .block-title {
+  color: #eb7125;
+  margin-top: 20px;
+}
+
+.popover-about-signup .block {
+  margin-bottom: 20px;
 }

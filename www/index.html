@@ -293,7 +293,9 @@
                   <i class="fa fa-clock-o" aria-hidden="true"></i>
                   {{#unless allday}}
                     {{js "this.start.hhmm()"}} - {{js "this.end.hhmm()"}}
-                  {{else}} Hela dagen {{/unless}}
+                  {{else}} 
+                    Hela dagen 
+                  {{/unless}}
                 </p>
                 <p class="location">
                   <i class="fa fa-map-marker" aria-hidden="true"></i>
@@ -322,67 +324,79 @@
           <div class="card-header event-title">
             {{#if title_short}} {{title_short}} {{else}} {{title}} {{/if}}
           </div>
-          <div class="card-content list">
-            <div class="list-group">
-              <ul>
-                <li class="item-content">
-                  <div class="item-media">
-                    <i class="fa fa-clock-o" aria-hidden="true"></i>
-                  </div>
-                  <div class="item-inner">{{date_string}}</div>
-                </li>
-                <li class="item-content event-info-place">
-                  <div class="item-media">
-                    <i class="fa fa-map-marker" aria-hidden="true"></i>
-                  </div>
-                  <div class="item-inner">{{location}}</div>
-                </li>
-              </ul>
-            </div>
-            <div class="list-group">
-              <ul>
-                <li class="event-description-container">
-                  <div class="event-description">{{description}}</div>
-                </li>
-              </ul>
-            </div>
-            <div class="list-group">
-              <ul>
-                {{#if hasDressCode}}
+          <div class="card-content">
+            <div class="list">
+              <div class="list-group">
+                <ul>
                   <li class="item-content">
                     <div class="item-media">
-                      <i class="fa fa-briefcase" aria-hidden="true"></i>
-                    </div>
-                    <div class="item-inner">{{join dress_code delimiter=" eller "}}</div>
-                  </li>
-                {{/if}}
-                {{#if cash}}
-                  <li class="item-content">
-                    <div class="item-media">
-                      <i class="fa fa-money" aria-hidden="true"></i>
+                      <i class="fa fa-clock-o" aria-hidden="true"></i>
                     </div>
                     <div class="item-inner">
-                      Kostar pengar {{#if price}} ({{price}} kr) {{/if}}
+                      <div class="item-title">{{date_string}}</div>
                     </div>
                   </li>
-                {{/if}}
-                {{#if food}}
                   <li class="item-content">
                     <div class="item-media">
-                      <i class="fa fa-cutlery" aria-hidden="true"></i>
+                      <i class="fa fa-map-marker" aria-hidden="true"></i>
                     </div>
-                    <div class="item-inner">Mat serveras</div>
-                  </li>
-                {{/if}}
-                {{#if drink}}
-                  <li class="item-content">
-                    <div class="item-media">
-                      <i class="fa fa-beer" aria-hidden="true"></i>
+                    <div class="item-inner">
+                      <div class="item-title">{{location}}</div>
                     </div>
-                    <div class="item-inner">Alkohol serveras</div>
                   </li>
-                {{/if}}
-              </ul>
+                </ul>
+              </div>
+              <div class="list-group">
+                <ul>
+                  <li class="event-description-container">
+                    <div class="event-description">{{description}}</div>
+                  </li>
+                </ul>
+              </div>
+              <div class="list-group">
+                <ul>
+                  {{#if hasDressCode}}
+                    <li class="item-content">
+                      <div class="item-media">
+                        <i class="fa fa-briefcase" aria-hidden="true"></i>
+                      </div>
+                      <div class="item-inner">
+                        <div class="item-title">{{join dress_code delimiter=" eller "}}</div>
+                      </div>
+                    </li>
+                  {{/if}}
+                  {{#if cash}}
+                    <li class="item-content">
+                      <div class="item-media">
+                        <i class="fa fa-money" aria-hidden="true"></i>
+                      </div>
+                      <div class="item-inner">
+                        <div class="item-title">Kostar pengar {{#if price}} ({{price}} kr) {{/if}}</div>
+                      </div>
+                    </li>
+                  {{/if}}
+                  {{#if food}}
+                    <li class="item-content">
+                      <div class="item-media">
+                        <i class="fa fa-cutlery" aria-hidden="true"></i>
+                      </div>
+                      <div class="item-inner">
+                        <div class="item-title">Mat serveras</div>
+                      </div>
+                    </li>
+                  {{/if}}
+                  {{#if drink}}
+                    <li class="item-content">
+                      <div class="item-media">
+                        <i class="fa fa-beer" aria-hidden="true"></i>
+                      </div>
+                      <div class="item-inner">
+                        <div class="item-title">Alkohol serveras</div>
+                      </div>
+                    </li>
+                  {{/if}}
+                </ul>
+              </div>
             </div>
           </div>
           {{#if contact}}
@@ -402,7 +416,7 @@
           <div class="card event-signup-container">
             <div class="card-header event-title">
               Anmälan - {{#if event_signup.open}} Öppen {{else}} Stängd {{/if}}
-              <a href="#" data-popover=".popover-about-signup" class="open-popover">
+              <a href="#" data-popover=".popover-about-signup" class="popover-open">
                 <i class="fa fa-info-circle" aria-hidden="true"></i>
               </a>
             </div>
@@ -413,7 +427,9 @@
                     <div class="item-media">
                       <i class="fa {{registered_status_icon}}" aria-hidden="true"></i>
                     </div>
-                    <div class="item-inner">{{registered_status}}</div>
+                    <div class="item-inner">
+                      <div class="item-title">{{registered_status}}</div>
+                    </div>
                   </li>
                 </ul>
               </div>
@@ -424,39 +440,51 @@
                       <div class="item-media">
                         <i class="fa fa-user" aria-hidden="true"></i>
                       </div>
-                      <div id="event-usercount" class="item-inner">Anmälda: {{event_user_count}}</div>
+                      <div id="event-usercount" class="item-inner">
+                        <div classs="item-title">Anmälda: {{event_user_count}}</div>
+                      </div>
                     </li>
                   {{/if}}
                   <li class="item-content">
                     <div class="item-media">
                       <i class="fa fa-users" aria-hidden="true"></i>
                     </div>
-                    <div class="item-inner">Antal platser: {{event_signup.slots}}</div>
+                    <div class="item-inner">
+                      <div class="item-title">Antal platser: {{event_signup.slots}}</div>
+                    </div>
                   </li>
                   {{#if event_signup.reserves}}
                     <li class="item-content">
                       <div class="item-media">
                         <i class="fa fa-user-times" aria-hidden="true"></i>
                       </div>
-                      <div class="item-inner">Antal reserver: {{event_signup.reserves}}</div>
+                      <div class="item-inner">
+                        <div class="item-title">Antal reserver: {{event_signup.reserves}}</div>
+                      </div>
                     </li>
                   {{/if}}
                   <li class="item-content">
                     <div class="item-media">
                       <i class="fa fa-calendar-check-o" aria-hidden="true"></i>
                     </div>
-                    <div class="item-inner">Anmälan
-                      {{#if event_signup.opened}} öppnade: {{else}} öppnar: {{/if}}
-                      {{event_signup.opens.timeDateString()}}
+                    <div class="item-inner">
+                      <div class="item-title">
+                        Anmälan
+                        {{#if event_signup.opened}} öppnade: {{else}} öppnar: {{/if}}
+                        {{event_signup.opens.timeDateString()}}
+                      </div>
                     </div>
                   </li>
                   <li class="item-content">
                     <div class="item-media">
                       <i class="fa fa-calendar-times-o" aria-hidden="true"></i>
                     </div>
-                    <div class="item-inner">Anmälan
-                      {{#if event_signup.closed}} stängde: {{else}} stänger: {{/if}}
-                      {{event_signup.closes.timeDateString()}}
+                    <div class="item-inner">
+                      <div class="item-title">
+                        Anmälan
+                        {{#if event_signup.closed}} stängde: {{else}} stänger: {{/if}}
+                        {{event_signup.closes.timeDateString()}}
+                      </div>
                     </div>
                   </li>
                 </ul>
@@ -470,9 +498,8 @@
                           <i class="fa fa-cutlery" aria-hidden="true"></i>
                         </div>
                         <div class="item-inner">
-                          <div>
-                          Matpreferenser: {{join food_preferences delimiter=", "}}
-                          <a href="user_page.html" class="item-link">(Redigera)</a>
+                          <div class="item-title">
+                            Matpreferenser: {{join food_preferences delimiter=", "}}
                           </div>
                         </div>
                       </li>
@@ -484,8 +511,10 @@
                             <i class="fa fa-question" aria-hidden="true"></i>
                           </div>
                           <div class="item-inner">
-                            {{event_signup.question}}
-                            {{event_user.answer}}
+                            <div class="item-title">
+                              {{event_signup.question}}
+                              {{event_user.answer}}
+                            </div>
                           </div>
                         </li>
                       {{else}}
@@ -493,7 +522,10 @@
                           <div class="item-media">
                             <i class="fa fa-question" aria-hidden="true"></i>
                           </div>
-                          <div class="item-inner"></div>
+                          <div class="item-inner">
+                            <div class="item-title">
+                            </div>
+                          </div>
                         </li>
                       {{/if}}
                     {{/if}}
@@ -504,7 +536,7 @@
                         </div>
                         <div class="item-inner">
                           <span>{{event_user.user_type}}</span>
-                          <div class="item-input hidden"></div>
+                          <div class="item-input-wrap hidden"></div>
                         </div>
                       </li>
                       <li id="event-signup-group" class="item-content">
@@ -519,7 +551,7 @@
                               Ingen grupp vald
                             {{/if}}
                           </span>
-                          <div class="item-input hidden"></div>
+                          <div class="item-input-wrap hidden"></div>
                         </div>
                       </li>
                     {{else}}
@@ -530,8 +562,8 @@
                               <i class="fa fa-user-circle-o" aria-hidden="true"></i>
                             </div>
                             <div class="item-inner">
-                              <span></span>
-                              <div class="item-input">
+                              <span><!-- after signup the picked user type is displayed here--></span>
+                              <div class="item-input-wrap">
                                 <!--<input> is added dynamically-->
                               </div>
                             </div>
@@ -542,8 +574,8 @@
                             <i class="fa fa-users" aria-hidden="true"></i>
                           </div>
                           <div class="item-inner">
-                            <span></span>
-                            <div class="item-input">
+                            <span><!-- after signup the picked group is displayed here--></span>
+                            <div class="item-input-wrap">
                               <!--<input> is added dynamically-->
                             </div>
                           </div>
@@ -553,7 +585,7 @@
                     </li>
                     <li id="event-signup-groupcustom" class="item-content hidden">
                       <div class="item-inner">
-                        <div class="item-input">
+                        <div class="item-input-wrap">
                           <input type="text" name="group-custom" placeholder="Skriv in en annan grupp här">
                         </div>
                       </div>
@@ -561,8 +593,7 @@
                   </ul>
                 </div>
               {{/if}}
-              <a href="#" class="button button-big
-                {{#unless event_signup.open}} disabled {{/unless}}
+              <a href="#" class="button button-big {{#unless event_signup.open}} disabled {{/unless}}
                 {{#if event_user}}
                   event-signup-cancel-btn">Avanmäl
                 {{else}}

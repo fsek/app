@@ -1,29 +1,26 @@
-<div data-name="event" class="page no-tabbar">
+<div data-name="event" class="page no-toolbar">
   <div class="navbar">
-    <div class="navbar-inner">
-      <div class="left sliding">
+    <div class="navbar-inner sliding">
+      <div class="left">
         <a href="#" class="back link"> 
           <i class="icon icon-back"></i>
-          {{#unless @global.android}}<span>Tillbaka</span>{{/unless}}
         </a>
       </div>
-      {{#if @global.android}}<div class="center sliding">Evenemang</div>{{/if}}
+      <div class="title">Evenemang</div>
     </div>
   </div>
-  <div class="page-content event-content hide-navbar-on-scroll">
+  <div class="page-content event-content">
     <span class="preloader"></span>
   </div>
   <div class="popover popover-about-signup">
     <div class="popover-angle"></div>
     <div class="popover-inner">
-      <div class="content-block-title">Viktigt om anmälan</div>
-      <div class="content-block">
+      <div class="block-title">Viktigt om anmälan</div>
+      <div class="block">
         <p>Vid anmälan använder vi ibland prioriteringar för vissa grupper. Därav är din plats garanterad först då anmälan har stängt.</p>
         <p>Observera att anmälan är bindande och att du inte kan avanmäla dig när anmälan har stängt. Om anmälan är stängd och du verkligen inte kan komma ska du kontakta eventansvarig.</p>
       </div>
     </div>
   </div>
 </div>
-
-
-
+ 

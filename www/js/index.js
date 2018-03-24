@@ -58,8 +58,15 @@ var homeView = app.views.create('#view-home', {
   routesAdd: [
     {
       name: 'event',
-      path: '/event/:eventId',
+      path: '/event/:eventID',
       url: './event.html',
+      routes: [
+        {
+          name: 'contact',
+          path: 'contact/:contactId',
+          url: './contact.html',
+        },
+      ]
     },
   ]
 });
@@ -67,14 +74,36 @@ var calendarView = app.views.create('#view-calendar', {
   routesAdd: [
     {
       name: 'event',
-      path: '/event/:eventId',
+      path: '/event/:eventID',
       url: './event.html',
+      routes: [
+        {
+          name: 'contact',
+          path: 'contact/:contactId',
+          url: './contact.html',
+        },
+      ]
     },
   ]
 });
-var messagesView = app.views.create('#view-messages');
-var notificationsView = app.views.create('#view-notifications');
-var alternativesView = app.views.create('#view-alternatives');
+var messagesView = app.views.create('#view-groups'});
+var notificationsView = app.views.create('#view-notifications', {
+  routesAdd: [
+    {
+      name: 'event',
+      path: '/event/:eventId',
+      url: './event.html',
+      routes: [
+        {
+          name: 'contact',
+          path: 'contact/:contactId',
+          url: './contact.html',
+        },
+      ]
+    },
+  ]
+});
+var alternativesView = app.views.create('#view-alternatives'});
 
 // Complie templates
 var templateNames = ['contactTemplate', 'dayTemplate', 'dayTitleTemplate', 'eventPageTemplate', 'groupTemplate', 'messageTemplate', 

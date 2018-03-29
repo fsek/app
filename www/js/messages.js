@@ -2,9 +2,10 @@ var group_app = null;
 var group_paused = false;
 var F7msg = null;
 
-$$(document).on('page:init', '.page[data-name="messages"]', function (page) {
-  var head = $(page.container); // We need jQuery on this page
-  initMessages(head, page.query);
+$$(document).on('page:init', '.page[data-name="messages"]', function (e) {
+  app.toolbar.hide('.toolbar');
+  var head = $(e.target);
+  initMessages(head, e.detail.route.params);
 });
 
 function initMessages(head, query) {
@@ -15,47 +16,95 @@ function initMessages(head, query) {
   var page = 2;
   var totalPages = 37;
   var loadingMessages = false;
-  //cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+
+
   // Initialize Framework7 mesages
-  F7msg = app.messages(messages, {
-    autoLayout: true,
-    scrollMessages: true,
-    messageTemplate: $$('#messageTemplate').html()
+  F7msg = app.messages.create({
+    el: '.messages',
+    firstMessageRule: function (message, previousMessage, nextMessage) {
+      if (message.isTitle) return false;
+
+      if (message.type === 'received') {
+        if (!previousMessage || previousMessage.type !== message.type || previousMessage.name !== message.name) {
+          return true;
+        }
+      }
+      return false;
+    },
+    lastMessageRule: function (message, previousMessage, nextMessage) {
+      if (message.isTitle) return false;
+
+      if (message.type === 'received') {
+        if (!nextMessage || nextMessage.type !== message.type || nextMessage.name !== message.name) {
+          return true;
+        }
+      }
+      return false;
+    },
+    tailMessageRule: function (message, previousMessage, nextMessage) {
+      if (message.isTitle) return false;
+
+      if (!nextMessage || nextMessage.type !== message.type || nextMessage.name !== message.name) {
+        return true;
+      }
+      return false;
+    },
+    customClassMessageRule: function (message, previousMessage, nextMessage) {
+      if (message.isTitle) return false;
+
+      if (message.by_admin) {
+        return 'message-admin';
+      }
+      return false;
+    },
   });
 
   // Set group name
   $('#messages-group-name').html(query.groupName);
-  app.sizeNavbars($('#tab3'));
-
+  app.navbar.size($('#view-groups .navbar'));
 
   // Initialize Framework7 message bar
-  var msgBar = app.messagebar('.messagebar', {
+  var msgBar = app.messagebar.create({
+    el: '.messagebar',
     maxHeight: 75
   });
-
+  
   // Infinite scroll
-  var infiniteScroll = head.find('.infinite-scroll');
+  var infiniteScroll = head.find('.infinite-scroll-content');
 
   var detachInftScroll = function() {
-    app.detachInfiniteScroll(infiniteScroll);
+    app.infiniteScroll.destroy('.infinite-scroll-content');
     infiniteScroll.find('.infinite-scroll-preloader').remove();
   };
-
+  
   // Functions for batch loading of messages
   var batchPrepare = function(msgs) {
     var lastDay = null;
+    var preparedMsgs = [];
+    msgs.reverse();
 
     for (message of msgs) {
       // Sender or receiver? Framework7 defaults to sender
-      if(message.user_id != userId) message.type = 'received';
+      if(message.user_id !== userId){
+        message.type = 'received';
+      } else {
+        // We don't want to display the user's own avatar
+        message.avatar = null;
+      }
 
       // Add headers for new dates
       if(lastDay != message.day) {
-        message.dayHeader = message.day;
         lastDay = message.day;
+
+        var messageTitle = {};
+        messageTitle.text = message.day;
+        messageTitle.isTitle = true;
+        preparedMsgs.push(messageTitle);
       }
+
+      preparedMsgs.push(message);
     }
-    return msgs;
+    return preparedMsgs.reverse();
   };
 
   var batchAddMessages = function(msgs) {
@@ -67,7 +116,7 @@ function initMessages(head, query) {
     if(msgs[0].day == first.html()) first.remove();
 
     // Add day headers and set sender/receiver tag. Then add to window
-    msgs = batchPrepare(msgs.reverse());
+    msgs = batchPrepare(msgs);
     F7msg.addMessages(msgs, 'prepend', false);
   };
 
@@ -93,8 +142,8 @@ function initMessages(head, query) {
 
   function loadMessages() {
     $.getJSON(API + '/groups/' + groupId + '/messages/')
-      .then(function(resp) {
-        F7msg.clean();
+      .done(function(resp) {
+        F7msg.clear();
         batchAddMessages(resp.messages);
         totalPages = resp.meta.total_pages;
 
@@ -182,10 +231,10 @@ function initMessages(head, query) {
   }
 
   // Send message on enter
-  msgBar.textarea.on('keypress', function(e) {
+  $(msgBar.textareaEl).on('keypress', function(e) {
     if(e.which === 13) {
-      group_app.sendMessage(msgBar.value());
-      msgBar.value('');
+      group_app.sendMessage(msgBar.getValue());
+      msgBar.clear();
       e.preventDefault();
       return false;
     }
@@ -265,7 +314,7 @@ function initMessages(head, query) {
   document.addEventListener('pause', pauseGroup, false);
   document.addEventListener('resume', resumeGroup, false);
 
-  var groupBack = app.onPageBack('messages', function (page) {
+  var groupBack = $$(document).on('page:beforeremove', '.page[data-name="messages"]', function (e) {
     groupBack.remove();
 
     $('.tabbar').show();

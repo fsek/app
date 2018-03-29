@@ -92,7 +92,7 @@
             <a href="#view-calendar" id="cal-btn" class="tab-link">
               <i class="fa fa-calendar" aria-hidden="true"></i>
             </a>
-            <a href="#view-messages" id="msg-btn" class="tab-link">
+            <a href="#view-groups" id="msg-btn" class="tab-link">
               <i class="fa fa-comments" aria-hidden="true">
                 <span class="badge" id="group-badge"></span>
               </i>
@@ -156,41 +156,35 @@
           </div>
         </div>
         <!-- Tab 3 (Messages) -->
-        <div id="view-messages" class="view tab">
-          <div class="navbar android-hide">
-            <div class="navbar-inner">
-              <div class="center sliding">Meddelanden</div>
+        <div id="view-groups" class="view tab">
+          <div data-name="groups" class="page navbar-fixed">
+            <div class="navbar android-hide">
+              <div class="navbar-inner sliding">
+                <div class="title">Meddelanden</div>
+              </div>
             </div>
-          </div>
-          <div class="pages">
-            <div data-name="tab3" class="page navbar-fixed">
-              <div class="page-content">
-                <div class="list-block media-list groups-list" id="groups-list">
-                  <ul></ul>
-                </div>
+            <div class="page-content">
+              <div class="list media-list groups-list" id="groups-list">
+                <ul></ul>
               </div>
             </div>
           </div>
         </div>
         <!-- Tab 4 (Notifications) -->
         <div id="view-notifications" class="view tab">
-          <div class="navbar android-hide">
-            <div class="navbar-inner">
-              <div class="center sliding android-hide">Notifikationer</div>
+          <div data-name="notifications" class="page">
+            <div class="navbar android-hide">
+              <div class="navbar-inner sliding">
+                <div class="title">Notifikationer</div>
+              </div>
             </div>
-          </div>
-          <div class="pages navbar-fixed">
-            <div data-name="tab4" class="page">
-              <div class="page-content infinite-scroll pull-to-refresh-content">
-                <div class="pull-to-refresh-layer">
-                  <div class="preloader"></div>
-                  <div class="pull-to-refresh-arrow"></div>
-                </div>
-                <div class="list-block media-list notification-list" id="notification-list">
-                  <ul></ul>
-                </div>
-                <div class="infinite-scroll-preloader">
-                </div>
+            <div class="page-content infinite-scroll-content ptr-content">
+              <div class="ptr-preloader">
+                <div class="preloader"></div>
+                <div class="ptr-arrow"></div>
+              </div>
+              <div class="list media-list chevron-center notification-list" id="notification-list">
+                <ul></ul>
               </div>
             </div>
           </div>
@@ -617,9 +611,9 @@
     <script type="text/template7" id="groupTemplate">
       {{#if hasGroups}}
         {{#group}}
-          <li id="{{id}}" {{#js_compare "this.group_user.unread_count > 0"}} class="unread"{{/js_compare}}
+          <li {{#js_compare "this.group_user.unread_count > 0"}} class="unread"{{/js_compare}}
               data-unread="{{group_user.unread_count}}">
-            <a href="#" class="item-link item-content">
+            <a href="/messages/{{id}}/{{name}}" class="item-link item-content">
               <div class="item-inner">
                 <div class="item-title-row">
                   <div class="item-title">{{name}}</div>
@@ -634,7 +628,7 @@
           </li>
         {{/group}}
       {{else}}
-        <p class="disabled no-groups">Inga gruppchatter tillgängliga</p>
+        <p class="disabled">Inga gruppchatter tillgängliga</p>
       {{/if}}
     </script>
 
@@ -659,15 +653,17 @@
     <script type="text/template7" id="notificationTemplate">
       {{#if hasNotifications}}
         {{#notification}}
-          <li id="{{id}}" {{#unless seen}} class="unseen"{{/unless}}>
-            <a href="/event/{{event_id}}/" class="item-link item-content">
-              <div class="item-inner">
-                <div class="item-title-row">
-                  <div class="item-title">{{data.title}}</div>
+          <li data-id="{{id}}" {{#unless seen}} class="unseen"{{/unless}}>
+            <a href="/event/{{event_id}}/" class="item-link">
+              <div class="item-content">
+                <div class="item-inner">
+                  <div class="item-title-row">
+                    <div class="item-title">{{data.title}}</div>
+                  </div>
+                  <div class="item-subtitle">{{data.body}}</div>
+                  <div class="item-text">{{data.extra}}</div>
+                  <div class="item-created">Skickades {{js "new Date(this.created_at).toLocaleString()"}}</div>
                 </div>
-                <div class="item-subtitle">{{data.body}}</div>
-                <div class="item-text">{{data.extra}}</div>
-                <div class="item-created">Skickades {{js "new Date(this.created_at).toLocaleString()"}}</div>
               </div>
             </a>
           </li>
@@ -677,26 +673,27 @@
       {{/if}}
     </script>
 
-    <script type="text/template7" id="messageTemplate">
-      {{#if dayHeader}}
-        <div class="messages-date">{{dayHeader}}</div>
-      {{/if}}
-      <div href="#" id="{{id}}" class="message message-{{type}}
-                                       {{#if avatar}}message-with-avatar{{/if}}
-                                       {{#if position}}message-appear-from-{{position}}{{/if}}
-                                       {{#if by_admin}}message-admin{{/if}}">
-        <div class="message-name">{{name}}</div>
-        <a href="#" class="taphold">
-          <div class="message-text">{{text}}</div>
-        </a>
+    <!--<script type="text/template7" id="messageTemplate">
+      <div href="#" id="{{id}}" class="message message-{{type}} {{#if by_admin}}message-admin{{/if}}">
         {{#if avatar}}
           <div class="message-avatar" style="background-image:url({{avatar}})"></div>
         {{/if}}
-        {{#if updated_at}}
-          <div class="message-label message-updated">{{updated_at}}</div>
-        {{/if}}
+          <div class="message-content">
+            <div class="message-name">{{name}}</div>
+            <div class="message-bubble">
+              <div class="message-text">{{text}}</div>
+            </div>
+            {{#if updated_at}}
+              <div class="message-label message-footer">{{updated_at}}</div>
+            {{/if}}
+          </div>
+          <a href="#" class="taphold">      
+          </a>
       </div>
-    </script>
+      {{#if dayHeader}}
+        <div class="messages-title">{{dayHeader}}</div>
+      {{/if}}
+    </script>-->
 
     <script type="text/template7" id="songbookTemplate">
       {{#each letter}}

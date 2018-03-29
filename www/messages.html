@@ -1,13 +1,12 @@
-<div data-name="messages" class="page toolbar-fixed navbar-fixed no-tabbar">
+<div data-name="messages" class="page">
   <div class="navbar">
-    <div class="navbar-inner">
-      <div class="left sliding">
+    <div class="navbar-inner sliding">
+      <div class="left">
         <a href="#" class="back link"> 
           <i class="icon icon-back"></i>
-          {{#unless @global.android}}<span>Tillbaka</span>{{/unless}}
         </a>
       </div>
-      <div class="center sliding" id="messages-group-name">GroupName</div>
+      <div class="title" id="messages-group-name">GroupName</div>
     </div>
   </div>
 
@@ -16,7 +15,7 @@
        <textarea placeholder="Meddelande"></textarea>
     </div>
   </div>
-  <div class="page-content messages-content infinite-scroll infinite-scroll-top">
+  <div class="page-content messages-content infinite-scroll-content infinite-scroll-top">
     <div class="infinite-scroll-preloader">
       <div class="preloader"></div>
     </div>

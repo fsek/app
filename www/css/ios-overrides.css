@@ -3,7 +3,7 @@
   margin-bottom: 10px;
 }
 
-.message-sent .message-text{
+.ios .message-sent .message-bubble{
   background-color: #60b0d8;
 }
 
@@ -37,6 +37,10 @@
 
 .navbar i.icon, .navbar a{
   color: #fff;
+}
+
+.ios ul.no-groups {
+  background: none;
 }
 
 .tabbar{

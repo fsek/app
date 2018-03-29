@@ -18,12 +18,17 @@
   padding-left: 7px;
 }
 
-.messages .message-sent .message-text {
+.messages .message-sent .message-bubble {
   background-color: #cfd8dc;
 }
 
-.messages .message-sent .message-text:before {
-  border-bottom-color: #cfd8dc;
+.messages .message-sent .message-bubble:before {
+  border-bottom-color: #cfd8dc !important;
+}
+
+.message-sent.message-admin .message-bubble:before,
+.message-received.message-admin .message-bubble:before {
+  border-bottom-color: #ff9800 !important;
 }
 
 .android-hide {
@@ -209,4 +214,8 @@
 
 .event-content {
   padding-top: 56px !important;
+}
+
+.md .ptr-preloader {
+  margin-top: -10px;
 }

@@ -58,7 +58,7 @@ var homeView = app.views.create('#view-home', {
   routesAdd: [
     {
       name: 'event',
-      path: '/event/:eventID',
+      path: '/event/:eventId',
       url: './event.html',
       routes: [
         {
@@ -74,7 +74,32 @@ var calendarView = app.views.create('#view-calendar', {
   routesAdd: [
     {
       name: 'event',
-      path: '/event/:eventID',
+      path: '/event/:eventId',
+      url: './event.html',
+    },
+  ]
+});
+var messagesView = app.views.create('#view-groups', {
+  routesAdd: [
+    {
+      name: 'messages',
+      path: '/messages/:groupId/:groupName',
+      url: './messages.html',
+      routes: [
+        {
+          name: 'messages_editor',
+          path: 'messages_editor/',
+          componentUrl: './messages_editor.html'
+        }
+      ]
+    },
+  ]
+});
+var notificationsView = app.views.create('#view-notifications', {
+  routesAdd: [
+    {
+      name: 'event',
+      path: '/event/:eventId',
       url: './event.html',
       routes: [
         {
@@ -103,10 +128,10 @@ var notificationsView = app.views.create('#view-notifications', {
     },
   ]
 });
-var alternativesView = app.views.create('#view-alternatives'});
+var alternativesView = app.views.create('#view-alternatives');
 
 // Complie templates
-var templateNames = ['contactTemplate', 'dayTemplate', 'dayTitleTemplate', 'eventPageTemplate', 'groupTemplate', 'messageTemplate', 
+var templateNames = ['contactTemplate', 'dayTemplate', 'dayTitleTemplate', 'eventPageTemplate', 'groupTemplate', 
   'newsTemplate', 'notificationTemplate', 'songbookTemplate', 'songTemplate'];
 app.templates = compileTemplates(templateNames);
 

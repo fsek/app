@@ -6,15 +6,10 @@
   margin-bottom: 0;
 }
 
-.message-sent.message-admin .message-text,
-.message-received.message-admin .message-text {
+.message-sent.message-admin .message-bubble,
+.message-received.message-admin .message-bubble {
   background-color: #ff9800;
   color: #fff;
-}
-
-.message-sent.message-admin .message-text:before,
-.message-received.message-admin .message-text:before {
-  border-bottom-color: #ff9800;
 }
 
 .msg-editor-page .content-block-title {

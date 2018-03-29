@@ -2,6 +2,30 @@ var nextPage = 1;
 var loadingNotifications = false;
 var infNotificationScroll = true;
 
+// Init notifications if not already inited
+$$(document).on('page:init', '.page[data-name="notifications"]', function (e) {
+  // If signed in and notification container is empty
+  if(!jQuery.isEmptyObject($.auth.user) && $('#notification-list ul').is(':empty')) {   
+    getNotifications(false);
+  }
+});
+
+$$('#view-notifications .ptr-content').on('ptr:refresh', function() {
+  getNotifications(true);
+});
+
+$$('#view-notifications .infinite-scroll-content').on('infinite', function() {
+  moreNotifications();
+});
+
+$$('#notification-list').on('click', 'li', function() {
+  if ($$(this).hasClass('unseen')) {
+    lookNotification($$(this).attr('data-id'));
+    $$(this).removeClass('unseen');
+  }
+  // Redirect to event/notifyable here
+});
+
 function getNotifications(refresh) {
   $.getJSON(API + '/notifications')
     .then(function(resp) {
@@ -11,7 +35,7 @@ function getNotifications(refresh) {
       updateNotificationBadge(resp.meta.unread);
       nextPage = resp.meta.next_page;
 
-      if(refresh) app.pullToRefreshDone();
+      if(refresh) app.ptr.done($$('#view-notifications .ptr-content'));
       if(!infNotificationScroll) attachInfNotificationScroll();
 
       // Fill the screen if more notifications exist
@@ -78,50 +102,21 @@ function lookNotification(id) {
 }
 
 function attachInfNotificationScroll() {
-  app.attachInfiniteScroll($$('#tab4 .infinite-scroll'));
-  $$('#tab4 .page-content').append(infScrollPreloader);
+  app.attachInfiniteScroll($$('#view-notifications .infinite-scroll-content'));
+  $$('#view-notifications .page-content').append(infScrollPreloader);
   infNotificationScroll = true;
 }
 
-function detachInfNotificationScroll() {
+function destroyInfNotificationScroll() {
   infNotificationScroll = false;
-  app.detachInfiniteScroll($$('#tab4 .infinite-scroll'));
-  $$('#tab4 .infinite-scroll-preloader').remove();
+  app.infiniteScroll.destroy($$('#view-notifications .infinite-scroll-content'));
+  $$('#view-notifications .infinite-scroll-preloader').remove();
 }
 
 function moreNotifications() {
   if (nextPage == null && infNotificationScroll) {
-    detachInfNotificationScroll();
+    destroyInfNotificationScroll();
   } else if (!loadingNotifications) {
     getMoreNotifications();
   }
 }
-
-$$('#tab4').on('show', function() {
-  // Get notifications if we haven't done so already
-  if($$('#notification-list ul').is(':empty'))
-    getNotifications(false);
-});
-
-$$('#tab4 .pull-to-refresh-content').on('ptr:refresh', function() {
-  getNotifications(true);
-});
-
-$$('#tab4 .infinite-scroll').on('infinite', function() {
-  moreNotifications();
-});
-
-$$('#notification-list').on('click', 'li', function() {
-  if ($$(this).hasClass('unseen')) {
-    lookNotification($$(this).attr('id'));
-    $$(this).removeClass('unseen');
-  }
-  // Redirect to event/notifyable here
-});
-
-//DELETE THIS IN WITH V2
-myApp.onPageInit('tab4', function(page){
-  if($$('#notification-list ul').is(':empty')) {
-    getNotifications(false);
-  }
-});

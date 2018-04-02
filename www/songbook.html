@@ -1,31 +1,35 @@
-<div data-name="songbook" class="page no-tabbar">
-  <div class="navbar songbook-nav">
-    <div class="navbar-inner">
-      <div class="left sliding">
+<div data-name="songbook" class="page no-toolbar">
+  <div class="navbar">
+    <div class="navbar-inner sliding">
+      <div class="left">
         <a href="#" class="back link">
           <i class="icon icon-back"></i>
-          {{#unless @global.android}}<span>Tillbaka</span>{{/unless}}
+          <span class="ios-only">Tillbaka</span>
         </a>
       </div>
-      <div class="center sliding">Sångbok</div>
+      <div class="title">Sångbok</div>
+      <div class="subnavbar">
+        <form class="searchbar searchbar-init searchbar-songbook" data-search-container=".search-list" data-search-in=".item-title">
+          <div class="searchbar-inner">
+            <div class="searchbar-input-wrap">
+              <input type="search" placeholder="Sök">
+              <i class="searchbar-icon"></i>
+              <span class="input-clear-button"></span>
+            </div>
+            <span class="searchbar-disable-button">Avbryt</span>
+          </div>
+        </form>
+      </div>
     </div>
   </div>
-  <form class="searchbar searchbar-songbook searchbar-init" data-search-list=".list-block-search" data-search-in=".item-title" data-found=".searchbar-found" data-not-found=".searchbar-not-found">
-    <div class="searchbar-input">
-      <input type="search" placeholder="Sök" class="searchbar-input-text">
-      <a href="#" class="searchbar-clear"></a>
+  <div class="list-index songbook-indexlist"></div>
+  <div class="page-content songbook-content">
+    <div class="searchbar-backdrop"></div>
+    <div id="songbook-list" class="list searchbar-found search-list">
+      <div class="preloader"></div>
     </div>
-    <a href="#" class="searchbar-cancel">Avbryt</a>
-  </form>
-  <div class="searchbar-overlay"></div>
-  <div class="page-content">
-    <div class="content-block searchbar-not-found">
+    <div class="block searchbar-not-found">
       <p>Synd! Inga träffar :'(</p>
-    </div>
-    <div class="list-block songbook-content list-block-search searchbar-found">
-      <div class="infinite-scroll-preloader">
-        <div class="preloader"></div>
-      </div>
     </div>
   </div>
 </div>

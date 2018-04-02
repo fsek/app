@@ -35,7 +35,7 @@
   display: none !important;
 }
 
-.navbar i.icon, .navbar a{
+.ios .navbar i.icon, .ios .navbar a{
   color: #fff;
 }
 
@@ -61,6 +61,24 @@
   margin-top: 77px;
   height: -webkit-calc(100vh - 120px);
   height: calc(100vh - 120px);
+}
+
+.song-content .block {
+  color: #000;
+}
+
+.song-content .block-title {
+  text-transform: initial;
+  margin-top: 15px;
+}
+
+#songbook-list{
+  margin-top: 0px;
+}
+
+.songbook-indexlist {
+  bottom: 0 !important;
+  margin-top: 45px;
 }
 
 .notification-list li:last-child {

@@ -89,7 +89,7 @@ var messagesView = app.views.create('#view-groups', {
         {
           name: 'messages_editor',
           path: 'messages_editor/',
-          componentUrl: './messages_editor.html'
+          url: './messages_editor.html'
         }
       ]
     },
@@ -128,7 +128,37 @@ var notificationsView = app.views.create('#view-notifications', {
     },
   ]
 });
-var alternativesView = app.views.create('#view-alternatives');
+var alternativesView = app.views.create('#view-alternatives', {
+  routesAdd: [
+    {
+      name: 'about_app',
+      path: '/about_app/',
+      url: './about_app.html',
+    },
+    {
+      name: 'about_section',
+      path: '/about_section/',
+      url: './about_section.html',
+    },
+    {
+      name: 'songbook',
+      path: '/songbook/',
+      url: './songbook.html',
+      routes: [
+        {
+          name: 'song',
+          path: 'song/:songId',
+          url: './song.html'
+        }
+      ]
+    },
+    {
+      name: 'user_page',
+      path: '/user_page/',
+      url: './user_page.html',
+    },
+  ]
+});
 
 // Complie templates
 var templateNames = ['contactTemplate', 'dayTemplate', 'dayTitleTemplate', 'eventPageTemplate', 'groupTemplate', 

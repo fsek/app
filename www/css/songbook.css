@@ -1,53 +1,74 @@
-.songbook-content{
-  margin-top: auto;
+.searchbar-songbook .searchbar-disable-button{
+  color: #eb7125 !important;
 }
 
-.songbook-content ul::after{
-  background-color: #fff;
+#songbook-list {
+  margin-right: 17px;
+  margin-bottom: 0;
 }
 
-.songbook-content .item-content{
-  color: #000;
-  background-color: #fff;
+#songbook-list .list-group-title{
+  font-weight: bold;
+  color: #3c3c3c;
 }
 
-.song-content .content-block-title{
+.songbook-indexlist li {
+  margin-top: 5px;
+  color: #8e8e93;
+}
+
+.songbook-indexlist .list-index-label {
+  background: #eb7125 !important;
+}
+
+.song-content .block-title{
   font-size: 27px;
   color: #eb7125;
   white-space: initial;
-  text-transform: initial;
-  height: auto;
-  padding-bottom: 5px;
-  margin-bottom: 5px;
-  margin-top: 20px;
+  line-height: initial;
 }
 
-.song-content .content-block .auth-mel{
+.song-content .block .auth-mel{
+  margin-bottom: 0;
+}
+
+.song-content .block {
+  margin-bottom: 16px;
+  margin-top: 0;
+}
+
+.song-content .block p{
   font-size: 16px;
-  color: #000;
-  margin: 3px 0px 3px;
+  margin-top: 0;
 }
 
-.song-content .content-block {
-  margin: 15px 0px 15px;
-}
-
-.song-content .content-block p{
-  color: #000;
-  font-size: 16px;
-  margin:2px 2px 14px;
-}
-
-.song-content .content-block p:last-child{
-  margin-bottom: 2px;
-}
-
-.song-content .content-block span{
+.song-content .block span{
   color: #eb7125;
 }
 
-.searchbar-songbook .searchbar-not-found p{
-  margin-top: auto px;
-  font-size: 30px;
-  align-content: center;
+.song-content .song-text {
+  background-color: #fff;
+}
+
+.song-content .song-text p:last-child{
+  margin-bottom: 0;
+}
+
+.song-content .song-text .block-inner{
+  padding: 15px 0;
+}
+
+.songbook-content .list ul::before, .songbook-content .list ul:after{
+  display: none;
+}
+
+.songbook-content .preloader, .song-content .preloader {
+  margin-left: calc(50% - 20px);
+  margin-top: calc(50% - 20px);
+  height: 40px;
+  width: 40px;
+}
+
+.songbook-content .searchbar-not-found {
+  font-size: 16px;
 }

@@ -10,7 +10,7 @@
 
     <!-- Material/iOS stylesheets. Will be replaced on deploy -->
     <link rel="stylesheet" href="lib/framework7/css/framework7.min.css">
-    <link rel="stylesheet" href="css/ios-overrides.css">
+    <link rel="stylesheet" href="css/Material-overrides.css">
 
     <!-- General stylesheets -->
     <link rel="stylesheet" href="css/font-awesome.min.css">
@@ -31,7 +31,7 @@
     <link rel="stylesheet" href="css/songbook.css">
     <link rel="stylesheet" href="css/contact.css">
   </head>
-  <body class="theme-orange">
+  <body class="color-theme-orange">
     <div id="app">
       <div class="login-screen">
         <div id="login" class="view">
@@ -191,81 +191,78 @@
         </div>
         <!--Tab 5 (Settings) -->
         <div id="view-alternatives" class="view tab">
-          <div class="navbar android-hide">
-            <div class="navbar-inner">
-              <div class="center sliding android-hide">Alternativ</div>
-            </div>
-          </div>
-          <div class="pages navbar-fixed">
-            <div data-name="tab-alt" class="page">
-              <div class="page-content settings-content">
-                <div class="list-block">
-                  <ul>
-                    <li>
-                      <a href="songbook.html" class="item-link">
-                        <div class="item-content">
-                          <div class="item-inner">
-                            <div class="item-title">Sångbok</div>
-                          </div>
-                        </div>
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-                <div class="content-block-title">Om</div>
-                <div class="list-block">
-                  <ul>
-                    <li>
-                      <a href="about_section.html" class="item-link">
-                        <div class="item-content">
-                          <div class="item-inner">
-                            <div class="item-title">F-sektionen</div>
-                          </div>
-                        </div>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="about_app.html" class="item-link">
-                        <div class="item-content">
-                          <div class="item-inner">
-                            <div class="item-title">F-appen</div>
-                          </div>
-                        </div>
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-                
-                <div class="content-block-title">Inställningar</div>
-                <div class="list-block">
-                  <ul>
-                    <li>
-                      <a href="user_page.html" class="item-link">
-                        <div class="item-content">
-                          <div class="item-inner">
-                            <div class="item-title">Konto</div>
-                          </div>
-                        </div>
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-                <div class="content-block-title">Support</div>
-                <div class="list-block">
-                  <ul>
-                    <li>
-                      <a href="https://fsektionen.se/kontakter/1" class="item-link external" target="_system">
-                        <div class="item-content">
-                          <div class="item-inner">
-                            <div class="item-title">Rapportera ett problem</div>
-                          </div>
-                        </div>
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-                <a href="#" class="button button-big signout-btn">Logga ut</a>
+          <div data-name="tab-alt" class="page">
+            <div class="navbar android-hide">
+              <div class="navbar-inner sliding">
+                <div class="title">Alternativ</div>
               </div>
+            </div>
+            <div class="page-content settings-content">
+              <div class="list">
+                <ul>
+                  <li>
+                    <a href="/songbook/" class="item-link">
+                      <div class="item-content">
+                        <div class="item-inner">
+                          <div class="item-title">Sångbok</div>
+                        </div>
+                      </div>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <div class="block-title">Om</div>
+              <div class="list">
+                <ul>
+                  <li>
+                    <a href="/about_section/" class="item-link">
+                      <div class="item-content">
+                        <div class="item-inner">
+                          <div class="item-title">F-sektionen</div>
+                        </div>
+                      </div>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/about_app/" class="item-link">
+                      <div class="item-content">
+                        <div class="item-inner">
+                          <div class="item-title">F-appen</div>
+                        </div>
+                      </div>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <div class="block-title">Inställningar</div>
+              <div class="list">
+                <ul>
+                  <li>
+                    <a href="/user_page/" class="item-link">
+                      <div class="item-content">
+                        <div class="item-inner">
+                          <div class="item-title">Konto</div>
+                        </div>
+                      </div>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <div class="block-title">Support</div>
+              <div class="list">
+                <ul>
+                  <li>
+                    <a href="https://fsektionen.se/kontakter/1" class="item-link external" target="_system">
+                      <div class="item-content">
+                        <div class="item-inner">
+                          <div class="item-title">Rapportera ett problem</div>
+                        </div>
+                      </div>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <a href="#" class="button button-big signout-btn">Logga ut</a>
             </div>
           </div>
         </div>
@@ -702,10 +699,12 @@
             <li class="list-group-title">{{firstLetter}}</li>
             {{#each songs}}
               <li>
-                <a href="/song/{{id}}" class="item-link item-content">
+                <a href="song/{{id}}" class="item-link">
+                  <div class="item-content">
                     <div class="item-inner">
                       <div class="item-title">{{title}}</div>
                     </div>
+                  </div>
                 </a>
               </li>
             {{/each}}
@@ -716,8 +715,8 @@
 
     <script type="text/template7" id="songTemplate">
       {{#each song}}
-        <div class="content-block-title">{{title}}</div>
-        <div class="content-block">
+        <div class="block-title">{{title}}</div>
+        <div class="block">
           {{#if melody}}
             <p class="auth-mel"><span>Melodi:</span> {{melody}}</p>
           {{/if}}
@@ -725,8 +724,8 @@
             <p class="auth-mel"><span>Författare:</span> {{author}}</p>
           {{/if}}
         </div>
-        <div class="content-block song-text">
-          <div class="content-block-inner">
+        <div class="block song-text">
+          <div class="block-inner">
             {{content}}
           </div>
         </div>

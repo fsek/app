@@ -1,4 +1,4 @@
-$$(document).on('page:init', '.page[data-name="songbook"]', function (page) {
+$$(document).on('page:init', '.page[data-name="songbook"]', function (e) {
   $.getJSON(API + '/songs')
   .done(function(resp) {
     initSongList(resp.songs);
@@ -12,6 +12,7 @@ $$(document).on('page:init', '.page[data-name="songbook"]', function (page) {
 function initSongList(songdata) {
   var currentLetter = songdata[0].title.charAt(0);
   var songList = [];
+  
   songList.push({firstLetter: currentLetter, songs:[]});
   var counter = 0;
   songdata.forEach(function(element) {
@@ -25,14 +26,20 @@ function initSongList(songdata) {
     }
   })
   var templateHTML = app.templates.songbookTemplate({letter: songList});
-  var songbookContent = $('.songbook-content');
-  songbookContent.html(templateHTML);
-  //Get height of songbook-content and set overlay height accordingly
-  $('.searchbar-overlay').height(songbookContent.height());
+  var songbookList = $('#songbook-list');
+  songbookList.html(templateHTML);
+
+  // Create the indexed list after we've applied the songs to set it up with them
+  var listIndex = app.listIndex.create({
+    el: '.list-index',
+    listEl: '#songbook-list',
+    label: true,
+  });
 }
 
-$$(document).on('page:init', '.page[data-name="song"]', function (page) {
-  $.getJSON(API + '/songs/' + page.query.id)
+$$(document).on('page:init', '.page[data-name="song"]', function (e) {
+  var songId = e.detail.route.params.songId;
+  $.getJSON(API + '/songs/' + songId)
   .done(function(resp) {
     var templateHTML = app.templates.songTemplate({song:resp});
     var songContent = $('.song-content');

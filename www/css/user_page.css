@@ -28,6 +28,9 @@
   margin-top: 0;
   padding: 0;
   overflow: scroll;
+  background-image: url("../img/RoosterxHen.png");
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 .user-content .label-switch {

@@ -17,6 +17,11 @@ sed -i 's/509736475453/178540363026/' ./package.json
 sed -i 's/509736475453/178540363026/' ./www/js/push.js
 sed -i 's/stage.fsektionen.se/fsektionen.se/' ./www/js/index.js
 
+gulp 'scss'
+rm -rf 'www/scss'
+rm 'start.js'
+rm 'gulpfile.js'
+
 git add -A
 git commit -m 'Automatic Android Production deploy'
 git push -f origin production:production-android
@@ -32,10 +37,16 @@ sed -i 's/509736475453/178540363026/' ./www/js/push.js
 sed -i 's/"gcmSandbox": true/"gcmSandbox": false/' ./www/js/push.js
 sed -i 's/stage.fsektionen.se/fsektionen.se/' ./www/js/index.js
 
+gulp 'scss'
+rm -rf 'www/scss'
+rm 'start.js'
+rm 'gulpfile.js'
+
 git add -A
 git commit -m 'Automatic iOS Production deploy'
 git push -f origin production:production-ios
 git reset --hard origin/production
+
 
 ### DEPLOY TO PHONEGAP BUILD
 curl spindelman@fsektionen.se -X PUT -d 'data={"pull":"true"}' \

@@ -11,6 +11,8 @@ git reset --hard origin/master
 sed -i '/<link rel="stylesheet"/s/ios/material/' ./www/index.html
 sed -i '/<platform name="ios">/,/<\/platform>/d' ./config.xml
 
+gulp 'scss'
+
 git add -A
 git commit -m 'Automatic Android deploy'
 git push -f origin master:master-android
@@ -19,6 +21,8 @@ git push -f origin master:master-android
 git reset --hard origin/master
 sed -i '/<link rel="stylesheet"/s/material/ios/' ./www/index.html
 sed -i '/<platform name="android">/,/<\/platform>/d' ./config.xml
+
+gulp 'scss'
 
 git add -A
 git commit -m 'Automatic iOS deploy'

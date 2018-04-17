@@ -11,28 +11,56 @@
     box-shadow: 0 1px 5px #000 inset, 0 1px 0 #444;           
 }
 
-.progress-bar span {
+.progress-bar span{
     display: inline-block;
     height: 100%;
     border-radius: 3px;
     box-shadow: 0 1px 0 rgba(255, 255, 255, .5) inset;
-    transition: width .4s ease-in-out;    
+    transition: width .4s ease-in-out; 
+    width: 70%;   
 }
 
-.progress-text span{
-  border-radius: 3px;
+.progress-text {
+  text-align: center;
+  padding-top: 3px;
 }
+
+.progress-text span {
+  border-radius: 3px;
+  color: #FFFFFF;
+  text-align:center;
+  display: inline-block;
+  padding-left:5px;
+  padding-right:5px;
+  font: bold 15px sans-serif;
+  text-shadow: 1px 1px #202020;
+}
+
 
 .orange span {
       background-color: #eb7125;
-      background-image: linear-gradient(top, #fecf23, #fd9215);  
+      background-image: linear-gradient(top, #fecf23, #fd9215);
+      
 }   
 
+.level{
+  position: relative;
+  top: 145px;
+  text-align: center;
+  font: bold 48px sans-serif;
+  color: #FFFFFF;
+  text-shadow: 1px 1px #202020;
+}
 
 .krans {
-  width:200px;
+  display: block;
+  max-width:280px;
+  max-height:200px;
+  width: auto;
+  height: auto;
   margin:auto;
-  display:block;
+  padding-bottom: 20px;
+  padding-top: 0px;
 }
 
 .achievementpage-content .content-block-title{
@@ -46,14 +74,18 @@
   margin-top: 20px;
 }
 
+
+.achievements-content .content-block {
+  margin:0;
+}
 .achievementpage-content .content-block {
-  margin: 15px 0px 15px;
+  margin:0;
 }
 
 .achievementpage-content .content-block p{
   color: #000;
-  font-size: 16px;
-  margin:2px 2px 14px;
+  font-size: 0px;
+  margin:0;
 }
 
 .achievementpage-content .content-block p:last-child{

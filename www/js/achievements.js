@@ -2,15 +2,18 @@ myApp.onPageInit('achievements', function(page){
   var achievements = [
     {
       name: 'spodermon',
-      points: '10000' 
+      points: '10000', 
+      image: '../img/achievements-spindelman.png'
     },
     {
       name: 'flying',
-      points: '1337' 
+      points: '1337',
+      image: '../img/f_logo.png' 
     },
     {
       name: 'Slå Jessica i magen',
-      points: '9999999999999' 
+      points: '9999999999999',
+      image: '../img/missing_thumb.png' 
     }
   ]
   var templateHTML = myApp.templates.achievementTemplate({kalle:achievements});

@@ -357,13 +357,7 @@
                   <div class="item-media">
                     <i class="fa fa-clock-o" aria-hidden="true"></i>
                   </div>
-                  <div class="item-inner">
-                    {{#unless all_day}}
-                      {{starts_at_dot}} - {{ends_at.timeDateString()}}
-                    {{else}}
-                      {{starts_at.dateString()}}
-                    {{/unless}}
-                  </div>
+                  <div class="item-inner">{{date_string}}</div>
                 </li>
                 <li class="item-content event-info-place">
                   <div class="item-media">

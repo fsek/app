@@ -59,10 +59,10 @@
 }
 
 .event-description{
-  max-height: 80px;
+  max-height: 100px;
   overflow: hidden;
-  position: relative;
   padding: 0 15px;
+  transition: 500ms;
 }
 
 .event-description.content-fade:after{

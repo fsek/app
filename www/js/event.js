@@ -21,7 +21,9 @@ function initEventPage(eventData){
 
   // Description overflow toggle if container height = maxHeight
   var descripContainer = $('.event-description-container');
-  if(descripContainer.height() == 80){
+  var maxHeight = descripContainer.find('.event-description').css('max-height');
+
+  if (descripContainer.height() + 'px' == maxHeight) {
     handleDescriptionOverflow(descripContainer);
   }
 
@@ -191,24 +193,19 @@ function handleDescriptionOverflow(descripContainer){
 
     if(!descripShowing){
       // Calc total height of the text
-      var totalHeight = 13; // Buffer for the icon
+      var totalHeight = 8 + 20; // first element's margin top + buffer for the icon
+
       content.children().each(function(){
-        totalHeight += $(this).outerHeight(true);
+        totalHeight += $(this).height() + 14; // 14 px margin between each element
       });
 
       // Expand content to the total text height
-      content.animate({
-        maxHeight: totalHeight,
-        height: totalHeight
-      }, 300);
+      content.css('max-height', totalHeight);
+      content.css('height', totalHeight);
 
       descripShowing = true;
     }else{
-      // Collapse content
-      content.animate({
-        maxHeight: "80px"
-      }, 300);
-
+      content.css('max-height', 100);
       descripShowing = false;
     }
 

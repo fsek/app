@@ -63,36 +63,51 @@ function initEventPage(eventData){
 }
 
 function generateAdditionalData(eventData){
-  // Fix dates
-  eventData.starts_at = new Date(eventData.starts_at);
-  eventData.ends_at = new Date(eventData.ends_at);
+  // Fix start and end date
+  var dateString = generateDateString(eventData);
+  eventData.date_string = dateString;
 
   // Need to add if event has dress code because template7 #if doesn't handle empty arrays
   var hasDressCode = eventData.dress_code.length != 0 ? true : false;
   eventData.hasDressCode = hasDressCode;
 
-  // Fix the start time with dots
-  switch(eventData.dot){
-    case '':
-      eventData.starts_at_dot = eventData.starts_at.timeDateString();
-      break;
-    case null:
-      eventData.starts_at_dot = eventData.starts_at.timeDateString();
-      break;
-    case 'without':
-      eventData.starts_at_dot = eventData.starts_at.timeWithoutDot();
-      break;
-    case 'single':
-      eventData.starts_at_dot = eventData.starts_at.timeSingleDot();
-      break;
-    case 'double':
-      eventData.starts_at_dot = eventData.starts_at.timeDoubleDot();
-      break;
-  }
-
   if(eventData.can_signup){
     generateSignupData(eventData);
   }
+}
+
+function generateDateString(eventData) {
+  var startDate = new Date(eventData.starts_at);
+  var endDate = new Date(eventData.ends_at);
+
+  if (sameDay(startDate, endDate)) {
+    switch(eventData.dot){
+      case 'single':
+        startDate = startDate.hhmm() + ' (.)';
+        break;
+      case 'double':
+        startDate = startDate.hhmm() + ' (..)';
+        break;
+      default: 
+        startDate = startDate.hhmm();
+        break;
+    }
+  } else {
+    // Fix the start time with dots if there is
+    switch(eventData.dot){
+      case 'single':
+        startDate = startDate.timeSingleDot();
+        break;
+      case 'double':
+        startDate = startDate.timeDoubleDot();
+        break;
+      default:
+        startDate = startDate.timeDateString();
+        break;
+    }
+  }
+
+  return startDate + ' - ' + endDate.timeDateString();;
 }
 
 function generateSignupData(eventData){

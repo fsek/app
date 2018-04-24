@@ -61,15 +61,15 @@ Date.prototype.getDayMonthName = function() {
 
 // Get time for dots in events
 Date.prototype.timeWithoutDot = function() {
-  return this.getHours() + ', ' + this.getDate() + ' ' + monthNames[this.getMonth()].toLowerCase();
+  return this.getFullHours() + ', ' + this.getDate() + ' ' + monthNames[this.getMonth()].toLowerCase();
 }
 
 Date.prototype.timeSingleDot = function() {
-  return this.getHours() + ' (.), ' + this.getDate() + ' ' + monthNames[this.getMonth()].toLowerCase();
+  return this.getFullHours() + ' (.), ' + this.getDate() + ' ' + monthNames[this.getMonth()].toLowerCase();
 }
 
 Date.prototype.timeDoubleDot = function() {
-  return this.getHours() + ' (..), ' + this.getDate() + ' ' + monthNames[this.getMonth()].toLowerCase();
+  return this.getFullHours() + ' (..), ' + this.getDate() + ' ' + monthNames[this.getMonth()].toLowerCase();
 }
 
 // Checks if two dates have the same day

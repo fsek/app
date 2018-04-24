@@ -19,7 +19,7 @@ myApp.onPageBeforeInit('user-page', function (page) {
 
     // Add 'selected' attribute to the options that match the user.food_preferences elements
     // length-1 because we don't need to check for the last option 'annat'
-    for(var i = 0; i < options.length - 1; i++){ 
+    for(var i = 0; i < options.length - 1; i++){
       // use foodPreferences.indexOf(option) istead??????
       foodPreferences.forEach(function(element){
         if(options[i].innerHTML.toLowerCase() == element){
@@ -29,7 +29,7 @@ myApp.onPageBeforeInit('user-page', function (page) {
     }
   }
 
-  // Add 'selected' attribute to the 'Annat' option if food_custom exists 
+  // Add 'selected' attribute to the 'Annat' option if food_custom exists
   if($.auth.user.food_custom != ''){
     options[options.length-1].setAttribute('selected', '')
   }
@@ -39,7 +39,7 @@ myApp.onPageInit('user-page', function (page) {
   var user = $.auth.user;
   var settingsChanged = false;
   var userContent = $('.user-content');
-  
+
   // Add first and last name to the user container text
   userContent.find('.user-container p').html(user.firstname + ' ' + user.lastname);
 
@@ -51,7 +51,7 @@ myApp.onPageInit('user-page', function (page) {
     avatarURL = '../img/missing_thumb.png';
   }
   userContent.find('.user-avatar').css('background-image', 'url(' + avatarURL + ')');
-  
+
   // Adds 'inga' to the item-after object if there is no food preferences
   if(user.food_preferences.length == 0 && user.food_custom == '') {
     userContent.find('.user-food-pref .item-after').html('Inga');
@@ -112,7 +112,7 @@ myApp.onPageInit('user-page', function (page) {
   // F7 sucks and the picker isn't initialized till opened, so you can't set the value???
   startYearPicker.open();
   startYearPicker.close();
-  startYearPicker.setValue([user.start_year])  
+  startYearPicker.setValue([user.start_year])
 
   $('.user-update').on('click', function(){
     // Open preloader that closes after 0.8s and updates the name text
@@ -174,12 +174,10 @@ myApp.onPageInit('user-page', function (page) {
         }else{
           hidePreloader = true;
         }
-        //console.log(resp)
       },
       error: function(resp) {
         myApp.hidePreloader();
         myApp.alert('Kunde inte uppdatera dina användarinställningar. Kontrollera dina fält.', 'Misslyckades att spara')
-        //console.log(resp)
       }
     });
 
@@ -223,7 +221,7 @@ $$(document).on('page:init', '.page[data-select-name="food_preferences"]', funct
 
   // Adds the input html if the 'Annat' option is selected (has the 'selected' attribute)
   var isOtherSelected = optionOther.hasAttribute('selected');
-  if(isOtherSelected){ 
+  if(isOtherSelected){
     page.find('ul').append(otherInputHTML);
     $('#option-other input')[0].value = optionValue;
   }
@@ -246,9 +244,9 @@ $$(document).on('page:init', '.page[data-select-name="food_preferences"]', funct
 });
 
 // Update selected options to 'Inga' if nothing was selected in page:back event for the smart-select page
-// Also updates food_custom to either the input value (if the 'Annat' input was found) otherwise an empty string 
+// Also updates food_custom to either the input value (if the 'Annat' input was found) otherwise an empty string
 $$(document).on('page:back', '.page[data-select-name="food_preferences"]', function (page) {
-  var selectedOptions = $('.user-food-pref .item-after');  
+  var selectedOptions = $('.user-food-pref .item-after');
   if(selectedOptions.html() == ''){
     selectedOptions.html('Inga');
   }

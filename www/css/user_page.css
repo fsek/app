@@ -1,6 +1,7 @@
 .user-avatar {
   height: 31vw;
   width: 31vw;
+  background-color: white;
   background-size: contain;
   background-repeat: no-repeat;
   margin: auto;

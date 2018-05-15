@@ -157,3 +157,7 @@ a.message-send-button:active {
   transition-duration: 0s;
   -webkit-transition-duration: 0s;
 }
+
+.photo-browser-page .navbar, .photo-browser-page .toolbar {
+  background-color: rgba(30, 30, 30, 0.8) !important;
+}

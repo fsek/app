@@ -27,6 +27,11 @@ Date.prototype.dateString = function() {
   return this.getDate() + ' ' + monthNames[this.getMonth()].toLowerCase() + ' ' + this.getFullYear();
 };
 
+// Convert date to 'd monthNameShort yyyy'
+Date.prototype.shortDateString = function() {
+  return this.getDate() + ' ' + monthNamesShort[this.getMonth()].toLowerCase() + ' ' + this.getFullYear();
+};
+
 // Convert date to 'hh:mm, d monthName'
 Date.prototype.timeDateString = function() {
   return this.hhmm() + ', ' + this.getDate() + ' ' + monthNames[this.getMonth()].toLowerCase();

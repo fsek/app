@@ -31,9 +31,10 @@
     <link rel="stylesheet" href="css/songbook.css">
     <link rel="stylesheet" href="css/contact.css">
     <link rel="stylesheet" href="css/version_check.css">
+    <link rel="stylesheet" href="css/gallery.css">
+    <link rel="stylesheet" href="css/album.css">
     <!--<link rel="stylesheet" href="css/nollning.css">
     <link rel="stylesheet" href="css/adventures.css">-->
-
   </head>
   <body class="color-theme-orange">
     <div id="app">
@@ -281,6 +282,15 @@
                       <div class="item-content">
                         <div class="item-inner">
                           <div class="item-title">Sångbok</div>
+                        </div>
+                      </div>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/gallery/" class="item-link">
+                      <div class="item-content">
+                        <div class="item-inner">
+                          <div class="item-title">Bildgalleri</div>
                         </div>
                       </div>
                     </a>
@@ -948,6 +958,43 @@
           </div>
         </div>
       </script>
+
+      <script type="text/template7" id="galleryTemplate">
+        {{#each album}}
+          <a href="album/{{id}}">
+            <div class="album">
+              <div class="album-full-background" style="background-image: url({{thumb}})"></div>
+              <div class="album-text">
+                <div class="album-title"><p> {{title}} </p></div>
+                <div><i class="fa fa-calendar"></i> {{js "new Date(this.start_date).shortDateString()"}}</div>
+                <div><i class="fa fa-map-marker"></i> {{location}}</div>
+                <div><i class="fa fa-image"></i> {{image_count}}</div>
+              </div>
+            </div>
+          </a>
+        {{/each almbum}}
+      </script>
+
+      <script type="text/template7" id="albumTemplate">
+        <div class="block-title">{{title}}</div>
+        <div class="block">
+          {{#if description}}
+            <p>{{description}}</p>
+          {{/if}}
+          {{#if photographers}}
+            <p><span>Fotografer: </span>{{join photographers delimiter=", "}}</p>
+          {{/if}}
+        </div>
+        <div class="album-images">
+          {{#each image}}
+          <a href="#" data-index="{{@index}}" class="album-imageBrowser">
+            <div class="album-image">
+              <div class="image-full-background" style="background-image: url({{file.thumb.url}})"></div>
+            </div>
+          </a>
+          {{/each image}}
+        </div>
+      </script>
     </section>
 
     <!-- External JS Libraries -->
@@ -984,6 +1031,8 @@
     <script type="text/javascript" src="js/contact.js"></script>
     <script type="text/javascript" src="js/version_check.js"></script>
     <script type="text/javascript" src="js/about_app.js"></script>
+    <script type="text/javascript" src="js/gallery.js"></script>
+    <script type="text/javascript" src="js/album.js"></script>
     <!--
     <script type="text/javascript" src="js/adventures.js"></script>
     <script type="text/javascript" src="js/nollning.js"></script>-->

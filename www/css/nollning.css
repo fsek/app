@@ -93,7 +93,7 @@
   filter: hue-rotate(170deg);
 }
 
-#view-nollning .navbar, .photo-browser-page .navbar {
+#view-nollning .navbar {
   background-color: #2f729e !important;
 }
 
@@ -166,5 +166,3 @@
   font-family: Atlantis;
   src: url("../fonts/Atlantisnollning.otf");
 }
-
-

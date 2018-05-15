@@ -1,0 +1,48 @@
+.gallery-container {
+  margin-left: 15px;
+}
+
+.album {
+  position: relative;
+  height: calc(50vw - 19px);
+  width: calc(50vw - 19px);
+  float: left;
+  margin: 2px;
+}
+
+.album-full-background {
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  position: absolute;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: brightness(0.6);
+}
+
+.album-text {
+  position: relative;
+  color: white;
+  text-align: center;
+}
+
+.album-title {
+  font-weight: bold;
+}
+
+.album-text i{
+  color: #eb7125;
+}
+
+.album-text div{
+  display: block;
+}
+
+.gallery-container .preloader {
+  margin-left: calc(50% - 20px);
+  margin-top: 35px;
+  height: 40px;
+  width: 40px;
+}

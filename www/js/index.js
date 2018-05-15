@@ -212,6 +212,18 @@ var alternativesView = app.views.create('#view-alternatives', {
       ]
     },
     {
+      name: 'gallery',
+      path: '/gallery/',
+      url: './gallery.html',
+      routes: [
+        {
+          name: 'album',
+          path: 'album/:albumId',
+          url: './album.html'
+        }
+      ]
+    },
+    {
       name: 'user_page',
       path: '/user_page/',
       url: './user_page.html',

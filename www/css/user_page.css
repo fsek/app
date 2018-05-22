@@ -41,6 +41,8 @@
 .user-content .item-title.label {
   width: auto;
   min-width: 35%;
+  max-width: 80%;
+  white-space: initial;
 }
 
 .user-food-pref .item-after {

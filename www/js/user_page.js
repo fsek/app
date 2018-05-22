@@ -72,6 +72,7 @@ myApp.onPageInit('user-page', function (page) {
     'display_phone': user.display_phone ? 'on' : 'off',
     'notify_event_users': user.notify_event_users ? 'on' : 'off',
     'notify_messages': user.notify_messages ? 'on' : 'off',
+    'notify_event_closing': user.notify_event_closing ? 'on' : 'off',
   };
   myApp.formFromData('#user-form', formData);
 

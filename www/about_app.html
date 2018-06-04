@@ -1,26 +1,26 @@
-<div data-name="settings" class="page no-tabbar">
+<div data-name="about-app" class="page no-toolbar">
   <div class="navbar">
-    <div class="navbar-inner">
-      <div class="left sliding">
+    <div class="navbar-inner sliding">
+      <div class="left">
         <a href="#" class="back link">
           <i class="icon icon-back"></i>
-          {{#unless @global.android}}<span>Tillbaka</span>{{/unless}}
+          <span class="ios-only">Tillbaka</span>
         </a>
       </div>
-      <div class="center sliding">Om F-appen</div>
+      <div class="title">Om F-appen</div>
     </div>
   </div>
-  <div class="page-content settings-content">
-    <div class="content-block-title about-title">F-appen</div>
-    <div class="content-block">
+  <div class="page-content">
+    <div class="block-title about-title">F-appen</div>
+    <div class="block">
       <p>Version: 1.1.1</p>
       <p>Powered by Framework7 & Adobe PhoneGap</p>
-      <div>Knackad av F-sektionens Spindelmän:</div>
-      <div>Jakob Navrozidis</div>
-      <div>Fredrik Lastow</div>
-      <div>Olof Englund</div>
-      <div>Tony Liu</div>
-      <div>Kalle Petterson</div>
+      <p class="contributor-title">Knackad av F-sektionens Spindelmän:</p>
+      <p class="contributor">Jakob Navrozidis (S16, S17, SF17/18, S18)</p>
+      <p class="contributor">Fredrik Lastow (S17, S18, SF18/19)</p>
+      <p class="contributor">Olof Englund (S17, S18)</p>
+      <p class="contributor">Tony Liu (S18)</p>
+      <p class="contributor">Kalle Petterson (S18)</p>
     </div>
   </div>
 </div>

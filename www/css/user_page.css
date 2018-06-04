@@ -1,3 +1,7 @@
+#option-other .item-input {
+  width: 100%;
+}
+
 .user-avatar {
   height: 31vw;
   width: 31vw;
@@ -26,31 +30,27 @@
 }
 
 .user-content {
-  margin-top: 0;
-  padding: 0;
-  overflow: scroll;
+  padding-bottom: 12px !important;
   background-image: url("../img/RoosterxHen.png");
   background-size: contain;
   background-repeat: no-repeat;
 }
 
-.user-content .label-switch {
-  float: right;
+.user-food-pref .item-after {
+  max-width: 60% !important;
+  white-space: initial;
 }
 
-.user-content .item-title.label {
+.user-content .item-title {
   width: auto;
-  min-width: 35%;
+  min-width: 45%;    
   max-width: 80%;
   white-space: initial;
 }
 
-.user-food-pref .item-after {
-  max-width: 60% !important;
-}
-
 .user-foodpref-info {
   color: #8f8f94;
+  white-space: initial !important;
 }
 
 #user-form {
@@ -58,11 +58,5 @@
 }
 
 .user-list-title {
-  margin: 15px 0 10px;
   font-size: 14px;
-}
-
-#user-member-at {
-  padding-top: 20px;
-  margin-bottom: 15px;
 }

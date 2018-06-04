@@ -102,8 +102,8 @@
   border: none;
 }
 
-.navbar{
-  box-shadow: none !important;
+.md .navbar:after{
+  display: none;
 }
 
 .list-block .focus-state.item-inner .label {
@@ -114,46 +114,18 @@
   background-color: #f3f3f3;
 }
 
-.user-content ul:before {
-  display: none;
-}
-
 #user-form {
   background-color: #fff;
-}
-
-.user-food-pref .item-after {
-  float: right;
 }
 
 .user-foodpref-info{
   font-size: 13px;
 }
 
-.user-switch .label-switch {
-  margin-top: 3px;
-}
-
-.user-switch {
-  padding-right: 16px;
-}
-
-.user-switch .item-inner, .user-food-pref .item-inner {
-  display: flex !important;
-  border-bottom: 1px solid #e6e6e6;
-  padding-bottom: 7px !important;
-  padding-right: 5px;
-}
-
 .user-list-title {
-  padding: 30px 15px 15px;
+  padding: 30px 15px 15px 15px;
   background-color: #f3f3f3;
   color: #4a4a4e;
-  border-top: 1px solid #f0f0f0;
-}
-
-#user-member-at {
-  background-color: #f3f3f3;
 }
 
 .song-content{

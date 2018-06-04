@@ -1,0 +1,26 @@
+.about-title {
+  font-size: 24px;
+  font-weight: bold !important;
+  color: #eb7125 !important;
+  overflow: visible;
+}
+
+.contributor {
+  margin: 0;
+}
+
+.contributor-title {
+  color: #eb7125;
+  font-weight: bold;
+  margin: 0;
+}
+
+.signout-btn {
+  background-color: #e74c3c;
+  color: #fff !important;
+}
+
+.signout-btn.active-state {
+  background-color: #a73529 !important;
+}
+

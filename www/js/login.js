@@ -116,13 +116,10 @@ function afterSignIn() {
     StatusBar.backgroundColorByHexString(mainBarColor);
   }, false);
 
-  // Close login screen
   loginScreen.close();
 
-  // Clear for next login
-  $('#login-form input[name="email"]').val('');
-  $('#login-form input[name="password"]').val('');
-  $('.login-btn').addClass('disabled');
+  // Show home tab with news (needs to be done if an user logs out)
+  app.tab.show('#view-home');
 
   // Init all the different tab's functions
   pushAfterLogin();

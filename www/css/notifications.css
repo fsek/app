@@ -46,6 +46,10 @@
   text-align: center;
 }
 
+.notification-list ul:empty:before, .notification-list ul:empty:after{
+  content: none;
+}
+
 .no-notifications{
   text-align: center;
 }

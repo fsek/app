@@ -97,13 +97,13 @@
   background-color: #efeff4;
 }
 
-.user-foodpref-info{
+.user-foodpref-info {
   font-size: 14px;
 }
 
 .user-list-title {
   color: #8f8f94;
-  padding: 15px 15px 0;
+  padding: 20px 15px 10px 15px;
 }
 
 .settings-content {

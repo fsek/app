@@ -25,6 +25,12 @@ const AC_URL = 'wss://stage.fsektionen.se/cable'
 // ActionCable Token URL
 const AC_TOKEN_URL = API + '/messages/new_token';
 
+// Configure jToker
+$.auth.configure({
+  apiUrl: API,
+  storage: 'localStorage'
+});
+
 // Creating views and defining their routes
 var loginView = app.views.create('#login', {
   routesAdd: [
@@ -76,6 +82,13 @@ var calendarView = app.views.create('#view-calendar', {
       name: 'event',
       path: '/event/:eventId',
       url: './event.html',
+      routes: [
+        {
+          name: 'user_page',
+          path: 'user_page/',
+          url: './user_page.html',
+        }
+      ]
     },
   ]
 });
@@ -95,23 +108,6 @@ var messagesView = app.views.create('#view-groups', {
     },
   ]
 });
-var notificationsView = app.views.create('#view-notifications', {
-  routesAdd: [
-    {
-      name: 'event',
-      path: '/event/:eventId',
-      url: './event.html',
-      routes: [
-        {
-          name: 'contact',
-          path: 'contact/:contactId',
-          url: './contact.html',
-        },
-      ]
-    },
-  ]
-});
-var messagesView = app.views.create('#view-groups'});
 var notificationsView = app.views.create('#view-notifications', {
   routesAdd: [
     {
@@ -174,12 +170,6 @@ function compileTemplates(templateNames){
 
   return compiledTemplates;
 }
-
-// Configure jToker
-$.auth.configure({
-  apiUrl: API,
-  storage: 'localStorage'
-});
 
 const infScrollPreloader = '<div class="infinite-scroll-preloader"><div class="preloader"></div></div>';
 

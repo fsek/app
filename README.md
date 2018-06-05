@@ -21,4 +21,4 @@ Head to the [wiki](https://github.com/fsek/app/wiki) to learn how to setup and u
 
 __What you should never do:__
 - Force-push new commits to __master__ or __production__
-- Create commits directly on _master__ or __production__
+- Create commits directly on __master__ or __production__

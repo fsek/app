@@ -10,7 +10,7 @@
 
     <!-- Material/iOS stylesheets. Will be replaced on deploy -->
     <link rel="stylesheet" href="lib/framework7/css/framework7.min.css">
-    <link rel="stylesheet" href="css/Material-overrides.css">
+    <link rel="stylesheet" href="css/material-overrides.css">
 
     <!-- General stylesheets -->
     <link rel="stylesheet" href="css/font-awesome.min.css">
@@ -252,10 +252,10 @@
               <div class="list">
                 <ul>
                   <li>
-                    <a href="https://fsektionen.se/kontakter/1" class="item-link external" target="_system">
+                    <a href="/contact/1" class="item-link">
                       <div class="item-content">
                         <div class="item-inner">
-                          <div class="item-title">Rapportera ett problem</div>
+                          <div class="item-title">Kontakt</div>
                         </div>
                       </div>
                     </a>
@@ -394,7 +394,7 @@
             <div class="card-footer">
               <div class="event-contact">
                 Vid frågor om eventet, kontakta eventansvarig:
-                <a href="contact.html?id={{contact.id}}">
+                <a href="contact/{{contact.id}}">
                   <br>
                   <i class="fa fa-envelope" aria-hidden="true"></i>
                   {{contact.name}}
@@ -595,7 +595,7 @@
             <div class="card-footer">
               <div class="event-contact">
                 Vid tekniska problem med anmälan, hör vänligen av dig till:
-                <a href="contact.html?id=1">
+                <a href="contact/1">
                   <i class="fa fa-envelope" aria-hidden="true"></i> Spindelmännen
                 </a>
               </div>
@@ -745,7 +745,6 @@
       <div class="item-content">
         <div class="item-inner contact-selected">
           <div class="item-title">Kontaktperson</div>
-          <div class="item-after">{{selectedName}}</div>
         </div>
       </div>
     </script>

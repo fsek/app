@@ -144,23 +144,24 @@
   padding-bottom: 25px;
 }
 
-.contact-content .item-title.label {
-  width: auto;
-  min-width: 35%;
-}
-
 .contact-content .contact-selected .item-title {
   font-size: 14px;
 }
 
-.contact-content .list-block ul:after { 
-  display: block;
+.md .contact-text:after {
+  background: none;
 }
 
-.contact-content .item-content .contact-selected {
-  display: flex;
-  padding-bottom: 7px;
-  margin-bottom: 0px;
+.searchbar input {
+  font-size: 16px !important;
+}
+
+.searchbar {
+  border-bottom: 1px solid #0000000f;
+}
+
+.md .subnavbar:after {
+  content: none;
 }
 
 .event-content {

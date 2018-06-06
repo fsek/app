@@ -87,7 +87,12 @@ var calendarView = app.views.create('#view-calendar', {
           name: 'user_page',
           path: 'user_page/',
           url: './user_page.html',
-        }
+        },
+        {
+          name: 'contact',
+          path: 'contact/:contactId',
+          url: './contact.html',
+        },
       ]
     },
   ]
@@ -152,6 +157,11 @@ var alternativesView = app.views.create('#view-alternatives', {
       name: 'user_page',
       path: '/user_page/',
       url: './user_page.html',
+    },
+    {
+      name: 'contact',
+      path: '/contact/:contactId',
+      url: './contact.html',
     },
   ]
 });

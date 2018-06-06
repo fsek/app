@@ -1,13 +1,13 @@
-<div data-page="contact" class="page no-tabbar">
+<div data-name="contact" class="page no-toolbar">
   <div class="navbar">
-    <div class="navbar-inner">
-      <div class="left sliding">
+    <div class="navbar-inner sliding">
+      <div class="left">
         <a href="#" class="back link">
           <i class="icon icon-back"></i>
-          {{#unless @global.android}}<span>Tillbaka</span>{{/unless}}
+          <span class="ios-only">Tillbaka</span>
         </a>
       </div>
-      <div class="center sliding">Kontakt</div>
+      <div class="title">Kontakt</div>
     </div>
   </div>
   <div class="page-content contact-content">
@@ -15,27 +15,25 @@
       <div class="preloader"></div>
     </div>
     <div class="block-title" id="contact-description-title"></div>
-    <div class="content-block" id="contact-description"></div>
-    <form id="contact-form" class="list-block">
+    <div class="block" id="contact-description"></div>
+    <div class="block" id="contact-email"><span></span></div>
+    <form id="contact-form" class="list">
       <ul>
         <li>
-          <a href="#" class="item-link smart-select" data-open-in="popup" data-searchbar="true" data-searchbar-placeholder="Sök efter kontaktperson" data-searchbar-cancel="Avbryt" id="contact-select">
-          </a>
+          <a href="#" id="contact-select" class="item-link smart-select"></a>
         </li>
       </ul>
       <div class="block-title">Meddelande</div>
       <ul>
-        <li>
-          <div class="item-content">
-            <div class="item-inner">
-              <div class="item-input contact-text">
-                <textarea name="message" placeholder="Skriv här"></textarea>
-              </div>
+        <li class="item-content item-input">
+          <div class="item-inner">
+            <div class="item-input-wrap contact-text">
+              <textarea name="message" placeholder="Skriv ditt meddelande här"></textarea>
             </div>
           </div>
         </li>
       </ul>
-      <a href="#" class="button button-big button-fill contact-button">Skicka</a>
     </form>
+    <a href="#" class="button button-big button-fill contact-button">Skicka</a>
   </div>
 </div>

@@ -5,7 +5,7 @@ var infNotificationScroll = true;
 // Init notifications if not already inited
 $$(document).on('page:init', '.page[data-name="notifications"]', function (e) {
   // If signed in and notification container is empty
-  if(!jQuery.isEmptyObject($.auth.user) && $('#notification-list ul').is(':empty')) {   
+  if (!jQuery.isEmptyObject($.auth.user) && $('#notification-list ul').is(':empty')) {   
     getNotifications(false);
   }
 });
@@ -35,11 +35,11 @@ function getNotifications(refresh) {
       updateNotificationBadge(resp.meta.unread);
       nextPage = resp.meta.next_page;
 
-      if(refresh) app.ptr.done($$('#view-notifications .ptr-content'));
-      if(!infNotificationScroll) attachInfNotificationScroll();
+      if (refresh) app.ptr.done($$('#view-notifications .ptr-content'));
+      if (!infNotificationScroll) attachInfNotificationScroll();
 
       // Fill the screen if more notifications exist
-      if($$(window).height() >= $$('#notification-list').height()) moreNotifications();
+      if ($$(window).height() >= $$('#notification-list').height()) moreNotifications();
     });
 }
 
@@ -53,18 +53,19 @@ function getMoreNotifications() {
       loadingNotifications = false;
 
       // Fill the screen if more notifications exist
-      if($$(window).height() >= $$(document).height()) moreNotifications();
+      if ($$(window).height() >= $$(document).height()) moreNotifications();
     });
 }
 
 function appendNotifications(notifications) {
   var notificationList = $$('#notification-list ul');
   if (notifications.length !== 0) {
-    for(notification of notifications) {
-      templateHTML = app.templates.notificationTemplate({notification: notification, hasNotifications: true});
+    for (notification of notifications) {
+      templateHTML = app.templates.notificationTemplate({notification: notification,
+        hasNotifications: true});
       notificationList.append(templateHTML);
     }
-  }else if($('.no-notifications').length === 0){
+  } else if ($('.no-notifications').length === 0) {
     templateHTML = app.templates.notificationTemplate({hasNotifications: false});
     $('#notification-list').after(templateHTML);
   }
@@ -96,7 +97,7 @@ function lookNotification(id) {
       updateNotificationBadge(resp.unread);
     },
     error: function(resp) {
-      alert("Failed to mark notification as read.");
+      alert('Failed to mark notification as read.');
     }
   });
 }

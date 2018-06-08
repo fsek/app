@@ -11,6 +11,7 @@ var app = new Framework7({
   touch: {
     tapHold: true //enable tap hold events
   },
+
   /*statusbarOverlay: false,*/
 });
 
@@ -18,9 +19,9 @@ var app = new Framework7({
 var $$ = Dom7;
 
 // API URLS
-const BASE_URL = 'https://stage.fsektionen.se'
-const API = 'https://stage.fsektionen.se/api'
-const AC_URL = 'wss://stage.fsektionen.se/cable'
+const BASE_URL = 'https://stage.fsektionen.se';
+const API = 'https://stage.fsektionen.se/api';
+const AC_URL = 'wss://stage.fsektionen.se/cable';
 
 // ActionCable Token URL
 const AC_TOKEN_URL = API + '/messages/new_token';
@@ -167,11 +168,11 @@ var alternativesView = app.views.create('#view-alternatives', {
 });
 
 // Complie templates
-var templateNames = ['contactTemplate', 'dayTemplate', 'dayTitleTemplate', 'eventPageTemplate', 'groupTemplate', 
+var templateNames = ['contactTemplate', 'dayTemplate', 'dayTitleTemplate', 'eventPageTemplate', 'groupTemplate',
   'newsTemplate', 'notificationTemplate', 'songbookTemplate', 'songTemplate'];
 app.templates = compileTemplates(templateNames);
 
-function compileTemplates(templateNames){
+function compileTemplates(templateNames) {
   var compiledTemplates = {};
   for (var name of templateNames) {
     var template = $('script#' + name).html();
@@ -189,7 +190,7 @@ function onBackKey() {
   var page = view.activePage.name;
 
   if (page == 'tab1') {
-    var activeSub =  $$('.subtab.active').attr('id');
+    var activeSub = $$('.subtab.active').attr('id');
     if (activeSub.substr(activeSub.length - 1) != 1) {
       app.showTab('#subtab1');
     } else {
@@ -201,8 +202,8 @@ function onBackKey() {
     app.showTab('#tab1');
   } else if ($$('.popover-open, .actions-modal').length) {
     app.closeModal('.popover, .actions-modal');
-  } else if($$('.popup').length && $$('.popup .view')[0].f7View) {
-    if ($$('.popup .view')[0].f7View.history.length > 1){
+  } else if ($$('.popup').length && $$('.popup .view')[0].f7View) {
+    if ($$('.popup .view')[0].f7View.history.length > 1) {
       view.router.back();
     } else {
       app.closeModal('.popup');
@@ -214,7 +215,7 @@ function onBackKey() {
   }
 }
 
-document.addEventListener("deviceready", function() {
+document.addEventListener('deviceready', function() {
   document.addEventListener('backbutton', onBackKey, false);
 }, false);
 

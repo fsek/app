@@ -3,12 +3,12 @@ $$(document).on('page:init', '.page[data-name="event"]', function (e) {
   var eventId = e.detail.route.params.eventId;
   $.getJSON(API + '/events/' + eventId)
   
-  .done(function(resp){
-    initEventPage(resp.event);
-  })
-  .fail(function(resp){
-    console.log(resp.statusText);
-  });
+    .done(function(resp) {
+      initEventPage(resp.event);
+    })
+    .fail(function(resp) {
+      console.log(resp.statusText);
+    });
 });
 
 function initEventPage(eventData) {
@@ -54,7 +54,7 @@ function initEventPage(eventData) {
 
   if (app.device.android) {
     window.addEventListener('native.keyboardshow', function() {
-      if($$('.modal.modal-in').length) return;
+      if ($$('.modal.modal-in').length) return;
 
       eventContent.animate({
         scrollTop: $$('.event-signup-btn').offset().top + 100
@@ -68,7 +68,7 @@ function initEventPage(eventData) {
     eventData.date_string = dateString;
 
     // Need to add if event has dress code because template7 #if doesn't handle empty arrays
-    var hasDressCode = eventData.dress_code.length != 0 ? true : false;
+    var hasDressCode = eventData.dress_code.length != 0;
     eventData.hasDressCode = hasDressCode;
 
     if (eventData.can_signup) {
@@ -81,7 +81,7 @@ function initEventPage(eventData) {
     var endDate = new Date(eventData.ends_at);
 
     if (sameDay(startDate, endDate)) {
-      switch(eventData.dot){
+      switch (eventData.dot) {
         case 'single':
           startDate = startDate.hhmm() + ' (.)';
           break;
@@ -94,7 +94,7 @@ function initEventPage(eventData) {
       }
     } else {
       // Fix the start time with dots if there is
-      switch(eventData.dot){
+      switch (eventData.dot) {
         case 'single':
           startDate = startDate.timeSingleDot();
           break;
@@ -107,7 +107,7 @@ function initEventPage(eventData) {
       }
     }
 
-    return startDate + ' - ' + endDate.timeDateString();;
+    return startDate + ' - ' + endDate.timeDateString(); ;
   }
 
   function generateDateString(eventData) {
@@ -115,7 +115,7 @@ function initEventPage(eventData) {
     var endDate = new Date(eventData.ends_at);
 
     if (sameDay(startDate, endDate)) {
-      switch(eventData.dot){
+      switch (eventData.dot) {
         case 'single':
           startDate = startDate.hhmm() + ' (.)';
           break;
@@ -128,7 +128,7 @@ function initEventPage(eventData) {
       }
     } else {
       // Fix the start time with dots if there is
-      switch(eventData.dot){
+      switch (eventData.dot) {
         case 'single':
           startDate = startDate.timeSingleDot();
           break;
@@ -141,46 +141,46 @@ function initEventPage(eventData) {
       }
     }
 
-    return startDate + ' - ' + endDate.timeDateString();;
+    return startDate + ' - ' + endDate.timeDateString(); ;
   }
 
-  function generateSignupData(eventData){
-    var eventSignup =  eventData.event_signup;
+  function generateSignupData(eventData) {
+    var eventSignup = eventData.event_signup;
 
     // Fix dates
     eventSignup.opens = new Date(eventSignup.opens);
     eventSignup.closes = new Date(eventSignup.closes);
 
     // Save if event signup open time has passed
-    var signupOpened = !eventData.event_signup.open && !eventData.event_signup.closed ? false : true;
+    var signupOpened = !(!eventData.event_signup.open && !eventData.event_signup.closed);
     eventData.event_signup.opened = signupOpened;
 
     //
-    if(eventData.user_types != null){
-      if(eventData.user_types.length == 0){
+    if (eventData.user_types != null) {
+      if (eventData.user_types.length == 0) {
         eventData.user_types = null;
-      }else{
+      } else {
         eventData.selected_user_type = null;
       }
     }
 
     // Save the registered text + icon depedning if registered and if signup is closed. We also save the registered group name
-    if(eventData.event_user != null){
-      if(eventData.event_signup.closed){
-        if(eventData.event_user.reserve){
+    if (eventData.event_user != null) {
+      if (eventData.event_signup.closed) {
+        if (eventData.event_user.reserve) {
           var registeredStatusIcon = 'fa-times-circle';
           var registeredStatus = 'Du fick tyvärr ingen plats till eventet';
-        }else{
+        } else {
           var registeredStatusIcon = 'fa-check-circle';
           var registeredStatus = 'Du är anmäld och har fått en plats till eventet!';
         }
-      }else{
+      } else {
         var registeredStatusIcon = 'fa-question-circle';
         var registeredStatus = 'Du är anmäld till eventet! Kom tillbaka hit när anmälan har stängt för att se om du fått en plats';
       }
 
       eventData.event_user.group_name = getGroupName(eventData.groups, eventData.event_user.group_id, eventData.event_user.group_custom);
-    }else{
+    } else {
       var registeredStatusIcon = 'fa-exclamation-circle';
       var registeredStatus = 'Du är inte anmäld';
     }
@@ -188,65 +188,65 @@ function initEventPage(eventData) {
     eventData.registered_status = registeredStatus;
 
     // Save food preferences if there is food
-    if(eventData.food){
+    if (eventData.food) {
       // Add the user's food prefs to foodPreferences array
       var foodPreferences = [];
-      for(foodPref of $.auth.user.food_preferences) {
+      for (foodPref of $.auth.user.food_preferences) {
         // Sometimes an empty preference comes from the website's form
-        if(foodPref != '') {
+        if (foodPref != '') {
           foodPreferences.push(foodPref);
         }
       }
 
       // Add the custom food pref to the rest if exists
       var foodPrefCustom = $.auth.user.food_custom;    
-      if(foodPrefCustom != '' && foodPrefCustom != null){
+      if (foodPrefCustom != '' && foodPrefCustom != null) {
         foodPreferences.push(foodPrefCustom.toLowerCase());
       }
 
-      if(foodPreferences.length === 0){
+      if (foodPreferences.length === 0) {
         foodPreferences.push('Inga');
       }
       eventData.food_preferences = foodPreferences;
     }
 
     // Save if there is any reserves and how many
-    if(eventData.event_signup.closed){
+    if (eventData.event_signup.closed) {
       var reserves = eventData.event_user_count - eventData.event_signup.slots;
       reserves = reserves <= 0 ? null : reserves;
       eventData.event_signup.reserves = reserves;
     }
   }
 
-  function getGroupName(groups, groupId, groupCustom){
-    if(groupId != null){
+  function getGroupName(groups, groupId, groupCustom) {
+    if (groupId != null) {
       var groupName = '';
-      groups.forEach(function(element){
-        if(element.id == groupId){
+      groups.forEach(function(element) {
+        if (element.id == groupId) {
           groupName = element.name;
         }
       });
       return groupName;
-    }else if(/\S/.test(groupCustom)){ // Check if empty or only whitespaces
+    } else if (/\S/.test(groupCustom)) { // Check if empty or only whitespaces
       return groupCustom;
-    }else{
-      return null;
     }
+    return null;
+    
   }
 
-  function handleDescriptionOverflow(descripContainer){
+  function handleDescriptionOverflow(descripContainer) {
     var descripShowing = false;
     descripContainer.append('<span><i class="fa fa-chevron-circle-down" aria-hidden="true"></i></span>');
     descripContainer.find('.event-description').addClass('content-fade');
 
-    descripContainer.on('click', function(e){
+    descripContainer.on('click', function(e) {
       var content = descripContainer.find('.event-description');
 
-      if(!descripShowing){
+      if (!descripShowing) {
         // Calc total height of the text
         var totalHeight = 8 + 20; // first element's margin top + buffer for the icon
 
-        content.children().each(function(){
+        content.children().each(function() {
           totalHeight += $(this).height() + 14; // 14 px margin between each element
         });
 
@@ -255,35 +255,35 @@ function initEventPage(eventData) {
         content.css('height', totalHeight);
 
         descripShowing = true;
-      }else{
+      } else {
         content.css('max-height', 100);
         descripShowing = false;
       }
 
       // Adjust content during animation
-      setTimeout(function(){
+      setTimeout(function() {
         var icon = descripContainer.find('i');
-        if(descripShowing){
+        if (descripShowing) {
           content.removeClass('content-fade');
           icon.removeClass('fa-chevron-circle-down');
           icon.addClass('fa-chevron-circle-up');
-        }else{
+        } else {
           content.addClass('content-fade');
           icon.removeClass('fa-chevron-circle-up');
           icon.addClass('fa-chevron-circle-down');
         }
       }, 150);
-    })
+    });
   }
 
-  function setupGroupPicker(eventData){
+  function setupGroupPicker(eventData) {
     var groupNames = [];
     var groups = eventData.groups;
-    if(eventData.event_user === null){
+    if (eventData.event_user === null) {
       $('#event-signup-group').find('.item-input-wrap').html('<input type="text" placeholder="Välj din grupp" readonly id="picker-group">');
     }
 
-    groups.forEach(function(element){
+    groups.forEach(function(element) {
       groupNames.push(element.name);
     });
     groupNames.push('Annan');
@@ -298,24 +298,24 @@ function initEventPage(eventData) {
         }
       ],
       on: {
-        close: function(){
+        close: function() {
           // Hide and show custom group input + save selected group id if not custom
           var groupCustomContainer = $('#event-signup-groupcustom');
           var value = this.cols[0].value;
 
-          if(value === 'Annan'){
-            if(groupCustomContainer.hasClass('hidden')){
+          if (value === 'Annan') {
+            if (groupCustomContainer.hasClass('hidden')) {
               groupCustomContainer.removeClass('hidden');
             }
 
             eventData.selected_group_id = null;
-          }else{
-            if(!groupCustomContainer.hasClass('hidden')){
+          } else {
+            if (!groupCustomContainer.hasClass('hidden')) {
               groupCustomContainer.addClass('hidden');
             }
 
-            groups.forEach(function(element){
-              if(element.name === value){
+            groups.forEach(function(element) {
+              if (element.name === value) {
                 eventData.selected_group_id = element.id;
               }
             });
@@ -325,13 +325,13 @@ function initEventPage(eventData) {
     });
   }
 
-  function setupUserTypePicker(eventData){
-    if(eventData.event_user === null){
+  function setupUserTypePicker(eventData) {
+    if (eventData.event_user === null) {
       $('#event-usertype').find('.item-input-wrap').html('<input type="text" placeholder="Vad är du?" readonly id="picker-usertype">');
     }
 
     var userTypes = [];
-    eventData.user_types.forEach(function(element){
+    eventData.user_types.forEach(function(element) {
       userTypes.push(element[0]);
     });
     userTypes.push('Övrig');
@@ -346,15 +346,15 @@ function initEventPage(eventData) {
         }
       ],
       on: {
-        close: function(){
+        close: function() {
           var value = this.cols[0].value;
-          if(value !== 'Övrig'){
-            eventData.user_types.forEach(function(element){
-              if(value === element[0]){
+          if (value !== 'Övrig') {
+            eventData.user_types.forEach(function(element) {
+              if (value === element[0]) {
                 eventData.selected_user_type = element[1];
               }
             });
-          }else{
+          } else {
             eventData.selected_user_type = null;
           }
         }
@@ -362,8 +362,8 @@ function initEventPage(eventData) {
     });
   }
 
-  function setupCancelRegistrationBtn(eventData){
-    $('.event-signup-cancel-btn').on('click', function(){
+  function setupCancelRegistrationBtn(eventData) {
+    $('.event-signup-cancel-btn').on('click', function() {
       app.dialog.confirm('Är du säker på att du vill avanmäla dig? Det finns inget sätt att få tillbaka platsen om evenemanget blivit fullt.', 'Avanmälan', function () {
         $.ajax({
           url: API + '/events/' + eventData.id + '/event_users/' + eventData.event_user.id,
@@ -381,26 +381,26 @@ function initEventPage(eventData) {
     });
   }
 
-  function setupRegistrationBtn(eventData){
-    $('.event-signup-btn').on('click', function(){
-      app.dialog.confirm('Kom ihåg att anmälan är bindande! Om du inte kan komma ska du avanmäla dig innan anmälan stänger.', 'Anmälan', function(){
+  function setupRegistrationBtn(eventData) {
+    $('.event-signup-btn').on('click', function() {
+      app.dialog.confirm('Kom ihåg att anmälan är bindande! Om du inte kan komma ska du avanmäla dig innan anmälan stänger.', 'Anmälan', function() {
         // Get custom group if selected
-        if(eventData.selected_group_id === null){
+        if (eventData.selected_group_id === null) {
           var customGroup = $('input[name="group-custom"]').val();
         }
 
-        if(eventData.event_signup.question != ''){
+        if (eventData.event_signup.question != '') {
           app.dialog.prompt(eventData.event_signup.question, 'Anmälan', function (answer) {
             signupToEvent(eventData, answer, customGroup);
           });
-        }else{
+        } else {
           signupToEvent(eventData, null, customGroup);
         }
       });
     });
   }
 
-  function signupToEvent(eventData, answer, groupCustom){
+  function signupToEvent(eventData, answer, groupCustom) {
     $.ajax({
       url: API + '/events/' + eventData.id + '/event_users',
       type: 'POST',
@@ -423,7 +423,7 @@ function initEventPage(eventData) {
     });
   }
 
-  function updateSignupContent(eventData){
+  function updateSignupContent(eventData) {
     $.getJSON(API + '/events/' + eventData.id)
       .done(function(resp) {
         var oldEventData = eventData;
@@ -436,10 +436,10 @@ function initEventPage(eventData) {
         var groupContainer = $('#event-signup-group');
         var groupCustomContainer = $('#event-signup-groupcustom');
 
-        if(eventData.event_user != null) {
+        if (eventData.event_user != null) {
           // Update registered text + icon from ! to ?
           registeredStatusContainer.find('.item-inner-title').html('Du är anmäld till eventet! Kom tillbaka hit när anmälan har stängt för att se om du fått en plats');
-          var icon = registeredStatusContainer.find('.item-media i')
+          var icon = registeredStatusContainer.find('.item-media i');
           icon.removeClass('fa-exclamation-circle');
           icon.addClass('fa-question-circle');
 
@@ -447,30 +447,32 @@ function initEventPage(eventData) {
           userCountContainer.html('Anmälda: ' + eventData.event_user_count);
 
           // Update question and answer if there is a question
-          if(eventData.event_signup.question != '') {
+          if (eventData.event_signup.question != '') {
             questionContainer.removeClass('hidden');
             questionContainer.find('.item-title').html(eventData.event_signup.question + ' ' + eventData.event_user.answer);
           }
 
           // Update user type
-          if(eventData.user_types != null){
+          if (eventData.user_types != null) {
             userTypeContainer.find('.item-input-wrap').addClass('hidden');
             userTypeContainer.find('input').remove();
             userTypeContainer.find('span').html(eventData.event_user.user_type);
             userTypeContainer.removeClass('input-showing');
           }
 
-          // Update group
-          // We remove #picker-group here and add it dynamically in setupGroupPicker() to update it with the new event data later
+          /*
+           * Update group
+           * We remove #picker-group here and add it dynamically in setupGroupPicker() to update it with the new event data later
+           */
           var group = getGroupName(eventData.groups, eventData.event_user.group_id, eventData.event_user.group_custom);
-          if(group != null){
-            if(eventData.event_user.group_id === null){
+          if (group != null) {
+            if (eventData.event_user.group_id === null) {
               groupCustomContainer.addClass('hidden');
             }
 
             groupContainer.find('span').html(group);
-          }else{
-            if(!groupCustomContainer.hasClass('hidden')){
+          } else {
+            if (!groupCustomContainer.hasClass('hidden')) {
               groupCustomContainer.addClass('hidden');
             }
             groupContainer.find('span').html('Ingen grupp vald');
@@ -484,10 +486,10 @@ function initEventPage(eventData) {
           registerBtn.after('<a href="#" class="button button-big event-signup-cancel-btn">Avanmäl</a>');
           registerBtn.remove();
           setupCancelRegistrationBtn(eventData);
-        }else {
+        } else {
           // Update registered text and icon from '?' to '!'
           registeredStatusContainer.find('.item-title').html('Du är inte anmäld');
-          var icon = registeredStatusContainer.find('.item-media i')
+          var icon = registeredStatusContainer.find('.item-media i');
           icon.removeClass('fa-question-circle');
           icon.addClass('fa-exclamation-circle');
 
@@ -495,12 +497,12 @@ function initEventPage(eventData) {
           userCountContainer.html('Anmälda: ' + eventData.event_user_count);
 
           // Hide question if there is one
-          if(eventData.event_signup.question != '') {
+          if (eventData.event_signup.question != '') {
             questionContainer.addClass('hidden');
           }
 
           // Update user type
-          if(eventData.user_types != null){
+          if (eventData.user_types != null) {
             userTypeContainer.find('.item-input-wrap').removeClass('hidden');
             userTypeContainer.find('span').html('');
             userTypeContainer.addClass('input-showing');
@@ -510,7 +512,7 @@ function initEventPage(eventData) {
 
           // Update group
           var oldGroup = getGroupName(oldEventData.groups, oldEventData.event_user.group_id, oldEventData.event_user.group_custom);
-          if(oldGroup != null && oldEventData.event_user.group_id === null){
+          if (oldGroup != null && oldEventData.event_user.group_id === null) {
             groupCustomContainer.find('input').val('');
           }
           groupContainer.find('span').html('');
@@ -525,7 +527,7 @@ function initEventPage(eventData) {
           setupRegistrationBtn(eventData);
         }
       })
-      .fail(function(resp){
+      .fail(function(resp) {
         console.log(resp.statusText);
       });
   }

@@ -6,14 +6,16 @@ function getGroups() {
       var unread = 0;
       var hasGroups = groups.length !== 0;
       var templateHTML = '';
-      if(hasGroups){
+      if (hasGroups) {
         for (var group of groups) {
           unread += group.group_user.unread_count;
-          templateHTML += app.templates.groupTemplate({group: group, hasGroups: hasGroups});
+          templateHTML += app.templates.groupTemplate({group: group,
+            hasGroups: hasGroups});
         }
         groupEl.removeClass('no-groups');
-      }else if(!groupEl.hasClass('no-groups')){
-        templateHTML = app.templates.groupTemplate({group: null, hasGroups: hasGroups});
+      } else if (!groupEl.hasClass('no-groups')) {
+        templateHTML = app.templates.groupTemplate({group: null,
+          hasGroups: hasGroups});
         groupEl.addClass('no-groups');
       }
       
@@ -24,7 +26,7 @@ function getGroups() {
 
 $$('#view-groups').on('tab:show', function() {
   // Get messages if we haven't done so already
-  if($$('#groups-list ul').is(':empty')) getGroups();
+  if ($$('#groups-list ul').is(':empty')) getGroups();
 });
 
 $$('#groups-list').on('click', 'li', function() {

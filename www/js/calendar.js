@@ -3,7 +3,7 @@ $$(document).on('page:init', '.page[data-name="calendar"]', function (e) {
   var page = $('.page.calendar-page');
 
   // If signed in and calendar container is empty
-  if(!jQuery.isEmptyObject($.auth.user) && page.find('#calendar').is(':empty')) {   
+  if (!jQuery.isEmptyObject($.auth.user) && page.find('#calendar').is(':empty')) {   
     initCalendar(page);
   }
 });
@@ -40,7 +40,7 @@ function initCalendar(page) {
         setNavbarDate(p);
       },
       monthAdd: function (p, monthContainer) {
-        if(!firstInit) loadEvents(p, $$(monthContainer), false);
+        if (!firstInit) loadEvents(p, $$(monthContainer), false);
       },
       dayClick: function(p, dayContainer) {
         displayDayContent(p.params.events, $$(dayContainer));
@@ -53,23 +53,23 @@ function initCalendar(page) {
     var end = new Date(p.currentYear, p.currentMonth + 2, 0).yyyymmdd();
 
     $.getJSON(API + '/events?start=' + start + '&end=' + end)
-    .done(function(resp) {
-      for (var event of resp.events) {
-        var eventDate = new Date(event.start);
-        var dayContainer = findDay(eventDate, monthContainers);
-        dayContainer.addClass('calendar-day-has-events');
+      .done(function(resp) {
+        for (var event of resp.events) {
+          var eventDate = new Date(event.start);
+          var dayContainer = findDay(eventDate, monthContainers);
+          dayContainer.addClass('calendar-day-has-events');
 
-        if (store && eventDate.getMonth() == p.currentMonth) {
-          event.end = new Date(event.end);
-          event.start = eventDate;
-          p.params.events.push(event);
+          if (store && eventDate.getMonth() == p.currentMonth) {
+            event.end = new Date(event.end);
+            event.start = eventDate;
+            p.params.events.push(event);
+          }
         }
-      }
-      updateDayContent(p);
-    })
-    .fail(function(resp) {
-      console.log(resp.statusText);
-    });
+        updateDayContent(p);
+      })
+      .fail(function(resp) {
+        console.log(resp.statusText);
+      });
   }
 
   // Go to "today"
@@ -106,7 +106,7 @@ function initCalendar(page) {
 
     if (dayContainer.hasClass('calendar-day-has-events')) {
       for (event of events) {
-        if(sameDay(event.start, date)) displayedEvents.push(event);
+        if (sameDay(event.start, date)) displayedEvents.push(event);
       }
 
       // Sort by start time
@@ -121,7 +121,8 @@ function initCalendar(page) {
     var title = date.dateString();
     page.find('.day-title').html(title);
 
-    var templateHTML = app.templates.dayTemplate({hasEvents: hasEvents, events: displayedEvents});
+    var templateHTML = app.templates.dayTemplate({hasEvents: hasEvents,
+      events: displayedEvents});
     page.find('.day-content').html(templateHTML);
     
   }

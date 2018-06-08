@@ -15,14 +15,14 @@ function initHome() {
   var totalPages = 37;
   var loadingNews = false;
 
-  var initialize = function() {
+  var initialize = (function() {
     $.getJSON(API + '/start')
-    .then(function(resp) {
-      addNews(resp.pinned.news.concat(resp.unpinned.news));
-      totalPages = resp.unpinned.meta.total_pages;
-      initEventStream(resp.events.events);
-    });
-  }();
+      .then(function(resp) {
+        addNews(resp.pinned.news.concat(resp.unpinned.news));
+        totalPages = resp.unpinned.meta.total_pages;
+        initEventStream(resp.events.events);
+      });
+  }());
 
   function addNews(news) {
     var templateHTML = app.templates.newsTemplate({news: news});
@@ -32,22 +32,23 @@ function initHome() {
   function initEventStream(events) {
     var lastDay = null;
 
-    if(events.length != 0){
-      for(var event of events) {
+    if (events.length != 0) {
+      for (var event of events) {
         event.start = new Date(event.start);
         event.end = new Date(event.end);
 
         // Add header on new days. We only download events for one week - checking date is enough
-        if(lastDay != event.start.getDate()) {
+        if (lastDay != event.start.getDate()) {
           dayHTML = app.templates.dayTitleTemplate({date: event.start});
           eventTab.append(dayHTML);
         }
 
-        var templateHTML = app.templates.dayTemplate({hasEvents: true, events: [event]});
+        var templateHTML = app.templates.dayTemplate({hasEvents: true,
+          events: [event]});
         eventTab.append(templateHTML);
         lastDay = event.start.getDate();
       }
-    }else{
+    } else {
       var templateHTML = app.templates.dayTemplate({hasEvents: false});
       eventTab.append(templateHTML);
     }

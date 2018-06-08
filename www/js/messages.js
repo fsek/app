@@ -85,7 +85,7 @@ function initMessages(head, query) {
 
     for (message of msgs) {
       // Sender or receiver? Framework7 defaults to sender
-      if(message.user_id !== userId){
+      if (message.user_id !== userId) {
         message.type = 'received';
       } else {
         // We don't want to display the user's own avatar
@@ -93,7 +93,7 @@ function initMessages(head, query) {
       }
 
       // Add headers for new dates
-      if(lastDay != message.day) {
+      if (lastDay != message.day) {
         lastDay = message.day;
 
         var messageTitle = {};
@@ -109,11 +109,11 @@ function initMessages(head, query) {
 
   var batchAddMessages = function(msgs) {
     // Expects msgs to be in the wrong order, latest first.
-    if(msgs.length < 1) return;
+    if (msgs.length < 1) return;
 
     // Remove top day header if the last message in msgs was sent the same day
     var first = messages.find('.messages-date:first');
-    if(msgs[0].day == first.html()) first.remove();
+    if (msgs[0].day == first.html()) first.remove();
 
     // Add day headers and set sender/receiver tag. Then add to window
     msgs = batchPrepare(msgs);
@@ -148,7 +148,7 @@ function initMessages(head, query) {
         totalPages = resp.meta.total_pages;
 
         // Fill the screen if more messages exist
-        if($$(window).height() >= messages.height()) moreMessages();
+        if ($$(window).height() >= messages.height()) moreMessages();
       });
   }
 
@@ -157,8 +157,8 @@ function initMessages(head, query) {
   // Functions for single messages
   var receivedMessage = function(message) {
     var lastDay = messages.find('.messages-date:last').html();
-    if(message.day != lastDay) message.dayHeader = message.day;
-    if(message.user_id != userId) message.type = 'received';
+    if (message.day != lastDay) message.dayHeader = message.day;
+    if (message.user_id != userId) message.type = 'received';
 
     F7msg.addMessage(message);
   };
@@ -169,7 +169,7 @@ function initMessages(head, query) {
 
   var updateMessage = function(message) {
     var msg = messages.find('[id="' + message.id + '"]');
-    if(!msg.length) return;
+    if (!msg.length) return;
 
     msg.find('.message-text').html(message.text);
     var msgUpdated = msg.find('.message-updated');
@@ -184,8 +184,8 @@ function initMessages(head, query) {
   // Initialize action cable
   group_app = cable.subscriptions.create({
     channel: 'GroupsChannel',
-    group_id: groupId },
-  { connected: function() {},
+    group_id: groupId},
+  {connected: function() {},
     disconnected: function() {},
     received: function(data) {
       if (data.action == 'create') {
@@ -232,7 +232,7 @@ function initMessages(head, query) {
 
   // Send message on enter
   $(msgBar.textareaEl).on('keypress', function(e) {
-    if(e.which === 13) {
+    if (e.which === 13) {
       group_app.sendMessage(msgBar.getValue());
       msgBar.clear();
       e.preventDefault();
@@ -253,7 +253,7 @@ function initMessages(head, query) {
           editor.val(resp.content);
         },
         error: function(resp) {
-          alert("Could not get message data.");
+          alert('Could not get message data.');
           app.closeModal(popup);
         }
       });
@@ -270,7 +270,7 @@ function initMessages(head, query) {
 
   // Show action menu on long tap (sent messages only)
   messages.on('taphold', '.message', function() {
-    if($$(this).hasClass('message-received')) return;
+    if ($$(this).hasClass('message-received')) return;
 
     var messageId = $$(this).attr('id');
     var buttons = [{
@@ -303,7 +303,7 @@ function initMessages(head, query) {
   };
 
   var resumeGroup = function() {
-    if(group_app && group_paused) {
+    if (group_app && group_paused) {
       group_paused = false;
       loadMessages();
       cable.subscriptions.add(group_app);

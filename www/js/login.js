@@ -10,7 +10,7 @@ var loginScreen = app.loginScreen.create({
       }, false);
     }
   }
-})
+});
 
 // Redirect from the login screen if the user has signed in before
 $.auth.validateToken()
@@ -23,18 +23,16 @@ $.auth.validateToken()
 
 $$(document).on('page:init', '.page[data-name="login"]', function (page) {
   // Activate the login button if we have text in the input field, otherwise disable it
-  $('.login-screen-content input').on('input',function(e){
+  $('.login-screen-content input').on('input',function(e) {
     var loginFormData = app.form.convertToData('#login-form');
     var loginBtn = $('.login-btn');
 
-    if(loginFormData.email != '' && loginFormData.password != ''){
-      if(loginBtn.hasClass('disabled')){
+    if (loginFormData.email != '' && loginFormData.password != '') {
+      if (loginBtn.hasClass('disabled')) {
         loginBtn.removeClass('disabled');
       }
-    }else{
-      if(!loginBtn.hasClass('disabled')){
-        loginBtn.addClass('disabled');
-      }
+    } else if (!loginBtn.hasClass('disabled')) {
+      loginBtn.addClass('disabled');
     }
   });
 
@@ -42,25 +40,27 @@ $$(document).on('page:init', '.page[data-name="login"]', function (page) {
     var abort = false;
 
     // Adds preloader after 1 s of loading
-    var preloadTimeout = setTimeout(function(){
+    var preloadTimeout = setTimeout(function() {
       app.dialog.preloader('Mutar spindelmännen...');
     }, 1000);
 
-    // Aborts the preloader and request after 20s 
-    var abortTimeout = setTimeout(function(){
+    // Aborts the preloader and request after 20s
+    var abortTimeout = setTimeout(function() {
       clearTimeout(preloadTimeout);
       app.dialog.close();
       $('#login-form input[name="password"]').val('');
       abort = true;
-      app.dialog.alert("Begäran tog för lång tid. Kontrollera din internetanslutning (eduroam räknas inte) :'(", "Inloggningen misslyckades");
+      app.dialog.alert('Begäran tog för lång tid. Kontrollera din internetanslutning (eduroam räknas inte) :\'(', 'Inloggningen misslyckades');
     }, 5000);
 
-    // Get the input data and send a sign in request. If successful we initialize stuff in afterSignIn()
-    // otherwise we alert error messages and clear pw field. We also clear the preloader timeouts.
+    /*
+     * Get the input data and send a sign in request. If successful we initialize stuff in afterSignIn()
+     * otherwise we alert error messages and clear pw field. We also clear the preloader timeouts.
+     */
     var loginFormData = app.form.convertToData('#login-form');
     $.auth.emailSignIn(loginFormData)
       .done(function() {
-        if(!abort){
+        if (!abort) {
           afterSignIn();
           clearTimeout(preloadTimeout);
           clearTimeout(abortTimeout);
@@ -68,19 +68,19 @@ $$(document).on('page:init', '.page[data-name="login"]', function (page) {
         }
       })
       .fail(function(resp) {
-        if(!abort){
+        if (!abort) {
           app.dialog.close(); // Close the preloader
-          if(typeof resp.data.errors == 'undefined'){ // Is undefined if we don't get a response from the server
-            app.dialog.alert("Oväntat fel uppstod. Kontrollera din internetanslutning :(", "Inloggningen misslyckades");
-          }else{
+          if (typeof resp.data.errors === 'undefined') { // Is undefined if we don't get a response from the server
+            app.dialog.alert('Oväntat fel uppstod. Kontrollera din internetanslutning :(', 'Inloggningen misslyckades');
+          } else {
             $('.login-btn').addClass('disabled');
-            app.dialog.alert("Ogiltig E-post eller lösenord", "Inloggningen misslyckades");
+            app.dialog.alert('Ogiltig E-post eller lösenord', 'Inloggningen misslyckades');
           }
           $('#login-form input[name="password"]').val('');
           clearTimeout(preloadTimeout);
           clearTimeout(abortTimeout);
         }
-    });
+      });
   });
 
   // Fade parts of the UI when the keyboard is displayed on android
@@ -93,7 +93,7 @@ $$(document).on('page:init', '.page[data-name="login"]', function (page) {
 
     loginContainer.on('blur', 'input', function(e) {
       // Don't blur if we switched to another input field
-      if(e.relatedTarget) return;
+      if (e.relatedTarget) return;
 
       setTimeout(function() {
         $('.open-login-info').fadeIn();
@@ -105,7 +105,7 @@ $$(document).on('page:init', '.page[data-name="login"]', function (page) {
   $('.login-logo').on('touchstart touchend', function(e) {
     $(this).toggleClass('login-logo-spin');
   });
-})
+});
 
 
 function afterSignIn() {
@@ -126,6 +126,10 @@ function afterSignIn() {
   initNotificationBadge();
   loadHome();
   getGroups();
-  if (page.find('#calendar').is(':empty')) initCalendar($('.page.calendar-page'));
-  if ($('#notification-list ul').is(':empty')) getNotifications(false);
+  if ($('#calendar').is(':empty')) {
+    initCalendar($('.page.calendar-page'));
+  }
+  if ($('#notification-list ul').is(':empty')) {
+    getNotifications(false);
+  }
 }

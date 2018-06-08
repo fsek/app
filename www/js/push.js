@@ -1,16 +1,16 @@
 function setupPush() {
   pushService = PushNotification.init({
-    "android": {
-      "senderID": "509736475453",
-      "icon": "f",
-      "iconColor": "#EB7125"
+    'android': {
+      'senderID': '509736475453',
+      'icon': 'f',
+      'iconColor': '#EB7125'
     },
-    "ios": {
-      "senderID": "509736475453",
-      "gcmSandbox": true, // True for development
-      "sound": true,
-      "alert": true,
-      "badge": true
+    'ios': {
+      'senderID': '509736475453',
+      'gcmSandbox': true, // True for development
+      'sound': true,
+      'alert': true,
+      'badge': true
     }
   });
       
@@ -22,7 +22,7 @@ function setupPush() {
       localStorage.setItem('registrationId', data.registrationId);
 
       // Create or update the registration id on the server if the user is signed in
-      if($.auth.user.signedIn) updatePushDevice(oldId, data.registrationId);
+      if ($.auth.user.signedIn) updatePushDevice(oldId, data.registrationId);
     }
   });
 
@@ -60,7 +60,8 @@ function setupPush() {
 
     tabView3.router.load({
       url: 'messages.html',
-      query: {groupId: data.additionalData.group_id, groupName: data.title}
+      query: {groupId: data.additionalData.group_id,
+        groupName: data.title}
     });
   }
 }
@@ -68,7 +69,7 @@ function setupPush() {
 function updatePushDevice(oldId, newId) {
   createPushDevice(newId);
 
-  if(oldId !== null) deletePushDevice(oldId, null);
+  if (oldId !== null) deletePushDevice(oldId, null);
 }
 
 // Create a new push device for this user
@@ -77,7 +78,8 @@ function createPushDevice(registrationId) {
     url: API + '/push_devices',
     type: 'POST',
     dataType: 'json',
-    data: {push_device: {token: registrationId, system: cordova.platformId}}
+    data: {push_device: {token: registrationId,
+      system: cordova.platformId}}
   });
 }
 
@@ -89,15 +91,15 @@ function deletePushDevice(registrationId, signOut) {
     dataType: 'json',
     data: {token: registrationId}
   })
-  .always(function(resp) {
-    if(signOut) $.auth.signOut();
-  });
+    .always(function(resp) {
+      if (signOut) $.auth.signOut();
+    });
 }
 
 // Send push device to server after sign in
 function pushAfterLogin() {
   var registrationId = localStorage.getItem('registrationId');
-  if(registrationId !== null) updatePushDevice(null, registrationId);
+  if (registrationId !== null) updatePushDevice(null, registrationId);
 }
 
 function deletePushAndSignOut() {
@@ -119,4 +121,4 @@ function deletePushAndSignOut() {
 }
 
 // Always init Phonegap Push on startup
-document.addEventListener("deviceready", setupPush, false);
+document.addEventListener('deviceready', setupPush, false);

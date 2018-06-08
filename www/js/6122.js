@@ -14,16 +14,16 @@ $('#home-btn, #cal-btn, #noti-btn, #msg-btn').on('click', function() {
       break;
     case 'not-btn':
       idtrans = 3;
-    break;
+      break;
   }
-  var order = [0,0,0,0,0,0,1,2,2,3,3]
-  if(order[inc] !== idtrans) {
-    inc = -1
+  var order = [0,0,0,0,0,0,1,2,2,3,3];
+  if (order[inc] !== idtrans) {
+    inc = -1;
   }
-  if(inc == -1 && idtrans == 0) {
-    inc= 0
+  if (inc == -1 && idtrans == 0) {
+    inc= 0;
   }
-  if(inc==10){
+  if (inc==10) {
     app.alert('Gratulerar! Du har hittat ett av appens easter eggs!','Ett Easter Egg!');
   } else {
     inc++;

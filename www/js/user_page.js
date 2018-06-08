@@ -31,7 +31,7 @@ function initUserPage(user) {
   // Setup smart select
   initSmartSelect();
 
-  $('.user-update').on('click', function(){
+  $('.user-update').on('click', function() {
     updateUser(user);
   });
 
@@ -43,15 +43,15 @@ function initUserPage(user) {
 
     // Set correct avatar URL (adds the base url) and add it as background image on the user-avatar
     var avatarURL = '';
-    if(user.avatar.thumb.url != null){
+    if (user.avatar.thumb.url != null) {
       avatarURL = BASE_URL + user.avatar.thumb.url;
-    }else{
+    } else {
       avatarURL = '../img/missing_thumb.png';
     }
     userContent.find('.user-avatar').css('background-image', 'url(' + avatarURL + ')');
 
     // Adds 'inga' to the item-after object if there is no food preferences
-    if(user.food_preferences.length == 0 && user.food_custom == '') {
+    if (user.food_preferences.length == 0 && user.food_custom == '') {
       userContent.find('.user-food-pref .item-after').html('Inga');
     }
 
@@ -72,14 +72,14 @@ function initUserPage(user) {
         }
       ]
     });
-    programPicker.setValue([selectedProgram])
+    programPicker.setValue([selectedProgram]);
   }
 
   function initStartYearPicker(selectedYear) {
     // Create array with start year alternatives (all years from 1961)
     var startYears = [];
     var thisYear = new Date().getFullYear();
-    for(var i = 0; i <= thisYear - 1961; i++){
+    for (var i = 0; i <= thisYear - 1961; i++) {
       startYears[i] = thisYear - i;
     }
 
@@ -147,15 +147,15 @@ function initUserPage(user) {
           app.toolbar.show();
           // Update selected options to 'Inga' if nothing was selected
           var selectedOptions = $('.user-food-pref .item-after');  
-          if(selectedOptions.html() == ''){
+          if (selectedOptions.html() == '') {
             selectedOptions.html('Inga');
           }
 
           // Updates user.food_custom to either the input value (if the 'Annat' input was found) otherwise an empty string 
           var otherInput = $('#option-other input');
-          if(otherInput.length != 0){
+          if (otherInput.length != 0) {
             $.auth.user.food_custom = otherInput[0].value;
-          }else{
+          } else {
             $.auth.user.food_custom = '';
           }
         }
@@ -169,30 +169,32 @@ function initUserPage(user) {
 
     // Get rid of an empty element in the array that somtimes comes from the form on the website'
     var emptyIndex = foodPreferences.indexOf('');
-    if(emptyIndex > -1){
+    if (emptyIndex > -1) {
       foodPreferences.splice(emptyIndex, 1);
     }
 
-    if(foodPreferences.length != 0){
+    if (foodPreferences.length != 0) {
       // Changes 'milk' to 'mjölkallergi' to match the options
       var milkIndex = foodPreferences.indexOf('milk');
-      if(milkIndex > -1){
+      if (milkIndex > -1) {
         foodPreferences[milkIndex] = 'mjölkallergi';
       }
 
-      // Add 'selected' attribute to the options that match the user.food_preferences elements
-      // 'length - 1' because we don't need to check for the last option 'annat'
-      for(var i = 0; i < options.length - 1; i++){ 
-        foodPreferences.forEach(function(element){
-          if(options[i].innerHTML.toLowerCase() == element){
+      /*
+       * Add 'selected' attribute to the options that match the user.food_preferences elements
+       * 'length - 1' because we don't need to check for the last option 'annat'
+       */
+      for (var i = 0; i < options.length - 1; i++) { 
+        foodPreferences.forEach(function(element) {
+          if (options[i].innerHTML.toLowerCase() == element) {
             options[i].setAttribute('selected', '');
           }
-        })
+        });
       }
     }
 
     // Add 'selected' attribute to the 'Annat' option if food_custom exists 
-    if($.auth.user.food_custom != ''){
+    if ($.auth.user.food_custom != '') {
       options[options.length-1].setAttribute('selected', '');
     }
   }
@@ -201,12 +203,12 @@ function initUserPage(user) {
     // Open preloader that closes after 0.8s and updates the name text
     app.dialog.preloader('Sparar inställningar');
     var hidePreloader = false;
-    setTimeout(function(){
+    setTimeout(function() {
       // don't update if error callback on the ajax request
-      if(hidePreloader){
+      if (hidePreloader) {
         app.dialog.close();
         $('.user-container p').html(user.firstname + ' ' + user.lastname);
-      }else{
+      } else {
         hidePreloader = true;
       }
     }, 800);
@@ -224,41 +226,41 @@ function initUserPage(user) {
       url: API + '/users/' + user.id,
       data: {user: formData}
     })
-    .done(function(resp) {
-      if(hidePreloader){
+      .done(function(resp) {
+        if (hidePreloader) {
+          app.dialog.close();
+        } else {
+          hidePreloader = true;
+        }
+      })
+      .fail(function(resp) {
         app.dialog.close();
-      }else{
-        hidePreloader = true;
-      }
-    })
-    .fail(function(resp) {
-      app.dialog.close();
-      app.dialog.alert('Kunde inte uppdatera dina användarinställningar. Kontrollera din internetanslutning och försök igen :(', 'Misslyckades att spara')
-    });
+        app.dialog.alert('Kunde inte uppdatera dina användarinställningar. Kontrollera din internetanslutning och försök igen :(', 'Misslyckades att spara');
+      });
   }
 
   function prepareFormData (formData, user) {
-    for(var key in formData){
+    for (var key in formData) {
       var value = formData[key];
       // If it's an array (either switch or food preferences)
-      if(typeof value === 'object'){
-        if(key == 'food_preferences'){
-          if(value.length != 0){
+      if (typeof value === 'object') {
+        if (key == 'food_preferences') {
+          if (value.length != 0) {
             // Remove 'Annat', change 'Mjölkallergi' to 'milk' and change every element to lower case in the food_preferences array
-            value.forEach(function(element, index){
-              if(element == 'Annat'){
+            value.forEach(function(element, index) {
+              if (element == 'Annat') {
                 value.splice(index, 1);
-              }else if(element == 'Mjölkallergi'){
+              } else if (element == 'Mjölkallergi') {
                 value[index] = 'milk';
-              }else {
+              } else {
                 value[index] = element.toLowerCase();
               }
             });
-          }else{
+          } else {
             value = [''];
           }
-        }else{
-          value = value[0] == 'on';   // Change the switch input value from ['on'] to true and [] to false
+        } else {
+          value = value[0] == 'on'; // Change the switch input value from ['on'] to true and [] to false
         }
         formData[key] = value;
       }

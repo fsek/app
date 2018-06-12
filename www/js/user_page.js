@@ -45,10 +45,9 @@ function initUserPage(user) {
     var avatarURL = '';
     if (user.avatar.thumb.url != null) {
       avatarURL = BASE_URL + user.avatar.thumb.url;
-    } else {
-      avatarURL = '../img/missing_thumb.png';
+      userContent.find('.user-avatar').css('background-image', 'url(' + avatarURL + ')');
     }
-    userContent.find('.user-avatar').css('background-image', 'url(' + avatarURL + ')');
+    
 
     // Adds 'inga' to the item-after object if there is no food preferences
     if (user.food_preferences.length == 0 && user.food_custom == '') {

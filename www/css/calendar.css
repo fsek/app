@@ -4,7 +4,8 @@
 }
 
 .calendar.calendar-inline {
-  height: 310px;
+  height: 250px;
+  padding-bottom: 15px;
 }
 
 .calendar .calendar-week-header {
@@ -73,7 +74,7 @@ a.day-content-event {
   color: #eb7125 !important;
   display: block;
   background-color: #fff;
-  margin: 7px 10px;
+  margin: 7px 10px !important;
 }
 
 .day-content-event .card-header {
@@ -87,7 +88,7 @@ a.day-content-event {
 }
 
 .day-content-event .card-content-inner {
-  padding: 0 16px 10px 16px;
+  padding: 0 16px 5px 16px;
   color: #000;
 }
 
@@ -119,45 +120,49 @@ a.day-content-event {
   padding-right: 5px;
 }
 
+#view-calendar .navbar .left {
+  font-weight: bold;
+}
+
 /* Adjust calendar height for different screen sizes */
 @media screen and (min-height: 600px) {
   .calendar.calendar-inline {
-    height: 340px;
+    height: 280px;
   }
 }
 
 @media screen and (min-height: 650px) {
   .calendar.calendar-inline {
-    height: 350px;
+    height: 290px;
   }
 }
 
 @media screen and (min-height: 700px) {
   .calendar.calendar-inline {
-    height: 380px;
+    height: 320px;
   }
 }
 
 @media screen and (min-height: 750px) {
   .calendar.calendar-inline {
-    height: 400px;
+    height: 340px;
   }
 }
 
 @media screen and (min-height: 850px) {
   .calendar.calendar-inline {
-    height: 425px;
+    height: 365px;
   }
 }
 
 @media screen and (min-height: 1000px) {
   .calendar.calendar-inline {
-    height: 575px;
+    height: 515px;
   }
 }
 
 @media screen and (min-height: 1300px) {
   .calendar.calendar-inline {
-    height: 775px;
+    height: 615px;
   }
 }

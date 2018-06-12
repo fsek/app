@@ -1,6 +1,13 @@
+$$(document).on('page:init', '.page[data-name="home"]', function () {
+  // If signed in
+  if (!jQuery.isEmptyObject($.auth.user)) {   
+    loadHome();
+  }
+});
+
 function loadHome() {
-  if (!$$('#view-home').hasClass('loaded')) {
-    $$('#view-home').addClass('loaded');
+  if (!$$('#view-home .page').hasClass('loaded')) {
+    $$('#view-home .page').addClass('loaded');
     initHome();
   }
 }

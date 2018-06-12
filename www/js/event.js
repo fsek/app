@@ -43,15 +43,6 @@ function initEventPage(eventData) {
     }
   }
 
-  // Let us know if the popover is open so that the android back button can work
-  $$('.popover-about-signup').on('open', function() {
-    $$(this).addClass('popover-open');
-  });
-
-  $$('.popover-about-signup').on('close', function() {
-    $$(this).removeClass('popover-open');
-  });
-
   if (app.device.android) {
     window.addEventListener('native.keyboardshow', function() {
       if ($$('.modal.modal-in').length) return;

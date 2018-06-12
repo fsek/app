@@ -186,32 +186,36 @@ const infScrollPreloader = '<div class="infinite-scroll-preloader"><div class="p
 
 // Handle the back button on android
 function onBackKey() {
-  var view = app.getCurrentView();
-  var page = view.activePage.name;
+  const router = app.views.current.router;
+  const page = $$(router.currentPageEl);
+  const pageName = page.data('name');
 
-  if (page == 'tab1') {
-    var activeSub = $$('.subtab.active').attr('id');
-    if (activeSub.substr(activeSub.length - 1) != 1) {
-      app.showTab('#subtab1');
+  const loginModal = $$('.login-screen.modal-in');
+
+  if (loginModal.length) {
+    const currentPage = loginModal.find('.page-current');
+
+    if (currentPage.data('name') === 'login') {
+      navigator.app.exitApp();
+    } else {
+      loginView.router.back();
+    }
+  } else if (pageName === 'home') {
+    const activeSub = page.find('.subtab.tab-active').attr('id');
+
+    if (activeSub !== 'subtab1') {
+      app.tab.show('#subtab1');
     } else {
       navigator.app.exitApp();
     }
-  } else if (page == 'login') {
-    navigator.app.exitApp();
-  } else if (page.substr(0,3) == 'tab') {
-    app.showTab('#tab1');
-  } else if ($$('.popover-open, .actions-modal').length) {
-    app.closeModal('.popover, .actions-modal');
-  } else if ($$('.popup').length && $$('.popup .view')[0].f7View) {
-    if ($$('.popup .view')[0].f7View.history.length > 1) {
-      view.router.back();
-    } else {
-      app.closeModal('.popup');
-    }
+  } else if (pageName === 'calendar' || pageName === 'groups' || pageName === 'notifications' || pageName === 'alternatives') {
+    app.tab.show('#view-home');
+  } else if ($$('.popover.modal-in').length) {
+    app.popover.close('.popover.modal-in');
   } else if ($$('.popup').length) {
-    app.closeModal('.popup');
+    app.popup.close('.popup');
   } else {
-    view.router.back();
+    router.back();
   }
 }
 

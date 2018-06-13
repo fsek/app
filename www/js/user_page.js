@@ -272,4 +272,10 @@ function initUserPage(user) {
 
     return formData;
   }
+
+  if (app.device.ios) {
+    window.addEventListener('native.keyboardshow', function() {
+      app.popover.close('.picker.modal-in');
+    });
+  }
 }

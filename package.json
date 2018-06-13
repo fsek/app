@@ -4,7 +4,8 @@
   "displayName": "F-sektionen",
   "cordova": {
     "platforms": [
-      "android"
+      "android",
+      "ios"
     ],
     "plugins": {
       "cordova-plugin-whitelist": {},
@@ -20,6 +21,7 @@
   },
   "dependencies": {
     "cordova-android": "^6.4.0",
+    "cordova-ios": "^4.5.4",
     "cordova-plugin-dialogs": "^2.0.1",
     "cordova-plugin-headercolor": "^1.0.0",
     "cordova-plugin-splashscreen": "^4.0.3",

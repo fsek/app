@@ -30,8 +30,9 @@
     <link rel="stylesheet" href="css/user_page.css">
     <link rel="stylesheet" href="css/songbook.css">
     <link rel="stylesheet" href="css/contact.css">
+    <link rel="stylesheet" href="css/nollning.css">
   </head>
-  <body class="color-theme-orange">
+  <body class="color-theme-white">
     <div id="app">
       <!-- Login screen -->
       <div class="login-screen">
@@ -93,10 +94,8 @@
             <a href="#view-calendar" id="cal-btn" class="tab-link">
               <i class="fa fa-calendar" aria-hidden="true"></i>
             </a>
-            <a href="#view-groups" id="msg-btn" class="tab-link">
-              <i class="fa fa-comments" aria-hidden="true">
-                <span class="badge" id="group-badge"></span>
-              </i>
+            <a href="#view-nollning" id="msg-btn" class="tab-link">
+              <div class="moose-icon"></div>
             </a>
             <a href="#view-notifications" id="noti-btn" class="tab-link">
               <i class="fa fa-bell" aria-hidden="true">
@@ -117,8 +116,8 @@
                 <div class="subnavbar home-subnavbar">
                   <div class="subnavbar-inner">
                     <div class="segmented segmented-raised">
-                      <a href="#subtab1" class="button tab-link tab-link-active">Nyheter</a>
-                      <a href="#subtab2" class="button tab-link">Evenemang</a>
+                      <a href="#subtab-news" class="button tab-link tab-link-active">Nyheter</a>
+                      <a href="#subtab-event" class="button tab-link">Evenemang</a>
                     </div>
                   </div>
                 </div>
@@ -126,13 +125,13 @@
             </div>
             <div class="tabs-animated-wrap subtab-container">
               <div class="tabs">
-                <div id="subtab1" class="tab subtab tab-active infinite-scroll-content page-content">
+                <div id="subtab-news" class="tab subtab tab-active infinite-scroll-content page-content">
                   <div class="news-list" id="news-list"></div>
                   <div class="infinite-scroll-preloader">
                     <div class="preloader"></div>
                   </div>
                 </div>
-                <div id="subtab2" class="tab subtab page-content">
+                <div id="subtab-event" class="tab subtab page-content">
                 </div>
               </div>
             </div>
@@ -156,7 +155,41 @@
             </div>
           </div>
         </div>
-        <!-- Tab 3 (Messages) -->
+        <!-- Tab 3 (Nollning) -->
+        <div id="view-nollning" class="view tab">
+          <div data-name="nollning" class="page navbar-fixed">
+            <div class="navbar android-hide">
+              <div class="navbar-inner nollning-navbar sliding">
+                <div class="title">Nollning</div>
+              </div>
+            </div>
+            <div class="page-content nollning-content">
+              <div class="nollning-moose"></div>
+              <div class="nollning-sand">
+                <div class="nollning-button-container">
+                  <div class="row">
+                    <a href="/adventure/" class="col-50">
+                      <div class="nollning-btn-adventures"></div>
+                    </a>
+                    <a href="/groups/" class="col-50">
+                      <div class="nollning-btn-messages"></div>
+                    </a>
+                  </div>
+                  <div class="row">
+                    <a href="#" class="col-50 open-matrix-pb">
+                      <div class="nollning-btn-matrix"></div>
+                    </a>
+                    <a href="https://www.fsektionen.se/" target="_blank" class="col-50 external">
+                      <div class="nollning-btn-contact"></div>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Tab 3 (Messages)
+        GLÖM INTE ATT ÄNDRA I INDEX.JS SÅ BACK KNAPPEN FUNKAR IGEN
         <div id="view-groups" class="view tab">
           <div data-name="groups" class="page navbar-fixed">
             <div class="navbar android-hide">
@@ -171,6 +204,7 @@
             </div>
           </div>
         </div>
+        -->
         <!-- Tab 4 (Notifications) -->
         <div id="view-notifications" class="view tab">
           <div data-name="notifications" class="page">
@@ -271,6 +305,35 @@
     </div>
 
     <!-- Templates -->
+    <script type="text/template7" id="adventureListTemplate">
+      {{#each adventures}}
+        <div class="card day-content-event">
+          <div class="card-header">{{title}}</div>
+          <div class="card-content">
+            <div class="card-content-inner">{{content}}</div>
+          </div>
+        </div>
+      {{/each}}
+    </script>
+
+
+    <script type="text/template7" id="contactTemplate">
+      <select name="contacts">
+        {{#each contact}}
+          {{#if selected}}
+            <option value="{{name}}" selected>{{name}}</option>
+          {{else}}
+            <option value="{{name}}">{{name}}</option>
+          {{/if}}
+        {{/each}}
+      </select>
+      <div class="item-content">
+        <div class="item-inner contact-selected">
+          <div class="item-title">Kontaktperson</div>
+        </div>
+      </div>
+    </script>
+
     <script type="text/template7" id="dayTemplate">
       {{#if hasEvents}}
         {{#each events}}
@@ -611,7 +674,7 @@
         {{#group}}
           <li {{#js_compare "this.group_user.unread_count > 0"}} class="unread"{{/js_compare}}
               data-unread="{{group_user.unread_count}}">
-            <a href="/messages/{{id}}/{{name}}" class="item-link item-content">
+            <a href="messages/{{id}}/{{name}}" class="item-link item-content">
               <div class="item-inner">
                 <div class="item-title-row">
                   <div class="item-title">{{name}}</div>
@@ -730,23 +793,6 @@
       {{/each}}
     </script>
 
-    <script type="text/template7" id="contactTemplate">
-      <select name="contacts">
-        {{#each contact}}
-          {{#if selected}}
-            <option value="{{name}}" selected>{{name}}</option>
-          {{else}}
-            <option value="{{name}}">{{name}}</option>
-          {{/if}}
-        {{/each}}
-      </select>
-      <div class="item-content">
-        <div class="item-inner contact-selected">
-          <div class="item-title">Kontaktperson</div>
-        </div>
-      </div>
-    </script>
-
     <!-- External JS Libraries -->
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src='lib/node_modules/jquery/dist/jquery.js'></script>
@@ -778,6 +824,8 @@
     <script type="text/javascript" src="js/user_page.js"></script>
     <script type="text/javascript" src="js/songbook.js"></script>
     <script type="text/javascript" src="js/contact.js"></script>
+    <script type="text/javascript" src="js/adventure.js"></script>
+    <script type="text/javascript" src="js/nollning.js"></script>
   </body>
 </html>
 

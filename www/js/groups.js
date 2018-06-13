@@ -24,10 +24,17 @@ function getGroups() {
     });
 }
 
+$$(document).on('page:init', '.page[data-name="groups"]', function (e) {
+  // Get messages if we haven't done so already
+  if ($$('#groups-list ul').is(':empty')) getGroups();
+});
+
+/*
 $$('#view-groups').on('tab:show', function() {
   // Get messages if we haven't done so already
   if ($$('#groups-list ul').is(':empty')) getGroups();
 });
+*/
 
 $$('#groups-list').on('click', 'li', function() {
   $$(this).removeClass('unread');

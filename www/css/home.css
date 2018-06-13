@@ -44,12 +44,12 @@
   margin-top: 13px !important;
 }
 
-#subtab2 .day-title {
+#subtab-event .day-title {
   background-color: #f7f7f8;
   color: #eb7125;
   margin-top: 10px;
 }
 
-#subtab2 p.disabled {
+#subtab-event p.disabled {
   text-align: center;
 }

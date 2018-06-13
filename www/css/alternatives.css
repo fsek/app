@@ -18,6 +18,7 @@
 .signout-btn {
   background-color: #e74c3c;
   color: #fff !important;
+  margin-bottom: 20px;
 }
 
 .signout-btn.active-state {

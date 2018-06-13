@@ -5,6 +5,7 @@ var F7msg = null;
 $$(document).on('page:init', '.page[data-name="messages"]', function (e) {
   app.toolbar.hide('.toolbar');
   const head = $(e.target);
+
   initMessages(head, e.detail.route.params);
 });
 
@@ -65,7 +66,7 @@ function initMessages(head, query) {
 
   // Set group name
   $('#messages-group-name').html(query.groupName);
-  app.navbar.size($('#view-groups .navbar'));
+  app.navbar.size($('#view-nollning .navbar'));
 
   // Initialize Framework7 message bar
   const msgBar = app.messagebar.create({

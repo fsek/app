@@ -17,8 +17,8 @@ function loadHome() {
 }
 
 function initHome() {
-  var newsTab = $('#subtab1');
-  var eventTab = $('#subtab2');
+  var newsTab = $('#subtab-news');
+  var eventTab = $('#subtab-event');
 
   var newsList = newsTab.find('#news-list');
 

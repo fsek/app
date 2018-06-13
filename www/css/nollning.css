@@ -1,0 +1,81 @@
+.nollning-button-container .row:first-child {
+  margin-bottom: 8px;
+}
+
+.nollning-btn-adventures {
+  width: 15vh;
+  background-image: url("../img/nollning_stone_adventures.png");
+}
+
+.nollning-btn-contact {
+  width: 13vh;
+  background-image: url("../img/nollning_stone_contact.png");
+}
+
+.nollning-btn-matrix {
+  width: 14vh;
+  background-image: url("../img/nollning_stone_matrix.png");
+}
+
+.nollning-btn-messages {
+  width: 13vh;
+  background-image: url("../img/nollning_stone_messages.png");
+}
+
+.nollning-button-container {
+  width: 60%;
+  margin: auto;
+}
+
+.nollning-button-container .col-50 div {
+  height: 12vh;
+  margin: auto;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position-x: center;
+}
+
+.nollning-content {
+  padding-top: 0 !important;
+}
+
+.nollning-moose {
+  height: 62vh;
+  background-image: url("../img/nollning_background.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position-x: center;
+}
+
+.nollning-sand {
+  height: 38vh;
+  background-image: url("../img/nollning_sand.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position-x: center;
+}
+
+.nollning-toolbar.toolbar {
+  background-color: #2f729e !important;
+}
+
+.nollning-toolbar.toolbar i {
+  color: white !important;
+}
+
+.tab-link .moose-icon {
+  height: 43px;
+  background-image:  url(../img/nollning_moose_icon.png);
+  width: 60px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  transition: 350ms;
+}
+
+.tab-link.tab-link-active .moose-icon {
+  filter: hue-rotate(170deg);
+}
+
+#view-nollning .navbar, .photo-browser-page .navbar {
+  background-color: #2f729e !important;
+}

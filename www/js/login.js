@@ -125,7 +125,7 @@ function afterSignIn() {
   pushAfterLogin();
   initNotificationBadge();
   loadHome();
-  getGroups();
+  //getGroups();
   if ($('#calendar').is(':empty')) {
     initCalendar($('.page.calendar-page'));
   }

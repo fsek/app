@@ -215,18 +215,22 @@ function initMessages(head, query) {
     }
   });
 
-  window.addEventListener('native.keyboardshow', function(e) {
-    F7msg.scrollMessages(350);
+  window.addEventListener('native.keyboardshow', function() {
+    if (F7msg) {
+      F7msg.scroll(350);
 
-    if (app.device.android) {
-      infiniteScroll.find('.infinite-scroll-preloader').hide();
+      if (app.device.android) {
+        infiniteScroll.find('.infinite-scroll-preloader').hide();
+      }
     }
   });
 
   if (app.device.android) {
     window.addEventListener('native.keyboardhide', function() {
-      infiniteScroll.find('.infinite-scroll-preloader').show();
-      F7msg.scrollMessages(0);
+      if (F7msg) {
+        infiniteScroll.find('.infinite-scroll-preloader').show();
+        F7msg.scroll(0);
+      }
     });
   }
 

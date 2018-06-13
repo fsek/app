@@ -114,22 +114,53 @@ var calendarView = app.views.create('#view-calendar', {
     },
   ]
 });
-var messagesView = app.views.create('#view-groups', {
+var nollningView = app.views.create('#view-nollning', {
   routesAdd: [
     {
-      name: 'messages',
-      path: '/messages/:groupId/:groupName',
-      url: './messages.html',
+      name: 'adventure',
+      path: '/adventure/',
+      url: './adventure.html'
+    },
+    {
+      name: 'groups',
+      path: '/groups/',
+      url: './groups.html',
       routes: [
         {
-          name: 'messages_editor',
-          path: 'messages_editor/',
-          url: './messages_editor.html'
-        }
+          name: 'messages',
+          path: '/messages/:groupId/:groupName',
+          url: './messages.html',
+          routes: [
+            {
+              name: 'messages_editor',
+              path: 'messages_editor/',
+              url: './messages_editor.html'
+            }
+          ]
+        },
       ]
     },
   ]
 });
+
+/*
+ * var messagesView = app.views.create('#view-groups', {
+ *   routesAdd: [
+ *    {
+ *      name: 'messages',
+ *      path: '/messages/:groupId/:groupName',
+ *      url: './messages.html',
+ *      routes: [
+ *        {
+ *          name: 'messages_editor',
+ *          path: 'messages_editor/',
+ *          url: './messages_editor.html'
+ *        }
+ *      ]
+ *    },
+ *  ]
+ * });
+ */
 var notificationsView = app.views.create('#view-notifications', {
   routesAdd: [
     {
@@ -184,11 +215,11 @@ var alternativesView = app.views.create('#view-alternatives', {
 });
 
 // Complie templates
-var templateNames = ['contactTemplate', 'dayTemplate', 'dayTitleTemplate', 'eventPageTemplate', 'groupTemplate',
-  'newsTemplate', 'notificationTemplate', 'songbookTemplate', 'songTemplate'];
-app.templates = compileTemplates(templateNames);
+app.templates = compileTemplates();
 
-function compileTemplates(templateNames) {
+function compileTemplates() {
+  var templateNames = ['adventureListTemplate', 'contactTemplate', 'dayTemplate', 'dayTitleTemplate', 'eventPageTemplate', 'groupTemplate',
+    'newsTemplate', 'notificationTemplate', 'songbookTemplate', 'songTemplate'];
   var compiledTemplates = {};
   for (var name of templateNames) {
     var template = $('script#' + name).html();
@@ -224,12 +255,12 @@ function onBackKey() {
     } else {
       navigator.app.exitApp();
     }
-  } else if (pageName === 'calendar' || pageName === 'groups' || pageName === 'notifications' || pageName === 'alternatives') {
-    app.tab.show('#view-home');
   } else if ($$('.popover.modal-in').length) {
     app.popover.close('.popover.modal-in');
   } else if ($$('.popup').length) {
     app.popup.close('.popup');
+  } else if (pageName === 'calendar' || pageName === 'nollning' || pageName === 'notifications' || pageName === 'alternatives') {
+    app.tab.show('#view-home');
   } else {
     router.back();
   }

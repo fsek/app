@@ -1,12 +1,19 @@
-$$(document).on('page:init', '.page[data-name="signup"]', function (page) {
-  $('#signup-form input').on('input', function(e) {
-    var inputFilled = true;
-    var signupBtn = $('.signup-btn');
-    var signupFormData = app.form.convertToData('#signup-form');
+$$(document).on('page:init', '.page[data-name="signup"]', function (pageEvent) {
+  const page = pageEvent.detail;
+  const head = $(page.el).find('.page-content');
+
+  const form = head.find('#signup-form');
+  const formInput = form.find('input');
+  const signupBtn = head.find('.signup-btn');
+  const footer = head.find('.signup-footer');
+
+  formInput.on('input', function() {
+    let inputFilled = true;
+    const signupFormData = app.form.convertToData(form);
 
     // Check if all fields a filled in
-    for (var key in signupFormData) {
-      if (signupFormData[key] == '') {
+    for (const key in signupFormData) {
+      if (signupFormData[key] === '') {
         inputFilled = false;
         break;
       }
@@ -26,8 +33,8 @@ $$(document).on('page:init', '.page[data-name="signup"]', function (page) {
    * Get the input data from the form and pass it in the auth request. If it fails we add errors,
    * otherwise we load the confirmation page with the input data as context to be displayed
    */
-  $('.signup-btn').on('click', function() {
-    var signupFormData = app.form.convertToData('#signup-form');
+  signupBtn.on('click', function() {
+    const signupFormData = app.form.convertToData(form);
 
     $.auth.emailSignUp(signupFormData)
       .done(function() {
@@ -36,24 +43,20 @@ $$(document).on('page:init', '.page[data-name="signup"]', function (page) {
         });
       })
       .fail(function(resp) {
-        $('#signup-form input').each(function() {
-          var error = resp.data.errors[this.name];
-          handleInputError(this, error);
+        formInput.each(function() {
+          let error = resp.data.errors[this.name];
+          handleInputError(this, error, form);
         });
       });
   });
 
-  var head = $(page.container);
-  var form = head.find('#signup-form');
-  var footer = head.find('.signup-footer');
-
-  head.on('focus', 'input', function(e) {
+  head.on('focus', 'input', function() {
     footer.fadeOut();
 
     // Animated scroll for android
     if (app.device.android) {
-      var scrollMargin = 65 * (form.find('input').index(this) - 1);
-      form.find('ul').animate({scrollTop: scrollMargin}, 250);
+      const scrollMargin = 65 * (formInput.index(this) - 1);
+      head.animate({scrollTop: scrollMargin}, 250);
     }
   });
 
@@ -71,10 +74,9 @@ $$(document).on('page:init', '.page[data-name="signup"]', function (page) {
  * Add the error class (becomes red) and error message below the 
  * input field if there is an error otherwise remove it
  */
-function handleInputError(inputEl, error) {
-  console.log(error);
-  var item = $(inputEl).parents('.item-content');
-  if (error != null) {
+function handleInputError(inputEl, error, form) {
+  const item = $(inputEl).parents('.item-content');
+  if (error) {
     if (!item.hasClass('error')) {
       item.addClass('error');
       item.after(
@@ -86,9 +88,9 @@ function handleInputError(inputEl, error) {
       item.next()[0].innerText = '* ' + error; //updating error message
     }
 
-    if (inputEl.name == 'password' || inputEl.name == 'password_confirmation') {
-      $('#signup-form input[name="password"]').val('');
-      $('#signup-form input[name="password_confirmation"]').val('');
+    if (inputEl.name === 'password' || inputEl.name === 'password_confirmation') {
+      form.find('input[name="password"]').val('');
+      form.find('input[name="password_confirmation"]').val('');
     }
   } else if (item.hasClass('error')) {
     item.removeClass('error');

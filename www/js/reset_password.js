@@ -1,10 +1,17 @@
-$$(document).on('page:init', '.page[data-name="reset-password"]', function (page) {
-  // Enable button if the input field isn't empty 
-  $('#reset-password-form input').on('input', function(e) {
-    var resetPwBtn = $('.reset-password-btn');
-    var resetPwFormData = app.form.convertToData('#reset-password-form');
+$$(document).on('page:init', '.page[data-name="reset-password"]', function (pageEvent) {
+  const page = pageEvent.detail;
+  const head = $(page.el).find('.page-content');
 
-    if (resetPwFormData.email != '') {
+  const resetPwBtn = head.find('.reset-password-btn');
+  const form = head.find('#reset-password-form');
+  const formInput = form.find('input');
+  const footer = head.find('.reset-password-footer');
+
+  // Enable button if the input field isn't empty 
+  formInput.on('input', function() {
+    const resetPwFormData = app.form.convertToData(form);
+
+    if (resetPwFormData.email !== '') {
       if (resetPwBtn.hasClass('disabled')) {
         resetPwBtn.removeClass('disabled');
       }
@@ -17,8 +24,8 @@ $$(document).on('page:init', '.page[data-name="reset-password"]', function (page
    * Get the input data from the form and pass it in the auth request. If it fails we add errors,
    * otherwise we load the confirmation page with the input data as context to be displayed
    */
-  $('.reset-password-btn').on('click', function() {
-    var resetPwFormData = app.form.convertToData('#reset-password-form');
+  resetPwBtn.on('click', function() {
+    const resetPwFormData = app.form.convertToData(form);
     
     $.auth.requestPasswordReset(resetPwFormData)
       .done(function() {
@@ -26,20 +33,25 @@ $$(document).on('page:init', '.page[data-name="reset-password"]', function (page
           context: resetPwFormData
         });
       })
-      .fail(function(resp) {
-        var error = 'Ogiltig e-postaddress';
-        var inputEl = $('#reset-password-form input');
-        handleInputError(inputEl, error); // Defined in signup.js
+      .fail(function() {
+        const error = 'Ogiltig e-postaddress';
+        handleInputError(formInput, error); // Defined in signup.js
       });
   });
 
-  $(page.container).on('focus', 'input', function(e) {
-    $('.reset-password-footer').fadeOut();
+  head.on('focus', 'input', function() {
+    footer.fadeOut();
+
+    // Scroll the input to the center on Android
+    if (app.device.android) {
+      const scrollPos = resetPwBtn.offset().top + resetPwBtn.height();
+      head.animate({scrollTop: scrollPos}, 250);
+    }
   });
 
-  $(page.container).on('blur', 'input', function(e) {
+  head.on('blur', 'input', function() {
     setTimeout(function() {
-      $('.reset-password-footer').fadeIn();
+      footer.fadeIn();
     }, 250);
   });
 });

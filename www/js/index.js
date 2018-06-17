@@ -14,7 +14,18 @@ var app = new Framework7({
   statusbar: {
     enabled: false,
   },
+  input: {
 
+    /*
+     * This function has finally been added to F7, but it works pretty bad on some
+     * of our pages (like login). Therefore, this global setting must be disabled.
+     *
+     * F7 auto scrolling canm still be enabled on individual inputs. Just run:
+     *   `app.input.scrollIntoView(inputEl, duration, centered, force)`
+     * on the focus event for a specified input.
+     */
+    scrollIntoViewOnFocus: false
+  }
 
   /*statusbarOverlay: false,*/
 });

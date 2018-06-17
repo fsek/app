@@ -43,16 +43,6 @@ function initEventPage(eventData) {
     }
   }
 
-  if (app.device.android) {
-    window.addEventListener('native.keyboardshow', function() {
-      if ($$('.modal.modal-in').length) return;
-
-      eventContent.animate({
-        scrollTop: $$('.event-signup-btn').offset().top + 100
-      }, 350);
-    });
-  }
-
   function generateAdditionalData(eventData) {
     // Fix start and end date
     var dateString = generateDateString(eventData);

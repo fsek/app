@@ -36,6 +36,11 @@
   border-bottom-color: #ff9800 !important;
 }
 
+.message-avatar {
+  height: 35px !important;
+  width: 35px !important;
+}
+
 .android-hide {
   display: none !important;
 }

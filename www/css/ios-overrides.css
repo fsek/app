@@ -90,7 +90,10 @@
 }
 
 .user-content {
-  background: linear-gradient(to bottom,#eb7125 60%, #efeff4 61%);
+  /*background: linear-gradient(to bottom,#eb7125 60%, #efeff4 61%);*/
+  background-image: url("../img/RoosterxHen.png");
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 #user-form {

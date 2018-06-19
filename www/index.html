@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui, viewport-fit=cover">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://stage.fsektionen.se https://fsektionen.se wss://fsektionen.se wss://stage.fsektionen.se gap://ready 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' https://stage.fsektionen.se https://fsektionen.se data:" />
@@ -10,7 +10,7 @@
 
     <!-- Material/iOS stylesheets. Will be replaced on deploy -->
     <link rel="stylesheet" href="lib/framework7/css/framework7.min.css">
-    <link rel="stylesheet" href="css/material-overrides.css">
+    <link rel="stylesheet" href="css/ios-overrides.css">
 
     <!-- General stylesheets -->
     <link rel="stylesheet" href="css/font-awesome.min.css">
@@ -269,7 +269,7 @@
         </div>
       </div>
     </div>
-    
+
     <!-- Templates -->
     <script type="text/template7" id="dayTemplate">
       {{#if hasEvents}}
@@ -285,8 +285,8 @@
                   <i class="fa fa-clock-o" aria-hidden="true"></i>
                   {{#unless allday}}
                     {{js "this.start.hhmm()"}} - {{js "this.end.hhmm()"}}
-                  {{else}} 
-                    Hela dagen 
+                  {{else}}
+                    Hela dagen
                   {{/unless}}
                 </p>
                 <p class="location">
@@ -685,7 +685,7 @@
               <div class="message-label message-footer">{{updated_at}}</div>
             {{/if}}
           </div>
-          <a href="#" class="taphold">      
+          <a href="#" class="taphold">
           </a>
       </div>
       {{#if dayHeader}}
@@ -775,7 +775,7 @@
     <script type="text/javascript" src="js/groups.js"></script>
     <script type="text/javascript" src="js/messages.js"></script>
     <script type="text/javascript" src="js/event.js"></script>
-    <script type="text/javascript" src="js/alternatives.js"></script> 
+    <script type="text/javascript" src="js/alternatives.js"></script>
     <script type="text/javascript" src="js/6122.js"></script>
     <script type="text/javascript" src="js/user_page.js"></script>
     <script type="text/javascript" src="js/songbook.js"></script>
@@ -783,10 +783,10 @@
   </body>
 </html>
 
-<!--  
- 
-                                
-                          
+<!--
+
+
+
                                      _____
                                 ____/     \____
                              __/               \__
@@ -796,27 +796,27 @@
                          |                   |       |
                          |          \__      /       |
                          \__                       __/
-         _____              \       _      _      /         
-        / _ _ \              \_____/ |    | \____/ 
-       |  o o  |                |    |    |  
+         _____              \       _      _      /
+        / _ _ \              \_____/ |    | \____/
+       |  o o  |                |    |    |
        | \___/ |                |    |    |       __
         \_____/                 |    |    |      |OO|
-           |                  / | \  |    |___/__\__/__   
+           |                  / | \  |    |___/__\__/__
        ____|____            \_\(_)/_/|    |       VV
-           |                 _//"\\_ |    |  
+           |                 _//"\\_ |    |
            |                  /   \  |    |
           / \                        |    |
          /   \                       |    |
        _/     \_                   _/      \_
 wWwwWwwwwWwWwwWwwWwwWwwWWwWWWwWWWWWwWWWWwwwWwwwwWwwwwWwwWwwWwWw
-     _________           ______     _______     _______    
-    |   ______|         /      \   |   __  \   |   __  \   
-    |  |               /   __   \  |  |  |  |  |  |  |  |  
-    |  |____           |  |  |  |  |  |__/  |  |  |__/  |  
-    |   ____|   ____   |  |__|  |  |   ____/   |   ____/   
-    |  |       |____|  |   __   |  |  |        |  |        
-    |  |               |  |  |  |  |  |        |  |        
-    |  |               |  |  |  |  |  |        |  |        
-    |__|               |__|  |__|  |__|        |__|        
+     _________           ______     _______     _______
+    |   ______|         /      \   |   __  \   |   __  \
+    |  |               /   __   \  |  |  |  |  |  |  |  |
+    |  |____           |  |  |  |  |  |__/  |  |  |__/  |
+    |   ____|   ____   |  |__|  |  |   ____/   |   ____/
+    |  |       |____|  |   __   |  |  |        |  |
+    |  |               |  |  |  |  |  |        |  |
+    |  |               |  |  |  |  |  |        |  |
+    |__|               |__|  |__|  |__|        |__|
 
 -->

@@ -5,7 +5,7 @@ var infNotificationScroll = true;
 // Init notifications if not already inited
 $$(document).on('page:init', '.page[data-name="notifications"]', function (e) {
   // If signed in and notification container is empty
-  if (!jQuery.isEmptyObject($.auth.user) && $('#notification-list ul').is(':empty')) {   
+  if (!jQuery.isEmptyObject($.auth.user) && $('#notification-list ul').is(':empty')) {
     getNotifications(false);
   }
 });
@@ -61,6 +61,8 @@ function appendNotifications(notifications) {
   var notificationList = $$('#notification-list ul');
   if (notifications.length !== 0) {
     for (notification of notifications) {
+      notification.created_at = new Date(notification.created_at);
+      notification.created_at = notification.created_at.yyyymmdd() + ' ' + notification.created_at.hhmm();
       templateHTML = app.templates.notificationTemplate({notification: notification,
         hasNotifications: true});
       notificationList.append(templateHTML);

@@ -246,3 +246,9 @@ if (app.device.android) {
   var loginBarColor = '#7999d2';
   var mainBarColor = '#eb7125';
 }
+
+// Default of hiding the toolbar in smart selects that open i page
+$$(document).on('page:beforein', '.page.smart-select-page', function (e) {
+  const page = e.detail.$el;
+  page.addClass('no-toolbar');
+});

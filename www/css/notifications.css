@@ -20,6 +20,11 @@
   white-space: normal;
 }
 
+.notification-list .item-subtitle p {
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
 .notification-list .item-text {
   color: black;
   font-size: 13px;

@@ -1,4 +1,4 @@
-$$(document).on('page:init', '.page[data-name="user-page"]', function (page) {
+$$(document).on('page:init', '.page[data-name="user-page"]', function () {
   var user = $.auth.user;
   initUserPage(user);
 });
@@ -47,7 +47,7 @@ function initUserPage(user) {
       avatarURL = BASE_URL + user.avatar.thumb.url;
       userContent.find('.user-avatar').css('background-image', 'url(' + avatarURL + ')');
     }
-    
+
 
     // Adds 'inga' to the item-after object if there is no food preferences
     if (user.food_preferences.length == 0 && user.food_custom == '') {
@@ -98,14 +98,14 @@ function initUserPage(user) {
   }
 
   function initSmartSelect() {
-    // Add 'selected' attribute to the food preference options that match the users 
+    // Add 'selected' attribute to the food preference options that match the users
     selectFoodPreferences();
 
     // Init smart select with the selected options
     var smartSelect = app.smartSelect.create({
       el: '#foodpref-select',
-      openIn: 'popup',
-      popupCloseLinkText: 'Tillbaka',
+      openIn: 'page',
+      pageBackLinkText: 'Tillbaka',
       on: {
         open: function(smartSelect) {
           var page = smartSelect.$containerEl;
@@ -123,7 +123,7 @@ function initUserPage(user) {
           var isOtherSelected = optionOther.selected;
 
           // Adds the input html if the 'Annat' option is selected (has the 'selected' attribute)
-          if (isOtherSelected) { 
+          if (isOtherSelected) {
             page.find('ul').append(otherInputHTML);
             $('#option-other input').val(optionValue);
           }
@@ -145,12 +145,12 @@ function initUserPage(user) {
         close: function(smartSelect) {
           app.toolbar.show();
           // Update selected options to 'Inga' if nothing was selected
-          var selectedOptions = $('.user-food-pref .item-after');  
+          var selectedOptions = $('.user-food-pref .item-after');
           if (selectedOptions.html() == '') {
             selectedOptions.html('Inga');
           }
 
-          // Updates user.food_custom to either the input value (if the 'Annat' input was found) otherwise an empty string 
+          // Updates user.food_custom to either the input value (if the 'Annat' input was found) otherwise an empty string
           var otherInput = $('#option-other input');
           if (otherInput.length != 0) {
             $.auth.user.food_custom = otherInput[0].value;
@@ -183,7 +183,7 @@ function initUserPage(user) {
        * Add 'selected' attribute to the options that match the user.food_preferences elements
        * 'length - 1' because we don't need to check for the last option 'annat'
        */
-      for (var i = 0; i < options.length - 1; i++) { 
+      for (var i = 0; i < options.length - 1; i++) {
         foodPreferences.forEach(function(element) {
           if (options[i].innerHTML.toLowerCase() == element) {
             options[i].setAttribute('selected', '');
@@ -192,13 +192,13 @@ function initUserPage(user) {
       }
     }
 
-    // Add 'selected' attribute to the 'Annat' option if food_custom exists 
+    // Add 'selected' attribute to the 'Annat' option if food_custom exists
     if ($.auth.user.food_custom != '') {
       options[options.length-1].setAttribute('selected', '');
     }
   }
 
-  function updateUser(user) { 
+  function updateUser(user) {
     // Open preloader that closes after 0.8s and updates the name text
     app.dialog.preloader('Sparar inställningar');
     var hidePreloader = false;

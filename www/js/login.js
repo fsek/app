@@ -21,7 +21,7 @@ $.auth.validateToken()
     loginScreen.open(false); // true if animation
   });
 
-$$(document).on('page:init', '.page[data-name="login"]', function (page) {
+$$(document).on('page:init', '.page[data-name="login"]', function () {
   // Activate the login button if we have text in the input field, otherwise disable it
   $('.login-screen-content input').on('input',function(e) {
     var loginFormData = app.form.convertToData('#login-form');

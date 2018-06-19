@@ -50,8 +50,8 @@ function initContactPage(contacts, event) {
   function initSmartSelect(contacts) {
     app.smartSelect.create({
       el: '#contact-select',
-      openIn: 'popup',
-      popupCloseLinkText: 'Tillbaka',
+      openIn: 'page',
+      pageBackLinkText: 'Tillbaka',
       searchbar: true,
       searchbarPlaceholder: 'Sök efter kontaktperson',
       searchbarDisableText: 'Avbryt',

@@ -1,4 +1,4 @@
-$$(document).on('page:init', '.page[data-name="alternatives"]', function (page) {
+$$(document).on('page:init', '.page[data-name="alternatives"]', function () {
   var signoutAction = app.actions.create({
     buttons: [
       {
@@ -14,7 +14,7 @@ $$(document).on('page:init', '.page[data-name="alternatives"]', function (page) 
 
           // Unregister push device and signout with $.auth
           deletePushAndSignOut();
-         
+
           // Go back from events subtab to news
           app.tab.show('#subtab1');
 

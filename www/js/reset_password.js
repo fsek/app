@@ -7,7 +7,7 @@ $$(document).on('page:init', '.page[data-name="reset-password"]', function (page
   const formInput = form.find('input');
   const footer = head.find('.reset-password-footer');
 
-  // Enable button if the input field isn't empty 
+  // Enable button if the input field isn't empty
   formInput.on('input', function() {
     const resetPwFormData = app.form.convertToData(form);
 
@@ -26,7 +26,7 @@ $$(document).on('page:init', '.page[data-name="reset-password"]', function (page
    */
   resetPwBtn.on('click', function() {
     const resetPwFormData = app.form.convertToData(form);
-    
+
     $.auth.requestPasswordReset(resetPwFormData)
       .done(function() {
         loginView.router.navigate('reset_password_confirm/', {

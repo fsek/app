@@ -655,12 +655,9 @@
             <a href="/event/{{event_id}}/" class="item-link">
               <div class="item-content">
                 <div class="item-inner">
-                  <div class="item-title-row">
-                    <div class="item-title">{{data.title}}</div>
-                  </div>
                   <div class="item-subtitle">{{data.body}}</div>
                   <div class="item-text">{{data.extra}}</div>
-                  <div class="item-created">Skickades {{js "new Date(this.created_at).toLocaleString()"}}</div>
+                  <div class="item-created">Skickades {{created_at}}</div>
                 </div>
               </div>
             </a>

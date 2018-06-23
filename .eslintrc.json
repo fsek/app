@@ -13,7 +13,6 @@
     "monthNames": true,
     "API": true,
     "BASE_URL": true,
-    "event": true,
     "AC_URL": true,
     "AC_TOKEN_URL": true,
     "cable": true,

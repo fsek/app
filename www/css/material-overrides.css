@@ -16,7 +16,6 @@
 .toolbar.messagebar {
   background-color: #fff !important;
   position: fixed;
-  height: 42px;
 }
 
 .messages .message-text, .toolbar.messagebar textarea{

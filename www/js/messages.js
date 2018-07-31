@@ -1,27 +1,27 @@
-var group_app = null;
-var group_paused = false;
+var groupApp = null;
+var groupPaused = false;
 var F7msg = null;
 
 $$(document).on('page:init', '.page[data-name="messages"]', function (e) {
   app.toolbar.hide('.toolbar');
-  var head = $(e.target);
+  const head = $(e.target);
   initMessages(head, e.detail.route.params);
 });
 
 function initMessages(head, query) {
-  var messages = head.find('#group-messages');
-  var userId = $.auth.user.id;
-  var groupId = query.groupId;
+  const messages = head.find('#group-messages');
+  const userId = $.auth.user.id;
+  const groupId = query.groupId;
 
-  var page = 2;
-  var totalPages = 37;
-  var loadingMessages = false;
+  let page = 2;
+  let totalPages = 37;
+  let loadingMessages = false;
 
 
   // Initialize Framework7 mesages
   F7msg = app.messages.create({
     el: '.messages',
-    firstMessageRule: function (message, previousMessage, nextMessage) {
+    firstMessageRule: function (message, previousMessage) {
       if (message.isTitle) return false;
 
       if (message.type === 'received') {
@@ -49,7 +49,7 @@ function initMessages(head, query) {
       }
       return false;
     },
-    customClassMessageRule: function (message, previousMessage, nextMessage) {
+    customClassMessageRule: function (message) {
       if (message.isTitle) return false;
 
       if (message.by_admin) {
@@ -64,26 +64,33 @@ function initMessages(head, query) {
   app.navbar.size($('#view-groups .navbar'));
 
   // Initialize Framework7 message bar
-  var msgBar = app.messagebar.create({
+  const msgBar = app.messagebar.create({
     el: '.messagebar',
     maxHeight: 75
   });
-  
-  // Infinite scroll
-  var infiniteScroll = head.find('.infinite-scroll-content');
 
-  var detachInftScroll = function() {
+  // Infinite scroll
+  const infiniteScroll = head.find('.infinite-scroll-content');
+
+  function detachInftScroll() {
     app.infiniteScroll.destroy('.infinite-scroll-content');
     infiniteScroll.find('.infinite-scroll-preloader').remove();
-  };
-  
+  }
+
+  // Handle the "send" button. Don't close the keyboard on press
+  const messageBtn = head.find('#messageBtn');
+  nonFocusingButton(messageBtn, function() {
+    groupApp.sendMessage(msgBar.getValue());
+    msgBar.clear();
+  });
+
   // Functions for batch loading of messages
-  var batchPrepare = function(msgs) {
-    var lastDay = null;
-    var preparedMsgs = [];
+  function batchPrepare(msgs) {
+    let lastDay = null;
+    let preparedMsgs = [];
     msgs.reverse();
 
-    for (message of msgs) {
+    for (const message of msgs) {
       // Sender or receiver? Framework7 defaults to sender
       if (message.user_id !== userId) {
         message.type = 'received';
@@ -93,10 +100,10 @@ function initMessages(head, query) {
       }
 
       // Add headers for new dates
-      if (lastDay != message.day) {
+      if (lastDay !== message.day) {
         lastDay = message.day;
 
-        var messageTitle = {};
+        const messageTitle = {};
         messageTitle.text = message.day;
         messageTitle.isTitle = true;
         preparedMsgs.push(messageTitle);
@@ -105,31 +112,34 @@ function initMessages(head, query) {
       preparedMsgs.push(message);
     }
     return preparedMsgs.reverse();
-  };
+  }
 
-  var batchAddMessages = function(msgs) {
+  function batchAddMessages(msgs) {
     // Expects msgs to be in the wrong order, latest first.
     if (msgs.length < 1) return;
 
     // Remove top day header if the last message in msgs was sent the same day
     var first = messages.find('.messages-date:first');
-    if (msgs[0].day == first.html()) first.remove();
+    if (msgs[0].day === first.html()) first.remove();
 
     // Add day headers and set sender/receiver tag. Then add to window
-    msgs = batchPrepare(msgs);
-    F7msg.addMessages(msgs, 'prepend', false);
-  };
+    const preparedMessages = batchPrepare(msgs);
+    F7msg.addMessages(preparedMessages, 'prepend', false);
+  }
 
-  var loadMoreMessages = function() {
+  function loadMoreMessages() {
     $.getJSON(API + '/groups/' + groupId + '/messages?page=' + page)
       .then(function(resp) {
         batchAddMessages(resp.messages);
         page++;
         loadingMessages = false;
-      });
-  };
 
-  var moreMessages = function() {
+        // Detach the infinite scroll preloader if this is the last page
+        if (page > totalPages) detachInftScroll();
+      });
+  }
+
+  function moreMessages() {
     if (!loadingMessages) {
       if (page <= totalPages) {
         loadingMessages = true;
@@ -138,7 +148,7 @@ function initMessages(head, query) {
         detachInftScroll();
       }
     }
-  };
+  }
 
   function loadMessages() {
     $.getJSON(API + '/groups/' + groupId + '/messages/')
@@ -149,25 +159,28 @@ function initMessages(head, query) {
 
         // Fill the screen if more messages exist
         if ($$(window).height() >= messages.height()) moreMessages();
+
+        // Detach the infinite scroll preloader if there only is one page
+        if (totalPages === 1) detachInftScroll();
       });
   }
 
   loadMessages();
 
   // Functions for single messages
-  var receivedMessage = function(message) {
+  function receivedMessage(message) {
     var lastDay = messages.find('.messages-date:last').html();
-    if (message.day != lastDay) message.dayHeader = message.day;
-    if (message.user_id != userId) message.type = 'received';
+    if (message.day !== lastDay) message.dayHeader = message.day;
+    if (message.user_id !== userId) message.type = 'received';
 
     F7msg.addMessage(message);
-  };
+  }
 
-  var removeMessage = function(messageId) {
+  function removeMessage(messageId) {
     messages.find('[id="' + messageId + '"]').remove();
-  };
+  }
 
-  var updateMessage = function(message) {
+  function updateMessage(message) {
     var msg = messages.find('[id="' + message.id + '"]');
     if (!msg.length) return;
 
@@ -179,20 +192,21 @@ function initMessages(head, query) {
     } else {
       msg.append('<div class="message-label message-updated">' + message.updated_at + '</div>');
     }
-  };
+  }
 
   // Initialize action cable
-  group_app = cable.subscriptions.create({
+  groupApp = cable.subscriptions.create({
     channel: 'GroupsChannel',
     group_id: groupId},
-  {connected: function() {},
-    disconnected: function() {},
+  {
+    connected: null,
+    disconnected: null,
     received: function(data) {
-      if (data.action == 'create') {
+      if (data.action === 'create') {
         receivedMessage(data.message.message);
-      } else if (data.action == 'destroy') {
+      } else if (data.action === 'destroy') {
         removeMessage(data.message_id);
-      } else if (data.action == 'update') {
+      } else if (data.action === 'update') {
         updateMessage(data.message.message);
       }
     },
@@ -234,18 +248,8 @@ function initMessages(head, query) {
     });
   }
 
-  // Send message on enter
-  $(msgBar.textareaEl).on('keypress', function(e) {
-    if (e.which === 13) {
-      group_app.sendMessage(msgBar.getValue());
-      msgBar.clear();
-      e.preventDefault();
-      return false;
-    }
-  });
-
   // Show popup editor for sent messages
-  var popupEditor = function(messageId) {
+  function popupEditor(messageId) {
     $$.get('message_editor.html', function(data) {
       var popup = $(app.popup(data, true));
       var editor = popup.find('#message-editor');
@@ -256,7 +260,7 @@ function initMessages(head, query) {
         success: function(resp) {
           editor.val(resp.content);
         },
-        error: function(resp) {
+        error: function() {
           alert('Could not get message data.');
           app.closeModal(popup);
         }
@@ -265,12 +269,12 @@ function initMessages(head, query) {
       // Send updated message to action cable
       popup.on('click', '#message-edit-submit', function() {
         var content = editor.val();
-        group_app.updateMessage(messageId, content);
+        groupApp.updateMessage(messageId, content);
 
         app.closeModal(popup);
       });
     });
-  };
+  }
 
   // Show action menu on long tap (sent messages only)
   messages.on('taphold', '.message', function() {
@@ -287,7 +291,7 @@ function initMessages(head, query) {
       text: 'Ta bort',
       color: 'red',
       onClick: function() {
-        group_app.destroyMessage(messageId);
+        groupApp.destroyMessage(messageId);
       }
     }];
 
@@ -299,26 +303,26 @@ function initMessages(head, query) {
     moreMessages();
   });
 
-  var pauseGroup = function() {
-    if (group_app) {
-      group_paused = true;
-      group_app.unsubscribe();
+  function pauseGroup() {
+    if (groupApp) {
+      groupPaused = true;
+      groupApp.unsubscribe();
     }
-  };
+  }
 
-  var resumeGroup = function() {
-    if (group_app && group_paused) {
-      group_paused = false;
+  function resumeGroup() {
+    if (groupApp && groupPaused) {
+      groupPaused = false;
       loadMessages();
-      cable.subscriptions.add(group_app);
+      cable.subscriptions.add(groupApp);
     }
-  };
+  }
 
   // Disconnect action cable if the app is paused. Reconnect when it's opened again.
   document.addEventListener('pause', pauseGroup, false);
   document.addEventListener('resume', resumeGroup, false);
 
-  var groupBack = $$(document).on('page:beforeremove', '.page[data-name="messages"]', function (e) {
+  const groupBack = $$(document).on('page:beforeremove', '.page[data-name="messages"]', function () {
     groupBack.remove();
 
     $('.tabbar').show();
@@ -327,10 +331,10 @@ function initMessages(head, query) {
     document.removeEventListener('pause', pauseGroup, false);
     document.removeEventListener('resume', resumeGroup, false);
 
-    group_app.unsubscribe();
+    groupApp.unsubscribe();
     cable.disconnect();
-    group_paused = false;
-    group_app = null;
+    groupPaused = false;
+    groupApp = null;
     F7msg = null;
   });
 }

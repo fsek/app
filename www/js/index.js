@@ -9,7 +9,8 @@ var app = new Framework7({
     },
   ],
   touch: {
-    tapHold: true //enable tap hold events
+    tapHold: true, // Enable tap hold events
+    disableContextMenu: false // Allow the user to copy/paste text
   },
   statusbar: {
     enabled: false,

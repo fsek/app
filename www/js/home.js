@@ -1,8 +1,12 @@
 $$(document).on('page:init', '.page[data-name="home"]', function () {
   // If signed in
-  if (!jQuery.isEmptyObject($.auth.user)) {   
+  if (!jQuery.isEmptyObject($.auth.user)) {
     loadHome();
   }
+});
+
+$$('#home-btn').on('click', function() {
+  $$('.page-content').scrollTop(0, 0);
 });
 
 function loadHome() {

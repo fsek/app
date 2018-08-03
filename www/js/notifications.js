@@ -10,6 +10,10 @@ $$(document).on('page:init', '.page[data-name="notifications"]', function (e) {
   }
 });
 
+$$('#noti-btn').on('click', function() {
+  $$('.page-content').scrollTop(0, 0);
+});
+
 $$('#view-notifications .ptr-content').on('ptr:refresh', function() {
   getNotifications(true);
 });

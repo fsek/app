@@ -8,6 +8,10 @@ $$(document).on('page:init', '.page[data-name="messages"]', function (e) {
   initMessages(head, e.detail.route.params);
 });
 
+$$('#msg-btn').on('click', function() {
+  $$('.page-content').scrollTop(0, 0);
+});
+
 function initMessages(head, query) {
   const messages = head.find('#group-messages');
   const userId = $.auth.user.id;

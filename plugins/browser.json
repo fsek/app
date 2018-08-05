@@ -28,6 +28,9 @@
     },
     "cordova-plugin-keyboard": {
       "PACKAGE_NAME": "se.fsektionen.fapp"
+    },
+    "cordova-plugin-camera": {
+      "PACKAGE_NAME": "se.fsektionen.fapp"
     }
   },
   "dependent_plugins": {}

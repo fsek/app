@@ -72,4 +72,6 @@
         <variable name="SENDER_ID" value="509736475453" />
     </plugin>
     <engine name="android" spec="~6.4.0" />
+    <plugin name="cordova-plugin-camera" spec="^4.0.3" />
+>>>>>>> Add cordova-plugin-camera
 </widget>

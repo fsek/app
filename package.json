@@ -16,18 +16,21 @@
       "cordova-plugin-statusbar": {},
       "cordova-plugin-splashscreen": {},
       "cordova-plugin-headercolor": {},
+      "cordova-plugin-camera": {},
       "cordova-plugin-keyboard": {}
     }
   },
   "dependencies": {
-    "cordova-android": "^6.4.0",
+    "cordova-android": "6.4.0",
     "cordova-ios": "^4.5.4",
+    "cordova-plugin-camera": "^4.0.3",
+    "cordova-plugin-dialogs": "^2.0.1",
     "cordova-plugin-headercolor": "^1.0.0",
     "cordova-plugin-keyboard": "^1.2.0",
     "cordova-plugin-splashscreen": "^4.0.3",
     "cordova-plugin-statusbar": "^2.2.3",
     "cordova-plugin-whitelist": "~1.3.2",
     "ionic-plugin-keyboard": "^2.2.1",
-    "phonegap-plugin-push": "~2.1.3"
+    "phonegap-plugin-push": "~2.1.3",
   }
 }

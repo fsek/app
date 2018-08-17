@@ -1,0 +1,65 @@
+.adventures-subnavbar {
+  background-color: #2f729e !important;
+  padding-bottom: 12px;
+}
+
+.adventures-subnavbar .tab-link-active {
+  color: #2f729e !important;
+}
+
+.adventures-subnavbar .tab-link {
+  background-color: #1c4979;
+  border-color: #ffffff36 !important;
+}
+
+.adventure-mission-completed {
+  background-color: #daffdf;
+}
+
+.adventure-mission {
+  transition: 500ms;
+}
+
+
+/* CURRENT ADVENTURE */
+.adventure-current-header {
+  position: fixed;
+  width: 100%;
+  z-index: 100000;
+  background-color: #f6fcff;
+  height: 76px;
+  border-bottom: 1px solid #e2e2e2;
+}
+
+.adventure-current-list {
+  margin-top: 76px !important;
+}
+
+.adventure-current-list .item-title {
+  white-space: initial;
+}
+
+.adventure-current-title {
+  font-size: 16px;
+  color: #1c4979;
+  margin: 16px 16px 10px 16px;
+}
+
+.adventure-current-title span {
+  float: right;
+}
+
+.adventure-current-preloader {
+  margin-top: 140px !important;
+}
+
+.adventure-current-progressbar {
+  width: calc(100% - 32px);
+  margin-left: 16px;
+  height: 10px !important;
+  background-color: #c7daff !important;
+}
+
+.adventure-current-progressbar span {
+  background-color: #2f729e !important;
+}

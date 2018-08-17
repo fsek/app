@@ -180,3 +180,17 @@
 .md .ptr-preloader {
   margin-top: -10px;
 }
+
+
+/* NOLLNING */
+.adventures-container .page-content {
+  padding-top: 104px !important;
+}
+
+#adventure-current .ptr-preloader {
+  top: 140px;
+}
+
+.adventures-subnavbar {
+  padding-bottom: 12px;
+}

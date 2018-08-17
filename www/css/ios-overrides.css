@@ -113,4 +113,14 @@
   padding-bottom: 65px;
 }
 
+/* NOLLNING */
+
+.nollning-content {
+  overflow: hidden;
+}
+
+.adventure-mission .item-title {
+  font-weight: normal !important;
+}
+
 

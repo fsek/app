@@ -49,9 +49,10 @@ $$(document).on('page:init', '.page[data-name="login"]', function () {
       clearTimeout(preloadTimeout);
       app.dialog.close();
       $('#login-form input[name="password"]').val('');
+      $('.login-btn').addClass('disabled');
       abort = true;
       app.dialog.alert('Begäran tog för lång tid. Kontrollera din internetanslutning (eduroam räknas inte) :\'(', 'Inloggningen misslyckades');
-    }, 5000);
+    }, 20000);
 
     /*
      * Get the input data and send a sign in request. If successful we initialize stuff in afterSignIn()
@@ -73,9 +74,10 @@ $$(document).on('page:init', '.page[data-name="login"]', function () {
           if (typeof resp.data.errors === 'undefined') { // Is undefined if we don't get a response from the server
             app.dialog.alert('Oväntat fel uppstod. Kontrollera din internetanslutning :(', 'Inloggningen misslyckades');
           } else {
-            $('.login-btn').addClass('disabled');
             app.dialog.alert('Ogiltig E-post eller lösenord', 'Inloggningen misslyckades');
           }
+
+          $('.login-btn').addClass('disabled');
           $('#login-form input[name="password"]').val('');
           clearTimeout(preloadTimeout);
           clearTimeout(abortTimeout);

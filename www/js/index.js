@@ -117,9 +117,16 @@ var calendarView = app.views.create('#view-calendar', {
 var nollningView = app.views.create('#view-nollning', {
   routesAdd: [
     {
-      name: 'adventure',
-      path: '/adventure/',
-      url: './adventure.html'
+      name: 'adventures',
+      path: '/adventures/',
+      url: './adventures.html',
+      routes: [
+        {
+          name: 'adventure_mission',
+          path: 'adventure_mission/',
+          url: './adventure_mission.html'
+        }
+      ]
     },
     {
       name: 'groups',
@@ -128,7 +135,7 @@ var nollningView = app.views.create('#view-nollning', {
       routes: [
         {
           name: 'messages',
-          path: '/messages/:groupId/:groupName',
+          path: 'messages/:groupId/:groupName',
           url: './messages.html',
           routes: [
             {
@@ -218,13 +225,12 @@ var alternativesView = app.views.create('#view-alternatives', {
 app.templates = compileTemplates();
 
 function compileTemplates() {
-  var templateNames = ['adventureListTemplate', 'contactTemplate', 'dayTemplate', 'dayTitleTemplate', 'eventPageTemplate', 'groupTemplate',
-    'newsTemplate', 'notificationTemplate', 'songbookTemplate', 'songTemplate'];
   var compiledTemplates = {};
-  for (var name of templateNames) {
-    var template = $('script#' + name).html();
-    compiledTemplates[name] = Template7.compile(template);
-  }
+  $$('#templates').children().each(function () {
+    var templateName = this.id;
+    var template = $$('#' + templateName).html();
+    compiledTemplates[templateName] = Template7.compile(template);
+  });
 
   return compiledTemplates;
 }

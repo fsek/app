@@ -2,7 +2,7 @@
 $$(document).on('page:init', '.page[data-name="event"]', function (e) {
   var eventId = e.detail.route.params.eventId;
   $.getJSON(API + '/events/' + eventId)
-  
+
     .done(function(resp) {
       initEventPage(resp.event);
     })
@@ -69,41 +69,7 @@ function initEventPage(eventData) {
         case 'double':
           startDate = startDate.hhmm() + ' (..)';
           break;
-        default: 
-          startDate = startDate.hhmm();
-          break;
-      }
-    } else {
-      // Fix the start time with dots if there is
-      switch (eventData.dot) {
-        case 'single':
-          startDate = startDate.timeSingleDot();
-          break;
-        case 'double':
-          startDate = startDate.timeDoubleDot();
-          break;
         default:
-          startDate = startDate.timeDateString();
-          break;
-      }
-    }
-
-    return startDate + ' - ' + endDate.timeDateString(); ;
-  }
-
-  function generateDateString(eventData) {
-    var startDate = new Date(eventData.starts_at);
-    var endDate = new Date(eventData.ends_at);
-
-    if (sameDay(startDate, endDate)) {
-      switch (eventData.dot) {
-        case 'single':
-          startDate = startDate.hhmm() + ' (.)';
-          break;
-        case 'double':
-          startDate = startDate.hhmm() + ' (..)';
-          break;
-        default: 
           startDate = startDate.hhmm();
           break;
       }
@@ -180,7 +146,7 @@ function initEventPage(eventData) {
       }
 
       // Add the custom food pref to the rest if exists
-      var foodPrefCustom = $.auth.user.food_custom;    
+      var foodPrefCustom = $.auth.user.food_custom;
       if (foodPrefCustom != '' && foodPrefCustom != null) {
         foodPreferences.push(foodPrefCustom.toLowerCase());
       }
@@ -212,7 +178,7 @@ function initEventPage(eventData) {
       return groupCustom;
     }
     return null;
-    
+
   }
 
   function handleDescriptionOverflow(descripContainer) {

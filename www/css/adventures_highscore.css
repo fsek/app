@@ -1,0 +1,106 @@
+.adventures-highscore-list {
+  margin-top: 0 !important;
+}
+
+.adventures-highscore-list .item-content {
+  padding-left: 0 !important;
+}
+
+.adventures-highscore-list .item-media {
+  width: 18%;
+  height: 100%;
+  justify-content: center;
+}
+
+.adventures-highscore-list .item-inner {
+  display: flex;
+  flex-direction: column;
+  margin-left: 0 !important;
+  padding-left: 16px;
+  justify-content: space-evenly;
+}
+
+.adventures-highscore-list .item-title-row {
+  width: 100%;
+}
+
+.adventures-highscore-list .item-text{
+  align-self: flex-start;
+  padding: 5px 0px;
+}
+
+.adventures-highscore-list .item-title {
+  -webkit-hyphens: auto;
+  hyphens: auto;
+  white-space: initial;
+}
+
+.adventures-highscore-list .item-after {
+  color: black !important;
+}
+
+.adventures-highscore-first {
+  height: 140px !important;
+  font-size: calc(24px + 1vw) !important;
+}
+
+.adventures-highscore-first .item-after{
+  font-size: calc(24px + 1vw) !important;
+}
+
+.adventures-highscore-first .item-media {
+  background-color: #1C4979;
+  color: #FFD700;
+}
+
+.adventures-highscore-first .item-media i{
+  font-size: calc(45px + 1vw);
+}
+
+.adventures-highscore-first .item-text{
+  font-size: calc(18px + 1vw) !important;
+}
+
+.adventures-highscore-second {
+  height: 120px !important;
+  font-size: calc(20px + 1vw) !important;
+}
+
+.adventures-highscore-second .item-after {
+  font-size: calc(20px + 1vw) !important;
+}
+
+.adventures-highscore-second .item-media {
+  background-color: #1A7290;
+  color: #C0C0C0;
+}
+
+.adventures-highscore-second .item-media i{
+  font-size: calc(37px + 1vw);
+}
+
+.adventures-highscore-second .item-text{
+  font-size: calc(15px + 1vw) !important;
+}
+
+.adventures-highscore-third {
+  height: 100px !important;
+  font-size: calc(16px + 1vw) !important;
+}
+
+.adventures-highscore-third .item-after {
+  font-size: calc(16px + 1vw) !important;
+}
+
+.adventures-highscore-third .item-media {
+  background-color: #188685;
+  color: #CD7F32;
+}
+
+.adventures-highscore-third .item-media i{
+  font-size: calc(29px + 1vw);
+}
+
+.adventures-highscore-third .item-text{
+  font-size: calc(12px + 1vw) !important;
+}

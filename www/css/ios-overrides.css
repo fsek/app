@@ -123,4 +123,11 @@
   font-weight: normal !important;
 }
 
+.adventures-highscore-list .item-title {
+  font-weight: normal !important;
+}
+
+.adventures-subnavbar:after {
+  content: none !important;
+}
 

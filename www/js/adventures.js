@@ -23,19 +23,19 @@ $$(document).on('page:init', '.page[data-name="adventures"]', function (e) {
     const templateHeaderHTML = app.templates.adventureMissionsHeaderTemplate(adventureData);
     const templateMissionsHTML = app.templates.currentAdventureMissionsTemplate(adventureData);
 
-    page.find('.adventure-current-preloader').remove();
-    $(templateHeaderHTML).hide().appendTo('.adventure-current-header').fadeIn(300);
-    $(templateMissionsHTML).hide().appendTo('.adventure-current-list').fadeIn(300);
+    page.find('.adventures-current-preloader').remove();
+    $(templateHeaderHTML).hide().appendTo('.adventures-current-header').fadeIn(300);
+    $(templateMissionsHTML).hide().appendTo('.adventures-current-list').fadeIn(300);
 
     // Save the progressbar "globally" and set the progress in updateAdventureMissionsHeader(true) (true is for firstInit)
-    progressbar = page.find('.adventure-current-progressbar');
+    progressbar = page.find('.adventures-current-progressbar');
     updateAdventureMissionsHeader(true);
 
     // Setup the swipeout actions that show the 'Slutför' and 'Återställ' buttons
     setupSwipeouts();
 
     // Reload the adventures when pull down refresh event is triggered
-    page.find('#adventure-current').on('ptr:refresh', function() {
+    page.find('#adventures-current').on('ptr:refresh', function(e) {
       $.getJSON(API + '/adventures')
         .done(function(resp) {
           // Save the response "globally" and save the is_mentor value (current week's adventure is the last one in the array)
@@ -43,7 +43,7 @@ $$(document).on('page:init', '.page[data-name="adventures"]', function (e) {
           adventureData = resp.adventures.adventures[currentIndex];
           adventureData.is_mentor = resp.is_mentor;
 
-          refreshAdventureMissions();
+          refreshAdventureMissions(e);
         })
         .fail(function(resp) {
           console.log(resp.statusText);
@@ -51,12 +51,12 @@ $$(document).on('page:init', '.page[data-name="adventures"]', function (e) {
     });
   }
 
-  function refreshAdventureMissions() {
+  function refreshAdventureMissions(event) {
     // Update the totalt mission count and total completed mission count on the adventureData object
     adventureData.mission_count = adventureData.adventure_missions.length;
 
     // Fade out old content
-    page.find('.adventure-current-list ul').fadeOut('300', function() {
+    page.find('.adventures-current-list ul').fadeOut('300', function() {
       this.remove();
     });
 
@@ -64,14 +64,14 @@ $$(document).on('page:init', '.page[data-name="adventures"]', function (e) {
     setTimeout(function() {
       // Generate html for the updated missions and fade in its container
       const updatedTemplateHTML = app.templates.currentAdventureMissionsTemplate(adventureData);
-      $(updatedTemplateHTML).hide().appendTo('.adventure-current-list').fadeIn(300);
+      $(updatedTemplateHTML).hide().appendTo('.adventures-current-list').fadeIn(300);
 
       updateAdventureMissionsHeader(false);
       setupSwipeouts();
 
       // Return the pull to refresh loader back to its hidden place
-      app.ptr.done();
-    }, 300);
+      event.detail();
+    }, 350);
   }
 
   function updateAdventureMissionsHeader(firstInit) {
@@ -84,7 +84,7 @@ $$(document).on('page:init', '.page[data-name="adventures"]', function (e) {
 
     // On first load the text is updated and gets set in the template, so we don't need to update it here
     if (!firstInit) {
-      page.find('.adventure-current-title').html('Vecka ' + adventureData.week_number + ' - ' + adventureData.title +
+      page.find('.adventures-current-title').html('Vecka ' + adventureData.week_number + ' - ' + adventureData.title +
                                                   '<span>' + completedMissionCount + ' av ' + missionCount + '</span>');
     }
   }

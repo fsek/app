@@ -32,6 +32,7 @@
     <link rel="stylesheet" href="css/contact.css">
     <link rel="stylesheet" href="css/nollning.css">
     <link rel="stylesheet" href="css/adventures.css">
+    <link rel="stylesheet" href="css/adventures_highscore.css">
   </head>
   <body class="color-theme-white">
     <div id="app">
@@ -322,11 +323,11 @@
     <!-- Templates -->
     <section id="templates">
       <script type="text/template7" id="adventureMissionsHeaderTemplate">
-        <div class="adventure-current-title">
+        <div class="adventures-current-title">
           Vecka {{week_number}} - {{title}}
           <span>{{missions_finished}} / {{mission_count}}</span>
         </div>
-        <div class="progressbar adventure-current-progressbar">
+        <div class="progressbar adventures-current-progressbar">
           <span></span>
         </div>
       </script>
@@ -371,6 +372,33 @@
               </li>
             {{/each}}
           {{/if}}
+        </ul>
+      </script>
+
+      <script type="text/template7" id="adventuresHighscoreTemplate">
+        <ul>
+          {{#each groups}}
+            <li>
+              <div class="item-content {{place_class}}">
+                <div class="item-media">
+                  {{#if place_class}}
+                    <i class="fa fa-trophy"></i>
+                  {{else}}
+                    {{place}}.
+                  {{/if}}
+                </div>
+                <div class="item-inner">
+                  <div class="item-title-row">
+                    <div class="item-title" lang="en">{{name}}</div>
+                    <div class="item-after">{{total_points}} p</div>
+                  </div>
+                  <div class="item-text">
+                    {{finished_missions}} avklarade uppdrag
+                  </div>
+                </div>
+              </div>
+            </li>
+          {{/each}}
         </ul>
       </script>
 
@@ -883,6 +911,7 @@
     <script type="text/javascript" src="js/songbook.js"></script>
     <script type="text/javascript" src="js/contact.js"></script>
     <script type="text/javascript" src="js/adventures.js"></script>
+    <script type="text/javascript" src="js/adventures_highscore.js"></script>
     <script type="text/javascript" src="js/nollning.js"></script>
   </body>
 </html>

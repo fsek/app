@@ -2,6 +2,7 @@ $$(document).on('page:init', '.page[data-name="adventures"]', function (e) {
   const page = $(e.target);
   let adventureData, progressbar;
 
+
   $.getJSON(API + '/adventures')
     .done(function(resp) {
       // Save the response "globally" and save the is_mentor value (current week's adventure is the last one in the array)
@@ -10,11 +11,13 @@ $$(document).on('page:init', '.page[data-name="adventures"]', function (e) {
       adventureData.is_mentor = resp.is_mentor;
 
       initCurrentAdventureList();
+      initAdventureGroup(resp);
     })
     .fail(function(resp) {
       console.log(resp.statusText);
     });
 
+  /* CURRENT ADVENTURE */
   function initCurrentAdventureList() {
     // Add totalt mission count and total completed mission count to the adventureData object
     adventureData.mission_count = adventureData.adventure_missions.length;
@@ -179,4 +182,65 @@ $$(document).on('page:init', '.page[data-name="adventures"]', function (e) {
       }
     });
   }
+
+
+  /* ADVENTURE GROUP */
+  function initAdventureGroup(data) {
+    let maxTotalPoints = 0;
+    data.adventures.adventures.forEach(function(adventure) {
+      adventure.adventure_missions.forEach(function(adventureMission) {
+        maxTotalPoints += adventureMission.max_points;
+      });
+    });
+    data.max_total_points = maxTotalPoints;
+
+    const progress = Math.round(data.total_group_points*100/maxTotalPoints);
+    data.points_percent = progress;
+
+    var templateHTML = app.templates.adventureHomeTemplate(data);
+    $('.adventures-group-header').html(templateHTML);
+
+    const progressbar = page.find('.adventure-missions-progressbar');
+    app.progressbar.set(progressbar, progress, 500);
+
+    data.adventures.adventures.forEach(function(el, index) {
+      const circle = new ProgressBar.Circle('#nollning-box-' + index, {
+        color: '#eb7125',
+        strokeWidth: 6,
+        trailWidth: 2,
+        trailColor: '#1c4979',
+        text: {
+          value: 'Vecka ' + el.week_number + ': <br>' + el.missions_finished + ' / ' + el.adventure_missions.length,
+          style: {
+            color: '#fff',
+            position: 'absolute',
+            left: '50%',
+            top: '50%',
+            padding: 0,
+            margin: 0,
+            transform: {
+                prefix: true,
+                value: 'translate(-50%, -50%)'
+            }
+          }
+        },
+        fill: 'rgba(0, 0, 0, 0.5)',
+        duration: 1000,
+        easing: 'easeInOut'
+      });
+      const progress = el.missions_finished/el.adventure_missions.length;
+      circle.animate(progress);
+    });
+
+    page.find('.mission-button').on('click', function() {
+      nollningView.router.navigate('adventure_mission/', {
+        context: data
+      });
+    });
+  }
+});
+
+$$(document).on('page:init', '.page[data-name="adventure-mission"]', function (e) {
+  var templateHTML = app.templates.adventureMissionTemplate(e.detail.route.context.adventures);
+  $('.adventure-missions-list').html(templateHTML);
 });

@@ -1,3 +1,7 @@
+#adventures-highscore {
+  background-color: #efeff4;
+}
+
 .adventures-highscore-list {
   margin-top: 0 !important;
 }
@@ -18,6 +22,7 @@
   margin-left: 0 !important;
   padding-left: 16px;
   justify-content: space-evenly;
+  background: #fff;
 }
 
 .adventures-highscore-list .item-title-row {

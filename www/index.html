@@ -332,6 +332,35 @@
         </div>
       </script>
 
+      <script type="text/template7" id="adventureHomeTemplate">
+        <div class="fadder-namn">{{group_name}}</div>
+        <div class="nollning-block">
+          <div class="test">Insamlade poäng<span>{{total_group_points}} / {{max_total_points}}</span></div>
+          <div class="progressbar adventure-missions-progressbar">
+              <span class="progress-span"></span><p class="progress-p">{{points_percent}}%</p>
+          </div>
+        </div>
+      </script>
+
+      <script type="text/template7" id="adventureMissionTemplate">
+       {{#each adventures}}
+          <div class="list-group">
+            <ul>
+              <li class="list-group-title list-group-title-nollning">Vecka {{week_number}}</li>
+              {{#each adventure_missions}}
+                <li>
+                  <div class="item-content {{#if is_finished}} adventure-mission-completed {{/if}}">
+                    <div class="item-inner">
+                      <div class="item-title">{{title}}</div>
+                    </div>
+                  </div>
+                </li>
+              {{/each}}
+            </ul>
+          </div>
+        {{/each}}
+      </script>
+
       <script type="text/template7" id="currentAdventureMissionsTemplate">
         <ul>
           {{#if is_mentor}}
@@ -886,6 +915,7 @@
     <script type="text/javascript" src='lib/node_modules/jquery-deparam/jquery-deparam.js'></script>
     <script type="text/javascript" src='lib/node_modules/pubsub-js/src/pubsub.js'></script>
     <script type="text/javascript" src='lib/node_modules/j-toker/dist/jquery.j-toker.js'></script>
+    <script type="text/javascript" src='lib/node_modules/progressbar/progressbar.js'></script>
     <script type="text/javascript" src='lib/node_modules/actioncable/lib/assets/compiled/action_cable.js'></script>
     <script type="text/javascript" src="lib/framework7/js/framework7.min.js"></script>
 

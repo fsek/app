@@ -22,6 +22,10 @@
 }
 
 /* CURRENT ADVENTURE */
+#adventures-current {
+  background-color: #efeff4;
+}
+
 .adventures-current-header {
   position: fixed;
   width: 100%;

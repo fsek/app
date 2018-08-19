@@ -53,3 +53,10 @@
 #subtab-event p.disabled {
   text-align: center;
 }
+
+.subtab-event .infinite-scroll-preloader {
+  height: 37px;
+  margin-bottom: 10px;
+  overflow: hidden;
+  position: relative;
+}

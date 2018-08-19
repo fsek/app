@@ -17,55 +17,35 @@ function loadHome() {
 }
 
 function initHome() {
-  var newsTab = $('#subtab-news');
-  var eventTab = $('#subtab-event');
+  let newsTab = $('#subtab-news');
+  let eventTab = $('#subtab-event');
 
-  var newsList = newsTab.find('#news-list');
+  let newsList = newsTab.find('#news-list');
+  let eventList = eventTab.find('#event-list');
 
-  var page = 2;
-  var totalPages = 37;
-  var loadingNews = false;
+  let page = 2;
+  let totalPages = 37;
+  let loadingNews = false;
 
-  var initialize = (function() {
+  let start = new Date();
+  let loadingEvents = false;
+  let lastEvent = false;
+
+  const initialize = (function() {
     $.getJSON(API + '/start')
       .then(function(resp) {
         addNews(resp.pinned.news.concat(resp.unpinned.news));
         totalPages = resp.unpinned.meta.total_pages;
-        initEventStream(resp.events.events);
+        loadMoreEvents();
       });
   }());
 
   function addNews(news) {
-    var templateHTML = app.templates.newsTemplate({news: news});
+    let templateHTML = app.templates.newsTemplate({news: news});
     $(templateHTML).hide().appendTo(newsList).fadeIn(1000);
   }
 
-  function initEventStream(events) {
-    var lastDay = null;
-
-    if (events.length != 0) {
-      for (var event of events) {
-        event.start = new Date(event.start);
-        event.end = new Date(event.end);
-
-        // Add header on new days. We only download events for one week - checking date is enough
-        if (lastDay != event.start.getDate()) {
-          dayHTML = app.templates.dayTitleTemplate({date: event.start});
-          eventTab.append(dayHTML);
-        }
-
-        var templateHTML = app.templates.dayTemplate({hasEvents: true,
-          events: [event]});
-        eventTab.append(templateHTML);
-        lastDay = event.start.getDate();
-      }
-    } else {
-      var templateHTML = app.templates.dayTemplate({hasEvents: false});
-      eventTab.append(templateHTML);
-    }
-  }
-
-  function destroyInfinite() {
+  function destroyNewsInfinite() {
     app.infiniteScroll.destroy(newsTab);
     newsTab.find('.infinite-scroll-preloader').remove();
   }
@@ -73,7 +53,6 @@ function initHome() {
   function loadMoreNews() {
     $.getJSON(API + '/news?page=' + page)
       .then(function(resp) {
-
         addNews(resp.news);
         page++;
         loadingNews = false;
@@ -86,10 +65,68 @@ function initHome() {
         loadingNews = true;
         loadMoreNews();
       } else {
-        destroyInfinite();
+        destroyNewsInfinite();
       }
     }
   }
 
+  function initEventStream(events) {
+    let lastDay = null;
+
+    if (events.length != 0) {
+      for (let event of events) {
+        event.start = new Date(event.start);
+        event.end = new Date(event.end);
+
+        // Add header on new days
+        if (lastDay != event.start.getDate()) {
+          dayHTML = app.templates.dayTitleTemplate({date: event.start});
+          eventList.append(dayHTML);
+        }
+
+        let templateHTML = app.templates.dayTemplate({hasEvents: true,
+          events: [event]});
+        eventList.append(templateHTML);
+        lastDay = event.start.getDate();
+      }
+    }
+    if (lastEvent) {
+      let templateHTML = app.templates.dayTemplate({hasEvents: false});
+      eventTab.append(templateHTML);
+    }
+  }
+
+  function destroyEventInfinite() {
+    app.infiniteScroll.destroy(eventTab);
+    eventTab.find('.infinite-scroll-preloader').remove();
+  }
+
+  function moreEvents() {
+    if (!loadingEvents) {
+      if (!lastEvent) {
+        loadingEvents = true;
+        loadMoreEvents();
+      } else {
+        destroyEventInfinite();
+      }
+    }
+  }
+
+  function loadMoreEvents() {
+    $.getJSON(API + '/events/scroll?start=' + start.yyyymmdd())
+      .then(function(resp) {
+        res = resp.events;
+        if (res.length < 7) {
+          lastEvent = true;
+        } else {
+          last_date = new Date(res[res.length - 1].start);
+          start.setDate(last_date.getDate() + 1);
+        }
+        initEventStream(res);
+        loadingEvents = false;
+      });
+  }
+
   newsTab.on('infinite', moreNews);
+  eventTab.on('infinite', moreEvents);
 }

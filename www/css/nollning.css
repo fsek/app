@@ -39,7 +39,7 @@
   padding-top: 0 !important;
 }
 
-.nollning-moose {
+.nollning-ocean {
   height: 62vh;
   background-image: url("../img/nollning_background.png");
   background-size: cover;
@@ -78,4 +78,65 @@
 
 #view-nollning .navbar, .photo-browser-page .navbar {
   background-color: #2f729e !important;
+}
+
+.nollning-moose {
+  position: absolute;
+  width: 100vw;
+  height: 25vh;
+  margin-top: 21vh;
+  background-image: url("../img/nollning_moose.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position-x: center;
+  pointer-events: none;
+}
+
+.nollning-ocean .row {
+  padding-top: 29.5vh;
+}
+
+.nollning-ocean .nollning-left-col {
+  width: calc(100vw*0.4);
+  height: 14vh;
+  margin-top: 4vh;
+}
+
+.nollning-ocean .nollning-middle-col {
+  width: calc(100vw*0.2);
+  height: 17vh;
+}
+
+.nollning-ocean .nollning-right-col {
+  width: calc(100vw*0.4);
+  height: 17vh;
+  margin-top: 6vh;
+}
+
+#nollning-f-btn {
+  height: 100%;
+  width: 10vh;
+  float: right;
+}
+
+#nollning-moose-btn {
+  height: 100%;
+  width: 10vh;
+  margin: auto;
+}
+
+#nollning-pi-btn {
+  height: 57%;
+  width: 9vh;
+  margin-left: 1vh;
+}
+
+#nollning-n-btn {
+  height: 35%;
+  width: 10vh;
+  margin-left: -3vh;
+}
+
+.nollning-moose-orange {
+  background-image: url("../img/nollning_moose_orange.png");
 }

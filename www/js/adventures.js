@@ -260,7 +260,12 @@ $$(document).on('page:init', '.page[data-name="adventures"]', function (e) {
           page.find('.adventure-group-progress').html(progress + '%');
 
           if (isTabActive) {
-            app.progressbar.set(progressbar, progress, 500);
+            app.progressbar.set(progressbar, 0, 0);
+            // Wait for F7 to clear the progressbar (yes this is weird)
+            setTimeout(function() {
+              app.progressbar.set(progressbar, progress, 500);
+            }, 1);
+
 
             app.ptr.refresh('#adventures-current');
             app.ptr.refresh('#adventures-highscore');
@@ -317,7 +322,7 @@ $$(document).on('page:init', '.page[data-name="adventures"]', function (e) {
             }
           },
           from: {
-            width: 2
+            width: 1
           },
           to: {
             width: 5

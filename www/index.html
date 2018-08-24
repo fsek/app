@@ -10,7 +10,7 @@
 
     <!-- Material/iOS stylesheets. Will be replaced on deploy -->
     <link rel="stylesheet" href="lib/framework7/css/framework7.min.css">
-    <link rel="stylesheet" href="css/material-overrides.css">
+    <link rel="stylesheet" href="css/ios-overrides.css">
 
     <!-- General stylesheets -->
     <link rel="stylesheet" href="css/font-awesome.min.css">
@@ -32,7 +32,6 @@
     <link rel="stylesheet" href="css/contact.css">
     <link rel="stylesheet" href="css/nollning.css">
     <link rel="stylesheet" href="css/adventures.css">
-    <link rel="stylesheet" href="css/adventures_highscore.css">
   </head>
   <body class="color-theme-white">
     <div id="app">
@@ -188,14 +187,16 @@
                       <div class="nollning-btn-adventures"></div>
                     </a>
                     <a href="/groups/" class="col-50">
-                      <div class="nollning-btn-messages"></div>
+                      <div class="nollning-btn-messages">
+                        <span class="badge" id="group-badge">10</span>
+                      </div>
                     </a>
                   </div>
                   <div class="row">
                     <a href="#" class="col-50 open-matrix-pb">
                       <div class="nollning-btn-matrix"></div>
                     </a>
-                    <a href="https://www.fsektionen.se/" target="_blank" class="col-50 external">
+                    <a href="https://www.fsektionen.se/anonym" target="_blank" class="col-50 external">
                       <div class="nollning-btn-contact"></div>
                     </a>
                   </div>
@@ -322,43 +323,14 @@
 
     <!-- Templates -->
     <section id="templates">
-      <script type="text/template7" id="adventureMissionsHeaderTemplate">
+      <script type="text/template7" id="currentAdventureMissionsHeaderTemplate">
         <div class="adventures-current-title">
           Vecka {{week_number}} - {{title}}
-          <span>{{missions_finished}} / {{mission_count}}</span>
+          <span>{{missions_finished}} av {{mission_count}}</span>
         </div>
         <div class="progressbar adventures-current-progressbar">
           <span></span>
         </div>
-      </script>
-
-      <script type="text/template7" id="adventureHomeTemplate">
-        <div class="fadder-namn">{{group_name}}</div>
-        <div class="nollning-block">
-          <div class="test">Insamlade poäng<span>{{total_group_points}} / {{max_total_points}}</span></div>
-          <div class="progressbar adventure-missions-progressbar">
-              <span class="progress-span"></span><p class="progress-p">{{points_percent}}%</p>
-          </div>
-        </div>
-      </script>
-
-      <script type="text/template7" id="adventureMissionTemplate">
-       {{#each adventures}}
-          <div class="list-group">
-            <ul>
-              <li class="list-group-title list-group-title-nollning">Vecka {{week_number}}</li>
-              {{#each adventure_missions}}
-                <li>
-                  <div class="item-content {{#if is_finished}} adventure-mission-completed {{/if}}">
-                    <div class="item-inner">
-                      <div class="item-title">{{title}}</div>
-                    </div>
-                  </div>
-                </li>
-              {{/each}}
-            </ul>
-          </div>
-        {{/each}}
       </script>
 
       <script type="text/template7" id="currentAdventureMissionsTemplate">
@@ -373,9 +345,7 @@
                       <div class="item-title-row">
                         <div class="item-title">{{title}}</div>
                       </div>
-                      <div class="item-text">
-                        {{max_points}} poäng
-                      </div>
+                      <div class="item-text">{{max_points}} poäng</div>
                     </div>
                   </div>
                 </div>
@@ -394,14 +364,23 @@
                   <div class="item-title-row">
                     <div class="item-title">{{title}}</div>
                   </div>
-                  <div class="item-text">
-                    {{max_points}} poäng
-                  </div>
+                  <div class="item-text">{{max_points}} poäng</div>
                 </div>
               </li>
             {{/each}}
           {{/if}}
         </ul>
+      </script>
+
+      <script type="text/template7" id="adventureGroupHeaderTemplate">
+        <div class="adventure-group-name">{{group_name}}</div>
+        <div class="adventure-group-points">
+          <div class="adventure-group-points-title">Insamlade poäng<span>{{total_group_points}} / {{max_total_points}}</span></div>
+          <div class="progressbar adventure-group-progressbar">
+            <span></span>
+            <p class="adventure-group-progress">{{points_percent}}%</p>
+          </div>
+        </div>
       </script>
 
       <script type="text/template7" id="adventuresHighscoreTemplate">

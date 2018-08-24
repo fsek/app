@@ -1,3 +1,11 @@
+#group-badge {
+  background: #eb7125;
+  color: white;
+  display: none;
+  float: right;
+  font-size: 12px;
+}
+
 .nollning-button-container .row:first-child {
   margin-bottom: 8px;
 }
@@ -36,6 +44,7 @@
 }
 
 .nollning-content {
+  background: #61889a;
   padding-top: 0 !important;
 }
 
@@ -83,8 +92,8 @@
 .nollning-moose {
   position: absolute;
   width: 100vw;
-  height: 25vh;
-  margin-top: 21vh;
+  height: 28vh;
+  margin-top: 20vh;
   background-image: url("../img/nollning_moose.png");
   background-size: contain;
   background-repeat: no-repeat;
@@ -141,133 +150,13 @@
   background-image: url("../img/nollning_moose_orange.png");
 }
 
-.color-blue {
-  color: #2f729e !important;
-}
-
-@font-face {
-  font-family: Atlantis;
-  src: url(/fonts/testfont.otf);
-}
-
-.fadder-namn {
-  width: 100%;
-  font-size: 11vw;
-  text-align: center;
-  line-height: 50px !important;
-  color: white !important;
-  margin-left: 0px !important;
-  font-family: Atlantis;
-  position: relative;
-}
-
 .nollning-tab {
   background-color: #f6fcff;
 }
 
-.nollning-block {
-  margin: 15px;
-  text-align: center;
-  font-size: 17px;
+@font-face {
+  font-family: Atlantis;
+  src: url("../fonts/Atlantisnollning.otf");
 }
 
-.nollning-p {
-  display: inline-block;;
-}
 
-.test {
-  color: white;
-  text-align: left;
-  position: relative;
-  padding-bottom: 5px;
-}
-
-.test span{
-  float: right;
-}
-#adventures-group {
-  background-image: url("../img/nollning_background_background.png");
-  background-size: cover;
-  background-position-x: center;
-  background-position-y: 20px;
-}
-
-#adventures-group:before {
-  content: '';
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background-image: linear-gradient(#2f729e 0%, #2f729e 20%, #1c497957 100%);
-}
-
-.nollning-container {
-  padding-bottom: 5px;
-  display: flex;
-  flex-grow: 1;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-}
-
-.nollning-box {
-  width: 40%;
-  padding: 8px;
-  font-size: 16px;
-  text-align: center;
-}
-
-.adventure-mission-completed {
-  background-color: #daffdf;
-}
-
-.list-group-title-nollning {
-  font-weight: bolder;
-  color: black !important;
-  font-size: 20px;
-  padding-top: 10px !important;
-  padding-left: 15px !important;
-}
-
-.adventure-missions-list {
-  margin: 0px !important;
-}
-
-.progress-p {
-  margin: 0;
-  color: white !important;
-  font-weight: bold;
-}
-
-.adventure-missions-progressbar {
-  background-color: #16313e !important;
-  padding: 2px;
-  height: 22px !important;
-  border-radius: 10px !important;
-}
-
-.mission-button {
-  background-color: #1c4979 !important;
-  border: none !important;
-  margin-top: 8px;
-}
-
-.progress-span {
-  position: relative;
-  background-color: #eb7125 !important;
-  z-index: -1;
-}
-
-.titelasdasd {
-  position: relative;
-  color: white;
-  font-size: 17px;
-}
-
-.contajner {
-  margin: 25px 15px 15px 15px;
-}
-
-.adventures-container {
-  background: #2f729e;
-}

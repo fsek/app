@@ -1,3 +1,7 @@
+.adventures-container {
+  background: #2f729e;
+}
+
 .adventures-subnavbar {
   background-color: #2f729e !important;
   padding-bottom: 12px;
@@ -13,12 +17,13 @@
   border-color: #ffffff36 !important;
 }
 
-.adventure-mission-completed {
-  background-color: #daffdf;
-}
-
 .adventure-mission {
   transition: 500ms;
+  background-color: white;
+}
+
+.adventure-mission-completed {
+  background-color: #daffdf !important;
 }
 
 /* CURRENT ADVENTURE */
@@ -26,13 +31,20 @@
   background-color: #efeff4;
 }
 
+.adventures-current-empty {
+  margin-top: 25px;
+  margin-left: 15px;
+  font-size: 17px;
+}
+
 .adventures-current-header {
   position: fixed;
   width: 100%;
-  z-index: 100000;
-  background-color: #f6fcff;
-  height: 76px;
-  border-bottom: 1px solid #e2e2e2;
+  z-index: 100;
+  background-color: #2f729e;
+  height: 81px;
+  border-radius: 6px;
+  margin-top: -4px;
 }
 
 .adventures-current-list {
@@ -45,7 +57,7 @@
 
 .adventures-current-title {
   font-size: 16px;
-  color: #1c4979;
+  color: white;
   margin: 16px 16px 10px 16px;
 }
 
@@ -61,9 +73,237 @@
   width: calc(100% - 32px);
   margin-left: 16px;
   height: 10px !important;
-  background-color: #c7daff !important;
+  background-color: #1c4979 !important;
 }
 
 .adventures-current-progressbar span {
-  background-color: #2f729e !important;
+  background-color: #eb7125 !important;
+}
+
+/* ADVENTURE GROUP */
+#adventure-group {
+  background-image: url("../img/nollning_background_background.png");
+  background-size: cover;
+  background-position-x: center;
+  background-position-y: 20px;
+  padding-bottom: 0;
+}
+
+.adventure-group-gradient {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#2f729e), color-stop(0.2, #2f729e), to(transparent)); /*The normal syntax doesn't work on android??*/
+}
+
+.adventure-group-name {
+  width: 100%;
+  font-size: calc(15px + 6vw);
+  text-align: center;
+  color: white !important;
+  margin-left: 0px !important;
+  font-family: Atlantis;
+  position: relative;
+}
+
+.adventure-group-points {
+  margin: 1vh 15px 0 15px;
+  text-align: center;
+  font-size: 17px;
+}
+
+.adventure-group-points-title {
+  color: white;
+  text-align: left;
+  position: relative;
+  padding-bottom: 5px;
+}
+
+.adventure-group-points-title span{
+  float: right;
+}
+
+.adventure-group-progress {
+  margin: 0;
+  color: white;
+}
+
+.adventure-group-progressbar {
+  background-color: #16313e !important;
+  padding: 2px;
+  height: 22px !important;
+  border-radius: 10px !important;
+}
+
+.adventure-group-progressbar span {
+  background-color: #eb7125 !important;
+}
+
+.adventure-weeks-container {
+  margin: 4vh 15px 0 15px;;
+}
+
+.adventure-week-stats {
+  width: 40%;
+  padding: 8px;
+  font-size: 16px;
+  text-align: center;
+  max-width: 235px;
+  font-size: calc(11px + 1vw);
+}
+
+.adventure-week-stats-container {
+  padding-bottom: 5px;
+  display: flex;
+  flex-grow: 1;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.adventure-week-stats-title {
+  position: relative;
+  color: white;
+  font-size: 17px;
+}
+
+.adventure-missions-btn {
+  background-color: #1c4979 !important;
+  border: none !important;
+  width: calc(100% - 30px);
+  margin-left: 15px;
+}
+
+.adventure-missions-list {
+  margin: 0px !important;
+}
+
+.adventure-missions-list .list-group-title {
+  font-weight: bold;
+  color: black;
+  font-size: 20px;
+  font-size: 18px;
+}
+
+.adventure-missions-list .item-title {
+  white-space: initial;
+}
+
+@media only screen and (min-width: 800px) {
+  .adventure-week-stats {
+    width: 20%;
+  }
+}
+
+/* ADVENTURES HIGHSCORE */
+#adventures-highscore {
+  background-color: #efeff4;
+}
+
+.adventures-highscore-list {
+  margin-top: 0 !important;
+}
+
+.adventures-highscore-list .item-content {
+  padding-left: 0 !important;
+}
+
+.adventures-highscore-list .item-media {
+  width: 18%;
+  height: 100%;
+  justify-content: center;
+}
+
+.adventures-highscore-list .item-inner {
+  display: flex;
+  flex-direction: column;
+  margin-left: 0 !important;
+  padding-left: 16px;
+  justify-content: space-evenly;
+  background: #fff;
+}
+
+.adventures-highscore-list .item-title-row {
+  width: 100%;
+}
+
+.adventures-highscore-list .item-text{
+  align-self: flex-start;
+  padding: 5px 0px;
+}
+
+.adventures-highscore-list .item-title {
+  -webkit-hyphens: auto;
+  hyphens: auto;
+  white-space: initial;
+}
+
+.adventures-highscore-list .item-after {
+  color: black !important;
+}
+
+.adventures-highscore-first {
+  height: 140px !important;
+  font-size: calc(24px + 1vw) !important;
+}
+
+.adventures-highscore-first .item-after{
+  font-size: calc(24px + 1vw) !important;
+}
+
+.adventures-highscore-first .item-media {
+  background-color: #1C4979;
+  color: #FFD700;
+}
+
+.adventures-highscore-first .item-media i{
+  font-size: calc(45px + 1vw);
+}
+
+.adventures-highscore-first .item-text{
+  font-size: calc(18px + 1vw) !important;
+}
+
+.adventures-highscore-second {
+  height: 120px !important;
+  font-size: calc(20px + 1vw) !important;
+}
+
+.adventures-highscore-second .item-after {
+  font-size: calc(20px + 1vw) !important;
+}
+
+.adventures-highscore-second .item-media {
+  background-color: #1A7290;
+  color: #C0C0C0;
+}
+
+.adventures-highscore-second .item-media i{
+  font-size: calc(37px + 1vw);
+}
+
+.adventures-highscore-second .item-text{
+  font-size: calc(15px + 1vw) !important;
+}
+
+.adventures-highscore-third {
+  height: 100px !important;
+  font-size: calc(16px + 1vw) !important;
+}
+
+.adventures-highscore-third .item-after {
+  font-size: calc(16px + 1vw) !important;
+}
+
+.adventures-highscore-third .item-media {
+  background-color: #188685;
+  color: #CD7F32;
+}
+
+.adventures-highscore-third .item-media i{
+  font-size: calc(29px + 1vw);
+}
+
+.adventures-highscore-third .item-text{
+  font-size: calc(12px + 1vw) !important;
 }

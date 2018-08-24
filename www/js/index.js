@@ -122,9 +122,9 @@ var nollningView = app.views.create('#view-nollning', {
       url: './adventures.html',
       routes: [
         {
-          name: 'adventure_mission',
-          path: 'adventure_mission/',
-          url: './adventure_mission.html'
+          name: 'adventure_missions',
+          path: 'adventure_missions/',
+          componentUrl: './adventure_missions.html'
         }
       ]
     },

@@ -1,31 +1,31 @@
-var inc = 0;
+let keyIndex = 0;
 $('#home-btn, #cal-btn, #noti-btn, #msg-btn').on('click', function() {
   var id = $(this).attr('id');
-  var idtrans;
+  var idNbr = -1;
   switch (id) {
     case 'home-btn':
-      idtrans = 0;
+      idNbr = 0;
       break;
     case 'cal-btn':
-      idtrans = 1;
+      idNbr = 1;
       break;
     case 'msg-btn':
-      idtrans = 2;
+      idNbr = 2;
       break;
-    case 'not-btn':
-      idtrans = 3;
+    case 'noti-btn':
+      idNbr = 3;
       break;
   }
-  var order = [0,0,0,0,0,0,1,2,2,3,3];
-  if (order[inc] !== idtrans) {
-    inc = -1;
-  }
-  if (inc == -1 && idtrans == 0) {
-    inc= 0;
-  }
-  if (inc==10) {
-    app.alert('Gratulerar! Du har hittat ett av appens easter eggs!','Ett Easter Egg!');
+
+  const key = [0,0,0,0,0,0,1,2,2,3,3];
+  if (key[keyIndex] === idNbr) {
+    if (keyIndex === 10) {
+      app.dialog.alert('Gratulerar! Du har hittat ett av appens easter eggs!','Ett Easter Egg!');
+      keyIndex = 0;
+    } else {
+      keyIndex++;
+    }
   } else {
-    inc++;
+    keyIndex = 0;
   }
 });

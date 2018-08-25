@@ -23,6 +23,7 @@
         <splash density="port-xxhdpi" src="res/splash/drawable-xxhdpi/background.9.png" />
         <splash density="port-xxxhdpi" src="res/splash/drawable-xxhdpi/background.9.png" />
         <preference name="SplashMaintainAspectRatio" value="true" />
+        <resource-file src="google-services.json" target="/google-services.json" />
     </platform>
     <platform name="ios">
         <allow-intent href="itms:*" />
@@ -48,6 +49,7 @@
         <icon height="1024" src="res/icons/icon-1024.png" width="1024" />
         <splash src="res/splash/ios/Default@2x~universal~anyany.png" />
         <splash src="res/splash/ios/Default@3x~universal~anyany.png" />
+        <resource-file src="GoogleService-Info.plist" />
     </platform>
     <feature name="StatusBar">
         <param name="ios-package" onload="true" value="CDVStatusBar" />
@@ -60,15 +62,14 @@
     <preference name="AutoHideSplashScreen" value="false" />
     <preference name="phonegap-version" value="cli-7.1.0" />
     <preference name="HeaderColor" value="#eb7125" />
-    <engine name="android" spec="6.4.0" />
-    <engine name="ios" spec="^4.5.4" />
     <plugin name="cordova-plugin-whitelist" spec="~1.3.2" />
-    <plugin name="phonegap-plugin-push" spec="~1.10.5">
-        <variable name="SENDER_ID" value="509736475453" />
-    </plugin>
     <plugin name="ionic-plugin-keyboard" spec="^2.2.1" />
     <plugin name="cordova-plugin-statusbar" spec="^2.2.3" />
     <plugin name="cordova-plugin-splashscreen" spec="^4.0.3" />
     <plugin name="cordova-plugin-headercolor" spec="^1.0.0" />
-    <plugin name="cordova-plugin-dialogs" spec="^2.0.1" />
+    <engine name="ios" spec="^4.5.4" />
+    <plugin name="phonegap-plugin-push" spec="~2.1.3">
+        <variable name="SENDER_ID" value="509736475453" />
+    </plugin>
+    <engine name="android" spec="~6.4.0" />
 </widget>

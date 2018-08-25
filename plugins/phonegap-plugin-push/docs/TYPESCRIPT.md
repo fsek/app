@@ -1,7 +1,7 @@
 # Typescript definition file
 
 For those of you who use typescript, we're glad to say that we have the complete definition file available at [DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped).
-Search for `phonegap-plugin-push` there, or simply grab it directly [here](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/phonegap-plugin-push/phonegap-plugin-push.d.ts).
+Search for `phonegap-plugin-push` there, or simply grab it directly [here](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/phonegap-plugin-push/index.d.ts).
 
 ## Example usage
 
@@ -9,9 +9,8 @@ All objects will be understood as having a defined type, including init options 
 All available attributes and properties will have autocomplete support and type checkings.
 
 ```typescript
-let push = PushNotification.init({
+const push = PushNotification.init({
 	android: {
-		senderID: "12345679"
 	},
 	ios: {
 		alert: "true",
@@ -69,4 +68,4 @@ push.on('notification', (data: my.custom.NotificationEventResponse) => {
 ## Outdated definitions
 
 Is our definition file at DefinitelyTyped outdated? Is there any improvements that could be done?
-We welcome any contribution, and they should be done through issues created [there](https://github.com/DefinitelyTyped/DefinitelyTyped/issues/new). 
+We welcome any contribution, and they should be done through issues created [there](https://github.com/DefinitelyTyped/DefinitelyTyped/issues/new).

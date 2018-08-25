@@ -7,9 +7,6 @@
     "files": {}
   },
   "installed_plugins": {
-    "cordova-plugin-dialogs": {
-      "PACKAGE_NAME": "se.fsektionen.fapp"
-    },
     "cordova-plugin-headercolor": {
       "PACKAGE_NAME": "se.fsektionen.fapp"
     },

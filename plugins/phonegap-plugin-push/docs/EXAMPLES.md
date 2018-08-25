@@ -9,9 +9,8 @@ phonegap create my-app --template phonegap-template-push
 ## Quick Example
 
 ```javascript
-var push = PushNotification.init({
+const push = PushNotification.init({
 	android: {
-		senderID: "12345679"
 	},
     browser: {
         pushServiceURL: 'http://push.api.phonegap.com/v1/push'
@@ -24,11 +23,11 @@ var push = PushNotification.init({
 	windows: {}
 });
 
-push.on('registration', function(data) {
+push.on('registration', (data) => {
 	// data.registrationId
 });
 
-push.on('notification', function(data) {
+push.on('notification', (data) => {
 	// data.message,
 	// data.title,
 	// data.count,
@@ -37,7 +36,7 @@ push.on('notification', function(data) {
 	// data.additionalData
 });
 
-push.on('error', function(e) {
+push.on('error', (e) => {
 	// e.message
 });
 ```

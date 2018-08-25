@@ -22,7 +22,6 @@ function initMessages(head, query) {
   let totalPages = 37;
   let loadingMessages = false;
 
-
   // Initialize Framework7 mesages
   F7msg = app.messages.create({
     el: '.messages',

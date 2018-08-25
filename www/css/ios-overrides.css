@@ -136,3 +136,14 @@
   margin-right: 8px;
 }
 
+a.message-send-button {
+  color: black !important;
+  margin-left: 5px;
+  padding-bottom: 1px;
+}
+
+a.message-send-button:active {
+  opacity: .3;
+  transition-duration: 0s;
+  -webkit-transition-duration: 0s;
+}

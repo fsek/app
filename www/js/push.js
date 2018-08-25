@@ -7,13 +7,13 @@ function setupPush() {
     },
     'ios': {
       'senderID': '509736475453',
-      'gcmSandbox': true, // True for development
+      'fcmSandbox': true, // True for development
       'sound': true,
       'alert': true,
       'badge': true
     }
   });
-      
+
   // Get/update the registration id
   pushService.on('registration', function(data) {
     var oldId = localStorage.getItem('registrationId');

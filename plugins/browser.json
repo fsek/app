@@ -26,7 +26,7 @@
       "SENDER_ID": "223210674700",
       "PACKAGE_NAME": "se.fsektionen.fapp"
     },
-    "cordova-plugin-dialogs": {
+    "cordova-plugin-keyboard": {
       "PACKAGE_NAME": "se.fsektionen.fapp"
     }
   },

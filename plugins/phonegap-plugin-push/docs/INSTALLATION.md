@@ -18,52 +18,73 @@
   - [CocoaPods](#cocoapods)
     - [Common CocoaPod Installation issues](#common-cocoapod-installation-issues)
     - [CocoaPod Disk Space](#cocoapod-disk-space)
+    - [Library not found for -lPods-Appname](#library-not-found-for--lpods-appname)
+    - [Library not found for -lGoogleToolboxForMac](#library-not-found-for--lgoogletoolboxformac)
+    - [Module FirebaseInstanceID not found](#module-firebaseinstanceid-not-found)
 - [Additional Resources](#additional-resources)
 
 ## Installation Requirements
 
 Plugin version | Cordova CLI | Cordova Android | Cordova iOS | CocoaPods
 ---- | ---- | ---- | ---- | ----
+2.0.0 | 7.0.0 | 6.2.1 | 4.4.0 | 1.1.1
 1.9.0 | 6.4.0 | 6.0.0 | 4.3.0 | 1.1.1
 1.8.0 | 3.6.3 | 4.0.0 | 4.1.0 | N/A
 
 To install from the command line:
 
 ```
-phonegap plugin add phonegap-plugin-push --variable SENDER_ID="XXXXXXX"
+phonegap plugin add phonegap-plugin-push
 ```
 or
 
 ```
-cordova plugin add phonegap-plugin-push --variable SENDER_ID="XXXXXXX"
+cordova plugin add phonegap-plugin-push
 ```
 
 It is also possible to install via repo url directly ( unstable )
 
 ```
-phonegap plugin add https://github.com/phonegap/phonegap-plugin-push --variable SENDER_ID="XXXXXXX"
+phonegap plugin add https://github.com/phonegap/phonegap-plugin-push
 ```
 
 or
 
 ```
-cordova plugin add https://github.com/phonegap/phonegap-plugin-push --variable SENDER_ID="XXXXXXX"
+cordova plugin add https://github.com/phonegap/phonegap-plugin-push
 ```
 
-Where the `XXXXXXX` in `SENDER_ID="XXXXXXX"` maps to the project number in the [Google Developer Console](https://www.google.ca/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&cad=rja&uact=8&ved=0ahUKEwikqt3nyPjMAhXJ5iYKHR0qDcsQFggbMAA&url=https%3A%2F%2Fconsole.developers.google.com%2F&usg=AFQjCNF0eH059mv86nMIlRmfsf42kde-wA&sig2=BQ2BJpchw1CpGt87sk5p6w&bvm=bv.122852650,d.eWE). To find the project number login to the Google Developer Console, select your project and click the menu item in the screen shot below to display your project number.
+As of version 2.0.0 the SENDER_ID parameter has been removed at install time. Instead you put your google-services.json (Android) and/or GoogleService-Info.plist in the root folder of your project and then add the following lines into your config.xml.
 
-![zzns8](https://cloud.githubusercontent.com/assets/353180/15588897/2fc14db2-235e-11e6-9326-f97fe0ec15ab.png)
+In the platform tag for Android add the following resource-file tag if you are using cordova-android 7.0 or greater:
 
-If you are not creating an Android application you can put in anything for this value.
+```
+<platform name="android">
+  <resource-file src="google-services.json" target="app/google-services.json" />
+</platform>
+```
+
+If you are using cordova-android 6.x or earlier, add the following resource-file tag:
+
+```
+<platform name="android">
+  <resource-file src="google-services.json" target="google-services.json" />
+</platform>
+```
+
+By default, on iOS, the plugin will register with APNS. If you want to use FCM on iOS, in the platform tag for iOS add the resource-file tag:
+
+```
+<platform name="ios">
+  <resource-file src="GoogleService-Info.plist" />
+</platform>
+```
 
 > Note: if you are using Ionic you may need to specify the SENDER_ID variable in your package.json.
 
 ```
   "cordovaPlugins": [
     {
-      "variables": {
-        "SENDER_ID": "XXXXXXX"
-      },
       "locator": "phonegap-plugin-push"
     }
   ]
@@ -72,25 +93,18 @@ If you are not creating an Android application you can put in anything for this 
 > Note: You need to specify the SENDER_ID variable in your config.xml if you plan on installing/restoring plugins using the prepare method.  The prepare method will skip installing the plugin otherwise.
 
 ```
-<plugin name="phonegap-plugin-push" spec="1.6.0">
-    <param name="SENDER_ID" value="XXXXXXX" />
-</plugin>
+<plugin name="phonegap-plugin-push" spec="2.0.0" />
 ```
 
 ## Android details
 
 ### Compilation
 
-As of version 1.3.0 the plugin has been switched to using Gradle/Maven for building.
+As of version 2.1.0 the plugin has been switched to using pinned version of Gradle libraries. You will need to ensure that you have installed the following items through the Android SDK Manager:
 
-You will need to ensure that you have installed the following items through the Android SDK Manager:
+- Android Support Repository version 47+
 
-- Android Support Library version 23 or greater
-- Local Maven repository for Support Libraries (formerly Android Support Repository) version 20 or greater
-- Google Play Services version 27 or greater
-- Google Repository version 22 or greater
-
-![android support library](https://cloud.githubusercontent.com/assets/353180/10230226/0627931e-684a-11e5-9a6b-72d72997f655.png)
+![android support library](https://user-images.githubusercontent.com/353180/33042340-7ea60aaa-ce0f-11e7-99f7-4631e4c3d7be.png)
 
 For more detailed instructions on how to install the Android Support Library visit [Google's documentation](https://developer.android.com/tools/support-library/setup.html).
 
@@ -253,7 +267,7 @@ Required `cordova-cli` minimum version: `6.4.0`
 
 Required `cordova-ios` minimum version: `4.3.0`
 
-Required `CocoaPods` minimum version: `1.0.1` 
+Required `CocoaPods` minimum version: `1.0.1`
 
 
 To install CocoaPods, please follow the installation instructions [here](https://guides.cocoapods.org/using/getting-started). After installing CocoaPods, please run:
@@ -263,7 +277,7 @@ To install CocoaPods, please follow the installation instructions [here](https:/
 This will clone the required CocoaPods specs-repo into your home folder at `~/.cocoapods/repos`, so it might take a while. See the [CocoaPod Disk Space](#cocoapod-disk-space) section below for more information.
 
 
-Version `1.9.0` (and above) of this plugin supports [CocoaPods](https://cocoapods.org) installation of the [Google Cloud Messaging](https://cocoapods.org/pods/GoogleCloudMessaging) library.
+Version `2.0.0` (and above) of this plugin supports [CocoaPods](https://cocoapods.org) installation of the [Firebase Cloud Messaging](https://cocoapods.org/pods/FirebaseMessaging) library.
 
 If you are installing this plugin using `npm`, and you are using version `6.1.0` or greater of the `cordova-cli`, it will automatically download the right version of this plugin for both your platform and cli.
 
@@ -291,7 +305,7 @@ Failed to install 'phonegap-plugin-push':Error: pod: Command failed with exit co
 Error: pod: Command failed with exit code 1
 ```
 
-Please run the command `pod repo update` and re-install the plugin. You would only run `pod repo update` if you have the specs-repo already cloned on your machine through `pod setup`. 
+Please run the command `pod repo update` and re-install the plugin. You would only run `pod repo update` if you have the specs-repo already cloned on your machine through `pod setup`.
 
 ##### CocoaPod Disk Space
 
@@ -302,67 +316,59 @@ git clone --verbose --depth=1 https://github.com/CocoaPods/Specs.git ~/.cocoapod
 pod setup --verbose
 ```
 
+##### Library not found for -lPods-Appname
+
+If you open the app in Xcode and you get an error like:
+
+```
+ld: library not found for -lPods-Appname
+clang: error: linker command failed with exit code 1
+```
+
+Then you are opening the .xcodeproj file when you should be opening the .xcworkspace file.
+
+##### Library not found for -lGoogleToolboxForMac
+
+Trying to build for iOS using the latest cocoapods (1.2.1) but failed with the following error (from terminal running cordova build ios):
+
+```
+ld: library not found for -lGoogleToolboxForMac
+```
+
+Workarounds are to add the platform first and install the plugins later, or to manually run pod install on projectName/platforms/ios.
+
+##### Module FirebaseInstanceID not found
+
+If you run into an error like:
+
+```
+module FirebaseInstanceID not found
+```
+
+You may be running into a bug in cordova-ios. The current workaround is to run `pod install` manually.
+
+```
+cd platforms/ios
+pod install
+```
+
 ## Additional Resources
 
-The push plugin enables you to play sounds and display different icons during push (Android only). These additional resources need to be added to your projects `platforms` directory in order for them to be included into your final application binary. One way of doing it is to create a hook to do the copying for you on each build.
+The push plugin enables you to play sounds and display different icons during push (Android only). These additional resources need to be added to your projects `platforms` directory in order for them to be included into your final application binary.
 
-First create a `scripts` directory in the root of your project. Next add a file to the scripts directory called `copy_resource_files.js`. The contents of the file will look something like this:
+You can now use the `resource-file` tag to deliver the image and sound files to your application. For example if you wanted to include an extra image file for only your Android build you would add the `resource-file` tag to your android `platform` tag:
 
-```javascript
-#!/usr/bin/env node
-
-// each object in the array consists of a key which refers to the source and
-// the value which is the destination.
-var filestocopy = [{
-    "resources/android/images/logo.png":
-    "platforms/android/res/drawable/logo.png"
-}, {
-    "resources/android/sounds/ring.mp3":
-    "platforms/android/res/raw/ring.mp3"
-}, {
-    "resources/ios/sounds/ring.caf":
-    "platforms/ios/YourAppName/ring.caf"
-}, ];
-
-var fs = require('fs');
-var path = require('path');
-
-// no need to configure below
-var rootdir = process.argv[2];
-
-// Create res/raw directory so that copy does not fail.
-fs.mkdir('platforms/android/res/raw/',0777, function(err) {
-  if(err) {
-    console.error(err);
-  }
-  else {
-    console.log("the directory create success");
-  }
-});
-
-filestocopy.forEach(function(obj) {
-    Object.keys(obj).forEach(function(key) {
-        var val = obj[key];
-        var srcfile = path.join(rootdir, key);
-        var destfile = path.join(rootdir, val);
-        //console.log("copying "+srcfile+" to "+destfile);
-        var destdir = path.dirname(destfile);
-        if (fs.existsSync(srcfile) && fs.existsSync(destdir)) {
-            fs.createReadStream(srcfile).pipe(
-               fs.createWriteStream(destfile));
-        }
-    });
-});
+```
+<platform name="android">
+  <resource-file src="myImage.png" target="res/drawable/myImage.png" />
+</platform>
 ```
 
-Obviously, you'll need to modify the `filestocopy` variable to suit your needs. Pay attention to the destination path on iOS where you will need to replace `YourAppName`.
+or if you wanted to include a sound file for iOS:
 
-Next open up your `config.xml` file and add the following line:
 
-```xml
-<hook type="before_build" src="scripts/copy_resource_files.js" />
 ```
-
-Now, when you build your app the files will get copied into your platforms directory for you.
-
-If you are using PhoneGap Build check out these instructions on [Additional Resources](PHONEGAP_BUILD.md#additional-resources)
+<platform name="ios">
+  <resource-file src="mySound.caf" />
+</platform>
+```

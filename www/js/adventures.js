@@ -3,19 +3,17 @@ $$(document).on('page:init', '.page[data-name="adventures"]', function (e) {
 
   $.getJSON(API + '/adventures')
     .done(function(resp) {
-      if (resp.error === undefined) {
-        initAdventureGroup(resp);
-        initCurrentAdventureList(resp);
-      } else {
-        page.find('.adventure-missions-btn').remove();
-        page.find('#adventures-current').html('<div class="adventures-current-empty"> Inga äventyrsuppdrag är tillgängliga :(</div>');
-        page.find('.adventure-week-stats-title').html('Ingen faddergrupp är tillgänglig :(');
-      }
-
+      initAdventureGroup(resp);
+      initCurrentAdventureList(resp);
       page.find('.adventures-current-preloader').remove();
     })
     .fail(function(resp) {
       console.log(resp.statusText);
+
+      page.find('.adventure-missions-btn').remove();
+      page.find('#adventures-current').html('<div class="adventures-current-empty"> Inga äventyrsuppdrag är tillgängliga :(</div>');
+      page.find('.adventure-week-stats-title').html('Ingen faddergrupp är tillgänglig :(');
+      page.find('.adventures-current-preloader').remove();
     });
 
   $.getJSON(API + '/adventure_mission_groups')

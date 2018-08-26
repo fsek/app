@@ -18,7 +18,7 @@ sed -i 's/509736475453/178540363026/' ./www/js/push.js
 sed -i 's/stage.fsektionen.se/fsektionen.se/' ./www/js/index.js
 rm ./google-services.json
 rm ./GoogleService-Info.plist
-cp ./production/google-services.json ./google-services.json
+cp ./production_data/google-services.json ./google-services.json
 git add -A
 git commit -m 'Automatic Android Production deploy'
 git push -f origin production:production-android
@@ -35,7 +35,7 @@ sed -i 's/"fcmSandbox": true/"fcmSandbox": false/' ./www/js/push.js
 sed -i 's/stage.fsektionen.se/fsektionen.se/' ./www/js/index.js
 rm ./google-services.json
 rm ./GoogleService-Info.plist
-cp ./production/GoogleService-Info.plist ./GoogleService-Info.plist
+cp ./production_data/GoogleService-Info.plist ./GoogleService-Info.plist
 
 git add -A
 git commit -m 'Automatic iOS Production deploy'

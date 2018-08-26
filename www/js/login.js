@@ -104,8 +104,14 @@ $$(document).on('page:init', '.page[data-name="login"]', function () {
     });
   }
 
-  $('.login-logo').on('touchstart touchend', function(e) {
-    $(this).toggleClass('login-logo-spin');
+  $('.login-logo').on('touchstart', function(e) {
+    const logo = $(this);
+    if (!logo.hasClass('login-logo-spin')) {
+      logo.addClass('login-logo-spin');
+      setTimeout(function() {
+        logo.removeClass('login-logo-spin');
+      }, 1500);
+    }
   });
 });
 

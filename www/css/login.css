@@ -21,12 +21,11 @@ img.login-logo {
   margin: 0 auto;
   min-width: 150px;
   width: 35vw;
-  transition: 5s;
 }
 
 img.login-logo-spin {
-  transition: 60s;
-  transform:rotate(21600deg);
+  transition: 1.5s;
+  transform:rotate(720deg);
 }
 
 .login-container .list ul {

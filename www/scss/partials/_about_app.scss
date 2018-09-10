@@ -1,0 +1,18 @@
+#fredmansky {
+  max-width: 100%;
+  height: auto;
+  position: absolute;
+  bottom: -50px;
+  right: -50px;
+  transform: scale(0.3, 0.3);
+  animation: smooth 5s ease-in;
+  margin-bottom: 0px;
+
+}
+
+@keyframes smooth {
+  0% { opacity: 0;
+    transform: rotate(0deg) scale(0.01, 0.01);}
+  100% { opacity: 1;
+    transform: rotate(1080deg) scale(0.3, 0.3);}
+}

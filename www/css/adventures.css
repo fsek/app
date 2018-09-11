@@ -8,11 +8,13 @@
   margin-top: 0 !important;
 }
 
-.adventures-subnavbar .tab-link-active {
+.adventures-subnavbar .tab-link.tab-link-active {
   color: #2f729e !important;
+  background-color: white !important;
 }
 
 .adventures-subnavbar .tab-link {
+  color: white !important;
   background-color: #1c4979;
   border-color: #ffffff36 !important;
 }
@@ -127,6 +129,7 @@
 .adventure-group-progress {
   margin: 0;
   color: white;
+  position: relative;
 }
 
 .adventure-group-progressbar {
@@ -168,6 +171,7 @@
 }
 
 .adventure-missions-btn {
+  color: white !important;
   background-color: #1c4979 !important;
   border: none !important;
   width: calc(100% - 30px);

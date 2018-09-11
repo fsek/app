@@ -1,9 +1,15 @@
-#group-badge {
-  background: #eb7125;
-  color: white;
-  display: none;
+.group-badge {
+  margin-right: 5px;
+}
+
+.nollning-btn-messages .group-badge {
+  height: 19px;
+  width: 19px;
   float: right;
-  font-size: 12px;
+  background: #ffe0b3;
+  color: #eb7125;
+  border: 1px solid #ffb485;
+  padding: 0 !important;
 }
 
 .nollning-button-container .row:first-child {
@@ -73,11 +79,13 @@
 }
 
 .tab-link .moose-icon {
-  height: 43px;
+  position: relative;
+  height: 100%;
+  width: 100%;
   background-image:  url(../img/nollning_moose_icon.png);
-  width: 60px;
   background-size: contain;
   background-repeat: no-repeat;
+  background-position-x: center;
   transition: 350ms;
 }
 

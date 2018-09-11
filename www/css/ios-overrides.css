@@ -50,7 +50,7 @@
 
 .tabbar .badge {
   margin-top: 3px;
-  height: 22px;
+  padding: 0 !important;
 }
 
 .home-subnavbar {
@@ -131,9 +131,12 @@
   content: none !important;
 }
 
-#group-badge {
-  margin-top: 10px;
-  margin-right: 8px;
+.group-badge {
+  line-height: 18px !important;
+}
+
+#notification-badge {
+  line-height: 17px !important;
 }
 
 a.message-send-button {

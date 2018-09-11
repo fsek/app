@@ -7,10 +7,7 @@
 }
 
 .tabbar .badge {
-  height: 18px;
   margin-top: 4px;
-  padding-top: 3px;
-  padding-left: 7px;
 }
 
 .toolbar.messagebar {
@@ -197,9 +194,4 @@
 
 .adventures-subnavbar {
   padding-bottom: 12px;
-}
-
-#group-badge {
-  margin-top: 6px;
-  margin-right: 6px;
 }

@@ -18,11 +18,18 @@ a:active {
 .tabbar .badge {
   background: #ffe0b3;
   color: #eb7125;
-  border: 1px solid #eb7125;
+  height: 19px;
+  width: 19px;
+  border: 1px solid #ffb485;
   position: absolute;
   top: 0;
-  margin-left: 17px;
+  right: 0;
   display: none;
+}
+
+#notification-badge {
+  line-height: 14px;
+  margin-right: 8px;
 }
 
 .tabbar a.tab-link-active, .tabbar a.tab-link-active i {

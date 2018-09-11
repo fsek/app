@@ -15,6 +15,11 @@
   margin: 0;
 }
 
+.fwiki-link .item-inner {
+  background-image: none !important;
+  padding-right: 10px !important;
+}
+
 .signout-btn {
   background-color: #e74c3c;
   color: #fff !important;

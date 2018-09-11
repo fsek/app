@@ -36,7 +36,7 @@ function setGroupNotification() {
           unread += group.group_user.unread_count;
         }
       }
-
+      $('.nollning-content').addClass('loaded');
       updateGroupBadge(unread);
     });
 }
@@ -45,24 +45,18 @@ $$(document).on('page:init', '.page[data-name="groups"]', function (e) {
   // Get messages if we haven't done so already
   if ($$('#groups-list ul').is(':empty')) getGroups();
 });
-/*
-$$('#view-groups').on('tab:show', function() {
-  // Get messages if we haven't done so already
-  if ($$('#groups-list ul').is(':empty')) getGroups();
-});
-*/
 
 $$('#groups-list').on('click', 'li', function() {
   $$(this).removeClass('unread');
-  updateGroupBadge(parseInt($$('#group-badge').html()) - $$(this).data('unread'));
+  updateGroupBadge(parseInt($$('.group-badge').html(), 10) - $$(this).data('unread'));
 });
 
 function updateGroupBadge(count) {
   if (count > 0) {
-    $$('#group-badge').html(count);
-    $$('#group-badge').show();
+    $$('.group-badge').html(count);
+    $$('.group-badge').show();
   } else {
-    $$('#group-badge').html(0);
-    $$('#group-badge').hide();
+    $$('.group-badge').html(0);
+    $$('.group-badge').hide();
   }
 }

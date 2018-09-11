@@ -73,22 +73,17 @@ $$(document).on('page:init', '.page[data-name="adventures"]', function (e) {
       adventureData.mission_count = adventureData.adventure_missions.length;
 
       // Fade out old content
-      page.find('.adventures-current-list ul').fadeOut('300', function() {
-        this.remove();
-      });
+      page.find('.adventures-current-list').html('');
 
-      // Wait for fade out animation
-      setTimeout(function() {
-        // Generate html for the updated missions and fade in its container
-        const updatedTemplateHTML = app.templates.currentAdventureMissionsTemplate(adventureData);
-        $(updatedTemplateHTML).hide().appendTo('.adventures-current-list').fadeIn(300);
+      // Generate html for the updated missions and fade in its container
+      const updatedTemplateHTML = app.templates.currentAdventureMissionsTemplate(adventureData);
+      $(updatedTemplateHTML).hide().appendTo('.adventures-current-list').fadeIn(300);
 
-        updateAdventureMissionsHeader(false);
-        setupSwipeouts();
+      updateAdventureMissionsHeader(false);
+      setupSwipeouts();
 
-        // Return the pull to refresh loader back to its hidden place
-        event.detail();
-      }, 350);
+      // Return the pull to refresh loader back to its hidden place
+      event.detail();
     }
 
     function updateAdventureMissionsHeader(firstInit) {
@@ -360,19 +355,14 @@ $$(document).on('page:init', '.page[data-name="adventures"]', function (e) {
           }
 
           // Fade out old content and remove it
-          page.find('.adventures-highscore-list ul').fadeOut('300', function() {
-            this.remove();
-          });
+          page.find('.adventures-highscore-list').html('');
 
-          // Wait for old content to fade out
-          setTimeout(function() {
-            // Generate the template HTML and fade it in in the highscore list
-            const templateHTML = app.templates.adventuresHighscoreTemplate(highscoreData);
-            $(templateHTML).hide().appendTo('.adventures-highscore-list').fadeIn(300);
+          // Generate the template HTML and fade it in in the highscore list
+          const templateHTML = app.templates.adventuresHighscoreTemplate(highscoreData);
+          $(templateHTML).hide().appendTo('.adventures-highscore-list').fadeIn(600);
 
-            // Return the pull to refresh loader back to its hidden place
-            e.detail();
-          }, 350);
+          // Return the pull to refresh loader back to its hidden place
+          e.detail();
         })
         .fail(function(resp) {
           console.log(resp.statusText);

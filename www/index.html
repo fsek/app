@@ -33,7 +33,7 @@
     <link rel="stylesheet" href="css/nollning.css">
     <link rel="stylesheet" href="css/adventures.css">
   </head>
-  <body class="color-theme-white">
+  <body class="color-theme-orange">
     <div id="app">
       <!-- Login screen -->
       <div class="login-screen">
@@ -96,7 +96,9 @@
               <i class="fa fa-calendar" aria-hidden="true"></i>
             </a>
             <a href="#view-nollning" id="msg-btn" class="tab-link">
-              <div class="moose-icon"></div>
+              <div class="moose-icon">
+                <span class="badge group-badge"></span>
+              </div>
             </a>
             <a href="#view-notifications" id="noti-btn" class="tab-link">
               <i class="fa fa-bell" aria-hidden="true">
@@ -197,7 +199,7 @@
                     </a>
                     <a href="/groups/" class="col-50">
                       <div class="nollning-btn-messages">
-                        <span class="badge" id="group-badge">10</span>
+                        <span class="badge group-badge"></span>
                       </div>
                     </a>
                   </div>
@@ -266,6 +268,16 @@
                       <div class="item-content">
                         <div class="item-inner">
                           <div class="item-title">Sångbok</div>
+                        </div>
+                      </div>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="http://www.fwiki.se" class="item-link fwiki-link external" target="_blank">
+                      <div class="item-content">
+                        <div class="item-inner">
+                          <div class="item-title">F-wiki</div>
+                          <div class="item-after"> <i class="fa fa-external-link"></i></div>
                         </div>
                       </div>
                     </a>
@@ -929,7 +941,6 @@
     <script type="text/javascript" src="js/songbook.js"></script>
     <script type="text/javascript" src="js/contact.js"></script>
     <script type="text/javascript" src="js/adventures.js"></script>
-    <script type="text/javascript" src="js/adventures_highscore.js"></script>
     <script type="text/javascript" src="js/nollning.js"></script>
   </body>
 </html>

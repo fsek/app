@@ -30,7 +30,7 @@ $$(document).on('page:init', '.page[data-name="nollning"]', function (e) {
   // Toggle the nollning-toolbar class so the toolbar changes color in the nollnings tab
   var toolbar = $('.toolbar');
   tab.on('tab:show', function() {
-    setGroupNotification();
+    if (!$('.nollning-content').hasClass('loaded')) setGroupNotification();
 
     if (!toolbar.hasClass('nollning-toolbar')) toolbar.addClass('nollning-toolbar');
     StatusBar.backgroundColorByHexString('#2f729e');

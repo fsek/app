@@ -6,6 +6,10 @@ a:active {
   display: none !important;
 }
 
+.f-orange {
+  color: #eb7125;
+}
+
 .navbar {
   background-color: #eb7125 !important;
   color: #fff;
@@ -84,3 +88,4 @@ img.img-responsive {
     width: 35%;
   }
 }
+

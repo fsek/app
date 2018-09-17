@@ -33,3 +33,7 @@
   resize: none;
   width: 100%;
 }
+
+.message-image img {
+  max-width: unset;
+}

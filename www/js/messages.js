@@ -84,9 +84,34 @@ function initMessages(head, query) {
   // Handle the "send" button. Don't close the keyboard on press
   const messageBtn = head.find('#messageBtn');
   nonFocusingButton(messageBtn, function() {
-    groupApp.sendMessage(msgBar.getValue());
+    const content = msgBar.getValue();
     msgBar.clear();
+
+    if (msgBar.attachments.length) {
+      sendWithImage(content);
+    } else {
+      groupApp.sendMessage(content);
+    }
   });
+
+  function showImage(message) {
+    const maxWidth = 0.8 * window.innerWidth;
+    const maxHeight = 0.7 * window.innerHeight;
+    let width = message.image_details.thumb[0];
+    let height = message.image_details.thumb[1];
+
+    if (height > maxHeight) {
+      width = width * maxHeight / height;
+      height = maxHeight;
+    }
+
+    if (width > maxWidth) {
+      height = height * maxWidth / width;
+      width = maxWidth;
+    }
+
+    message.image = `<img data-src="${message.image_url}" class="lazy lazy-fade-in" style="width: ${width}px; height: ${height}px";/>`;
+  }
 
   // Functions for batch loading of messages
   function batchPrepare(msgs) {
@@ -103,6 +128,10 @@ function initMessages(head, query) {
         message.avatar = null;
       }
 
+      if (message.image_url) {
+        showImage(message);
+      }
+
       // Add headers for new dates
       if (lastDay !== message.day) {
         lastDay = message.day;
@@ -112,6 +141,9 @@ function initMessages(head, query) {
         messageTitle.isTitle = true;
         preparedMsgs.push(messageTitle);
       }
+
+      message.text = message.text || '';
+      message.text += `<div class="message-id hidden" data-message-id="${message.id}"></div>`;
 
       preparedMsgs.push(message);
     }
@@ -123,7 +155,7 @@ function initMessages(head, query) {
     if (msgs.length < 1) return;
 
     // Remove top day header if the last message in msgs was sent the same day
-    var first = messages.find('.messages-date:first');
+    const first = messages.find('.messages-date:first');
     if (msgs[0].day === first.html()) first.remove();
 
     // Add day headers and set sender/receiver tag. Then add to window
@@ -173,23 +205,33 @@ function initMessages(head, query) {
 
   // Functions for single messages
   function receivedMessage(message) {
-    var lastDay = messages.find('.messages-date:last').html();
+    const lastDay = messages.find('.messages-date:last').html();
     if (message.day !== lastDay) message.dayHeader = message.day;
     if (message.user_id !== userId) message.type = 'received';
+
+    if (message.image_url) {
+      showImage(message);
+    }
 
     F7msg.addMessage(message);
   }
 
   function removeMessage(messageId) {
-    messages.find('[id="' + messageId + '"]').remove();
+    messages.find(`[data-message-id="${messageId}"]`)
+            .closest('.message')
+            .remove();
   }
 
   function updateMessage(message) {
-    var msg = messages.find('[id="' + message.id + '"]');
+    const msg = messages.find(`[data-message-id="${message.id}"]`)
+                        .closest('.message');
+
     if (!msg.length) return;
 
+    // FIXA SÅ ATT MESSAGE-ID inte försvinner vid update
+
     msg.find('.message-text').html(message.text);
-    var msgUpdated = msg.find('.message-updated');
+    const msgUpdated = msg.find('.message-updated');
 
     if (msgUpdated.length) {
       msgUpdated.html(message.updated_at);
@@ -214,6 +256,11 @@ function initMessages(head, query) {
         updateMessage(data.message.message);
       }
     },
+    /*
+     * Sends a text-only message through the open
+     * websocket using Action Cable. This is faster
+     * than the API function `sendWithImage` below!
+     */
     sendMessage: function(content) {
       return this.perform('send_message', {
         content: content,
@@ -232,6 +279,45 @@ function initMessages(head, query) {
       });
     }
   });
+
+  /*
+   * Sends a message with an image through the regular API
+   * NOTE: Using an AJAX POST is a little bit slower than
+   * Action Cable, so don't use it for regular messages!
+   */
+  function sendWithImage(content) {
+    const imageUrl = msgBar.attachments[0];
+    msgBar.attachmentsHide();
+    msgBar.attachments = [];
+
+    window.resolveLocalFileSystemURL(imageUrl, function(fileEntry) {
+      fileEntry.file(function(file) {
+        console.log('waiting for file');
+        let reader = new FileReader();
+        reader.onloadend = function() {
+          console.log('loaded');
+          const blob = new Blob([ this.result ], { type: 'image/jpeg' } );
+
+          const data = new FormData();
+          data.append('message[content]', content);
+
+          // The server expects a *.jpg filename
+          data.append('message[image]', blob, 'image.jpg');
+
+          $.ajax({
+            url: API + '/groups/' + groupId + '/messages',
+            data: data,
+            contentType: false,
+            processData: false,
+            method: 'POST',
+          });
+
+          // TODO: Handle any errors
+        };
+        reader.readAsArrayBuffer(file);
+      }, function(e) {/* TODO: Handle any errors*/});
+    });
+  }
 
   window.addEventListener('native.keyboardshow', function() {
     if (F7msg) {
@@ -280,12 +366,51 @@ function initMessages(head, query) {
     });
   }
 
+  // Handle the camera button
+  const cameraBtn = head.find('#messageCameraBtn');
+  cameraBtn.on('click', function() {
+    const options = {
+      quality: 100,
+      correctOrientation: true,
+    };
+
+    navigator.camera.getPicture(function(imageUrl) {
+      msgBar.attachments = [];
+      msgBar.attachments.push(imageUrl);
+      msgBar.renderAttachments();
+      msgBar.attachmentsShow();
+    }, null, options);
+  });
+
+  // Handle the gallery/image select button
+  const galleryBtn = head.find('#messageGalleryBtn');
+  galleryBtn.on('click', function() {
+    const options = {
+      sourceType: Camera.PictureSourceType.SAVEDPHOTOALBUM,
+      quality: 100,
+      correctOrientation: true
+    };
+
+    navigator.camera.getPicture(function(imageUrl) {
+      msgBar.attachments = [];
+      msgBar.attachments.push(imageUrl);
+      msgBar.renderAttachments();
+      msgBar.attachmentsShow();
+    }, null, options);
+  });
+
+  // Delete image attachments on delete button press
+  msgBar.on('attachmentDelete', function() {
+    msgBar.attachmentsHide();
+    msgBar.attachments = [];
+  });
+
   // Show action menu on long tap (sent messages only)
   messages.on('taphold', '.message', function() {
     if ($$(this).hasClass('message-received')) return;
 
-    var messageId = $$(this).attr('id');
-    var buttons = [{
+    const messageId = $$(this).find('.message-id').data('message-id');
+    const buttons = [{
       text: 'Redigera',
       onClick: function() {
         popupEditor(messageId);
@@ -295,11 +420,13 @@ function initMessages(head, query) {
       text: 'Ta bort',
       color: 'red',
       onClick: function() {
+        alert('hej' + messageId);
         groupApp.destroyMessage(messageId);
       }
     }];
 
-    app.actions($$(this), buttons);
+    const actions = app.actions.create({buttons});
+    actions.open();
   });
 
   // Enable infinite scroll

@@ -26,13 +26,14 @@ var app = new Framework7({
      * on the focus event for a specified input.
      */
     scrollIntoViewOnFocus: false
+  },
+  lazy: {
+    threshold: 500
   }
-
-  /*statusbarOverlay: false,*/
 });
 
 // Define Dom7
-var $$ = Dom7;
+const $$ = Dom7;
 
 // API URLS
 const BASE_URL = 'https://stage.fsektionen.se';

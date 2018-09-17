@@ -53,3 +53,7 @@
 #subtab-event p.disabled {
   text-align: center;
 }
+
+#view-home .ptr-preloader {
+  top: -35px;
+}

@@ -1,7 +1,10 @@
 function getGroups() {
+
   $.getJSON(API + '/groups')
     .then(function(resp) {
+      app.ptr.done($$('.group-content.ptr-content'));
       var groupEl = $$('#groups-list ul');
+      groupEl.html('');
       var groups = resp.groups.reverse();
       var unread = 0;
       var hasGroups = groups.length !== 0;
@@ -19,7 +22,7 @@ function getGroups() {
         groupEl.addClass('no-groups');
       }
 
-      groupEl.html(templateHTML);
+      $(templateHTML).hide().appendTo(groupEl).fadeIn(600);
       updateGroupBadge(unread);
     });
 }
@@ -44,6 +47,10 @@ function setGroupNotification() {
 $$(document).on('page:init', '.page[data-name="groups"]', function (e) {
   // Get messages if we haven't done so already
   if ($$('#groups-list ul').is(':empty')) getGroups();
+
+  $$('.ptr-content.group-content').on('ptr:refresh', function() {
+    getGroups();
+  });
 });
 /*
 $$('#view-groups').on('tab:show', function() {

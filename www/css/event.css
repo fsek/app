@@ -1,42 +1,42 @@
-.event-content .card-content .item-inner:after, .event-content .card-content ul:before, .event-content .list-group:last-of-type ul:after {
+.event-container .card-content .item-inner:after, .event-container .card-content ul:before, .event-container .list-group:last-of-type ul:after {
   display: none;
 }
 
-.event-content .fa-envelope {
+.event-container .fa-envelope {
   font-size: 17px;
 }
 
-.event-content .fa-check-circle {
+.event-container .fa-check-circle {
   color: #4e9d2d;
 }
 
-.event-content .fa-times-circle, .event-content .fa-exclamation-circle {
+.event-container .fa-times-circle, .event-container .fa-exclamation-circle {
   color: #e74c3c;
 }
 
-.event-content i {
+.event-container i {
   color: #eb7125;
   font-size: 22px;
   margin: auto;
 }
 
-.event-content .item-media {
+.event-container .item-media {
   width: 20px;
 }
 
-.event-content .item-inner a{
+.event-container .item-inner a{
   color: #eb7125 !important;
 }
 
-.event-content .item-title {
+.event-container .item-title {
   white-space: initial;
 }
 
-.event-content .list-group ul:after{
+.event-container .list-group ul:after{
   background-color: #e1e1e1;
 }
 
-.event-content .preloader {
+.event-container .preloader {
   margin-left: calc(50% - 20px);
   margin-top: calc(50% - 20px);
   height: 40px;
@@ -124,7 +124,7 @@
   color: #eb7125;
 }
 
-.ios .event-content .list, .md .event-content .list {
+.ios .event-container .list, .md .event-container .list {
   font-size: 14px;
 }
 

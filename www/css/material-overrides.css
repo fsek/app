@@ -177,8 +177,8 @@
   content: none;
 }
 
-.event-content {
-  padding-top: 56px !important;
+.event-container {
+  padding-top: 8px;
 }
 
 .md .ptr-preloader {

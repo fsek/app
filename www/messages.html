@@ -11,10 +11,35 @@
     </div>
   </div>
 
+  <div class="popover message-extras" style="width: auto;">
+    <div class="popover-inner">
+      <div class="block" style="margin: 15px 0;">
+        <p>
+        <a href="#" id="messageCameraBtn" class="link popover-close">
+          <i class="fa fa-camera f-orange" aria-hidden="true" style="font-size:22px;"></i>
+        </a>
+        </p>
+        <p>
+        <a href="#" id="messageGalleryBtn" class="link popover-close">
+          <i class="fa fa-image f-orange" aria-hidden="true" style="font-size:22px;"></i>
+        </a>
+        </p>
+      </div>
+    </div>
+  </div>
+
   <div class="toolbar messagebar">
     <div class="toolbar-inner">
-       <textarea class="resizable" placeholder="Meddelande"></textarea>
-       <a href="#" id="messageBtn" class="link message-send-button">Skicka</a>
+      <a href="#" data-popover=".message-extras" class="popover-open link">
+        <i class="fa fa-chevron-up f-orange" aria-hidden="true"></i>
+      </a>
+      <div class="messagebar-area">
+        <div class="messagebar-attachments"></div>
+        <textarea class="resizable" placeholder="Meddelande"></textarea>
+      </div>
+      <a href="#" id="messageBtn" class="link">
+        <i class="fa fa-paper-plane f-orange" aria-hidden="true"></i>
+      </a>
     </div>
   </div>
   <div class="page-content messages-content infinite-scroll-content infinite-scroll-top">

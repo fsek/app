@@ -36,7 +36,7 @@ var $$ = Dom7;
 
 // API URLS
 const BASE_URL = 'https://stage.fsektionen.se';
-const API = 'https://stage.fsektionen.se/api';
+const API = BASE_URL + '/api';
 const AC_URL = 'wss://stage.fsektionen.se/cable';
 
 // ActionCable Token URL

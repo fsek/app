@@ -6,7 +6,7 @@
   color: #eb7125;
 }
 
-.notification-list .unseen {
+.notification-list .unvisited {
   background-color: rgba(253, 133, 21, 0.12);
 }
 

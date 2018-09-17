@@ -3,10 +3,22 @@ var loadingNotifications = false;
 var infNotificationScroll = true;
 
 // Init notifications if not already inited
-$$(document).on('page:init', '.page[data-name="notifications"]', function (e) {
+$$(document).on('page:init', '.page[data-name="notifications"]', function () {
   // If signed in and notification container is empty
   if (!jQuery.isEmptyObject($.auth.user) && $('#notification-list ul').is(':empty')) {
     getNotifications(false);
+  }
+});
+
+$('#view-notifications').on('tab:show', function () {
+  if ($.auth.user.notifications_count > 0) {
+    $.ajax({
+      method: 'GET',
+      url: API + '/notifications/look_all',
+      success: function() {
+        updateNotificationBadge(0);
+      }
+    });
   }
 });
 
@@ -23,11 +35,11 @@ $$('#view-notifications .infinite-scroll-content').on('infinite', function() {
 });
 
 $$('#notification-list').on('click', 'li', function() {
-  if ($$(this).hasClass('unseen')) {
-    lookNotification($$(this).attr('data-id'));
-    $$(this).removeClass('unseen');
+  var notif = $$(this);
+  if (notif.hasClass('unvisited')) {
+    visitNotification(notif.attr('data-id'));
+    notif.removeClass('unvisited');
   }
-  // Redirect to event/notifyable here
 });
 
 function getNotifications(refresh) {
@@ -77,6 +89,7 @@ function appendNotifications(notifications) {
   }
 }
 
+/* Used in login.js */
 function initNotificationBadge() {
   if ($.auth.user.notifications_count > 0) {
     $$('#notification-badge').show();
@@ -95,16 +108,10 @@ function updateNotificationBadge(count) {
   }
 }
 
-function lookNotification(id) {
+function visitNotification(id) {
   $.ajax({
-    url: API + '/notifications/'+ id + '/look',
-    type: 'PATCH',
-    success: function(resp) {
-      updateNotificationBadge(resp.unread);
-    },
-    error: function(resp) {
-      alert('Failed to mark notification as read.');
-    }
+    url: API + '/notifications/'+ id + '/visit',
+    type: 'PATCH'
   });
 }
 

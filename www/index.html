@@ -807,7 +807,7 @@
       <script type="text/template7" id="notificationTemplate">
         {{#if hasNotifications}}
           {{#notification}}
-            <li data-id="{{id}}" {{#unless seen}} class="unseen"{{/unless}}>
+            <li data-id="{{id}}" {{#unless visited}} class="unvisited"{{/unless}}>
               <a href="/event/{{event_id}}/" class="item-link">
                 <div class="item-content">
                   <div class="item-inner">

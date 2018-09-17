@@ -1,24 +1,34 @@
 //Configuration of the event page
 $$(document).on('page:init', '.page[data-name="event"]', function (e) {
   var eventId = e.detail.route.params.eventId;
-  $.getJSON(API + '/events/' + eventId)
+  getData(eventId);
+  $$('.event-content').on('ptr:refresh', function() {
+    getData(eventId);
+  });
+});
 
+function getData(eventId) {
+  $.getJSON(API + '/events/' + eventId)
     .done(function(resp) {
       initEventPage(resp.event);
+      app.ptr.done($$('.event-content'));
     })
     .fail(function(resp) {
       console.log(resp.statusText);
     });
-});
+}
+
 
 function initEventPage(eventData) {
   generateAdditionalData(eventData);
 
-  var eventContent = $('.event-content');
+  var eventContainer = $('.event-container');
+
+  eventContainer.html('');
 
   // Apply the event page content with template
   var templateHTML = app.templates.eventPageTemplate({event: eventData});
-  eventContent.html(templateHTML);
+  $(templateHTML).hide().appendTo(eventContainer).fadeIn(300);
 
   // Description overflow toggle if container height = maxHeight
   var descripContainer = $('.event-description-container');

@@ -13,8 +13,10 @@ function initSongList(songdata) {
   var currentLetter = songdata[0].title.charAt(0);
   var songList = [];
   
-  songList.push({firstLetter: currentLetter,
-    songs: []});
+  songList.push({
+    firstLetter: currentLetter,
+    songs: []
+  });
   var counter = 0;
   songdata.forEach(function(element) {
     if (element.title.charAt(0) == currentLetter) {

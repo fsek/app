@@ -3,6 +3,14 @@ $$(document).on('page:init', '.page[data-name="home"]', function () {
   if (!jQuery.isEmptyObject($.auth.user)) {
     loadHome();
   }
+
+  $$('#subtab-news').on('ptr:refresh', function() {
+    initHome();
+  });
+
+  $$('#subtab-event').on('ptr:refresh', function() {
+    initHome();
+  });
 });
 
 $$('#home-btn').on('click', function() {
@@ -17,8 +25,10 @@ function loadHome() {
 }
 
 function initHome() {
+  var fadeInTime = 600;
+
   var newsTab = $('#subtab-news');
-  var eventTab = $('#subtab-event');
+  var eventList = $('#event-list');
 
   var newsList = newsTab.find('#news-list');
 
@@ -28,7 +38,11 @@ function initHome() {
 
   var initialize = (function() {
     $.getJSON(API + '/start')
-      .then(function(resp) {
+      .done(function(resp) {
+        app.ptr.done($$('#subtab-news'));
+        app.ptr.done($$('#subtab-event'));
+        $('#news-list').html('');
+        $('#event-list').html('');
         addNews(resp.pinned.news.concat(resp.unpinned.news));
         totalPages = resp.unpinned.meta.total_pages;
         initEventStream(resp.events.events);
@@ -37,7 +51,7 @@ function initHome() {
 
   function addNews(news) {
     var templateHTML = app.templates.newsTemplate({news: news});
-    $(templateHTML).hide().appendTo(newsList).fadeIn(1000);
+    $(templateHTML).hide().appendTo(newsList).fadeIn(fadeInTime);
   }
 
   function initEventStream(events) {
@@ -51,17 +65,17 @@ function initHome() {
         // Add header on new days. We only download events for one week - checking date is enough
         if (lastDay != event.start.getDate()) {
           dayHTML = app.templates.dayTitleTemplate({date: event.start});
-          eventTab.append(dayHTML);
+          eventList.append(dayHTML);
         }
 
-        var templateHTML = app.templates.dayTemplate({hasEvents: true,
+        var newsTemplateHTML = app.templates.dayTemplate({hasEvents: true,
           events: [event]});
-        eventTab.append(templateHTML);
+        $(newsTemplateHTML).hide().appendTo(eventList).fadeIn(fadeInTime);
         lastDay = event.start.getDate();
       }
     } else {
-      var templateHTML = app.templates.dayTemplate({hasEvents: false});
-      eventTab.append(templateHTML);
+      var eventTemplateHTML = app.templates.dayTemplate({hasEvents: false});
+      $(eventTemplateHTML).hide().appendTo(eventList).fadeIn(fadeInTime);
     }
   }
 

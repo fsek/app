@@ -10,7 +10,7 @@
 
     <!-- Material/iOS stylesheets. Will be replaced on deploy -->
     <link rel="stylesheet" href="lib/framework7/css/framework7.min.css">
-    <link rel="stylesheet" href="css/material-overrides.css">
+    <link rel="stylesheet" href="css/ios-overrides.css">
 
     <!-- General stylesheets -->
     <link rel="stylesheet" href="css/font-awesome.min.css">
@@ -126,13 +126,22 @@
             </div>
             <div class="tabs-animated-wrap subtab-container">
               <div class="tabs">
-                <div id="subtab-news" class="tab subtab tab-active infinite-scroll-content page-content">
-                  <div class="news-list" id="news-list"></div>
+                <div id="subtab-news" class="tab subtab tab-active infinite-scroll-content page-content ptr-content">
+                  <div id="news-ptr-preloader" class="ptr-preloader">
+                    <div class="preloader"></div>
+                    <div class="ptr-arrow"></div>
+                  </div>
+                  <div class="subtab-list" id="news-list"></div>
                   <div class="infinite-scroll-preloader">
                     <div class="preloader"></div>
                   </div>
                 </div>
-                <div id="subtab-event" class="tab subtab page-content">
+                <div id="subtab-event" class="tab subtab page-content ptr-content">
+                  <div id="event-ptr-preloader" class="ptr-preloader">
+                    <div class="preloader"></div>
+                    <div class="ptr-arrow"></div>
+                  </div>
+                  <div class="subtab-list" id="event-list"></div>
                 </div>
               </div>
             </div>

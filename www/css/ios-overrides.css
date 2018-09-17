@@ -35,6 +35,7 @@
   display: none !important;
 }
 
+
 .ios .navbar i.icon, .ios .navbar a{
   color: #fff;
 }
@@ -79,6 +80,19 @@
 .songbook-indexlist {
   bottom: 0 !important;
   margin-top: 45px;
+}
+
+#view-home .subtab {
+  top: -50px;
+  height: 110%;
+}
+
+#view-home .subtab .ptr-preloader {
+  top: 55px;
+}
+
+#view-home .subtab-list {
+  margin-top: 60px;
 }
 
 .notification-list li:last-child {

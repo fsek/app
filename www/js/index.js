@@ -236,6 +236,18 @@ var alternativesView = app.views.create('#view-alternatives', {
       url: './about_section.html',
     },
     {
+      name: 'cafe',
+      path: '/cafe/',
+      url: './cafe.html',
+      routes: [
+        {
+          name: 'cafe_shift',
+          path: 'cafe_shift/:start/:shiftId/:isMe',
+          url: './cafe_shift.html'
+        }
+      ]
+    },
+    {
       name: 'songbook',
       path: '/songbook/',
       url: './songbook.html',

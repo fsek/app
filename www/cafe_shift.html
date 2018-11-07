@@ -1,0 +1,60 @@
+
+<div data-name="cafe-shift" class="page no-toolbar">
+  <div class="navbar" id="orange-navbar">
+    <div class="navbar-inner sliding">
+      <div class="left">
+        <a href="#" class="back link">
+          <i class="icon icon-back"></i>
+          <span class="ios-only">Tillbaka</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-content shift-content">
+    <div class="user-container">
+      <div class="hilbert-avatar"></div>
+      <p id="header_text">Date and time of shift (this changes with js)</p>
+    </div>
+    <form id="shift-form" class="list">
+      <ul>
+        <li class="item-content item-input">
+          <div class="item-inner">
+            <div class="item-title item-label">Användare</div>
+            <div class="item-input-wrap">
+              <input id="user-name-input" name="name" type="text" placeholder="Namn" readonly>
+            </div>
+          </div>
+        </li>
+        <li class="item-content">
+          <div class="item-inner">
+            <div class="item-title">Cafétävlingen</div>
+            <div class="item-after">
+              <label class="toggle toggle-init color-orange">
+                <input type="checkbox" checked name="switch" value="yes"><i class="toggle-icon"></i>
+              </label>
+            </div>
+          </div>
+        </li>
+        <li class="item-content item-input">
+         <div class="item-inner">
+           <div class="item-title item-label">Utskott</div>
+           <div class="item-input-wrap">
+             <input id="user-committee-input" name="committee" type="text" placeholder="Utskott">
+           </div>
+         </div>
+        </li>
+        <li class="item-content item-input">
+          <div class="item-inner item-label">
+            <div class="item-title">Grupp, om inget utskott passar</div>
+            <div class="item-input-wrap">
+              <input name="group" type="text" placeholder="Grupp">
+            </div>
+          </div>
+       </li>
+     </ul>
+     <a class="shift-update button button-big button-fill">Arbeta på passet</a>
+     <a class="shift-unsign button button-big color-red button-fill">Avanmäl</a>
+    </form>
+  </div>
+</div>

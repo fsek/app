@@ -2,7 +2,7 @@
 $$(document).on('page:init', '.page[data-name="calendar"]', function () {
   const page = $('.page.calendar-page');
 
-  // If signed in and calendar container is empty
+  // If signed in and calendar container is empty (triggers when going back from the third page in the view)
   if (!jQuery.isEmptyObject($.auth.user) && page.find('#calendar').is(':empty')) {
     initCalendar(page);
   }

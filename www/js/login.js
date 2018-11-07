@@ -41,7 +41,7 @@ $$(document).on('page:init', '.page[data-name="login"]', function () {
 
     // Adds preloader after 1 s of loading
     var preloadTimeout = setTimeout(function() {
-      app.dialog.preloader('Mutar spindelmännen...');
+      app.dialog.preloader('Mutar spindelmännen med godis...');
     }, 1000);
 
     // Aborts the preloader and request after 20s
@@ -133,12 +133,10 @@ function afterSignIn() {
   pushAfterLogin();
   initNotificationBadge();
   loadHome();
-  getGroups();
 
-  if ($('#calendar').is(':empty')) {
-    initCalendar($('.page.calendar-page'));
-  }
-  if ($('#notification-list ul').is(':empty')) {
-    getNotifications(false);
-  }
+  if ($$('#groups-list ul').is(':empty')) getGroups();
+
+  if ($('#calendar').is(':empty')) initCalendar($('.page.calendar-page'));
+
+  if ($('#notification-list ul').is(':empty')) getNotifications(false);
 }

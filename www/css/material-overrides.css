@@ -7,7 +7,7 @@
 }
 
 .tabbar .badge {
-  margin-top: 4px;
+  padding: 3px 0 0 0;
 }
 
 .toolbar.messagebar {
@@ -160,6 +160,10 @@
 
 #view-alternatives .smart-select-page .list {
   margin-top: 56px;
+}
+
+#view-alternatives .subnavbar {
+  background: #fff;
 }
 
 .searchbar input {

@@ -11,6 +11,7 @@ $$(document).on('page:init', '.page[data-name="alternatives"]', function () {
         onClick: function() {
           $(calendar).empty();
           $('#notification-list ul').empty();
+          $$('#groups-list ul').empty();
 
           // Unregister push device and signout with $.auth
           deletePushAndSignOut();

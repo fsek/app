@@ -50,8 +50,9 @@
 }
 
 .tabbar .badge {
-  margin-top: 3px;
+  line-height: 16px !important;
   padding: 0 !important;
+  font-size: 11px;
 }
 
 .home-subnavbar {
@@ -143,14 +144,6 @@
 
 .adventures-subnavbar:after {
   content: none !important;
-}
-
-.group-badge {
-  line-height: 18px !important;
-}
-
-#notification-badge {
-  line-height: 17px !important;
 }
 
 a.message-send-button {

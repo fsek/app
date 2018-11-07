@@ -72,4 +72,5 @@
     <plugin name="cordova-plugin-splashscreen" spec="^4.0.3" />
     <plugin name="cordova-plugin-headercolor" spec="^1.0.0" />
     <plugin name="cordova-plugin-keyboard" spec="^1.2.0" />
+    <plugin name="cordova-plugin-dialogs" />
 </widget>

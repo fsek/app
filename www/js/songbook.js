@@ -12,7 +12,7 @@ $$(document).on('page:init', '.page[data-name="songbook"]', function (e) {
 function initSongList(songdata) {
   var currentLetter = songdata[0].title.charAt(0);
   var songList = [];
-  
+
   songList.push({
     firstLetter: currentLetter,
     songs: []
@@ -29,6 +29,7 @@ function initSongList(songdata) {
       songList[counter].songs.push(element);
     }
   });
+  console.log(songList);
   var templateHTML = app.templates.songbookTemplate({letter: songList});
   var songbookList = $('#songbook-list');
   songbookList.html(templateHTML);

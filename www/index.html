@@ -278,6 +278,15 @@
                   </a>
                 </li>
                 <li>
+                  <a href="/cafe/" class="item-link">
+                    <div class="item-content">
+                      <div class="item-inner">
+                        <div class="item-title">Hilbert Café</div>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+                <li>
                   <a href="http://www.fwiki.se" class="item-link fwiki-link external" target="_blank">
                     <div class="item-content">
                       <div class="item-inner">
@@ -925,21 +934,67 @@
         {{/each}}
       </script>
 
-    <script type="text/template7" id="versionCheckTemplate">
-        <div class="popup popup-version-check">
-          <div class="background-overlay"></div>
-          <div class="block">
-            <div class="smiley-container {{#if easter}}easter{{/if}}">
-              <div class="smiley">( •_•)</div>
+      <script type="text/template7" id="versionCheckTemplate">
+          <div class="popup popup-version-check">
+            <div class="background-overlay"></div>
+            <div class="block">
+              <div class="smiley-container {{#if easter}}easter{{/if}}">
+                <div class="smiley">( •_•)</div>
+              </div>
+              {{#unless easter}}
+                <div class="popup-text popup-title">Oh no!</div>
+                <div class="popup-text">Du har en gammal version av F-appen. Var snäll och uppdatera!</div>
+                <a id="store-button" class="external button button-fill" href="{{appLink}}" target="_blank">Uppdatera</a>
+              {{/unless}}
             </div>
-            {{#unless easter}}
-              <div class="popup-text popup-title">Oh no!</div>
-              <div class="popup-text">Du har en gammal version av F-appen. Var snäll och uppdatera!</div>
-              <a id="store-button" class="external button button-fill" href="{{appLink}}" target="_blank">Uppdatera</a>
-            {{/unless}}
           </div>
-        </div>
+        </script>
+
+      <script type="text/template7" id="cafeTemplate">
+        {{#each years}}
+          <div class="timeline-year">
+              <div class="timeline-year-title black-text bg-color-white"><span>{{years}}</span></div>
+              {{#each months}}
+                  <div class="timeline-month">
+                    <div class="timeline-month-title black-text bg-color-white"><span>{{monthname}}</span></div>
+                    {{#each days}}
+                    <div class="timeline-item ">
+                      <div class="timeline-item-date black-text bg-color-white">{{day}}, {{date}}:e</div>
+                      <div class="timeline-item-content ">
+                      {{#each shift}}
+                      {{#if time}}
+                      <p>{{time}}</p>
+                      {{/if}}
+                      {{#if name}}
+                        {{#if me}}
+                        <a href="cafe_shift/{{id}}/{{me}}" class="item-link asd">
+                        <div class="timeline-item-inner white-text bg-color-green" id="{{id}}">
+                        {{else}}
+                        <a class="item-link">
+                        <div class="timeline-item-inner " id="{{id}}">
+                        {{/if}}
+                        <div class="timeline-item-text">{{name}}</div>
+                      {{else}}
+                      <a href="cafe_shift/{{id}}/{{me}}" class="item-link asd">
+                      <div class="timeline-item-inner bg-color-white" id="{{id}}">
+                      <div class="timeline-item-text black-text">Ledigt pass</div>
+                      {{/if}}
+                        </div>
+                        </a>
+
+                        {{/each}}
+                      </div>
+                    </div>
+                    {{/each}}
+
+                  </div>
+                  {{/each}}
+
+              </div>
+      {{/each}}
       </script>
+
+
 
     <script type="text/template7" id="galleryTemplate">
         {{#each album}}
@@ -1015,11 +1070,14 @@
   <script type="text/javascript" src="js/about_app.js"></script>
   <script type="text/javascript" src="js/gallery.js"></script>
   <script type="text/javascript" src="js/album.js"></script>
+  <script type="text/javascript" src="js/cafe.js"></script>
+
   <!--
     <script type="text/javascript" src="js/adventures.js"></script>
-    <script type="text/javascript" src="js/nollning.js"></script>-->
-</body>
-
+    <script type="text/javascript" src="js/adventures_highscore.js"></script>
+    <script type="text/javascript" src="js/nollning.js"></script>
+-->
+  </body>
 </html>
 
 <!--

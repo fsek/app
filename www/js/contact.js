@@ -11,10 +11,10 @@ $$(document).on('page:init', '.page[data-name="contact"]', function (e) {
 
 function initContactPage(contacts, event) {
   // Add the contact options for the smart select and save the selected contact in the contacts object
-  addContactOptions(contacts, event);
+  addContactOptions();
 
   // Init the smart select with the added options
-  initSmartSelect(contacts);
+  initSmartSelect();
 
   // Add the selected contact's name and descrition to the page
   setDescription(contacts.selected_contact);
@@ -26,16 +26,15 @@ function initContactPage(contacts, event) {
   $('.contact-content .infinite-scroll-preloader').remove();
 
 
-  function addContactOptions(contacts, event) {
-    var selectedId = event.detail.route.params.contactId;
+  function addContactOptions() {
+    var selectedId = parseInt(event.detail.route.params.contactId, 10);
 
     /*
      * Find which option is selected and save that contact in the contacts object
      * contact.selected is set to true if the contact is the selected one, otherwise false
      */
-    var selectedName = '';
     for (contact of contacts) {
-      contact.selected = contact.id == selectedId;
+      contact.selected = contact.id === selectedId;
 
       if (contact.selected) {
         contacts.selected_contact = contact;
@@ -47,7 +46,7 @@ function initContactPage(contacts, event) {
     $('#contact-select').html(templateHTML);
   }
 
-  function initSmartSelect(contacts) {
+  function initSmartSelect() {
     app.smartSelect.create({
       el: '#contact-select',
       openIn: 'page',
@@ -57,10 +56,10 @@ function initContactPage(contacts, event) {
       searchbarDisableText: 'Avbryt',
       closeOnSelect: true,
       on: {
-        close: function(smartSelect) {
+        close: function() {
           var selectedName = $('#contact-select .item-after')[0].innerHTML;
           contacts.forEach(function(contact) {
-            if (contact.name == selectedName) {
+            if (contact.name === selectedName) {
               contacts.selected_contact = contact;
             }
           });
@@ -82,12 +81,13 @@ function initContactPage(contacts, event) {
     var formData = app.form.convertToData('#contact-form');
 
     // If the textarea is filled
-    if (formData.message != '') {
+    if (formData.message !== '') {
       var user = $.auth.user;
-      var contactData = {contact_message: {}};
-      contactData.contact_message.name = user.firstname + ' ' + user.lastname;
-      contactData.contact_message.email = user.email;
-      contactData.contact_message.message = formData.message;
+      var contactData = {contact_message: {
+        name: user.firstname + ' ' + user.lastname,
+        email: user.email,
+        message: formData.message
+      }};
 
       // Send POST request to send e-mail
       $.ajax({

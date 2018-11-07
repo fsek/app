@@ -42,7 +42,7 @@ $$('#notification-list').on('click', 'li', function() {
   }
 });
 
-function getNotifications(refresh) {
+function getNotifications(ptrRefresh) {
   $.getJSON(API + '/notifications')
     .then(function(resp) {
       $$('#notification-list ul').html('');
@@ -51,7 +51,7 @@ function getNotifications(refresh) {
       updateNotificationBadge(resp.meta.unread);
       nextPage = resp.meta.next_page;
 
-      if (refresh) app.ptr.done($$('#view-notifications .ptr-content'));
+      if (ptrRefresh) app.ptr.done($$('#view-notifications .ptr-content'));
       if (!infNotificationScroll) attachInfNotificationScroll();
 
       // Fill the screen if more notifications exist

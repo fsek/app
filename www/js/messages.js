@@ -329,7 +329,6 @@ function initMessages(head, query) {
   const groupBack = $$(document).on('page:beforeremove', '.page[data-name="messages"]', function () {
     groupBack.remove();
 
-    $('.tabbar').show();
     getGroups();
 
     document.removeEventListener('pause', pauseGroup, false);

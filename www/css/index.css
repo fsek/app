@@ -25,10 +25,10 @@ a:active {
   top: 0;
   right: 0;
   display: none;
+  margin-top: 4px;
 }
 
 #notification-badge {
-  line-height: 14px;
   margin-right: 8px;
 }
 

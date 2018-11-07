@@ -10,7 +10,7 @@
 
     <!-- Material/iOS stylesheets. Will be replaced on deploy -->
     <link rel="stylesheet" href="lib/framework7/css/framework7.min.css">
-    <link rel="stylesheet" href="css/ios-overrides.css">
+    <link rel="stylesheet" href="css/material-overrides.css">
 
     <!-- General stylesheets -->
     <link rel="stylesheet" href="css/font-awesome.min.css">
@@ -30,8 +30,8 @@
     <link rel="stylesheet" href="css/user_page.css">
     <link rel="stylesheet" href="css/songbook.css">
     <link rel="stylesheet" href="css/contact.css">
-    <link rel="stylesheet" href="css/nollning.css">
-    <link rel="stylesheet" href="css/adventures.css">
+    <!--<link rel="stylesheet" href="css/nollning.css">
+    <link rel="stylesheet" href="css/adventures.css">-->
   </head>
   <body class="color-theme-orange">
     <div id="app">
@@ -95,10 +95,16 @@
             <a href="#view-calendar" id="cal-btn" class="tab-link">
               <i class="fa fa-calendar" aria-hidden="true"></i>
             </a>
+            <!--
             <a href="#view-nollning" id="msg-btn" class="tab-link">
               <div class="moose-icon">
                 <span class="badge group-badge"></span>
               </div>
+            </a>-->
+            <a href="#view-groups" id="msg-btn" class="tab-link">
+              <i class="fa fa-comments" aria-hidden="true">
+                <span class="badge" id="group-badge"></span>
+              </i>
             </a>
             <a href="#view-notifications" id="noti-btn" class="tab-link">
               <i class="fa fa-bell" aria-hidden="true">
@@ -168,7 +174,7 @@
           </div>
         </div>
         <!-- Tab 3 (Nollning) -->
-        <div id="view-nollning" class="view tab">
+        <!--<div id="view-nollning" class="view tab">
           <div data-name="nollning" class="page navbar-fixed">
             <div class="navbar android-hide">
               <div class="navbar-inner nollning-navbar sliding">
@@ -215,9 +221,8 @@
               </div>
             </div>
           </div>
-        </div>
-        <!-- Tab 3 (Messages)
-        GLÖM INTE ATT ÄNDRA I INDEX.JS SÅ BACK KNAPPEN FUNKAR IGEN
+        </div>-->
+        <!-- Tab 3 (Messages) -->
         <div id="view-groups" class="view tab">
           <div data-name="groups" class="page navbar-fixed">
             <div class="navbar android-hide">
@@ -225,14 +230,17 @@
                 <div class="title">Meddelanden</div>
               </div>
             </div>
-            <div class="page-content">
+            <div class="page-content ptr-content group-content">
+              <div class="ptr-preloader">
+                <div class="preloader"></div>
+                <div class="ptr-arrow"></div>
+              </div>
               <div class="list media-list groups-list" id="groups-list">
                 <ul></ul>
               </div>
             </div>
           </div>
         </div>
-        -->
         <!-- Tab 4 (Notifications) -->
         <div id="view-notifications" class="view tab">
           <div data-name="notifications" class="page">
@@ -344,6 +352,7 @@
 
     <!-- Templates -->
     <section id="templates">
+      <!-- NOLLNING TEMPLATES
       <script type="text/template7" id="currentAdventureMissionsHeaderTemplate">
         <div class="adventures-current-title">
           Vecka {{week_number}} - {{title}}
@@ -430,6 +439,7 @@
           {{/each}}
         </ul>
       </script>
+      -->
 
       <script type="text/template7" id="contactTemplate">
         <select name="contacts">
@@ -940,8 +950,9 @@
     <script type="text/javascript" src="js/user_page.js"></script>
     <script type="text/javascript" src="js/songbook.js"></script>
     <script type="text/javascript" src="js/contact.js"></script>
+    <!--
     <script type="text/javascript" src="js/adventures.js"></script>
-    <script type="text/javascript" src="js/nollning.js"></script>
+    <script type="text/javascript" src="js/nollning.js"></script>-->
   </body>
 </html>
 

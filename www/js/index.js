@@ -266,7 +266,7 @@ function onBackKey() {
     }
   } else if ($$('.popover.modal-in').length) {
     app.popover.close('.popover.modal-in');
-  } else if ($$('.popup').length) {
+  } else if ($$('.popup').length && !$$('.popup-version-check').length) {
     app.popup.close('.popup');
   } else if (pageName === 'calendar' || pageName === 'groups' || pageName === 'notifications' || pageName === 'alternatives') {
     app.tab.show('#view-home');
@@ -277,6 +277,13 @@ function onBackKey() {
 
 document.addEventListener('deviceready', function() {
   document.addEventListener('backbutton', onBackKey, false);
+
+  /*
+   * Set the API version in the app and check if the version coincides with the 
+   * web API version using the function "checkAPIVersion" defined in check_version.js.
+   */
+  var appAPIVersion = '1.0';
+  checkAPIVersion(appAPIVersion);
 }, false);
 
 // Statusbar colors

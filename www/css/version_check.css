@@ -1,0 +1,62 @@
+.background-overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  animation: bg_animation 10s infinite linear;
+}
+
+.popup {
+  background-image: url(../img/login-background_full.png);
+}
+
+.popup .popup-title {
+  font-size: 25px;
+}
+
+.popup-text {
+  font-size: 17px;
+  color: white;
+}
+
+#store-button {
+  margin-top: 45px;
+  background: #eb7125;
+  font-size: 17px;
+  height: 40px;
+  padding-top: 3px;
+}
+
+.smiley {
+  font-size: 100px;
+  color: white;
+  position: absolute;
+  bottom: 0;
+}
+
+.smiley-container {
+  position: relative;
+  height: 50vh;
+  width: 100%;
+  margin-bottom: 25px;
+}
+
+.smiley-container.easter {
+  height: 90vh;
+}
+
+@keyframes bg_animation {
+  0% {
+    background-color: rgba(255,125,125,0.4);
+  }
+  33% {
+    background-color: rgba(125,255,255,0.2);
+  }
+  67% {
+    background-color: rgba(239,109,255,0.2);
+  }
+  100% {
+    background-color: rgba(255,125,125,0.4);
+  }
+}

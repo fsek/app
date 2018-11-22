@@ -30,8 +30,10 @@
     <link rel="stylesheet" href="css/user_page.css">
     <link rel="stylesheet" href="css/songbook.css">
     <link rel="stylesheet" href="css/contact.css">
+    <link rel="stylesheet" href="css/version_check.css">
     <!--<link rel="stylesheet" href="css/nollning.css">
     <link rel="stylesheet" href="css/adventures.css">-->
+
   </head>
   <body class="color-theme-orange">
     <div id="app">
@@ -916,6 +918,22 @@
           </div>
         {{/each}}
       </script>
+
+      <script type="text/template7" id="versionCheckTemplate">
+        <div class="popup popup-version-check">
+          <div class="background-overlay"></div>
+          <div class="block">
+            <div class="smiley-container {{#if easter}}easter{{/if}}">
+              <div class="smiley">( •_•)</div>
+            </div>
+            {{#unless easter}}
+              <div class="popup-text popup-title">Oh no!</div>
+              <div class="popup-text">Du har en gammal version av F-appen. Var snäll och uppdatera!</div>
+              <a id="store-button" class="external button button-fill" href="{{appLink}}" target="_blank">Uppdatera</a>
+            {{/unless}}
+          </div>
+        </div>
+      </script>
     </section>
 
     <!-- External JS Libraries -->
@@ -950,6 +968,8 @@
     <script type="text/javascript" src="js/user_page.js"></script>
     <script type="text/javascript" src="js/songbook.js"></script>
     <script type="text/javascript" src="js/contact.js"></script>
+    <script type="text/javascript" src="js/version_check.js"></script>
+    <script type="text/javascript" src="js/about_app.js"></script>
     <!--
     <script type="text/javascript" src="js/adventures.js"></script>
     <script type="text/javascript" src="js/nollning.js"></script>-->
@@ -970,10 +990,10 @@
                          |          \__      /       |
                          \__                       __/
          _____              \       _      _      /
-        / _ _ \              \_____/ |    | \____/
+        / _ _ \  <--Fredrik  \_____/ |    | \____/
        |  o o  |                |    |    |
        | \___/ |                |    |    |       __
-        \_____/                 |    |    |      |OO|
+        \_____/                 |    |    |      |OO| <--Owlof
            |                  / | \  |    |___/__\__/__
        ____|____            \_\(_)/_/|    |       VV
            |                 _//"\\_ |    |

@@ -104,7 +104,7 @@ a.day-content-event {
   color: #eb7125;
 }
 
-.day-content-event .date, .day-content-event .location{
+.day-content-event .date, .day-content-event .location, .day-content-event .signup{
   margin: 0;
   margin-bottom: 5px;
 }
@@ -118,6 +118,28 @@ a.day-content-event {
 .day-content-event .location i{
   padding-left: 2px;
   padding-right: 5px;
+}
+
+.day-content-event .signup i{
+  font-size: 18px;
+  padding-right: 2px;
+}
+
+.day-content-event .fa-user {
+  color: #eb7125;
+  padding-right: 5px !important;
+}
+
+.day-content-event .fa-check-circle {
+  color: #4e9d2d;
+}
+
+.day-content-event .fa-question-circle, .day-content-event {
+  color: #eb7125;
+}
+
+.day-content-event .fa-times-circle, .day-content-event .fa-exclamation-circle {
+  color: #e74c3c;
 }
 
 #view-calendar .navbar .left {

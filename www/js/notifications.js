@@ -27,6 +27,10 @@ $$('#noti-btn').on('click', function() {
 });
 
 $$('#view-notifications .ptr-content').on('ptr:refresh', function() {
+  if (!infNotificationScroll) {
+    infNotificationScroll = true;
+    app.infiniteScroll.create($$('#view-notifications .infinite-scroll-content'));
+  }
   getNotifications(true);
 });
 

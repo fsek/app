@@ -122,24 +122,25 @@ function initEventPage(eventData) {
     }
 
     // Save the registered text + icon depedning if registered and if signup is closed. We also save the registered group name
+    let registeredStatus, registeredStatusIcon;
     if (eventData.event_user != null) {
       if (eventData.event_signup.closed) {
         if (eventData.event_user.reserve) {
-          var registeredStatusIcon = 'fa-times-circle';
-          var registeredStatus = 'Du fick tyvärr ingen plats till eventet';
+          registeredStatusIcon = 'fa-times-circle';
+          registeredStatus = 'Du fick tyvärr ingen plats till eventet';
         } else {
-          var registeredStatusIcon = 'fa-check-circle';
-          var registeredStatus = 'Du är anmäld och har fått en plats till eventet!';
+          registeredStatusIcon = 'fa-check-circle';
+          registeredStatus = 'Du är anmäld och har fått en plats till eventet!';
         }
       } else {
-        var registeredStatusIcon = 'fa-question-circle';
-        var registeredStatus = 'Du är anmäld till eventet! Kom tillbaka hit när anmälan har stängt för att se om du fått en plats';
+        registeredStatusIcon = 'fa-question-circle';
+        registeredStatus = 'Du är anmäld till eventet! Kom tillbaka hit när anmälan har stängt för att se om du fått en plats';
       }
 
       eventData.event_user.group_name = getGroupName(eventData.groups, eventData.event_user.group_id, eventData.event_user.group_custom);
     } else {
-      var registeredStatusIcon = 'fa-exclamation-circle';
-      var registeredStatus = 'Du är inte anmäld';
+      registeredStatusIcon = 'fa-exclamation-circle';
+      registeredStatus = 'Du är inte anmäld';
     }
     eventData.registered_status_icon = registeredStatusIcon;
     eventData.registered_status = registeredStatus;
@@ -150,14 +151,14 @@ function initEventPage(eventData) {
       var foodPreferences = [];
       for (foodPref of $.auth.user.food_preferences) {
         // Sometimes an empty preference comes from the website's form
-        if (foodPref != '') {
+        if (foodPref !== '') {
           foodPreferences.push(foodPref);
         }
       }
 
       // Add the custom food pref to the rest if exists
       var foodPrefCustom = $.auth.user.food_custom;
-      if (foodPrefCustom != '' && foodPrefCustom != null) {
+      if (foodPrefCustom !== '' && foodPrefCustom != null) {
         foodPreferences.push(foodPrefCustom.toLowerCase());
       }
 
@@ -326,7 +327,7 @@ function initEventPage(eventData) {
           url: API + '/events/' + eventData.id + '/event_users/' + eventData.event_user.id,
           type: 'DELETE',
           dataType: 'json',
-          success: function(resp) {
+          success: function() {
             app.dialog.alert('Du är nu avanmäld från eventet', 'Avanmälan');
             updateSignupContent(eventData);
           },
@@ -346,7 +347,7 @@ function initEventPage(eventData) {
           var customGroup = $('input[name="group-custom"]').val();
         }
 
-        if (eventData.event_signup.question != '') {
+        if (eventData.event_signup.question !== '') {
           app.dialog.prompt(eventData.event_signup.question, 'Anmälan', function (answer) {
             signupToEvent(eventData, answer, customGroup);
           });
@@ -370,7 +371,7 @@ function initEventPage(eventData) {
           user_type: eventData.selected_user_type
         }
       },
-      success: function(resp) {
+      success: function() {
         app.dialog.alert('Du är nu anmäld till eventet', 'Anmälan');
         updateSignupContent(eventData);
       },
@@ -393,12 +394,26 @@ function initEventPage(eventData) {
         var groupContainer = $('#event-signup-group');
         var groupCustomContainer = $('#event-signup-groupcustom');
 
+        // Find the event index in the calendar
+        let index = 0, arr = app.calendar.get().params.events;
+        for (i = 0; i < arr.length; i++) {
+          if (arr[i].id === eventData.id) {
+            index = i;
+          }
+        }
+
         if (eventData.event_user != null) {
           // Update registered text + icon from ! to ?
-          registeredStatusContainer.find('.item-inner-title').html('Du är anmäld till eventet! Kom tillbaka hit när anmälan har stängt för att se om du fått en plats');
+          registeredStatusContainer.find('.item-title').html('Du är anmäld till eventet! Kom tillbaka hit när anmälan har stängt för att se om du fått en plats');
+
           var icon = registeredStatusContainer.find('.item-media i');
           icon.removeClass('fa-exclamation-circle');
           icon.addClass('fa-question-circle');
+
+          // Update the event data of the calender with the new registration status
+          app.calendar.get().params.events[index].registered_status_icon = 'fa-question-circle';
+          app.calendar.get().params.events[index].registered_status = 'Du är anmäld, men inte fått en plats än';
+          app.calendar.get().eventsListeners.dayClick[0](app.calendar.get(), $('.calendar-day-selected')[0]);
 
           // Update user count
           userCountContainer.html('Anmälda: ' + eventData.event_user_count);
@@ -449,6 +464,11 @@ function initEventPage(eventData) {
           var icon = registeredStatusContainer.find('.item-media i');
           icon.removeClass('fa-question-circle');
           icon.addClass('fa-exclamation-circle');
+
+          // Update the event data of the calender with the new registration status
+          app.calendar.get().params.events[index].registered_status_icon = 'fa-exclamation-circle';
+          app.calendar.get().params.events[index].registered_status = 'Du är inte anmäld';
+          app.calendar.get().eventsListeners.dayClick[0](app.calendar.get(), $('.calendar-day-selected')[0]);
 
           // Update user count
           userCountContainer.html('Anmälda: ' + eventData.event_user_count);

@@ -53,6 +53,7 @@ function initCalendar(page) {
           const eventDate = new Date(event.start);
           const dayContainer = findDay(eventDate, monthContainers);
           dayContainer.addClass('calendar-day-has-events');
+          setRegisteredStatus(event);
 
           if (eventDate.getMonth() === p.currentMonth) {
             event.end = new Date(event.end);
@@ -127,5 +128,34 @@ function initCalendar(page) {
     return monthContainers.find('.calendar-day[data-year="' + date.getFullYear() + '"]' +
                                                     '[data-month="' + date.getMonth() + '"]' +
                                                     '[data-day="' + date.getDate() + '"]');
+  }
+}
+
+function setRegisteredStatus(eventData) {
+  // Runs when the a calendar month is loaded
+  if (eventData.has_signup) {
+    let eventSignup = eventData.event_signup;
+    eventSignup.opens = new Date(eventSignup.opens);
+    signupCloses = new Date(eventSignup.closes);
+    let registeredStatus, registeredStatusIcon;
+    if (eventData.event_user != null) {
+      if (signupCloses < new Date()) {
+        if (eventData.event_user.reserve) {
+          registeredStatusIcon = 'fa-times-circle';
+          registeredStatus = 'Du fick tyvärr ingen plats';
+        } else {
+          registeredStatusIcon = 'fa-check-circle';
+          registeredStatus = 'Du har fått en plats!';
+        }
+      } else {
+        registeredStatusIcon = 'fa-question-circle';
+        registeredStatus = 'Du är anmäld, men inte fått en plats än';
+      }
+    } else {
+      registeredStatusIcon = 'fa-exclamation-circle';
+      registeredStatus = 'Du är inte anmäld';
+    }
+    eventData.registered_status_icon = registeredStatusIcon;
+    eventData.registered_status = registeredStatus;
   }
 }

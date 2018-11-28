@@ -10,7 +10,7 @@
 
     <!-- Material/iOS stylesheets. Will be replaced on deploy -->
     <link rel="stylesheet" href="lib/framework7/css/framework7.min.css">
-    <link rel="stylesheet" href="css/ios-overrides.css">
+    <link rel="stylesheet" href="css/material-overrides.css">
 
     <!-- General stylesheets -->
     <link rel="stylesheet" href="css/font-awesome.min.css">
@@ -146,12 +146,15 @@
                     <div class="preloader"></div>
                   </div>
                 </div>
-                <div id="subtab-event" class="tab subtab page-content ptr-content">
+                <div id="subtab-event" class="tab subtab infinite-scroll-content page-content ptr-content">
                   <div id="event-ptr-preloader" class="ptr-preloader">
                     <div class="preloader"></div>
                     <div class="ptr-arrow"></div>
                   </div>
                   <div class="subtab-list" id="event-list"></div>
+                  <div class="infinite-scroll-preloader">
+                    <div class="preloader"></div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -482,6 +485,17 @@
                     <i class="fa fa-map-marker" aria-hidden="true"></i>
                     {{location}}
                   </p>
+                  {{#if has_signup}}
+                    <p class="signup">
+                      {{#if signup_not_opened_yet}}
+                        <i class="fa fa-user" aria-hidden="true"></i>
+                        Öppnar {{event_signup.opens.timeDateString()}}
+                      {{else}}
+                        <i class="fa {{registered_status_icon}}" aria-hidden="true"></i>
+                        {{registered_status}}
+                      {{/if}}
+                    </p>
+                  {{/if}}
                 </div>
               </div>
             </a>
@@ -622,7 +636,7 @@
                           <i class="fa fa-user" aria-hidden="true"></i>
                         </div>
                         <div id="event-usercount" class="item-inner">
-                          <div classs="item-title">Anmälda: {{event_user_count}}</div>
+                          <div class="item-title">Anmälda: {{event_user_count}}</div>
                         </div>
                       </li>
                     {{/if}}

@@ -4,12 +4,14 @@ jobs:
     machine:
       enabled: true
     steps:
+      - add_ssh_keys
       - checkout
       - run: ./deploy/master
   build_production:
     machine:
       enabled: true
     steps:
+      - add_ssh_keys
       - checkout
       - run: ./deploy/production
 

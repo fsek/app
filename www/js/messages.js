@@ -65,7 +65,7 @@ function initMessages(head, query) {
 
   // Set group name
   $('#messages-group-name').html(query.groupName);
-  app.navbar.size($('#view-nollning .navbar'));
+  app.navbar.size($('#view-groups .navbar'));
 
   // Initialize Framework7 message bar
   const msgBar = app.messagebar.create({

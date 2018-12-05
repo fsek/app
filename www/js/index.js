@@ -153,7 +153,7 @@ var calendarView = app.views.create('#view-calendar', {
  *});
  */
 
-var messagesView = app.views.create('#view-groups', {
+var groupsView = app.views.create('#view-groups', {
   routesAdd: [
     {
       name: 'messages',

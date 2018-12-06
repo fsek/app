@@ -10,7 +10,7 @@
 
     <!-- Material/iOS stylesheets. Will be replaced on deploy -->
     <link rel="stylesheet" href="lib/framework7/css/framework7.min.css">
-    <link rel="stylesheet" href="css/material-overrides.css">
+    <link rel="stylesheet" href="css/ios-overrides.css">
 
     <!-- General stylesheets -->
     <link rel="stylesheet" href="css/font-awesome.min.css">
@@ -800,7 +800,7 @@
           {{#group}}
             <li {{#js_compare "this.group_user.unread_count > 0"}} class="unread"{{/js_compare}}
                 data-unread="{{group_user.unread_count}}">
-              <a href="messages/{{id}}/{{name}}" class="item-link item-content">
+              <a href="/messages/{{id}}/{{name}}" class="item-link item-content">
                 <div class="item-inner">
                   <div class="item-title-row">
                     <div class="item-title">{{name}}</div>

@@ -11,7 +11,8 @@ $$(document).on('page:init', '.page[data-name="gallery"]', function () {
 function initGallery(albums) {
   applyTemplate(albums);
 
-  var changedYear = false;
+  let displayedYear = albums[0].years[0];
+
   var yearPicker = app.picker.create({
     inputEl: '#year-picker',
     cols: [
@@ -21,14 +22,12 @@ function initGallery(albums) {
       }
     ],
     on: {
-      open: function() {
-        changedYear = false;
-      },
-      change: function() {
-        changedYear = true;
-      },
-      close: function () {
-        if (changedYear) { 
+      close: function (picker) {
+        let selectedValue = parseInt(picker.value[0], 10);
+
+        if (selectedValue !== displayedYear) { 
+          displayedYear = selectedValue;
+
           $.getJSON(API + '/gallery?year=' + yearPicker.value[0])
             .done(function(resp) {
               applyTemplate(resp.albums);
@@ -45,7 +44,11 @@ function initGallery(albums) {
 
 function applyTemplate(albums) {
   for (var album of albums) {
-    album.thumb = BASE_URL + album.thumb;
+    if (album.thumb === null) {
+      album.thumb = 'img/missing_thumb.png';
+    } else {
+      album.thumb = BASE_URL + album.thumb;
+    }
   }
 
   var templateHTML = app.templates.galleryTemplate({'album': albums});

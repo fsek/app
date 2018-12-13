@@ -16,12 +16,11 @@ function initAlbums(album) {
     image.file.large.url = BASE_URL + image.file.large.url;
     imageList.push(image.file.large.url);
   }
-
   var templateHTML = app.templates.albumTemplate({
-    'title': album.translations[1].title,
+    'title': album.title,
     'image': album.images,
     'photographers': album.photographers.length === 0 ? false : album.photographers,
-    'description': album.translations[1].description
+    'description': album.description
   });
 
   $('.album-content').html(templateHTML);
@@ -29,7 +28,15 @@ function initAlbums(album) {
   var imageBrowser = app.photoBrowser.create({
     photos: imageList,
     swipeToClose: false,
-    theme: 'dark'
+    theme: 'dark',
+    on: {
+      open: function() {
+        StatusBar.backgroundColorByHexString('#000000');
+      },
+      close: function() {
+        StatusBar.backgroundColorByHexString(mainBarColor);
+      }
+    }
   });
 
   $$('.album-imageBrowser').on('click', function () {

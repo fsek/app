@@ -35,7 +35,7 @@ var app = new Framework7({
 var $$ = Dom7;
 
 // API URLS
-const BASE_URL = 'https://stage.fsektionen.se';
+const BASE_URL = 'https://fsektionen.se';
 const API = BASE_URL + '/api';
 const AC_URL = 'wss://stage.fsektionen.se/cable';
 

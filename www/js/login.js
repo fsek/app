@@ -115,7 +115,6 @@ $$(document).on('page:init', '.page[data-name="login"]', function () {
   });
 });
 
-
 function afterSignIn() {
   // Fix statusbar and close splash
   document.addEventListener('deviceready', function() {
@@ -125,6 +124,9 @@ function afterSignIn() {
   }, false);
 
   loginScreen.close();
+
+  //Checks if user has accepted the latest terms and prompts them if they have not
+  checkTermsVersion(termsVersion);
 
   // Show home tab with news (needs to be done if an user logs out)
   app.tab.show('#view-home');

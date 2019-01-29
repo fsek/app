@@ -20,6 +20,29 @@
   color: white;
 }
 
+.popup-terms {
+  .block-title {
+    color: $fsek-orange;
+    font-size: 22px;
+    font-weight: bold;
+    margin-top: 45%;
+  }
+
+  a.item-link {
+    color: $fsek-orange;
+  }
+
+  .button.accept-terms {
+    background-color: $fsek-orange;
+    color: $white;
+    font-size: 17px;
+    height: 40px;
+    margin-top: 45px;
+    padding-top: 3px;
+  }
+
+}
+
 #store-button {
   margin-top: 45px;
   background: $fsek-orange;
@@ -30,7 +53,7 @@
 
 .smiley {
   font-size: 100px;
-  color: white;
+  color: $white;
   position: absolute;
   bottom: 0;
 }

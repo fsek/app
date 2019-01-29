@@ -35,12 +35,16 @@ var app = new Framework7({
 var $$ = Dom7;
 
 // API URLS
-const BASE_URL = 'https://stage.fsektionen.se';
+const BASE_URL = 'https://fsektionen.se';
 const API = BASE_URL + '/api';
 const AC_URL = 'wss://stage.fsektionen.se/cable';
 
 // ActionCable Token URL
 const AC_TOKEN_URL = API + '/messages/new_token';
+
+// GDPR terms version
+var termsVersion;
+var apiVersion;
 
 // Configure jToker
 $.auth.configure({
@@ -276,7 +280,7 @@ function onBackKey() {
     } else {
       navigator.app.exitApp();
     }
-  } else if ($$('.popover.modal-in').length) {
+  } else if ($$('.popover.modal-in').length && !$$('.popup-terms').length) {
     app.popover.close('.popover.modal-in');
   } else if ($$('.popup').length && !$$('.popup-version-check').length) {
     app.popup.close('.popup');
@@ -287,15 +291,21 @@ function onBackKey() {
   }
 }
 
+/*
+ * Set the API version in the app and check if the version coincides with the
+ * web API version using the function "checkAPIVersion" defined in check_version.js.
+ */
 document.addEventListener('deviceready', function() {
   document.addEventListener('backbutton', onBackKey, false);
-
-  /*
-   * Set the API version in the app and check if the version coincides with the 
-   * web API version using the function "checkAPIVersion" defined in check_version.js.
-   */
-  var appAPIVersion = '1.0';
-  checkAPIVersion(appAPIVersion);
+  $.getJSON(API + '/versions')
+    .done(function(resp) {
+      termsVersion = resp.terms_version;
+      console.log(termsVersion);
+      apiVersion = resp.api_version;
+      console.log(apiVersion);
+      console.log(resp);
+      checkAPIVersion();
+    });
 }, false);
 
 // Statusbar colors

@@ -925,8 +925,8 @@
         {{/each}}
       </script>
 
-    <script type="text/template7" id="versionCheckTemplate">
-        <div class="popup popup-version-check">
+    <script type="text/template7" id="apiVersionTemplate">
+        <div class="popup popup-version-check popup-tablet-fullscreen">
           <div class="background-overlay"></div>
           <div class="block">
             <div class="smiley-container {{#if easter}}easter{{/if}}">
@@ -977,7 +977,23 @@
           {{/each image}}
         </div>
       </script>
-  </section>
+
+      <script type="text/template7" id="termsVersionTemplate">
+        <div class="popup popup-terms popup-tablet-fullscreen">
+          <div class="background-overlay"></div>
+          <div class="block-title">Sekretessvillkor</div>
+           <div class="block">
+             <div class="popup-text"> Du behöver läsa igenom och godkänna den senaste versionen av F-sektionens sekretessvillkor innan du kan fortsätta. Sekretessvillkoren finns att läsa
+              <a class="item-link external" target="_blank"
+                           href="https://fsektionen.se/sekretess">här</a>
+              <a class="link button accept-terms popup-close" href="#">Jag accepterar</a>
+            </div>
+          </div>
+        </div>
+
+      </script>
+    </section>
+
 
   <!-- External JS Libraries -->
   <script type="text/javascript" src="cordova.js"></script>
@@ -1015,9 +1031,10 @@
   <script type="text/javascript" src="js/about_app.js"></script>
   <script type="text/javascript" src="js/gallery.js"></script>
   <script type="text/javascript" src="js/album.js"></script>
+
   <!--
-    <script type="text/javascript" src="js/adventures.js"></script>
-    <script type="text/javascript" src="js/nollning.js"></script>-->
+  <script type="text/javascript" src="js/adventures.js"></script>
+  <script type="text/javascript" src="js/nollning.js"></script>-->
 </body>
 
 </html>

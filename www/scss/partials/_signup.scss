@@ -6,7 +6,7 @@
 }
 
 .signup-title {
-  color: #fff;
+  color: $white;
   font-size: 24px;
   font-weight: bold;
   padding-top: 30px;
@@ -47,16 +47,16 @@
 }
 
 .signup-content .item-input input {
-  color: #fff !important;
+  color: $white !important;
   margin-left: 10px;
 }
 
 .signup-content ::-webkit-input-placeholder {
-  color: #fff !important;
+  color: $white !important;
 }
 
 .signup-content i {
-  color: #eb7125;
+  color: $fsek-orange;
   font-size: 25px;
 }
 
@@ -77,10 +77,10 @@
   width: 90%;
   margin-left: 5%;
   margin-top: 10px;
-  background: #eb7125;
-  border-color: #eb7125 !important;
+  background: $fsek-orange;
+  border-color: $fsek-orange !important;
   border-radius: 25px !important;
-  color: #fff !important;
+  color: $white !important;
 }
 
 .signup-btn.active-state {
@@ -88,13 +88,13 @@
 }
 
 .signup-footer {
-  color: #fff;
+  color: $white;
   text-align: center;
   margin-top: auto;
   margin-bottom: 7px;
 }
 
 .signup-footer a {
-  color: #eb7125 !important;
+  color: $fsek-orange !important;
   font-weight: bold;
 }

@@ -10,19 +10,19 @@
 
 .calendar .calendar-week-header {
   height: 20px;
-  color: #eb7125;
+  color: $fsek-orange;
 }
 
 .calendar .calendar-day-selected span{
-  background-color: #eb7125 !important;
+  background-color: $fsek-orange !important;
 }
 
 .calendar .calendar-day-today:not(.calendar-day-selected) span{
-  color: #eb7125 !important;
+  color: $fsek-orange !important;
 }
 
 .calendar .calendar-day-has-events.calendar-day-today span:after{
-  background: #eb7125 !important;
+  background: $fsek-orange !important;
 }
 
 .calendar .calendar-day-has-events span:after{
@@ -44,8 +44,8 @@
   height: 23px;
   min-height: 23px;
   padding: 5px 0 2px 10px;
-  background-color: #eb7125;
-  color: #fff;
+  background-color: $fsek-orange;
+  color: $white;
   font-weight: bold;
 }
 
@@ -71,9 +71,9 @@
 }
 
 a.day-content-event {
-  color: #eb7125 !important;
+  color: $fsek-orange !important;
   display: block;
-  background-color: #fff;
+  background-color: $white;
   margin: 7px 10px !important;
 }
 
@@ -101,7 +101,7 @@ a.day-content-event {
 }
 
 .day-content-event i.icon{
-  color: #eb7125;
+  color: $fsek-orange;
 }
 
 .day-content-event .date, .day-content-event .location, .day-content-event .signup{
@@ -111,7 +111,7 @@ a.day-content-event {
 
 .day-content-event .date i, .day-content-event .location i{
   font-size: 18px;
-  color: #eb7125;
+  color: $fsek-orange;
   padding-right: 2px;
 }
 
@@ -126,7 +126,7 @@ a.day-content-event {
 }
 
 .day-content-event .fa-user {
-  color: #eb7125;
+  color: $fsek-orange;
   padding-right: 5px !important;
 }
 
@@ -135,7 +135,7 @@ a.day-content-event {
 }
 
 .day-content-event .fa-question-circle, .day-content-event {
-  color: #eb7125;
+  color: $fsek-orange;
 }
 
 .day-content-event .fa-times-circle, .day-content-event .fa-exclamation-circle {

@@ -1,7 +1,7 @@
 .about-title {
   font-size: 24px;
   font-weight: bold !important;
-  color: #eb7125 !important;
+  color: $fsek-orange !important;
   overflow: visible;
 }
 
@@ -10,7 +10,7 @@
 }
 
 .contributor-title {
-  color: #eb7125;
+  color: $fsek-orange;
   font-weight: bold;
   margin: 0;
 }
@@ -22,11 +22,10 @@
 
 .signout-btn {
   background-color: #e74c3c;
-  color: #fff !important;
+  color: $white !important;
   margin-bottom: 20px;
 }
 
 .signout-btn.active-state {
   background-color: #a73529 !important;
 }
-

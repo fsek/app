@@ -19,6 +19,12 @@ sed -i 's/stage.fsektionen.se/fsektionen.se/' ./www/js/index.js
 rm ./google-services.json
 rm ./GoogleService-Info.plist
 cp ./production_data/google-services.json ./google-services.json
+
+gulp compile
+rm -rf 'www/scss'
+rm 'start.js'
+rm 'gulpfile.js'
+
 git add -A
 git commit -m 'Automatic Android Production deploy'
 git push -f origin production:production-android
@@ -37,6 +43,11 @@ rm ./google-services.json
 rm ./GoogleService-Info.plist
 cp ./production_data/GoogleService-Info.plist ./GoogleService-Info.plist
 
+gulp compile
+rm -rf 'www/scss'
+rm 'start.js'
+rm 'gulpfile.js'
+
 git add -A
 git commit -m 'Automatic iOS Production deploy'
 git push -f origin production:production-ios
@@ -44,7 +55,7 @@ git reset --hard origin/production
 
 ### DEPLOY TO PHONEGAP BUILD
 curl spindelman@fsektionen.se -X PUT -d 'data={"pull":"true"}' \
-  "https://build.phonegap.com/api/v1/apps/2759564?auth_token=${phonegap_build_token}"
+"https://build.phonegap.com/api/v1/apps/2759564?auth_token=${phonegap_build_token}"
 
 curl spindelman@fsektionen.se -X PUT -d 'data={"pull":"true"}' \
-  "https://build.phonegap.com/api/v1/apps/2759566?auth_token=${phonegap_build_token}"
+"https://build.phonegap.com/api/v1/apps/2759566?auth_token=${phonegap_build_token}"

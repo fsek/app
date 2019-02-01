@@ -19,7 +19,7 @@
   width: 100%;
   height: 52vw;
   padding-top: 26px;
-  background-color: #eb7125;
+  background-color: $fsek-orange;
 }
 
 .user-container p {
@@ -41,7 +41,7 @@
 
 .user-content .item-title {
   width: auto;
-  min-width: 45%;    
+  min-width: 45%;
   max-width: 80%;
   white-space: initial;
 }

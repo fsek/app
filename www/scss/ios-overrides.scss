@@ -1,3 +1,5 @@
+@import 'partials/variables';
+
 .messages-auto-layout .message-label.message-updated {
   display: inline;
   margin-bottom: 10px;
@@ -16,7 +18,7 @@
 }
 
 .calendar, .calendar .calendar-week-header {
-  background-color: #fff;
+  background-color: $white;
 }
 
 .calendar-page .calendar-day-today span {
@@ -24,7 +26,7 @@
 }
 
 .calendar-page .calendar-custom-toolbar {
-  background-color: #eb7125;
+  background-color: $fsek-orange;
 }
 
 #event-signup-groupcustom, .event-signup-container .input-showing{
@@ -37,7 +39,7 @@
 
 
 .ios .navbar i.icon, .ios .navbar a{
-  color: #fff;
+  color: $white;
 }
 
 .ios ul.no-groups {
@@ -45,7 +47,7 @@
 }
 
 .tabbar{
-  background: #eb7125 !important;
+  background: $fsek-orange !important;
   color: #ffe0b3;
 }
 
@@ -105,7 +107,7 @@
 }
 
 .user-content {
-  /*background: linear-gradient(to bottom,#eb7125 60%, #efeff4 61%);*/
+  /*background: linear-gradient(to bottom,$fsek-orange 60%, #efeff4 61%);*/
   background-image: url("../img/RoosterxHen.png");
   background-size: contain;
   background-repeat: no-repeat;

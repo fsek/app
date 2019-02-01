@@ -25,12 +25,12 @@ img.login-logo {
 
 img.login-logo-spin {
   transition: 1.5s;
-  transform:rotate(720deg);
+  transform: rotate(720deg);
 }
 
 .login-container .list ul {
   width: 80vw;
-  color: #FFF;
+  color: $white;
   background: none;
   max-width: 480px;
 }
@@ -56,16 +56,16 @@ img.login-logo-spin {
 }
 
 .login-screen-content .item-input input {
-  color: #fff !important;
+  color: $white !important;
   margin-left: 10px;
 }
 
 .login-screen-content ::-webkit-input-placeholder {
-  color: #fff !important;
+  color: $white !important;
 }
 
 .login-screen-content i {
-  color: #eb7125;
+  color: $fsek-orange;
   font-size: 25px;
   margin: auto;
 }
@@ -81,7 +81,7 @@ img.login-logo-spin {
 .login-btn {
   width: 96%;
   margin-left: 2%;
-  background: #eb7125;
+  background: $fsek-orange;
   border-radius: 25px;
   padding: 0 !important;
   text-align: center;
@@ -92,7 +92,7 @@ img.login-logo-spin {
 }
 
 .login-btn i {
-  color: #fff !important;
+  color: $white !important;
   font-size: 28px;
   vertical-align: -16%;
 }

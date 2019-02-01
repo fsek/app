@@ -16,7 +16,7 @@
 .adventures-subnavbar .tab-link {
   color: white !important;
   background-color: #1c4979;
-  border-color: #ffffff36 !important;
+  border-color: $whitefff36 !important;
 }
 
 .adventure-mission {
@@ -79,7 +79,7 @@
 }
 
 .adventures-current-progressbar span {
-  background-color: #eb7125 !important;
+  background-color: $fsek-orange !important;
 }
 
 /* ADVENTURE GROUP */
@@ -140,7 +140,7 @@
 }
 
 .adventure-group-progressbar span {
-  background-color: #eb7125 !important;
+  background-color: $fsek-orange !important;
 }
 
 .adventure-weeks-container {
@@ -224,7 +224,7 @@
   margin-left: 0 !important;
   padding-left: 16px;
   justify-content: space-evenly;
-  background: #fff;
+  background: $white;
 }
 
 .adventures-highscore-list .item-title-row {

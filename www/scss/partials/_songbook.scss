@@ -1,5 +1,5 @@
 .searchbar-songbook .searchbar-disable-button{
-  color: #eb7125 !important;
+  color: $fsek-orange !important;
 }
 
 #songbook-list {
@@ -18,12 +18,12 @@
 }
 
 .songbook-indexlist .list-index-label {
-  background: #eb7125 !important;
+  background: $fsek-orange !important;
 }
 
 .song-content .block-title{
   font-size: 27px;
-  color: #eb7125;
+  color: $fsek-orange;
   white-space: initial;
   line-height: initial;
 }
@@ -43,11 +43,11 @@
 }
 
 .song-content .block span{
-  color: #eb7125;
+  color: $fsek-orange;
 }
 
 .song-content .song-text {
-  background-color: #fff;
+  background-color: $white;
 }
 
 .song-content .song-text p:last-child{

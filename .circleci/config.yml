@@ -6,6 +6,7 @@ jobs:
     steps:
       - add_ssh_keys
       - checkout
+      - run: npm install --silent
       - run: ./deploy/master
   build_production:
     machine:
@@ -13,6 +14,7 @@ jobs:
     steps:
       - add_ssh_keys
       - checkout
+      - run: npm install --silent
       - run: ./deploy/production
 
 workflows:

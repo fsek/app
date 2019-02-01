@@ -3,7 +3,7 @@
 }
 
 .news-card .card-header {
-  color: #eb7125;
+  color: $fsek-orange;
   font-weight: bold;
 }
 
@@ -20,17 +20,17 @@
 }
 
 .home-subnavbar{
-  background-color: #eb7125 !important;
+  background-color: $fsek-orange !important;
 }
 
 .home-subnavbar .button {
-  border: 1px solid #fff !important;
-  color: #fff !important;
+  border: 1px solid $white !important;
+  color: $white !important;
 }
 
 .home-subnavbar .button.tab-link-active {
-  background-color: #fff !important;
-  color: #eb7125 !important;
+  background-color: $white !important;
+  color: $fsek-orange !important;
 }
 
 .subtab .infinite-scroll-preloader {
@@ -46,7 +46,7 @@
 
 #subtab-event .day-title {
   background-color: #f7f7f8;
-  color: #eb7125;
+  color: $fsek-orange;
   margin-top: 10px;
 }
 

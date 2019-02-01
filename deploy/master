@@ -11,6 +11,8 @@ git reset --hard origin/master
 sed -i '/<link rel="stylesheet"/s/ios/material/' ./www/index.html
 sed -i '/<platform name="ios">/,/<\/platform>/d' ./config.xml
 
+gulp compile
+
 git add -A
 git commit -m 'Automatic Android deploy'
 git push -f origin master:master-android
@@ -20,6 +22,8 @@ git reset --hard origin/master
 sed -i '/<link rel="stylesheet"/s/material/ios/' ./www/index.html
 sed -i '/<platform name="android">/,/<\/platform>/d' ./config.xml
 
+gulp compile
+
 git add -A
 git commit -m 'Automatic iOS deploy'
 git push -f origin master:master-ios
@@ -27,7 +31,7 @@ git reset --hard origin/master
 
 ### DEPLOY TO PHONEGAP BUILD
 curl spindelman@fsektionen.se -X PUT -d 'data={"pull":"true"}' \
-  "https://build.phonegap.com/api/v1/apps/2730428?auth_token=${phonegap_build_token}"
+"https://build.phonegap.com/api/v1/apps/2730428?auth_token=${phonegap_build_token}"
 
 curl spindelman@fsektionen.se -X PUT -d 'data={"pull":"true"}' \
-  "https://build.phonegap.com/api/v1/apps/2732905?auth_token=${phonegap_build_token}"
+"https://build.phonegap.com/api/v1/apps/2732905?auth_token=${phonegap_build_token}"

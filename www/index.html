@@ -1,186 +1,168 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui, viewport-fit=cover">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://stage.fsektionen.se https://fsektionen.se wss://fsektionen.se wss://stage.fsektionen.se gap://ready 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' https://stage.fsektionen.se https://fsektionen.se data:" />
-    <title>F-sektionen</title>
 
-    <!-- Material/iOS stylesheets. Will be replaced on deploy -->
-    <link rel="stylesheet" href="lib/framework7/css/framework7.min.css">
-    <link rel="stylesheet" href="css/ios-overrides.css">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://stage.fsektionen.se https://fsektionen.se wss://fsektionen.se wss://stage.fsektionen.se gap://ready 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' https://stage.fsektionen.se https://fsektionen.se data:" />
+  <title>F-sektionen</title>
 
-    <!-- General stylesheets -->
-    <link rel="stylesheet" href="css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/index.css">
-    <link rel="stylesheet" href="css/login.css">
-    <link rel="stylesheet" href="css/signup.css">
-    <link rel="stylesheet" href="css/reset_password.css">
-    <link rel="stylesheet" href="css/login_help_confirmation.css">
-    <link rel="stylesheet" href="css/error.css">
-    <link rel="stylesheet" href="css/calendar.css">
-    <link rel="stylesheet" href="css/notifications.css">
-    <link rel="stylesheet" href="css/messages.css">
-    <link rel="stylesheet" href="css/groups.css">
-    <link rel="stylesheet" href="css/event.css">
-    <link rel="stylesheet" href="css/home.css">
-    <link rel="stylesheet" href="css/alternatives.css">
-    <link rel="stylesheet" href="css/user_page.css">
-    <link rel="stylesheet" href="css/songbook.css">
-    <link rel="stylesheet" href="css/contact.css">
-    <link rel="stylesheet" href="css/version_check.css">
-    <link rel="stylesheet" href="css/gallery.css">
-    <link rel="stylesheet" href="css/album.css">
-    <!--<link rel="stylesheet" href="css/nollning.css">
-    <link rel="stylesheet" href="css/adventures.css">-->
-  </head>
-  <body class="color-theme-orange">
-    <div id="app">
-      <!-- Login screen -->
-      <div class="login-screen">
-          <div id="login" class="view">
-            <div data-name="login" class="page">
-              <div class="page-content login-screen-content">
-                <div class="login-container">
-                  <img class="login-logo" src="./img/f_logo.png"></img>
-                  <form id="login-form" class="list">
-                    <ul>
-                      <li class="item-content item-input">
-                        <div class="item-media">
-                           <i class="fa fa-envelope" aria-hidden="true"></i>
-                        </div>
-                        <div class="item-inner">
-                          <div class="item-input-wrap">
-                            <input type="email" name="email" placeholder="E-postadress">
-                          </div>
-                        </div>
-                      </li>
-                      <li class="item-content item-input">
-                        <div class="item-media">
-                          <i class="fa fa-lock" aria-hidden="true"></i>
-                        </div>
-                        <div class="item-inner">
-                          <div class="item-input-wrap">
-                            <input type="password" name="password" placeholder="Lösenord">
-                          </div>
-                        </div>
-                      </li>
-                      <li>
-                        <a href="#" class="item-link list-button login-btn disabled">
-                          <i class="fa fa-sign-in" aria-hidden="true"></i>
-                        </a>
-                      </li>
-                    </ul>
-                  </form>
-                </div>
-                <div class="login-footer row">
-                  <div class="col-45">
-                    <p><a href="/signup/">Skapa ett konto</a></p>
-                  </div>
-                  <div class="col-55">
-                    <p><a href="/reset_password/">Glömt ditt lösenord?</a></p>
-                  </div>
-                </div>
+  <!-- Material/iOS stylesheets. Will be replaced on deploy -->
+  <link rel="stylesheet" href="lib/framework7/css/framework7.min.css">
+  <link rel="stylesheet" href="compiled_css/ios-overrides.css">
+
+  <!-- General stylesheets -->
+  <link rel="stylesheet" href="compiled_css/font-awesome.min.css">
+  <link rel="stylesheet" href="compiled_css/index.css">
+</head>
+
+<body class="color-theme-orange">
+  <div id="app">
+    <!-- Login screen -->
+    <div class="login-screen">
+      <div id="login" class="view">
+        <div data-name="login" class="page">
+          <div class="page-content login-screen-content">
+            <div class="login-container">
+              <img class="login-logo" src="./img/f_logo.png"></img>
+              <form id="login-form" class="list">
+                <ul>
+                  <li class="item-content item-input">
+                    <div class="item-media">
+                      <i class="fa fa-envelope" aria-hidden="true"></i>
+                    </div>
+                    <div class="item-inner">
+                      <div class="item-input-wrap">
+                        <input type="email" name="email" placeholder="E-postadress">
+                      </div>
+                    </div>
+                  </li>
+                  <li class="item-content item-input">
+                    <div class="item-media">
+                      <i class="fa fa-lock" aria-hidden="true"></i>
+                    </div>
+                    <div class="item-inner">
+                      <div class="item-input-wrap">
+                        <input type="password" name="password" placeholder="Lösenord">
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <a href="#" class="item-link list-button login-btn disabled">
+                      <i class="fa fa-sign-in" aria-hidden="true"></i>
+                    </a>
+                  </li>
+                </ul>
+              </form>
+            </div>
+            <div class="login-footer row">
+              <div class="col-45">
+                <p><a href="/signup/">Skapa ett konto</a></p>
+              </div>
+              <div class="col-55">
+                <p><a href="/reset_password/">Glömt ditt lösenord?</a></p>
               </div>
             </div>
           </div>
         </div>
-      <!-- Tabs -->
-      <div class="views tabs">
-        <!-- Tabbar -->
-        <div class="toolbar tabbar">
-          <div class="toolbar-inner">
-            <a href="#view-home" id="home-btn" class="tab-link tab-link-active">
-              <i class="fa fa-home" aria-hidden="true"></i>
-            </a>
-            <a href="#view-calendar" id="cal-btn" class="tab-link">
-              <i class="fa fa-calendar" aria-hidden="true"></i>
-            </a>
-            <!--
+      </div>
+    </div>
+    <!-- Tabs -->
+    <div class="views tabs">
+      <!-- Tabbar -->
+      <div class="toolbar tabbar">
+        <div class="toolbar-inner">
+          <a href="#view-home" id="home-btn" class="tab-link tab-link-active">
+            <i class="fa fa-home" aria-hidden="true"></i>
+          </a>
+          <a href="#view-calendar" id="cal-btn" class="tab-link">
+            <i class="fa fa-calendar" aria-hidden="true"></i>
+          </a>
+          <!--
             <a href="#view-nollning" id="msg-btn" class="tab-link">
               <div class="moose-icon">
                 <span class="badge group-badge"></span>
               </div>
             </a>-->
-            <a href="#view-groups" id="msg-btn" class="tab-link">
-              <i class="fa fa-comments" aria-hidden="true">
-                <span class="badge" id="group-badge"></span>
-              </i>
-            </a>
-            <a href="#view-notifications" id="noti-btn" class="tab-link">
-              <i class="fa fa-bell" aria-hidden="true">
-                <span class="badge" id="notification-badge"></span>
-              </i>
-            </a>
-            <a href="#view-alternatives" class="tab-link">
-              <i class="fa fa-bars" aria-hidden="true"></i>
-            </a>
-          </div>
+          <a href="#view-groups" id="msg-btn" class="tab-link">
+            <i class="fa fa-comments" aria-hidden="true">
+              <span class="badge" id="group-badge"></span>
+            </i>
+          </a>
+          <a href="#view-notifications" id="noti-btn" class="tab-link">
+            <i class="fa fa-bell" aria-hidden="true">
+              <span class="badge" id="notification-badge"></span>
+            </i>
+          </a>
+          <a href="#view-alternatives" class="tab-link">
+            <i class="fa fa-bars" aria-hidden="true"></i>
+          </a>
         </div>
-        <!-- Tab 1 (Home) -->
-        <div id="view-home" class="view view-main tab tab-active">
-          <div data-name="home" class="page page-with-subnavbar">
-            <div class="navbar">
-              <div class="navbar-inner sliding">
-                <div class="title android-hide">Hem</div>
-                <div class="subnavbar home-subnavbar">
-                  <div class="subnavbar-inner">
-                    <div class="segmented segmented-raised">
-                      <a href="#subtab-news" class="button tab-link tab-link-active">Nyheter</a>
-                      <a href="#subtab-event" class="button tab-link">Evenemang</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="tabs-animated-wrap subtab-container">
-              <div class="tabs">
-                <div id="subtab-news" class="tab subtab tab-active infinite-scroll-content page-content ptr-content">
-                  <div id="news-ptr-preloader" class="ptr-preloader">
-                    <div class="preloader"></div>
-                    <div class="ptr-arrow"></div>
-                  </div>
-                  <div class="subtab-list" id="news-list"></div>
-                  <div class="infinite-scroll-preloader">
-                    <div class="preloader"></div>
-                  </div>
-                </div>
-                <div id="subtab-event" class="tab subtab infinite-scroll-content page-content ptr-content">
-                  <div id="event-ptr-preloader" class="ptr-preloader">
-                    <div class="preloader"></div>
-                    <div class="ptr-arrow"></div>
-                  </div>
-                  <div class="subtab-list" id="event-list"></div>
-                  <div class="infinite-scroll-preloader">
-                    <div class="preloader"></div>
+      </div>
+      <!-- Tab 1 (Home) -->
+      <div id="view-home" class="view view-main tab tab-active">
+        <div data-name="home" class="page page-with-subnavbar">
+          <div class="navbar">
+            <div class="navbar-inner sliding">
+              <div class="title android-hide">Hem</div>
+              <div class="subnavbar home-subnavbar">
+                <div class="subnavbar-inner">
+                  <div class="segmented segmented-raised">
+                    <a href="#subtab-news" class="button tab-link tab-link-active">Nyheter</a>
+                    <a href="#subtab-event" class="button tab-link">Evenemang</a>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-        <!-- Tab 2 (Calendar) -->
-        <div id="view-calendar" class="view tab">
-          <div data-name="calendar" class="page calendar-page">
-            <div class="navbar calendar-navbar">
-              <div class="navbar-inner sliding">
-                <div class="left">Månad År</div>
-                <div class="right">
-                  <a href="#" class="link">Idag</a>
+          <div class="tabs-animated-wrap subtab-container">
+            <div class="tabs">
+              <div id="subtab-news" class="tab subtab tab-active infinite-scroll-content page-content ptr-content">
+                <div id="news-ptr-preloader" class="ptr-preloader">
+                  <div class="preloader"></div>
+                  <div class="ptr-arrow"></div>
+                </div>
+                <div class="subtab-list" id="news-list"></div>
+                <div class="infinite-scroll-preloader">
+                  <div class="preloader"></div>
+                </div>
+              </div>
+              <div id="subtab-event" class="tab subtab infinite-scroll-content page-content ptr-content">
+                <div id="event-ptr-preloader" class="ptr-preloader">
+                  <div class="preloader"></div>
+                  <div class="ptr-arrow"></div>
+                </div>
+                <div class="subtab-list" id="event-list"></div>
+                <div class="infinite-scroll-preloader">
+                  <div class="preloader"></div>
                 </div>
               </div>
             </div>
-            <div id="calendar"></div>
-            <div class="row day-title"></div>
-            <div class="day-content">
-              <span class="preloader"></span>
-            </div>
           </div>
         </div>
-        <!-- Tab 3 (Nollning) -->
-        <!--<div id="view-nollning" class="view tab">
+      </div>
+      <!-- Tab 2 (Calendar) -->
+      <div id="view-calendar" class="view tab">
+        <div data-name="calendar" class="page calendar-page">
+          <div class="navbar calendar-navbar">
+            <div class="navbar-inner sliding">
+              <div class="left">Månad År</div>
+              <div class="right">
+                <a href="#" class="link">Idag</a>
+              </div>
+            </div>
+          </div>
+          <div id="calendar"></div>
+          <div class="row day-title"></div>
+          <div class="day-content">
+            <span class="preloader"></span>
+          </div>
+        </div>
+      </div>
+      <!-- Tab 3 (Nollning) -->
+      <!--<div id="view-nollning" class="view tab">
           <div data-name="nollning" class="page navbar-fixed">
             <div class="navbar android-hide">
               <div class="navbar-inner nollning-navbar sliding">
@@ -228,146 +210,146 @@
             </div>
           </div>
         </div>-->
-        <!-- Tab 3 (Messages) -->
-        <div id="view-groups" class="view tab">
-          <div data-name="groups" class="page navbar-fixed">
-            <div class="navbar android-hide">
-              <div class="navbar-inner sliding">
-                <div class="title">Meddelanden</div>
-              </div>
-            </div>
-            <div class="page-content ptr-content group-content">
-              <div class="ptr-preloader">
-                <div class="preloader"></div>
-                <div class="ptr-arrow"></div>
-              </div>
-              <div class="list media-list groups-list" id="groups-list">
-                <ul></ul>
-              </div>
+      <!-- Tab 3 (Messages) -->
+      <div id="view-groups" class="view tab">
+        <div data-name="groups" class="page navbar-fixed">
+          <div class="navbar android-hide">
+            <div class="navbar-inner sliding">
+              <div class="title">Meddelanden</div>
             </div>
           </div>
-        </div>
-        <!-- Tab 4 (Notifications) -->
-        <div id="view-notifications" class="view tab">
-          <div data-name="notifications" class="page">
-            <div class="navbar android-hide">
-              <div class="navbar-inner sliding">
-                <div class="title">Notifikationer</div>
-              </div>
+          <div class="page-content ptr-content group-content">
+            <div class="ptr-preloader">
+              <div class="preloader"></div>
+              <div class="ptr-arrow"></div>
             </div>
-            <div class="page-content infinite-scroll-content ptr-content">
-              <div class="ptr-preloader">
-                <div class="preloader"></div>
-                <div class="ptr-arrow"></div>
-              </div>
-              <div class="list media-list chevron-center notification-list" id="notification-list">
-                <ul></ul>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!--Tab 5 (Settings) -->
-        <div id="view-alternatives" class="view tab">
-          <div data-name="alternatives" class="page">
-            <div class="navbar android-hide">
-              <div class="navbar-inner sliding">
-                <div class="title">Alternativ</div>
-              </div>
-            </div>
-            <div class="page-content settings-content">
-              <div class="list">
-                <ul>
-                  <li>
-                    <a href="/songbook/" class="item-link">
-                      <div class="item-content">
-                        <div class="item-inner">
-                          <div class="item-title">Sångbok</div>
-                        </div>
-                      </div>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="/gallery/" class="item-link">
-                      <div class="item-content">
-                        <div class="item-inner">
-                          <div class="item-title">Bildgalleri</div>
-                        </div>
-                      </div>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="http://www.fwiki.se" class="item-link fwiki-link external" target="_blank">
-                      <div class="item-content">
-                        <div class="item-inner">
-                          <div class="item-title">F-wiki</div>
-                          <div class="item-after"> <i class="fa fa-external-link"></i></div>
-                        </div>
-                      </div>
-                    </a>
-                  </li>
-                </ul>
-              </div>
-              <div class="block-title">Om</div>
-              <div class="list">
-                <ul>
-                  <li>
-                    <a href="/about_section/" class="item-link">
-                      <div class="item-content">
-                        <div class="item-inner">
-                          <div class="item-title">F-sektionen</div>
-                        </div>
-                      </div>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="/about_app/" class="item-link">
-                      <div class="item-content">
-                        <div class="item-inner">
-                          <div class="item-title">F-appen</div>
-                        </div>
-                      </div>
-                    </a>
-                  </li>
-                </ul>
-              </div>
-              <div class="block-title">Inställningar</div>
-              <div class="list">
-                <ul>
-                  <li>
-                    <a href="/user_page/" class="item-link">
-                      <div class="item-content">
-                        <div class="item-inner">
-                          <div class="item-title">Konto</div>
-                        </div>
-                      </div>
-                    </a>
-                  </li>
-                </ul>
-              </div>
-              <div class="block-title">Support</div>
-              <div class="list">
-                <ul>
-                  <li>
-                    <a href="/contact/1" class="item-link">
-                      <div class="item-content">
-                        <div class="item-inner">
-                          <div class="item-title">Kontakt</div>
-                        </div>
-                      </div>
-                    </a>
-                  </li>
-                </ul>
-              </div>
-              <a href="#" class="button button-big signout-btn">Logga ut</a>
+            <div class="list media-list groups-list" id="groups-list">
+              <ul></ul>
             </div>
           </div>
         </div>
       </div>
+      <!-- Tab 4 (Notifications) -->
+      <div id="view-notifications" class="view tab">
+        <div data-name="notifications" class="page">
+          <div class="navbar android-hide">
+            <div class="navbar-inner sliding">
+              <div class="title">Notifikationer</div>
+            </div>
+          </div>
+          <div class="page-content infinite-scroll-content ptr-content">
+            <div class="ptr-preloader">
+              <div class="preloader"></div>
+              <div class="ptr-arrow"></div>
+            </div>
+            <div class="list media-list chevron-center notification-list" id="notification-list">
+              <ul></ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--Tab 5 (Settings) -->
+      <div id="view-alternatives" class="view tab">
+        <div data-name="alternatives" class="page">
+          <div class="navbar android-hide">
+            <div class="navbar-inner sliding">
+              <div class="title">Alternativ</div>
+            </div>
+          </div>
+          <div class="page-content settings-content">
+            <div class="list">
+              <ul>
+                <li>
+                  <a href="/songbook/" class="item-link">
+                    <div class="item-content">
+                      <div class="item-inner">
+                        <div class="item-title">Sångbok</div>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+                <li>
+                  <a href="/gallery/" class="item-link">
+                    <div class="item-content">
+                      <div class="item-inner">
+                        <div class="item-title">Bildgalleri</div>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+                <li>
+                  <a href="http://www.fwiki.se" class="item-link fwiki-link external" target="_blank">
+                    <div class="item-content">
+                      <div class="item-inner">
+                        <div class="item-title">F-wiki</div>
+                        <div class="item-after"> <i class="fa fa-external-link"></i></div>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div class="block-title">Om</div>
+            <div class="list">
+              <ul>
+                <li>
+                  <a href="/about_section/" class="item-link">
+                    <div class="item-content">
+                      <div class="item-inner">
+                        <div class="item-title">F-sektionen</div>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+                <li>
+                  <a href="/about_app/" class="item-link">
+                    <div class="item-content">
+                      <div class="item-inner">
+                        <div class="item-title">F-appen</div>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div class="block-title">Inställningar</div>
+            <div class="list">
+              <ul>
+                <li>
+                  <a href="/user_page/" class="item-link">
+                    <div class="item-content">
+                      <div class="item-inner">
+                        <div class="item-title">Konto</div>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div class="block-title">Support</div>
+            <div class="list">
+              <ul>
+                <li>
+                  <a href="/contact/1" class="item-link">
+                    <div class="item-content">
+                      <div class="item-inner">
+                        <div class="item-title">Kontakt</div>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <a href="#" class="button button-big signout-btn">Logga ut</a>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 
-    <!-- Templates -->
-    <section id="templates">
-      <!-- NOLLNING TEMPLATES
+  <!-- Templates -->
+  <section id="templates">
+    <!-- NOLLNING TEMPLATES
       <script type="text/template7" id="currentAdventureMissionsHeaderTemplate">
         <div class="adventures-current-title">
           Vecka {{week_number}} - {{title}}
@@ -456,7 +438,7 @@
       </script>
       -->
 
-      <script type="text/template7" id="contactTemplate">
+    <script type="text/template7" id="contactTemplate">
         <select name="contacts">
           {{#each contact}}
             {{#if selected}}
@@ -473,7 +455,7 @@
         </div>
       </script>
 
-      <script type="text/template7" id="dayTemplate">
+    <script type="text/template7" id="dayTemplate">
         {{#if hasEvents}}
           {{#each events}}
             <a href="/event/{{id}}/" class="card day-content-event">
@@ -515,7 +497,7 @@
         {{/if}}
       </script>
 
-      <script type="text/template7" id="dayTitleTemplate">
+    <script type="text/template7" id="dayTitleTemplate">
         <div class="day-title">
           {{#if date}}
             {{date.getDayMonthName()}}
@@ -523,7 +505,7 @@
         </div>
       </script>
 
-      <script type="text/template7" id="eventPageTemplate">
+    <script type="text/template7" id="eventPageTemplate">
         {{#event}}
           <div class="card event-info-container">
             <div class="card-header event-title">
@@ -819,7 +801,7 @@
         {{/event}}
       </script>
 
-      <script type="text/template7" id="groupTemplate">
+    <script type="text/template7" id="groupTemplate">
         {{#if hasGroups}}
           {{#group}}
             <li {{#js_compare "this.group_user.unread_count > 0"}} class="unread"{{/js_compare}}
@@ -843,7 +825,7 @@
         {{/if}}
       </script>
 
-      <script type="text/template7" id="newsTemplate">
+    <script type="text/template7" id="newsTemplate">
         {{#each news}}
           <div class="card news-card">
             <div class="card-header">{{title}}</div>
@@ -861,7 +843,7 @@
         {{/each}}
       </script>
 
-      <script type="text/template7" id="notificationTemplate">
+    <script type="text/template7" id="notificationTemplate">
         {{#if hasNotifications}}
           {{#notification}}
             <li data-id="{{id}}" {{#unless visited}} class="unvisited"{{/unless}}>
@@ -881,7 +863,7 @@
         {{/if}}
       </script>
 
-      <!--<script type="text/template7" id="messageTemplate">
+    <!--<script type="text/template7" id="messageTemplate">
         <div href="#" id="{{id}}" class="message message-{{type}} {{#if by_admin}}message-admin{{/if}}">
           {{#if avatar}}
             <div class="message-avatar" style="background-image:url({{avatar}})"></div>
@@ -903,7 +885,7 @@
         {{/if}}
       </script>-->
 
-      <script type="text/template7" id="songbookTemplate">
+    <script type="text/template7" id="songbookTemplate">
         {{#each letter}}
           <div class="list-group">
             <ul>
@@ -924,7 +906,7 @@
         {{/each}}
       </script>
 
-      <script type="text/template7" id="songTemplate">
+    <script type="text/template7" id="songTemplate">
         {{#each song}}
           <div class="block-title">{{title}}</div>
           <div class="block">
@@ -943,7 +925,7 @@
         {{/each}}
       </script>
 
-      <script type="text/template7" id="versionCheckTemplate">
+    <script type="text/template7" id="versionCheckTemplate">
         <div class="popup popup-version-check">
           <div class="background-overlay"></div>
           <div class="block">
@@ -959,7 +941,7 @@
         </div>
       </script>
 
-      <script type="text/template7" id="galleryTemplate">
+    <script type="text/template7" id="galleryTemplate">
         {{#each album}}
           <a href="album/{{id}}">
             <div class="album">
@@ -975,7 +957,7 @@
         {{/each almbum}}
       </script>
 
-      <script type="text/template7" id="albumTemplate">
+    <script type="text/template7" id="albumTemplate">
         <div class="block-title">{{title}}</div>
         <div class="block">
           {{#if description}}
@@ -995,48 +977,49 @@
           {{/each image}}
         </div>
       </script>
-    </section>
+  </section>
 
-    <!-- External JS Libraries -->
-    <script type="text/javascript" src="cordova.js"></script>
-    <script type="text/javascript" src='lib/node_modules/jquery/dist/jquery.js'></script>
-    <script type="text/javascript" src='lib/node_modules/jquery.cookie/jquery.cookie.js'></script>
-    <script type="text/javascript" src='lib/node_modules/jquery-deparam/jquery-deparam.js'></script>
-    <script type="text/javascript" src='lib/node_modules/pubsub-js/src/pubsub.js'></script>
-    <script type="text/javascript" src='lib/node_modules/j-toker/dist/jquery.j-toker.js'></script>
-    <script type="text/javascript" src='lib/node_modules/progressbar/progressbar.js'></script>
-    <script type="text/javascript" src='lib/node_modules/actioncable/lib/assets/compiled/action_cable.js'></script>
-    <script type="text/javascript" src="lib/framework7/js/framework7.min.js"></script>
+  <!-- External JS Libraries -->
+  <script type="text/javascript" src="cordova.js"></script>
+  <script type="text/javascript" src='lib/node_modules/jquery/dist/jquery.js'></script>
+  <script type="text/javascript" src='lib/node_modules/jquery.cookie/jquery.cookie.js'></script>
+  <script type="text/javascript" src='lib/node_modules/jquery-deparam/jquery-deparam.js'></script>
+  <script type="text/javascript" src='lib/node_modules/pubsub-js/src/pubsub.js'></script>
+  <script type="text/javascript" src='lib/node_modules/j-toker/dist/jquery.j-toker.js'></script>
+  <script type="text/javascript" src='lib/node_modules/progressbar/progressbar.js'></script>
+  <script type="text/javascript" src='lib/node_modules/actioncable/lib/assets/compiled/action_cable.js'></script>
+  <script type="text/javascript" src="lib/framework7/js/framework7.min.js"></script>
 
-    <!-- Javascripts -->
-    <script type="text/javascript" src="js/action_cable_patch.js"></script>
-    <script type="text/javascript" src="js/index.js"></script>
-    <script type="text/javascript" src="js/push.js"></script>
-    <script type="text/javascript" src="js/date.js"></script>
-    <script type="text/javascript" src="js/button.js"></script>
-    <script type="text/javascript" src="js/calendar.js"></script>
-    <script type="text/javascript" src="js/notifications.js"></script>
-    <script type="text/javascript" src="js/home.js"></script>
-    <script type="text/javascript" src="js/login.js"></script>
-    <script type="text/javascript" src="js/signup.js"></script>
-    <script type="text/javascript" src="js/reset_password.js"></script>
-    <script type="text/javascript" src="js/action_cable.js"></script>
-    <script type="text/javascript" src="js/groups.js"></script>
-    <script type="text/javascript" src="js/messages.js"></script>
-    <script type="text/javascript" src="js/event.js"></script>
-    <script type="text/javascript" src="js/alternatives.js"></script>
-    <script type="text/javascript" src="js/6122.js"></script>
-    <script type="text/javascript" src="js/user_page.js"></script>
-    <script type="text/javascript" src="js/songbook.js"></script>
-    <script type="text/javascript" src="js/contact.js"></script>
-    <script type="text/javascript" src="js/version_check.js"></script>
-    <script type="text/javascript" src="js/about_app.js"></script>
-    <script type="text/javascript" src="js/gallery.js"></script>
-    <script type="text/javascript" src="js/album.js"></script>
-    <!--
+  <!-- Javascripts -->
+  <script type="text/javascript" src="js/action_cable_patch.js"></script>
+  <script type="text/javascript" src="js/index.js"></script>
+  <script type="text/javascript" src="js/push.js"></script>
+  <script type="text/javascript" src="js/date.js"></script>
+  <script type="text/javascript" src="js/button.js"></script>
+  <script type="text/javascript" src="js/calendar.js"></script>
+  <script type="text/javascript" src="js/notifications.js"></script>
+  <script type="text/javascript" src="js/home.js"></script>
+  <script type="text/javascript" src="js/login.js"></script>
+  <script type="text/javascript" src="js/signup.js"></script>
+  <script type="text/javascript" src="js/reset_password.js"></script>
+  <script type="text/javascript" src="js/action_cable.js"></script>
+  <script type="text/javascript" src="js/groups.js"></script>
+  <script type="text/javascript" src="js/messages.js"></script>
+  <script type="text/javascript" src="js/event.js"></script>
+  <script type="text/javascript" src="js/alternatives.js"></script>
+  <script type="text/javascript" src="js/6122.js"></script>
+  <script type="text/javascript" src="js/user_page.js"></script>
+  <script type="text/javascript" src="js/songbook.js"></script>
+  <script type="text/javascript" src="js/contact.js"></script>
+  <script type="text/javascript" src="js/version_check.js"></script>
+  <script type="text/javascript" src="js/about_app.js"></script>
+  <script type="text/javascript" src="js/gallery.js"></script>
+  <script type="text/javascript" src="js/album.js"></script>
+  <!--
     <script type="text/javascript" src="js/adventures.js"></script>
     <script type="text/javascript" src="js/nollning.js"></script>-->
-  </body>
+</body>
+
 </html>
 
 <!--

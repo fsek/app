@@ -1,5 +1,7 @@
+@import 'partials/variables';
+
 .toolbar {
-  background-color: #eb7125 !important;
+  background-color: $fsek-orange !important;
 }
 
 .toolbar:after {
@@ -11,7 +13,7 @@
 }
 
 .toolbar.messagebar {
-  background-color: #fff !important;
+  background-color: $white !important;
   position: fixed;
 }
 
@@ -74,11 +76,11 @@
 
 .modal .input-field.focus-state:after,
 .modal .input-field.not-empty-state:after {
-    background-color: #eb7125 !important;
+    background-color: $fsek-orange !important;
 }
 
 .calendar .calendar-week-header {
-  color: #eb7125;
+  color: $fsek-orange;
 }
 
 .calendar {
@@ -113,7 +115,7 @@
 }
 
 .list-block .focus-state.item-inner .label {
-  color: #eb7125;
+  color: $fsek-orange;
 }
 
 .user-content {
@@ -121,7 +123,7 @@
 }
 
 #user-form {
-  background-color: #fff;
+  background-color: $white;
 }
 
 .user-foodpref-info{
@@ -163,7 +165,7 @@
 }
 
 #view-alternatives .subnavbar {
-  background: #fff;
+  background: $white;
 }
 
 .searchbar input {

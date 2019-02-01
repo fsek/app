@@ -1,5 +1,6 @@
+
 a:active {
-  color:#d35400;
+  color: $active-link;
 }
 
 .hidden {
@@ -7,17 +8,17 @@ a:active {
 }
 
 .navbar {
-  background-color: #eb7125 !important;
-  color: #fff;
+  background-color: $fsek-orange !important;
+  color: $white;
 }
 
 .searchbar .searchbar-cancel{
-  color: #fff !important;
+  color: $white !important;
 }
 
 .tabbar .badge {
   background: #ffe0b3;
-  color: #eb7125;
+  color: $fsek-orange;
   height: 19px;
   width: 19px;
   border: 1px solid #ffb485;
@@ -33,11 +34,11 @@ a:active {
 }
 
 .tabbar a.tab-link-active, .tabbar a.tab-link-active i {
-  color: #fff !important;
+  color: $white !important;
 }
 
 .tabbar .active .badge {
-  background: #fff;
+  background: $white;
 }
 
 .tabbar i {

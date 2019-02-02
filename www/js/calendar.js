@@ -26,15 +26,15 @@ function initCalendar(page) {
         navbar = $(app.navbar.getElByPage(page));
 
         // Adding events
-        loadEvents(p, page.find('.calendar-month'));
+        loadEvents(p, page.find('.calendar-months'));
         setNavbarDate(p);
 
         // Initialize "today click" listener
         navbar.find('.right').on('click', todayClick);
       },
-      monthYearChangeStart: function (p) {
+      monthYearChangeEnd: function (p) {
         p.params.events = [];
-        loadEvents(p, page.find('.calendar-month'));
+        loadEvents(p, page.find('.calendar-months'));
         setNavbarDate(p);
       },
       dayClick: function(p, dayContainer) {
@@ -138,7 +138,7 @@ function setRegisteredStatus(eventData) {
     eventSignup.opens = new Date(eventSignup.opens);
     signupCloses = new Date(eventSignup.closes);
     let registeredStatus, registeredStatusIcon;
-    if (eventData.event_user != null) {
+    if (eventData.event_user !== null) {
       if (signupCloses < new Date()) {
         if (eventData.event_user.reserve) {
           registeredStatusIcon = 'fa-times-circle';

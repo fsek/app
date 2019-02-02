@@ -27,7 +27,7 @@ $$(document).on('page:init', '.page[data-name="login"]', function () {
     var loginFormData = app.form.convertToData('#login-form');
     var loginBtn = $('.login-btn');
 
-    if (loginFormData.email != '' && loginFormData.password != '') {
+    if (loginFormData.email !== '' && loginFormData.password !== '') {
       if (loginBtn.hasClass('disabled')) {
         loginBtn.removeClass('disabled');
       }

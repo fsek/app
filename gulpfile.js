@@ -1,6 +1,8 @@
 var gulp = require('gulp');
 var sass = require('gulp-sass');
-var w = 'www/'
+var path = require('path');
+var w = path.resolve(__dirname) + '/www/'
+
 
 function compile_scss(cb) {
   return gulp.src(w + 'scss/*.scss')

@@ -16,6 +16,7 @@ sed -i 's/se.fsektionen.fapp/se.fsektionen.fappprod/' ./config.xml
 sed -i 's/509736475453/178540363026/' ./package.json
 sed -i 's/509736475453/178540363026/' ./www/js/push.js
 sed -i 's/stage.fsektionen.se/fsektionen.se/' ./www/js/index.js
+sed -i '/\/www\/compiled_css\/*/d' ./.gitignore
 rm ./google-services.json
 rm ./GoogleService-Info.plist
 cp ./production_data/google-services.json ./google-services.json
@@ -39,6 +40,7 @@ sed -i 's/509736475453/178540363026/' ./package.json
 sed -i 's/509736475453/178540363026/' ./www/js/push.js
 sed -i 's/"fcmSandbox": true/"fcmSandbox": false/' ./www/js/push.js
 sed -i 's/stage.fsektionen.se/fsektionen.se/' ./www/js/index.js
+sed -i '/\/www\/compiled_css\/*/d' ./.gitignore
 rm ./google-services.json
 rm ./GoogleService-Info.plist
 cp ./production_data/GoogleService-Info.plist ./GoogleService-Info.plist

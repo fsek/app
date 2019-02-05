@@ -10,6 +10,7 @@ git clean -f -d
 git reset --hard origin/master
 sed -i '/<link rel="stylesheet"/s/ios/material/' ./www/index.html
 sed -i '/<platform name="ios">/,/<\/platform>/d' ./config.xml
+sed -i '/\/www\/compiled_css\/*/d' ./.gitignore
 
 gulp compile
 
@@ -21,6 +22,7 @@ git push -f origin master:master-android
 git reset --hard origin/master
 sed -i '/<link rel="stylesheet"/s/material/ios/' ./www/index.html
 sed -i '/<platform name="android">/,/<\/platform>/d' ./config.xml
+sed -i '/\/www\/compiled_css\/*/d' ./.gitignore
 
 gulp compile
 

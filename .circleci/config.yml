@@ -7,6 +7,7 @@ jobs:
       - add_ssh_keys
       - checkout
       - run: npm install --silent
+      - run: npm install gulp-cli -g
       - run: ./deploy/master
   build_production:
     machine:
@@ -15,10 +16,8 @@ jobs:
       - add_ssh_keys
       - checkout
       - run: npm install --silent
+      - run: npm install gulp-cli -g
       - run: ./deploy/production
-
-before_script:
-  - npm install gulp
 
 workflows:
   version: 2

@@ -1,9 +1,12 @@
 var child_process = require('child_process');
 
-// The process.argv contains arguments. First 2 are not user defined and are removed
-// Pass arguments as this: npm start -- arg1 arg2
-var phonegap = child_process.exec("phonegap serve " + process.argv.slice(2, process.argv.length).join(' '));
-var gulp = child_process.exec("gulp");
+/*
+ *  The process.argv contains arguments. First 2 are not user defined and are removed
+ *  Pass arguments as this: npm start -- arg1 arg2
+ */
+
+var phonegap = child_process.exec('phonegap serve -p 3001' + process.argv.slice(2, process.argv.length).join(' '));
+var gulp = child_process.exec('gulp');
 
 phonegap.stdout.on('data', function (data) {
   process.stdout.write(data);

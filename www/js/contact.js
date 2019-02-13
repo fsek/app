@@ -71,9 +71,26 @@ function initContactPage(contacts, event) {
   }
 
   function setDescription(selectedContact) {
-    $('#contact-description-title').html(selectedContact.name);
+    var contactContent = $('.contact-content');
+
+    // Add first and last name to the user container text
+    contactContent.find('.contact-container p').html(selectedContact.name);
+
+    // Set correct avatar URL (adds the base url) and add it as background image on the user-avatar
+    var avatarURL = '';
+    if (selectedContact.avatar.avatar.thumb.url !== null) {
+      avatarURL = BASE_URL + selectedContact.avatar.avatar.thumb.url;
+      contactContent.find('.contact-avatar').css('background-image', 'url(' + avatarURL + ')');
+    } else {
+      contactContent.find('.contact-avatar').css('background-image', 'url(../img/missing_thumb.png)');
+    }
     $('#contact-description').html(selectedContact.text);
     $('#contact-email').html('<span>E-post: </span>' + selectedContact.email);
+    users = [];
+    for (let names of selectedContact.users) {
+      users.push(' ' + names);
+    }
+    $('#contact-users').html('<span>Posten innehas av: </span>' + users);
   }
 
   function sendMessage(selectedContact) {

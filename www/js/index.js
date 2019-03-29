@@ -286,6 +286,8 @@ function onBackKey() {
     app.popup.close('.popup');
   } else if (pageName === 'calendar' || pageName === 'groups' || pageName === 'notifications' || pageName === 'alternatives') {
     app.tab.show('#view-home');
+  } else if (pageName === 'user-page') {
+    backButton();
   } else {
     router.back();
   }

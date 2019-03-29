@@ -1,11 +1,58 @@
+var foodCustom, formChanged, popupOpen, updateUser, user;
+
 $$(document).on('page:init', '.page[data-name="user-page"]', function () {
-  var user = $.auth.user;
+  user = $.auth.user;
+  formChanged = false;
+  foodCustom = user.food_custom;
   initUserPage(user);
 });
 
-function initUserPage(user) {
+const dialog = app.dialog.create({
+  title: 'Osparade ändringar',
+  text: 'Du verkar ha osparade ändringar! Vad vill du göra med dem?',
+  closeByBackdropClick: true,
+  buttons: [
+    {
+      text: 'Släng',
+      onClick: function() {
+        alternativesView.router.back();
+      }
+    },
+    {
+      text: 'Spara',
+      onClick: function() {
+        updateUser(user).then(function() {
+          alternativesView.router.back();
+        });
+      },
+    },
+  ],
+  on: {
+    close: function() {
+      popupOpen = false;
+    },
+    open: function() {
+      popupOpen = true;
+    }
+  }
+});
+
+function backButton() {
+  if (!popupOpen) {
+    // Custom food must be checked separately since it is not part of the form
+    if (formChanged || user.food_custom !== foodCustom) {
+      dialog.open();
+    } else {
+      alternativesView.router.back();
+    }
+  } else {
+    dialog.close();
+  }
+}
+
+function initUserPage() {
   // Fill the page with data that is not in the form like name and profile picture
-  fillPageWithNonFromData(user);
+  fillPageWithNonFormData(user);
 
   // Generate JSON data for the form out of the user object and add it to the form
   var formData = {
@@ -35,7 +82,15 @@ function initUserPage(user) {
     updateUser(user);
   });
 
-  function fillPageWithNonFromData(user) {
+  $('.back-button').on('click', function() {
+    backButton();
+  });
+
+  $('#user-form').change(function() {
+    formChanged = true;
+  });
+
+  function fillPageWithNonFormData() {
     var userContent = $('.user-content');
 
     // Add first and last name to the user container text
@@ -118,7 +173,8 @@ function initUserPage(user) {
                                     </div>
                                   </div>
                                 </li>`;
-          var optionValue = $.auth.user.food_custom;
+
+          var optionValue = foodCustom;
           var optionOther = smartSelect.items[5];
           var isOtherSelected = optionOther.selected;
 
@@ -152,10 +208,10 @@ function initUserPage(user) {
 
           // Updates user.food_custom to either the input value (if the 'Annat' input was found) otherwise an empty string
           var otherInput = $('#option-other input');
-          if (otherInput.length != 0) {
-            $.auth.user.food_custom = otherInput[0].value;
+          if (otherInput.length !== 0) {
+            foodCustom = otherInput[0].value;
           } else {
-            $.auth.user.food_custom = '';
+            foodCustom = '';
           }
         }
       }
@@ -172,7 +228,7 @@ function initUserPage(user) {
       foodPreferences.splice(emptyIndex, 1);
     }
 
-    if (foodPreferences.length != 0) {
+    if (foodPreferences.length !== 0) {
       // Changes 'milk' to 'mjölkallergi' to match the options
       var milkIndex = foodPreferences.indexOf('milk');
       if (milkIndex > -1) {
@@ -198,45 +254,52 @@ function initUserPage(user) {
     }
   }
 
-  function updateUser(user) {
-    // Open preloader that closes after 0.8s and updates the name text
-    app.dialog.preloader('Sparar inställningar');
-    var hidePreloader = false;
-    setTimeout(function() {
-      // don't update if error callback on the ajax request
-      if (hidePreloader) {
-        app.dialog.close();
-        $('.user-container p').html(user.firstname + ' ' + user.lastname);
-      } else {
-        hidePreloader = true;
-      }
-    }, 800);
-
-    // Get data from the form
-    var formData = app.form.convertToData('#user-form');
-
-    // Edit and update formData and the user object
-    formData = prepareFormData(formData, user);
-
-    // Sen and ajax PUT request to update the user setting with formData
-    $.ajax({
-      type: 'PUT',
-      dataType: 'json',
-      url: API + '/users/' + user.id,
-      data: {user: formData}
-    })
-      .done(function(resp) {
+  updateUser = function() {
+    return new Promise((resolve) => {
+      // Open preloader that closes after 0.8s and updates the name text
+      app.dialog.preloader('Sparar inställningar');
+      var hidePreloader = false;
+      setTimeout(function() {
+        // don't update if error callback on the ajax request
         if (hidePreloader) {
           app.dialog.close();
+          $('.user-container p').html(user.firstname + ' ' + user.lastname);
         } else {
           hidePreloader = true;
         }
+      }, 800);
+
+      // Get data from the form
+      formData = app.form.convertToData('#user-form');
+
+      // Update custom food data
+      $.auth.user.food_custom = foodCustom;
+
+      // Edit and update formData and the user object
+      formData = prepareFormData(formData, user);
+
+      // Sen and ajax PUT request to update the user setting with formData
+      $.ajax({
+        type: 'PUT',
+        dataType: 'json',
+        url: API + '/users/' + user.id,
+        data: {user: formData}
       })
-      .fail(function(resp) {
-        app.dialog.close();
-        app.dialog.alert('Kunde inte uppdatera dina användarinställningar. Kontrollera din internetanslutning och försök igen :(', 'Misslyckades att spara');
-      });
-  }
+        .done(function() {
+          if (hidePreloader) {
+            app.dialog.close();
+          } else {
+            hidePreloader = true;
+            formChanged = false;
+          }
+          setTimeout(() => resolve('Finished!'), 800);
+        })
+        .fail(function() {
+          app.dialog.close();
+          app.dialog.alert('Kunde inte uppdatera dina användarinställningar. Kontrollera din internetanslutning och försök igen :(', 'Misslyckades att spara');
+        });
+    });
+  };
 
   function prepareFormData (formData, user) {
     for (var key in formData) {
@@ -265,9 +328,6 @@ function initUserPage(user) {
       }
       user[key] = value;
     }
-
-    // Add the custom food preference to formData
-    formData.food_custom = $.auth.user.food_custom;
 
     return formData;
   }

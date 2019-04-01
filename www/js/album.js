@@ -31,13 +31,23 @@ function initAlbums(album) {
     theme: 'dark',
     on: {
       open: function() {
-        StatusBar.backgroundColorByHexString('#000000');
+        StatusBar.backgroundColorByHexString('#FFFFFF');
+        screen.orientation.unlock();
+                                             
+                                             StatusBar.
+                                             
       },
       close: function() {
         StatusBar.backgroundColorByHexString(mainBarColor);
+        screen.orientation.lock('portrait-primary');
+
       }
     }
   });
+    
+    screen.orientation.addEventListener('change', function() {
+                                        console.log('changed', screen.orientation.type);
+                                        })
 
   $$('.album-imageBrowser').on('click', function () {
     var imageIndex = parseInt($(this)[0].dataset.index, 10);

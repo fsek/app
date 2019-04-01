@@ -30,5 +30,9 @@
       "PACKAGE_NAME": "se.fsektionen.fapp"
     }
   },
-  "dependent_plugins": {}
+  "dependent_plugins": {
+    "es6-promise-plugin": {
+      "PACKAGE_NAME": "se.fsektionen.fapp"
+    }
+  }
 }

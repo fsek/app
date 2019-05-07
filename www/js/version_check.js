@@ -36,15 +36,15 @@ function checkAPIVersion() {
  */
 
 function checkTermsVersion (termsVersion) {
-
   var templateHTML = app.templates.termsVersionTemplate({});
-  console.log($.auth.user.terms_version);
+
   //Prompts the user to accept the GDPR terms
   if ($.auth.user.terms_version !== termsVersion) {
     var popup = app.popup.create({
       content: templateHTML
     });
     popup.open();
+
     //Changes user data to make sure they only have to accept GDPR once
     $('.accept-terms').on('click', function () {
       $.ajax({
@@ -57,10 +57,7 @@ function checkTermsVersion (termsVersion) {
         fail: function(resp) {
           app.dialog.alert(resp.data.errors);
         }
-
       });
     });
   }
 }
-
-

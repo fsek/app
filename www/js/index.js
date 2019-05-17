@@ -35,7 +35,7 @@ var app = new Framework7({
 var $$ = Dom7;
 
 // API URLS
-const BASE_URL = 'https://fsektionen.se';
+const BASE_URL = 'https://stage.fsektionen.se';
 const API = BASE_URL + '/api';
 const AC_URL = 'wss://stage.fsektionen.se/cable';
 
@@ -300,10 +300,7 @@ document.addEventListener('deviceready', function() {
   $.getJSON(API + '/versions')
     .done(function(resp) {
       termsVersion = resp.terms_version;
-      console.log(termsVersion);
       apiVersion = resp.api_version;
-      console.log(apiVersion);
-      console.log(resp);
       checkAPIVersion();
     });
 }, false);

@@ -3,7 +3,7 @@
  * web API version and if not, prompts a popup to force the user to update.
  */
 function checkAPIVersion() {
-  const localAPIVersion = 1.0;
+  const localAPIVersion = 2.0;
 
   if (apiVersion !== localAPIVersion) {
 

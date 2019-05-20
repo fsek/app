@@ -82,7 +82,7 @@ function initContactPage(contacts, event) {
       avatarURL = BASE_URL + selectedContact.avatar.avatar.thumb.url;
       contactContent.find('.contact-avatar').css('background-image', 'url(' + avatarURL + ')');
     } else {
-      contactContent.find('.contact-avatar').css('background-image', 'url(../img/missing_thumb.png)');
+      contactContent.find('.contact-avatar').css('background-image', 'url(img/missing_thumb.png)');
     }
     $('#contact-description').html(selectedContact.text);
     $('#contact-email').html('<span>E-post: </span>' + selectedContact.email);

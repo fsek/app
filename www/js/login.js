@@ -126,7 +126,7 @@ function afterSignIn() {
   loginScreen.close();
 
   //Checks if user has accepted the latest terms and prompts them if they have not
-  checkTermsVersion(termsVersion);
+  checkTermsVersion();
 
   // Show home tab with news (needs to be done if an user logs out)
   app.tab.show('#view-home');

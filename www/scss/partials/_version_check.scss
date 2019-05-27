@@ -21,11 +21,16 @@
 }
 
 .popup-terms {
-  .block-title {
+  .popup-terms-title {
     color: $fsek-orange;
     font-size: 22px;
     font-weight: bold;
     margin-top: 45%;
+    margin-left: 16px;
+  }
+
+  .block {
+    margin-top: 8px;
   }
 
   a.item-link {

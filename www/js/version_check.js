@@ -2,15 +2,15 @@
  * Checks if the API version in the app "appAPIVersion" matches the
  * web API version and if not, prompts a popup to force the user to update.
  */
-function checkAPIVersion() {
+function checkAPIVersion(apiVersion) {
   const localAPIVersion = 1.0;
 
   if (apiVersion !== localAPIVersion) {
 
     // Set the urls to the F-app on App Store and Google Play.
-    var iosAppLink = 'https://itunes.apple.com/us/app/f-sektionen/id1272766590?mt=8';
-    var androidAppLink = 'https://play.google.com/store/apps/details?id=se.fsektionen.fappprod';
-    var appLink;
+    const iosAppLink = 'https://itunes.apple.com/us/app/f-sektionen/id1272766590?mt=8';
+    const androidAppLink = 'https://play.google.com/store/apps/details?id=se.fsektionen.fappprod';
+    let appLink;
 
     if (app.device.ios) {
       appLink = iosAppLink;
@@ -18,12 +18,12 @@ function checkAPIVersion() {
       appLink = androidAppLink;
     }
 
-    var templateHTML = app.templates.apiVersionTemplate({
+    let templateHTML = app.templates.apiVersionTemplate({
       appLink: appLink,
       easter: false
     });
 
-    var popup = app.popup.create({
+    let popup = app.popup.create({
       content: templateHTML
     });
     popup.open();
@@ -35,12 +35,18 @@ function checkAPIVersion() {
  * they have not.
  */
 
-function checkTermsVersion (termsVersion) {
-  var templateHTML = app.templates.termsVersionTemplate({});
+function checkTermsVersion () {
+  $.getJSON(API + '/versions')
+    .done(function(resp) {
+      termsVersionPopup(resp.terms_version);
+    });
+}
 
+function termsVersionPopup (termsVersion) {
   //Prompts the user to accept the GDPR terms
   if ($.auth.user.terms_version !== termsVersion) {
-    var popup = app.popup.create({
+    let templateHTML = app.templates.termsVersionTemplate({});
+    let popup = app.popup.create({
       content: templateHTML
     });
     popup.open();

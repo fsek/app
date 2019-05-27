@@ -42,10 +42,6 @@ const AC_URL = 'wss://stage.fsektionen.se/cable';
 // ActionCable Token URL
 const AC_TOKEN_URL = API + '/messages/new_token';
 
-// GDPR terms version
-var termsVersion;
-var apiVersion;
-
 // Configure jToker
 $.auth.configure({
   apiUrl: API,
@@ -301,9 +297,7 @@ document.addEventListener('deviceready', function() {
   document.addEventListener('backbutton', onBackKey, false);
   $.getJSON(API + '/versions')
     .done(function(resp) {
-      termsVersion = resp.terms_version;
-      apiVersion = resp.api_version;
-      checkAPIVersion();
+      checkAPIVersion(resp.api_version);
     });
 }, false);
 

@@ -1,4 +1,6 @@
 let loadingEvents = false, loadingNews = false;
+let lastEvent = false, page = 2, start = new Date();
+const nbrOfEvents = 7;
 
 $$(document).on('page:init', '.page[data-name="home"]', function () {
   // If signed in
@@ -7,13 +9,11 @@ $$(document).on('page:init', '.page[data-name="home"]', function () {
   }
 
   $$('#subtab-news').on('ptr:refresh', function() {
-    app.infiniteScroll.create($('#subtab-news'));
-    initHome(ptr = true);
+    initHome(ptr = 'news');
   });
 
   $$('#subtab-event').on('ptr:refresh', function() {
-    app.infiniteScroll.create($('#subtab-event'));
-    initHome(ptr = true);
+    initHome(ptr = 'event');
   });
 });
 
@@ -24,35 +24,48 @@ $$('#home-btn').on('click', function() {
 function loadHome() {
   if (!$$('#view-home .page').hasClass('loaded')) {
     $$('#view-home .page').addClass('loaded');
-    initHome();
+    initHome(ptr = 'both');
   }
 }
 
-function initHome(ptr = false) {
-  // Reset elements
-  if (ptr) {
-    $('#subtab-news').find('subtab-list').empty();
-    $('#news-list').empty();
-    $('#subtab-event').find('subtab-list').empty();
-    $('#event-list').empty();
-    $('#subtab-event').find('p').empty();
-    app.ptr.done($$('#subtab-news'));
-    app.ptr.done($$('#subtab-event'));
-  }
-
-  let fadeInTime = 600;
-
+function initHome(ptr) {
   let newsList = $('#news-list'), newsTab = $('#subtab-news');
   let eventList = $('#event-list'), eventTab = $('#subtab-event');
 
-  let page = 2, totalPages = 37;
-  let lastEvent = false, start = new Date();
-  $.getJSON(API + '/start')
-    .done(function(resp) {
-      addNews(resp.pinned.news.concat(resp.unpinned.news));
-      totalPages = resp.unpinned.meta.total_pages;
-      loadMoreEvents();
-    });
+  let totalPages = 37;
+  const fadeInTime = 600;
+
+  // Update correct subtab
+  if (ptr === 'news') {
+    app.infiniteScroll.create($('#subtab-news'));
+    newsTab.find('subtab-list').empty();
+    newsTab.find('.infinite-scroll-preloader').hide();
+    newsList.empty();
+    page = 2;
+    initNews();
+  } else if (ptr === 'event') {
+    app.infiniteScroll.create($('#subtab-event'));
+    eventTab.find('subtab-list').empty();
+    eventTab.find('.infinite-scroll-preloader').hide();
+    eventList.empty();
+    eventTab.find('p').empty();
+    lastEvent = false;
+    start = new Date();
+    loadMoreEvents();
+  } else {
+    initNews();
+    loadMoreEvents();
+  }
+
+  function initNews() {
+    $.getJSON(API + '/start')
+      .done(function(resp) {
+        addNews(resp.pinned.news.concat(resp.unpinned.news));
+        totalPages = resp.unpinned.meta.total_pages;
+        app.ptr.done($$('#subtab-news'));
+        newsTab.find('.infinite-scroll-preloader').show();
+      });
+  }
 
   function addNews(news) {
     let templateHTML = app.templates.newsTemplate({news: news});
@@ -61,7 +74,7 @@ function initHome(ptr = false) {
 
   function destroyNewsInfinite() {
     app.infiniteScroll.destroy(newsTab);
-    newsTab.find('.infinite-scroll-preloader').remove();
+    newsTab.find('.infinite-scroll-preloader').hide();
   }
 
   function loadMoreNews() {
@@ -69,18 +82,18 @@ function initHome(ptr = false) {
       .then(function(resp) {
         addNews(resp.news);
         page++;
+        app.ptr.done($$('#subtab-news'));
         loadingNews = false;
+        if (page >= totalPages) {
+          destroyNewsInfinite();
+        }
       });
   }
 
   function moreNews() {
     if (!loadingNews) {
-      if (page <= totalPages) {
-        loadingNews = true;
-        loadMoreNews();
-      } else {
-        destroyNewsInfinite();
-      }
+      loadingNews = true;
+      loadMoreNews();
     }
   }
 
@@ -112,7 +125,7 @@ function initHome(ptr = false) {
 
   function destroyEventInfinite() {
     app.infiniteScroll.destroy(eventTab);
-    eventTab.find('.infinite-scroll-preloader').remove();
+    eventTab.find('.infinite-scroll-preloader').hide();
   }
 
   function setRegisteredStatus(eventData) {
@@ -145,12 +158,8 @@ function initHome(ptr = false) {
 
   function moreEvents() {
     if (!loadingEvents) {
-      if (!lastEvent) {
-        loadingEvents = true;
-        loadMoreEvents();
-      } else {
-        destroyEventInfinite();
-      }
+      loadingEvents = true;
+      loadMoreEvents();
     }
   }
 
@@ -158,14 +167,16 @@ function initHome(ptr = false) {
     $.getJSON(API + '/events/scroll?start=' + start.yyyymmdd())
       .then(function(resp) {
         res = resp.events;
-        if (res.length < 7) {
+        if (res.length < nbrOfEvents) {
           lastEvent = true;
           destroyEventInfinite();
         } else {
           start = new Date(res[res.length - 1].start);
           start.setDate(start.getDate() + 1);
+          eventTab.find('.infinite-scroll-preloader').show();
         }
         initEventStream(res);
+        app.ptr.done($$('#subtab-event'));
         loadingEvents = false;
       });
   }

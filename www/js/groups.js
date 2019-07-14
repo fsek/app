@@ -22,30 +22,33 @@ function getGroups() {
       }
 
       groupEl.html(templateHTML);
+      //$(templateHTML).hide().appendTo(groupEl).fadeIn(600);
       updateGroupBadge(unread);
     });
 }
 
 // Only a function for the nollning page for the group notification badge
-/*
- * function setGroupNotification() {
- *  $.getJSON(API + '/groups')
- *    .then(function(resp) {
- *      const groups = resp.groups.reverse();
- *      let unread = 0;
- *      const hasGroups = groups.length !== 0;
- *      if (hasGroups) {
- *        for (var group of groups) {
- *          unread += group.group_user.unread_count;
- *        }
- *      }
- *      $('.nollning-content').addClass('loaded');
- *      updateGroupBadge(unread);
- *    });
- *}
- */
+function setGroupNotification() {
+  $.getJSON(API + '/groups')
+    .then(function(resp) {
+      const groups = resp.groups.reverse();
+      let unread = 0;
+      const hasGroups = groups.length !== 0;
+      if (hasGroups) {
+        for (var group of groups) {
+          unread += group.group_user.unread_count;
+        }
+      }
+      $('.nollning-content').addClass('loaded');
+      updateGroupBadge(unread);
+    });
+}
+
 
 $$(document).on('page:init', '.page[data-name="groups"]', function (e) {
+  // Get messages if we haven't done so already
+  if ($$('#groups-list ul').is(':empty')) getGroups();
+
   $$('.ptr-content.group-content').on('ptr:refresh', function() {
     getGroups();
   });
@@ -58,10 +61,10 @@ $$('#groups-list').on('click', 'li', function() {
 
 function updateGroupBadge(count) {
   if (count > 0) {
-    $$('#group-badge').html(count);
-    $$('#group-badge').show();
+    $$('.group-badge').html(count);
+    $$('.group-badge').show();
   } else {
-    $$('#group-badge').html(0);
-    $$('#group-badge').hide();
+    $$('.group-badge').html(0);
+    $$('.group-badge').hide();
   }
 }

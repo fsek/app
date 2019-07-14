@@ -115,44 +115,44 @@ var calendarView = app.views.create('#view-calendar', {
   ]
 });
 
-/*
- * var nollningView = app.views.create('#view-nollning', {
- *  routesAdd: [
- *    {
- *      name: 'adventures',
- *      path: '/adventures/',
- *      url: './adventures.html',
- *      routes: [
- *        {
- *          name: 'adventure_missions',
- *          path: 'adventure_missions/',
- *          componentUrl: './adventure_missions.html'
- *        }
- *      ]
- *    },
- *    {
- *      name: 'groups',
- *      path: '/groups/',
- *      url: './groups.html',
- *      routes: [
- *        {
- *          name: 'messages',
- *          path: 'messages/:groupId/:groupName',
- *          url: './messages.html',
- *          routes: [
- *            {
- *              name: 'messages_editor',
- *              path: 'messages_editor/',
- *              url: './messages_editor.html'
- *            }
- *          ]
- *        },
- *      ]
- *    },
- *  ]
- *});
- */
 
+var nollningView = app.views.create('#view-nollning', {
+  routesAdd: [
+    {
+      name: 'adventures',
+      path: '/adventures/',
+      url: './adventures.html',
+      routes: [
+        {
+          name: 'adventure_missions',
+          path: 'adventure_missions/',
+          componentUrl: './adventure_missions.html'
+        }
+      ]
+    },
+    {
+      name: 'groups',
+      path: '/groups/',
+      url: './groups.html',
+      routes: [
+        {
+          name: 'messages',
+          path: 'messages/:groupId/:groupName',
+          url: './messages.html',
+          routes: [
+            {
+              name: 'messages_editor',
+              path: 'messages_editor/',
+              url: './messages_editor.html'
+            }
+          ]
+        },
+      ]
+    },
+  ]
+});
+
+/*
 var groupsView = app.views.create('#view-groups', {
   routesAdd: [
     {
@@ -168,7 +168,7 @@ var groupsView = app.views.create('#view-groups', {
       ]
     },
   ]
-});
+});*/
 
 var notificationsView = app.views.create('#view-notifications', {
   routesAdd: [
@@ -280,7 +280,7 @@ function onBackKey() {
     app.popover.close('.popover.modal-in');
   } else if ($$('.popup').length && !$$('.popup-version-check').length) {
     app.popup.close('.popup');
-  } else if (pageName === 'calendar' || pageName === 'groups' || pageName === 'notifications' || pageName === 'alternatives') {
+  } else if (pageName === 'calendar' || pageName === 'nollning' || pageName === 'notifications' || pageName === 'alternatives') {
     app.tab.show('#view-home');
   } else if (pageName === 'user-page') {
     backButton();

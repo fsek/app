@@ -9,7 +9,10 @@
   background: #ffe0b3;
   color: $fsek-orange;
   border: 1px solid #ffb485;
-  padding: 0 !important;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  padding-top: 4px;
 }
 
 .nollning-button-container .row:first-child {

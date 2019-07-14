@@ -24,7 +24,7 @@
     "start": "node start.js"
   },
   "dependencies": {
-    "cordova-android": "^6.4.0",
+    "cordova-android": "^8.0.0",
     "cordova-ios": "^4.5.4",
     "cordova-plugin-headercolor": "^1.0.0",
     "cordova-plugin-keyboard": "^1.2.0",

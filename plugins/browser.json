@@ -22,11 +22,10 @@
     "ionic-plugin-keyboard": {
       "PACKAGE_NAME": "se.fsektionen.fapp"
     },
-    "phonegap-plugin-push": {
-      "SENDER_ID": "223210674700",
+    "cordova-plugin-keyboard": {
       "PACKAGE_NAME": "se.fsektionen.fapp"
     },
-    "cordova-plugin-keyboard": {
+    "phonegap-plugin-push": {
       "PACKAGE_NAME": "se.fsektionen.fapp"
     }
   },

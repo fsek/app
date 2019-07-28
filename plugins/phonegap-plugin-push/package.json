@@ -1,28 +1,28 @@
 {
-  "_from": "phonegap-plugin-push@2.1.3",
-  "_id": "phonegap-plugin-push@2.1.3",
+  "_from": "phonegap-plugin-push@2.2.3",
+  "_id": "phonegap-plugin-push@2.2.3",
   "_inBundle": false,
-  "_integrity": "sha1-cV/KPSHmaCr2YdnhM9Qsl9Tom9o=",
+  "_integrity": "sha512-5mjT0G1vfRhXVnZFLwjfzcFwYjVRMibgYDCfYvEujGsP8YwwrIIzcf+xBYAjQV/W2JCjzuNaYd7xJ0yVQaPeig==",
   "_location": "/phonegap-plugin-push",
   "_phantomChildren": {},
   "_requested": {
     "type": "version",
     "registry": true,
-    "raw": "phonegap-plugin-push@2.1.3",
+    "raw": "phonegap-plugin-push@2.2.3",
     "name": "phonegap-plugin-push",
     "escapedName": "phonegap-plugin-push",
-    "rawSpec": "2.1.3",
+    "rawSpec": "2.2.3",
     "saveSpec": null,
-    "fetchSpec": "2.1.3"
+    "fetchSpec": "2.2.3"
   },
   "_requiredBy": [
     "#USER",
     "/"
   ],
-  "_resolved": "https://registry.npmjs.org/phonegap-plugin-push/-/phonegap-plugin-push-2.1.3.tgz",
-  "_shasum": "715fca3d21e6682af661d9e133d42c97d4e89bda",
-  "_spec": "phonegap-plugin-push@2.1.3",
-  "_where": "/Users/jakob/prog/fapp",
+  "_resolved": "https://registry.npmjs.org/phonegap-plugin-push/-/phonegap-plugin-push-2.2.3.tgz",
+  "_shasum": "2d4e728f233321818d6ea588ac35e71b81a03823",
+  "_spec": "phonegap-plugin-push@2.2.3",
+  "_where": "/home/fredrik/Documents/spindel/app",
   "author": {
     "name": "Adobe PhoneGap Team"
   },
@@ -71,9 +71,9 @@
         "cordova-android": ">=6.2.1",
         "cordova-ios": ">=4.4.0"
       },
-      "2.1.2": {
+      "2.2.0": {
         "cordova": ">=7.1.0",
-        "cordova-android": ">=6.3.0",
+        "cordova-android": ">=7.1.0",
         "cordova-ios": ">=4.5.0"
       },
       "<2.0.0": {
@@ -85,6 +85,11 @@
         "cordova": ">=7.1.0",
         "cordova-android": ">=6.3.0",
         "cordova-ios": ">=4.4.0"
+      },
+      "<2.2.0": {
+        "cordova": ">=7.1.0",
+        "cordova-android": ">=6.3.0",
+        "cordova-ios": ">=4.5.0"
       }
     }
   },
@@ -114,5 +119,5 @@
     "test": "npm run build && npm run jasmine"
   },
   "types": "./types/index.d.ts",
-  "version": "2.1.3"
+  "version": "2.2.3"
 }

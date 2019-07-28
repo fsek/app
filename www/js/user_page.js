@@ -66,6 +66,7 @@ function initUserPage() {
     'notify_event_users': user.notify_event_users ? 'on' : 'off',
     'notify_messages': user.notify_messages ? 'on' : 'off',
     'notify_event_closing': user.notify_event_closing ? 'on' : 'off',
+    'notify_event_open': user.notify_event_open ? 'on' : 'off',
   };
   app.form.fillFromData('#user-form', formData);
 

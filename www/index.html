@@ -6,12 +6,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui, viewport-fit=cover">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://stage.fsektionen.se https://fsektionen.se wss://fsektionen.se wss://stage.fsektionen.se gap://ready 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' https://stage.fsektionen.se https://fsektionen.se data:" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://stage.fsektionen.se https://fsektionen.se wss://fsektionen.se wss://stage.fsektionen.se gap://ready 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; frame-src 'self' https://www.youtube.com/; media-src *; img-src 'self' https://stage.fsektionen.se https://fsektionen.se data:" />
   <title>F-sektionen</title>
 
   <!-- Material/iOS stylesheets. Will be replaced on deploy -->
   <link rel="stylesheet" href="lib/framework7/css/framework7.min.css">
-  <link rel="stylesheet" href="compiled_css/ios-overrides.css">
+  <link rel="stylesheet" href="compiled_css/material-overrides.css">
 
   <!-- General stylesheets -->
   <link rel="stylesheet" href="compiled_css/font-awesome.min.css">
@@ -357,6 +357,11 @@
       <div class="progressbar adventures-current-progressbar">
         <span></span>
       </div>
+      {{#if video}}
+        <div style="width: calc(100% - 32px); height: 0px; position: relative; padding-bottom: 56.250%; margin: 16px 16px 0 16px;">
+          <iframe src="{{video}}" frameborder="0" width="100%" height="100%" allowfullscreen style="width: 100%; height: 100%; position: absolute; left: 0px; top: 0px; overflow: hidden;"></iframe>
+        </div>
+      {{/if}}
     </script>
 
     <script type="text/template7" id="currentAdventureMissionsTemplate">
@@ -437,367 +442,367 @@
     </script>
 
     <script type="text/template7" id="contactTemplate">
-        <select name="contacts">
-          {{#each contact}}
-            {{#if selected}}
-              <option value="{{name}}" selected>{{name}}</option>
-            {{else}}
-              <option value="{{name}}">{{name}}</option>
-            {{/if}}
-          {{/each}}
-        </select>
-        <div class="item-content">
-          <div class="item-inner contact-selected">
-            <div class="item-title">Kontaktperson</div>
-          </div>
+      <select name="contacts">
+        {{#each contact}}
+          {{#if selected}}
+            <option value="{{name}}" selected>{{name}}</option>
+          {{else}}
+            <option value="{{name}}">{{name}}</option>
+          {{/if}}
+        {{/each}}
+      </select>
+      <div class="item-content">
+        <div class="item-inner contact-selected">
+          <div class="item-title">Kontaktperson</div>
         </div>
-      </script>
+      </div>
+    </script>
 
     <script type="text/template7" id="dayTemplate">
-        {{#if hasEvents}}
-          {{#each events}}
-            <a href="/event/{{id}}/" class="card day-content-event">
-              <div class="card-header">{{title}}</div>
-              <div class="card-media">
-                <i class="fa fa-chevron-right" aria-hidden="true"></i>
-              </div>
-              <div class="card-content">
-                <div class="card-content-inner">
-                  <p class="date">
-                    <i class="fa fa-clock-o" aria-hidden="true"></i>
-                    {{#unless allday}}
-                      {{js "this.start.hhmm()"}} - {{js "this.end.hhmm()"}}
-                    {{else}}
-                      Hela dagen
-                    {{/unless}}
-                  </p>
-                  <p class="location">
-                    <i class="fa fa-map-marker" aria-hidden="true"></i>
-                    {{location}}
-                  </p>
-                  {{#if has_signup}}
-                    <p class="signup">
-                      {{#if signup_not_opened_yet}}
-                        <i class="fa fa-user" aria-hidden="true"></i>
-                        Öppnar {{event_signup.opens.timeDateString()}}
-                      {{else}}
-                        <i class="fa {{registered_status_icon}}" aria-hidden="true"></i>
-                        {{registered_status}}
-                      {{/if}}
-                    </p>
-                  {{/if}}
-                </div>
-              </div>
-            </a>
-          {{/each}}
-        {{else}}
-          <p class="disabled">Inga fler evenemang tillgängliga</p>
-        {{/if}}
-      </script>
-
-    <script type="text/template7" id="dayTitleTemplate">
-        <div class="day-title">
-          {{#if date}}
-            {{date.getDayMonthName()}}
-          {{/if}}
-        </div>
-      </script>
-
-    <script type="text/template7" id="eventPageTemplate">
-        {{#event}}
-          <div class="card event-info-container">
-            <div class="card-header event-title">
-              {{#if title_short}} {{title_short}} {{else}} {{title}} {{/if}}
+      {{#if hasEvents}}
+        {{#each events}}
+          <a href="/event/{{id}}/" class="card day-content-event">
+            <div class="card-header">{{title}}</div>
+            <div class="card-media">
+              <i class="fa fa-chevron-right" aria-hidden="true"></i>
             </div>
             <div class="card-content">
-              <div class="list">
-                <div class="list-group">
-                  <ul>
+              <div class="card-content-inner">
+                <p class="date">
+                  <i class="fa fa-clock-o" aria-hidden="true"></i>
+                  {{#unless allday}}
+                    {{js "this.start.hhmm()"}} - {{js "this.end.hhmm()"}}
+                  {{else}}
+                    Hela dagen
+                  {{/unless}}
+                </p>
+                <p class="location">
+                  <i class="fa fa-map-marker" aria-hidden="true"></i>
+                  {{location}}
+                </p>
+                {{#if has_signup}}
+                  <p class="signup">
+                    {{#if signup_not_opened_yet}}
+                      <i class="fa fa-user" aria-hidden="true"></i>
+                      Öppnar {{event_signup.opens.timeDateString()}}
+                    {{else}}
+                      <i class="fa {{registered_status_icon}}" aria-hidden="true"></i>
+                      {{registered_status}}
+                    {{/if}}
+                  </p>
+                {{/if}}
+              </div>
+            </div>
+          </a>
+        {{/each}}
+      {{else}}
+        <p class="disabled">Inga fler evenemang tillgängliga</p>
+      {{/if}}
+    </script>
+
+    <script type="text/template7" id="dayTitleTemplate">
+      <div class="day-title">
+        {{#if date}}
+          {{date.getDayMonthName()}}
+        {{/if}}
+      </div>
+    </script>
+
+    <script type="text/template7" id="eventPageTemplate">
+      {{#event}}
+        <div class="card event-info-container">
+          <div class="card-header event-title">
+            {{#if title_short}} {{title_short}} {{else}} {{title}} {{/if}}
+          </div>
+          <div class="card-content">
+            <div class="list">
+              <div class="list-group">
+                <ul>
+                  <li class="item-content">
+                    <div class="item-media">
+                      <i class="fa fa-clock-o" aria-hidden="true"></i>
+                    </div>
+                    <div class="item-inner">
+                      <div class="item-title">{{date_string}}</div>
+                    </div>
+                  </li>
+                  <li class="item-content">
+                    <div class="item-media">
+                      <i class="fa fa-map-marker" aria-hidden="true"></i>
+                    </div>
+                    <div class="item-inner">
+                      <div class="item-title">{{location}}</div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+              <div class="list-group">
+                <ul>
+                  <li class="event-description-container">
+                    <div class="event-description">{{description}}</div>
+                  </li>
+                </ul>
+              </div>
+              <div class="list-group">
+                <ul>
+                  {{#if hasDressCode}}
                     <li class="item-content">
                       <div class="item-media">
-                        <i class="fa fa-clock-o" aria-hidden="true"></i>
+                        <i class="fa fa-briefcase" aria-hidden="true"></i>
                       </div>
                       <div class="item-inner">
-                        <div class="item-title">{{date_string}}</div>
+                        <div class="item-title">{{join dress_code delimiter=" eller "}}</div>
                       </div>
                     </li>
+                  {{/if}}
+                  {{#if cash}}
                     <li class="item-content">
                       <div class="item-media">
-                        <i class="fa fa-map-marker" aria-hidden="true"></i>
+                        <i class="fa fa-money" aria-hidden="true"></i>
                       </div>
                       <div class="item-inner">
-                        <div class="item-title">{{location}}</div>
+                        <div class="item-title">Kostar pengar {{#if price}} ({{price}} kr) {{/if}}</div>
                       </div>
                     </li>
-                  </ul>
-                </div>
-                <div class="list-group">
-                  <ul>
-                    <li class="event-description-container">
-                      <div class="event-description">{{description}}</div>
+                  {{/if}}
+                  {{#if food}}
+                    <li class="item-content">
+                      <div class="item-media">
+                        <i class="fa fa-cutlery" aria-hidden="true"></i>
+                      </div>
+                      <div class="item-inner">
+                        <div class="item-title">Mat serveras</div>
+                      </div>
                     </li>
-                  </ul>
-                </div>
-                <div class="list-group">
+                  {{/if}}
+                  {{#if drink}}
+                    <li class="item-content">
+                      <div class="item-media">
+                        <i class="fa fa-beer" aria-hidden="true"></i>
+                      </div>
+                      <div class="item-inner">
+                        <div class="item-title">Alkohol serveras</div>
+                      </div>
+                    </li>
+                  {{/if}}
+                </ul>
+              </div>
+            </div>
+          </div>
+          {{#if contact}}
+            <div class="card-footer">
+              <div class="event-contact">
+                Vid frågor om eventet, kontakta eventansvarig:
+                <a href="contact/{{contact.id}}">
+                  <br>
+                  <i class="fa fa-envelope" aria-hidden="true"></i>
+                  {{contact.name}}
+                </a>
+              </div>
+            </div>
+          {{/if}}
+        </div>
+        {{#if can_signup}}
+          <div class="card event-signup-container">
+            <div class="card-header event-title">
+              Anmälan - {{#if event_signup.open}} Öppen {{else}} Stängd {{/if}}
+              <a href="#" data-popover=".popover-about-signup" class="popover-open">
+                <i class="fa fa-info-circle" aria-hidden="true"></i>
+              </a>
+            </div>
+            <div class="card-content list">
+              <div class="list-group">
+                <ul>
+                  <li id="event-registered-status" class="item-content">
+                    <div class="item-media">
+                      <i class="fa {{registered_status_icon}}" aria-hidden="true"></i>
+                    </div>
+                    <div class="item-inner">
+                      <div class="item-title">{{registered_status}}</div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+              <div class="list-group {{#unless event_signup.open}} disabled {{/unless}}">
+                <ul>
+                  {{#if event_signup.opened}}
+                    <li class="item-content">
+                      <div class="item-media">
+                        <i class="fa fa-user" aria-hidden="true"></i>
+                      </div>
+                      <div id="event-usercount" class="item-inner">
+                        <div class="item-title">Anmälda: {{event_user_count}}</div>
+                      </div>
+                    </li>
+                  {{/if}}
+                  <li class="item-content">
+                    <div class="item-media">
+                      <i class="fa fa-users" aria-hidden="true"></i>
+                    </div>
+                    <div class="item-inner">
+                      <div class="item-title">Antal platser: {{event_signup.slots}}</div>
+                    </div>
+                  </li>
+                  {{#if event_signup.reserves}}
+                    <li class="item-content">
+                      <div class="item-media">
+                        <i class="fa fa-user-times" aria-hidden="true"></i>
+                      </div>
+                      <div class="item-inner">
+                        <div class="item-title">Antal reserver: {{event_signup.reserves}}</div>
+                      </div>
+                    </li>
+                  {{/if}}
+                  <li class="item-content">
+                    <div class="item-media">
+                      <i class="fa fa-calendar-check-o" aria-hidden="true"></i>
+                    </div>
+                    <div class="item-inner">
+                      <div class="item-title">
+                        Anmälan
+                        {{#if event_signup.opened}} öppnade: {{else}} öppnar: {{/if}}
+                        {{event_signup.opens.timeDateString()}}
+                      </div>
+                    </div>
+                  </li>
+                  <li class="item-content">
+                    <div class="item-media">
+                      <i class="fa fa-calendar-times-o" aria-hidden="true"></i>
+                    </div>
+                    <div class="item-inner">
+                      <div class="item-title">
+                        Anmälan
+                        {{#if event_signup.closed}} stängde: {{else}} stänger: {{/if}}
+                        {{event_signup.closes.timeDateString()}}
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+              {{#if event_signup.opened}}
+                <div class="list-group {{#unless event_signup.open}} disabled {{/unless}}">
                   <ul>
-                    {{#if hasDressCode}}
-                      <li class="item-content">
-                        <div class="item-media">
-                          <i class="fa fa-briefcase" aria-hidden="true"></i>
-                        </div>
-                        <div class="item-inner">
-                          <div class="item-title">{{join dress_code delimiter=" eller "}}</div>
-                        </div>
-                      </li>
-                    {{/if}}
-                    {{#if cash}}
-                      <li class="item-content">
-                        <div class="item-media">
-                          <i class="fa fa-money" aria-hidden="true"></i>
-                        </div>
-                        <div class="item-inner">
-                          <div class="item-title">Kostar pengar {{#if price}} ({{price}} kr) {{/if}}</div>
-                        </div>
-                      </li>
-                    {{/if}}
                     {{#if food}}
                       <li class="item-content">
                         <div class="item-media">
                           <i class="fa fa-cutlery" aria-hidden="true"></i>
                         </div>
                         <div class="item-inner">
-                          <div class="item-title">Mat serveras</div>
+                          <div class="item-title">
+                            Matpreferenser: {{join food_preferences delimiter=", "}}
+                          </div>
                         </div>
                       </li>
                     {{/if}}
-                    {{#if drink}}
-                      <li class="item-content">
-                        <div class="item-media">
-                          <i class="fa fa-beer" aria-hidden="true"></i>
-                        </div>
-                        <div class="item-inner">
-                          <div class="item-title">Alkohol serveras</div>
-                        </div>
-                      </li>
-                    {{/if}}
-                  </ul>
-                </div>
-              </div>
-            </div>
-            {{#if contact}}
-              <div class="card-footer">
-                <div class="event-contact">
-                  Vid frågor om eventet, kontakta eventansvarig:
-                  <a href="contact/{{contact.id}}">
-                    <br>
-                    <i class="fa fa-envelope" aria-hidden="true"></i>
-                    {{contact.name}}
-                  </a>
-                </div>
-              </div>
-            {{/if}}
-          </div>
-          {{#if can_signup}}
-            <div class="card event-signup-container">
-              <div class="card-header event-title">
-                Anmälan - {{#if event_signup.open}} Öppen {{else}} Stängd {{/if}}
-                <a href="#" data-popover=".popover-about-signup" class="popover-open">
-                  <i class="fa fa-info-circle" aria-hidden="true"></i>
-                </a>
-              </div>
-              <div class="card-content list">
-                <div class="list-group">
-                  <ul>
-                    <li id="event-registered-status" class="item-content">
-                      <div class="item-media">
-                        <i class="fa {{registered_status_icon}}" aria-hidden="true"></i>
-                      </div>
-                      <div class="item-inner">
-                        <div class="item-title">{{registered_status}}</div>
-                      </div>
-                    </li>
-                  </ul>
-                </div>
-                <div class="list-group {{#unless event_signup.open}} disabled {{/unless}}">
-                  <ul>
-                    {{#if event_signup.opened}}
-                      <li class="item-content">
-                        <div class="item-media">
-                          <i class="fa fa-user" aria-hidden="true"></i>
-                        </div>
-                        <div id="event-usercount" class="item-inner">
-                          <div class="item-title">Anmälda: {{event_user_count}}</div>
-                        </div>
-                      </li>
-                    {{/if}}
-                    <li class="item-content">
-                      <div class="item-media">
-                        <i class="fa fa-users" aria-hidden="true"></i>
-                      </div>
-                      <div class="item-inner">
-                        <div class="item-title">Antal platser: {{event_signup.slots}}</div>
-                      </div>
-                    </li>
-                    {{#if event_signup.reserves}}
-                      <li class="item-content">
-                        <div class="item-media">
-                          <i class="fa fa-user-times" aria-hidden="true"></i>
-                        </div>
-                        <div class="item-inner">
-                          <div class="item-title">Antal reserver: {{event_signup.reserves}}</div>
-                        </div>
-                      </li>
-                    {{/if}}
-                    <li class="item-content">
-                      <div class="item-media">
-                        <i class="fa fa-calendar-check-o" aria-hidden="true"></i>
-                      </div>
-                      <div class="item-inner">
-                        <div class="item-title">
-                          Anmälan
-                          {{#if event_signup.opened}} öppnade: {{else}} öppnar: {{/if}}
-                          {{event_signup.opens.timeDateString()}}
-                        </div>
-                      </div>
-                    </li>
-                    <li class="item-content">
-                      <div class="item-media">
-                        <i class="fa fa-calendar-times-o" aria-hidden="true"></i>
-                      </div>
-                      <div class="item-inner">
-                        <div class="item-title">
-                          Anmälan
-                          {{#if event_signup.closed}} stängde: {{else}} stänger: {{/if}}
-                          {{event_signup.closes.timeDateString()}}
-                        </div>
-                      </div>
-                    </li>
-                  </ul>
-                </div>
-                {{#if event_signup.opened}}
-                  <div class="list-group {{#unless event_signup.open}} disabled {{/unless}}">
-                    <ul>
-                      {{#if food}}
-                        <li class="item-content">
+                    {{#if event_signup.question}}
+                      {{#if event_user}}
+                        <li id="event-question-answer" class="item-content">
                           <div class="item-media">
-                            <i class="fa fa-cutlery" aria-hidden="true"></i>
+                            <i class="fa fa-question" aria-hidden="true"></i>
                           </div>
                           <div class="item-inner">
                             <div class="item-title">
-                              Matpreferenser: {{join food_preferences delimiter=", "}}
+                              {{event_signup.question}}
+                              {{event_user.answer}}
                             </div>
-                          </div>
-                        </li>
-                      {{/if}}
-                      {{#if event_signup.question}}
-                        {{#if event_user}}
-                          <li id="event-question-answer" class="item-content">
-                            <div class="item-media">
-                              <i class="fa fa-question" aria-hidden="true"></i>
-                            </div>
-                            <div class="item-inner">
-                              <div class="item-title">
-                                {{event_signup.question}}
-                                {{event_user.answer}}
-                              </div>
-                            </div>
-                          </li>
-                        {{else}}
-                          <li id="event-question-answer" class="item-content hidden">
-                            <div class="item-media">
-                              <i class="fa fa-question" aria-hidden="true"></i>
-                            </div>
-                            <div class="item-inner">
-                              <div class="item-title">
-                              </div>
-                            </div>
-                          </li>
-                        {{/if}}
-                      {{/if}}
-                      {{#if event_user}}
-                        <li id="event-usertype" class="item-content">
-                          <div class="item-media">
-                            <i class="fa fa-user-circle" aria-hidden="true"></i>
-                          </div>
-                          <div class="item-inner">
-                            <span>{{event_user.user_type}}</span>
-                            <div class="item-input-wrap hidden"></div>
-                          </div>
-                        </li>
-                        <li id="event-signup-group" class="item-content">
-                          <div class="item-media">
-                            <i class="fa fa-users" aria-hidden="true"></i>
-                          </div>
-                          <div class="item-inner">
-                            <span>
-                              {{#if event_user.group_name}}
-                                {{event_user.group_name}}
-                              {{else}}
-                                Ingen grupp vald
-                              {{/if}}
-                            </span>
-                            <div class="item-input-wrap hidden"></div>
                           </div>
                         </li>
                       {{else}}
-                        {{#if event_signup.open}}
-                          {{#if user_types}}
-                            <li id="event-usertype" class="item-content input-showing">
-                              <div class="item-media">
-                                <i class="fa fa-user-circle-o" aria-hidden="true"></i>
-                              </div>
-                              <div class="item-inner">
-                                <span><!-- after signup the picked user type is displayed here--></span>
-                                <div class="item-input-wrap">
-                                  <!--<input> is added dynamically-->
-                                </div>
-                              </div>
-                            </li>
-                          {{/if}}
-                          <li id="event-signup-group" class="item-content input-showing">
+                        <li id="event-question-answer" class="item-content hidden">
+                          <div class="item-media">
+                            <i class="fa fa-question" aria-hidden="true"></i>
+                          </div>
+                          <div class="item-inner">
+                            <div class="item-title">
+                            </div>
+                          </div>
+                        </li>
+                      {{/if}}
+                    {{/if}}
+                    {{#if event_user}}
+                      <li id="event-usertype" class="item-content">
+                        <div class="item-media">
+                          <i class="fa fa-user-circle" aria-hidden="true"></i>
+                        </div>
+                        <div class="item-inner">
+                          <span>{{event_user.user_type}}</span>
+                          <div class="item-input-wrap hidden"></div>
+                        </div>
+                      </li>
+                      <li id="event-signup-group" class="item-content">
+                        <div class="item-media">
+                          <i class="fa fa-users" aria-hidden="true"></i>
+                        </div>
+                        <div class="item-inner">
+                          <span>
+                            {{#if event_user.group_name}}
+                              {{event_user.group_name}}
+                            {{else}}
+                              Ingen grupp vald
+                            {{/if}}
+                          </span>
+                          <div class="item-input-wrap hidden"></div>
+                        </div>
+                      </li>
+                    {{else}}
+                      {{#if event_signup.open}}
+                        {{#if user_types}}
+                          <li id="event-usertype" class="item-content input-showing">
                             <div class="item-media">
-                              <i class="fa fa-users" aria-hidden="true"></i>
+                              <i class="fa fa-user-circle-o" aria-hidden="true"></i>
                             </div>
                             <div class="item-inner">
-                              <span><!-- after signup the picked group is displayed here--></span>
+                              <span><!-- after signup the picked user type is displayed here--></span>
                               <div class="item-input-wrap">
                                 <!--<input> is added dynamically-->
                               </div>
                             </div>
                           </li>
                         {{/if}}
-                      {{/if}}
-                      </li>
-                      <li id="event-signup-groupcustom" class="item-content hidden">
-                        <div class="item-inner">
-                          <div class="item-input-wrap">
-                            <input type="text" name="group-custom" placeholder="Skriv in en annan grupp här">
+                        <li id="event-signup-group" class="item-content input-showing">
+                          <div class="item-media">
+                            <i class="fa fa-users" aria-hidden="true"></i>
                           </div>
+                          <div class="item-inner">
+                            <span><!-- after signup the picked group is displayed here--></span>
+                            <div class="item-input-wrap">
+                              <!--<input> is added dynamically-->
+                            </div>
+                          </div>
+                        </li>
+                      {{/if}}
+                    {{/if}}
+                    </li>
+                    <li id="event-signup-groupcustom" class="item-content hidden">
+                      <div class="item-inner">
+                        <div class="item-input-wrap">
+                          <input type="text" name="group-custom" placeholder="Skriv in en annan grupp här">
                         </div>
-                      </li>
-                    </ul>
-                  </div>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              {{/if}}
+              <a href="#" class="button button-big {{#unless event_signup.open}} disabled {{/unless}}
+                {{#if event_user}}
+                  event-signup-cancel-btn">Avanmäl
+                {{else}}
+                  event-signup-btn">Anmäl
                 {{/if}}
-                <a href="#" class="button button-big {{#unless event_signup.open}} disabled {{/unless}}
-                  {{#if event_user}}
-                    event-signup-cancel-btn">Avanmäl
-                  {{else}}
-                    event-signup-btn">Anmäl
-                  {{/if}}
+              </a>
+            </div>
+            <div class="card-footer">
+              <div class="event-contact">
+                Vid tekniska problem med anmälan, hör vänligen av dig till:
+                <a href="contact/1">
+                  <i class="fa fa-envelope" aria-hidden="true"></i> Spindelmännen
                 </a>
               </div>
-              <div class="card-footer">
-                <div class="event-contact">
-                  Vid tekniska problem med anmälan, hör vänligen av dig till:
-                  <a href="contact/1">
-                    <i class="fa fa-envelope" aria-hidden="true"></i> Spindelmännen
-                  </a>
-                </div>
-              </div>
             </div>
-          {{/if}}
-        {{/event}}
-      </script>
+          </div>
+        {{/if}}
+      {{/event}}
+    </script>
 
     <script type="text/template7" id="groupTemplate">
         {{#if hasGroups}}
@@ -824,171 +829,149 @@
       </script>
 
     <script type="text/template7" id="newsTemplate">
-        {{#each news}}
-          <div class="card news-card">
-            <div class="card-header">{{title}}</div>
-            <div class="card-content card-content-padding">
-              {{content}}
-              {{#if image}}
-                <img class="img-responsive" src="{{image}}"></img>
-              {{/if}}
-            </div>
-            <div class="card-footer">
-              <span class="name">{{user.name}}</span>
-              <span class="date">{{js "new Date(this.created_at).yyyymmdd()"}}</span>
-            </div>
+      {{#each news}}
+        <div class="card news-card">
+          <div class="card-header">{{title}}</div>
+          <div class="card-content card-content-padding">
+            {{content}}
+            {{#if image}}
+              <img class="img-responsive" src="{{image}}"></img>
+            {{/if}}
           </div>
-        {{/each}}
-      </script>
+          <div class="card-footer">
+            <span class="name">{{user.name}}</span>
+            <span class="date">{{js "new Date(this.created_at).yyyymmdd()"}}</span>
+          </div>
+        </div>
+      {{/each}}
+    </script>
 
     <script type="text/template7" id="notificationTemplate">
-        {{#if hasNotifications}}
-          {{#notification}}
-            <li data-id="{{id}}" {{#unless visited}} class="unvisited"{{/unless}}>
-              <a href="/event/{{event_id}}/" class="item-link">
-                <div class="item-content">
-                  <div class="item-inner">
-                    <div class="item-subtitle">{{data.body}}</div>
-                    <div class="item-text">{{data.extra}}</div>
-                    <div class="item-created">Skickades {{created_at}}</div>
-                  </div>
+      {{#if hasNotifications}}
+        {{#notification}}
+          <li data-id="{{id}}" {{#unless visited}} class="unvisited"{{/unless}}>
+            <a href="/event/{{event_id}}/" class="item-link">
+              <div class="item-content">
+                <div class="item-inner">
+                  <div class="item-subtitle">{{data.body}}</div>
+                  <div class="item-text">{{data.extra}}</div>
+                  <div class="item-created">Skickades {{created_at}}</div>
                 </div>
-              </a>
-            </li>
-          {{/notification}}
-        {{else}}
-          <p class="disabled no-notifications">Inga notifikationer tillgängliga</p>
-        {{/if}}
-      </script>
-
-    <!--<script type="text/template7" id="messageTemplate">
-        <div href="#" id="{{id}}" class="message message-{{type}} {{#if by_admin}}message-admin{{/if}}">
-          {{#if avatar}}
-            <div class="message-avatar" style="background-image:url({{avatar}})"></div>
-          {{/if}}
-            <div class="message-content">
-              <div class="message-name">{{name}}</div>
-              <div class="message-bubble">
-                <div class="message-text">{{text}}</div>
               </div>
-              {{#if updated_at}}
-                <div class="message-label message-footer">{{updated_at}}</div>
-              {{/if}}
-            </div>
-            <a href="#" class="taphold">
             </a>
-        </div>
-        {{#if dayHeader}}
-          <div class="messages-title">{{dayHeader}}</div>
-        {{/if}}
-      </script>-->
+          </li>
+        {{/notification}}
+      {{else}}
+        <p class="disabled no-notifications">Inga notifikationer tillgängliga</p>
+      {{/if}}
+    </script>
 
     <script type="text/template7" id="songbookTemplate">
-        {{#each letter}}
-          <div class="list-group">
-            <ul>
-              <li class="list-group-title">{{firstLetter}}</li>
-              {{#each songs}}
-                <li>
-                  <a href="song/{{id}}" class="item-link">
-                    <div class="item-content">
-                      <div class="item-inner">
-                        <div class="item-title">{{title}}</div>
-                      </div>
+      {{#each letter}}
+        <div class="list-group">
+          <ul>
+            <li class="list-group-title">{{firstLetter}}</li>
+            {{#each songs}}
+              <li>
+                <a href="song/{{id}}" class="item-link">
+                  <div class="item-content">
+                    <div class="item-inner">
+                      <div class="item-title">{{title}}</div>
                     </div>
-                  </a>
-                </li>
-              {{/each}}
-            </ul>
-          </div>
-        {{/each}}
-      </script>
+                  </div>
+                </a>
+              </li>
+            {{/each}}
+          </ul>
+        </div>
+      {{/each}}
+    </script>
 
     <script type="text/template7" id="songTemplate">
-        {{#each song}}
-          <div class="block-title">{{title}}</div>
-          <div class="block">
-            {{#if melody}}
-              <p class="auth-mel"><span>Melodi:</span> {{melody}}</p>
-            {{/if}}
-            {{#if author}}
-              <p class="auth-mel"><span>Författare:</span> {{author}}</p>
-            {{/if}}
-          </div>
-          <div class="block song-text">
-            <div class="block-inner">
-              {{content}}
-            </div>
-          </div>
-        {{/each}}
-      </script>
-
-    <script type="text/template7" id="apiVersionTemplate">
-        <div class="popup popup-version-check popup-tablet-fullscreen">
-          <div class="background-overlay"></div>
-          <div class="block">
-            <div class="smiley-container {{#if easter}}easter{{/if}}">
-              <div class="smiley">( •_•)</div>
-            </div>
-            {{#unless easter}}
-              <div class="popup-text popup-title">Oh no!</div>
-              <div class="popup-text">Du har en gammal version av F-appen. Var snäll och uppdatera!</div>
-              <a id="store-button" class="external button button-fill" href="{{appLink}}" target="_blank">Uppdatera</a>
-            {{/unless}}
-          </div>
-        </div>
-      </script>
-
-    <script type="text/template7" id="galleryTemplate">
-        {{#each album}}
-          <a href="album/{{id}}">
-            <div class="album">
-              <div class="album-full-background" style="background-image: url({{thumb}})"></div>
-              <div class="album-text">
-                <div class="album-title"><p> {{title}} </p></div>
-                <div><i class="fa fa-calendar"></i> {{js "new Date(this.start_date).shortDateString()"}}</div>
-                <div><i class="fa fa-map-marker"></i> {{location}}</div>
-                <div><i class="fa fa-image"></i> {{image_count}}</div>
-              </div>
-            </div>
-          </a>
-        {{/each almbum}}
-      </script>
-
-    <script type="text/template7" id="albumTemplate">
+      {{#each song}}
         <div class="block-title">{{title}}</div>
         <div class="block">
-          {{#if description}}
-            <p>{{description}}</p>
+          {{#if melody}}
+            <p class="auth-mel"><span>Melodi:</span> {{melody}}</p>
           {{/if}}
-          {{#if photographers}}
-            <p><span>Fotografer: </span>{{join photographers delimiter=", "}}</p>
+          {{#if author}}
+            <p class="auth-mel"><span>Författare:</span> {{author}}</p>
           {{/if}}
         </div>
-        <div class="album-images">
-          {{#each image}}
-          <a href="#" data-index="{{@index}}" class="album-imageBrowser">
-            <div class="album-image">
-              <div class="image-full-background" style="background-image: url({{file.thumb.url}})"></div>
-            </div>
-          </a>
-          {{/each image}}
-        </div>
-      </script>
-
-      <script type="text/template7" id="termsVersionTemplate">
-        <div class="popup popup-terms popup-tablet-fullscreen">
-          <div class="background-overlay"></div>
-          <div class="popup-terms-title">Sekretessvillkor</div>
-           <div class="block">
-             <div class="popup-text"> Du behöver läsa igenom och godkänna den senaste versionen av F-sektionens sekretessvillkor innan du kan fortsätta. Sekretessvillkoren finns att läsa
-              <a class="item-link external" target="_blank"
-                           href="https://fsektionen.se/sekretess">här</a>
-              <a class="link button accept-terms popup-close" href="#">Jag accepterar</a>
-            </div>
+        <div class="block song-text">
+          <div class="block-inner">
+            {{content}}
           </div>
         </div>
-      </script>
+      {{/each}}
+    </script>
+
+    <script type="text/template7" id="apiVersionTemplate">
+      <div class="popup popup-version-check popup-tablet-fullscreen">
+        <div class="background-overlay"></div>
+        <div class="block">
+          <div class="smiley-container {{#if easter}}easter{{/if}}">
+            <div class="smiley">( •_•)</div>
+          </div>
+          {{#unless easter}}
+            <div class="popup-text popup-title">Oh no!</div>
+            <div class="popup-text">Du har en gammal version av F-appen. Var snäll och uppdatera!</div>
+            <a id="store-button" class="external button button-fill" href="{{appLink}}" target="_blank">Uppdatera</a>
+          {{/unless}}
+        </div>
+      </div>
+    </script>
+
+    <script type="text/template7" id="galleryTemplate">
+      {{#each album}}
+        <a href="album/{{id}}">
+          <div class="album">
+            <div class="album-full-background" style="background-image: url({{thumb}})"></div>
+            <div class="album-text">
+              <div class="album-title"><p> {{title}} </p></div>
+              <div><i class="fa fa-calendar"></i> {{js "new Date(this.start_date).shortDateString()"}}</div>
+              <div><i class="fa fa-map-marker"></i> {{location}}</div>
+              <div><i class="fa fa-image"></i> {{image_count}}</div>
+            </div>
+          </div>
+        </a>
+      {{/each almbum}}
+    </script>
+
+    <script type="text/template7" id="albumTemplate">
+      <div class="block-title">{{title}}</div>
+      <div class="block">
+        {{#if description}}
+          <p>{{description}}</p>
+        {{/if}}
+        {{#if photographers}}
+          <p><span>Fotografer: </span>{{join photographers delimiter=", "}}</p>
+        {{/if}}
+      </div>
+      <div class="album-images">
+        {{#each image}}
+        <a href="#" data-index="{{@index}}" class="album-imageBrowser">
+          <div class="album-image">
+            <div class="image-full-background" style="background-image: url({{file.thumb.url}})"></div>
+          </div>
+        </a>
+        {{/each image}}
+      </div>
+    </script>
+
+    <script type="text/template7" id="termsVersionTemplate">
+      <div class="popup popup-terms popup-tablet-fullscreen">
+        <div class="background-overlay"></div>
+        <div class="popup-terms-title">Sekretessvillkor</div>
+         <div class="block">
+           <div class="popup-text"> Du behöver läsa igenom och godkänna den senaste versionen av F-sektionens sekretessvillkor innan du kan fortsätta. Sekretessvillkoren finns att läsa
+            <a class="item-link external" target="_blank"
+                         href="https://fsektionen.se/sekretess">här</a>
+            <a class="link button accept-terms popup-close" href="#">Jag accepterar</a>
+          </div>
+        </div>
+      </div>
+    </script>
 
     <script type="text/template7" id="matrixWeekTemplate">
       {{#if week}}
@@ -1033,8 +1016,6 @@
       </div>
     </script>
     </section>
-
-
 
   <!-- External JS Libraries -->
   <script type="text/javascript" src="cordova.js"></script>

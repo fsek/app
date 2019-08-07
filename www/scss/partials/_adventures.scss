@@ -40,17 +40,16 @@
 }
 
 .adventures-current-header {
-  position: fixed;
   width: 100%;
   z-index: 100;
   background-color: #2f729e;
-  height: 81px;
   border-radius: 6px;
   margin-top: -4px;
+  padding-bottom: 24px;
 }
 
 .adventures-current-list {
-  margin-top: 76px !important;
+  margin-top: 0 !important;
 }
 
 .adventures-current-list .item-title {
@@ -60,7 +59,7 @@
 .adventures-current-title {
   font-size: 16px;
   color: white;
-  margin: 16px 16px 10px 16px;
+  padding: 16px 16px 10px 16px;
 }
 
 .adventures-current-title span {

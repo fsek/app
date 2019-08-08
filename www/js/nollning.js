@@ -1,12 +1,26 @@
+$$(document).on('page:beforeout', '.page[data-name="nollning"]', function (e) {
+  const navbar = $('#view-nollning .navbar');
+  if (navbar.hasClass('nollning-navbar')) {
+    navbar.removeClass('nollning-navbar');
+  }
+});
+
+$$(document).on('page:afterin', '.page[data-name="nollning"]', function (e) {
+  const navbar = $('#view-nollning .navbar');
+  if (!navbar.hasClass('nollning-navbar')) {
+    navbar.addClass('nollning-navbar');
+  }
+});
+
 $$(document).on('page:init', '.page[data-name="nollning"]', function (e) {
-  var tab = $(e.detail.view.$el[0]);
+  const tab = $('#view-nollning');
 
   // If we're logged in and the nollning page recives init event we need to add the group badge again
   if (!jQuery.isEmptyObject($.auth.user)) {
     setGroupNotification();
   }
 
-  // If orange moose is has been activated we add its class
+  // If moose egg is has been activated we add its class
   if ($.auth.user.nollning_moose_egg) {
     const nollningMoose = tab.find('.nollning-moose');
     if (!nollningMoose.hasClass('nollning-moose-egg')) {
@@ -14,13 +28,24 @@ $$(document).on('page:init', '.page[data-name="nollning"]', function (e) {
     }
   }
 
+  // Append the correct weekly styling (nollning start on week 35)
+  const nollningWeek = new Date().getWeekNumber() - 34;
+  $('#view-nollning').addClass(`adventure-week-${nollningWeek}`);
+
   // Toggle the nollning-toolbar class so the toolbar changes color in the nollnings tab
-  var toolbar = $('.toolbar');
-  tab.on('tab:show', function() {
+  const toolbar = $('.toolbar');
+  tab.on('tab:show', function(e) {
     if (!$('.nollning-content').hasClass('loaded')) setGroupNotification();
 
     if (!toolbar.hasClass('nollning-toolbar')) toolbar.addClass('nollning-toolbar');
     StatusBar.backgroundColorByHexString('#590d02');
+
+    if (e.target.id === 'view-nollning') {
+      const navbar = $('#view-nollning .navbar');
+      if (!navbar.hasClass('nollning-navbar')) {
+        navbar.addClass('nollning-navbar');
+      }
+    }
   });
 
   tab.on('tab:hide', function() {
@@ -28,7 +53,7 @@ $$(document).on('page:init', '.page[data-name="nollning"]', function (e) {
     StatusBar.backgroundColorByHexString(mainBarColor);
   });
 
-  // Orange moose
+  // Moose egg
   let keyIndex = 0;
   tab.find('.nollning-stone').on('click', function() {
     const id = $(this).attr('id');

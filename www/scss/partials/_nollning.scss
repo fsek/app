@@ -18,7 +18,7 @@
 
   .row {
     justify-content: normal;
-    padding-top: 44.5vh;
+    padding-top: 41.5vh;
   }
 }
 
@@ -92,7 +92,7 @@
 }
 
 .nollning-buttons {
-  height: 40vh;
+  height: 38vh;
   width: 100%;
   position: absolute;
   bottom: 0;
@@ -118,7 +118,7 @@
   background-image: url("../img/nollning_moose_icon_active.png");
 }
 
-#view-nollning .navbar {
+#view-nollning:not(.adventure-week-*) .navbar {
   background-color: $nollning-red !important;
 }
 
@@ -132,6 +132,24 @@
   background-repeat: no-repeat;
   background-position-x: center;
   pointer-events: none;
+}
+
+.nollning-moose.nollning-moose-egg {
+  animation: moose-animation 14s infinite;
+}
+
+@keyframes moose-animation {
+  0% {
+    filter: hue-rotate(0deg);
+  }
+
+  50% {
+    filter: hue-rotate(360deg);
+  }
+
+  100% {
+    filter: hue-rotate(0deg);
+  }
 }
 
 #nollning-f-btn {
@@ -160,15 +178,11 @@
   width: 12vh;
 }
 
-.nollning-moose-egg {
-  filter: hue-rotate(30deg);
-}
-
 .nollning-tab {
   background-color: #f6fcff;
 }
 
 @font-face {
-  font-family: Atlantis;
-  src: url("../fonts/Atlantisnollning.otf");
+  font-family: Planewalker;
+  src: url("../fonts/Planewalker.otf");
 }

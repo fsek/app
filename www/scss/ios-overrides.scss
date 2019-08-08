@@ -131,9 +131,12 @@
 }
 
 /* NOLLNING */
-
 .nollning-toolbar.toolbar {
   background: $nollning-red !important;
+
+  &:before {
+    display: none;
+  }
 }
 
 .nollning-content {
@@ -150,6 +153,10 @@
 
 .adventures-subnavbar:after {
   content: none !important;
+}
+
+.nollning-navbar {
+  opacity: 0;
 }
 
 a.message-send-button {

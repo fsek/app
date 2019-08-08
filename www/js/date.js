@@ -69,6 +69,15 @@ Date.prototype.getMonthName = function() {
   return monthNamesShort[this.getMonth()].toUpperCase();
 };
 
+// Get the current week number (1-52)
+Date.prototype.getWeekNumber = function() {
+  const firstDayOfYear = new Date(this.getFullYear(), 0, 1);
+  const date = new Date(this.getFullYear(), this.getMonth(), this.getDate());
+  const dayInMs = 86400000;
+  const dateDayNbr = (date - firstDayOfYear) / dayInMs;
+  return Math.ceil((dateDayNbr + firstDayOfYear.getDay()) / 7);
+};
+
 // Get time for dots in events
 Date.prototype.timeWithoutDot = function() {
   return this.getFullHours() + ', ' + this.getDate() + ' ' + monthNames[this.getMonth()].toLowerCase();

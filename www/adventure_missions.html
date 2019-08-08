@@ -17,7 +17,7 @@
           {{#each adventures}}
             <div class="list-group">
               <ul>
-                <li class="list-group-title">Vecka {{week_number}}</li>
+                <li class="list-group-title">Vecka {{js "this.week_number - 34"}}</li>
                 {{#each adventure_missions}}
                   <li class="item-content {{#if is_finished}} adventure-mission-completed {{/if}}">
                     <div class="item-inner">

@@ -11,7 +11,7 @@
 
   <!-- Material/iOS stylesheets. Will be replaced on deploy -->
   <link rel="stylesheet" href="lib/framework7/css/framework7.min.css">
-  <link rel="stylesheet" href="compiled_css/material-overrides.css">
+  <link rel="stylesheet" href="compiled_css/ios-overrides.css">
 
   <!-- General stylesheets -->
   <link rel="stylesheet" href="compiled_css/font-awesome.min.css">
@@ -197,7 +197,7 @@
                     </a>
                   </div>
                   <div class="row">
-                    <a href="/matrix/" class="col-50 open-matrix-pb">
+                    <a href="/matrix/" class="col-33">
                       <div class="nollning-btn-matrix"></div>
                     </a>
                     <a href="/introduction_contacts/" class="col-33">
@@ -351,7 +351,7 @@
     <!-- NOLLNING TEMPLATES -->
     <script type="text/template7" id="currentAdventureMissionsHeaderTemplate">
       <div class="adventures-current-title">
-        Vecka {{week_number}} - {{title}}
+        {{title}} (v.{{week_number}})
         <span>{{missions_finished}} av {{mission_count}}</span>
       </div>
       <div class="progressbar adventures-current-progressbar">

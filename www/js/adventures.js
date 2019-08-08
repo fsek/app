@@ -1,5 +1,6 @@
 $$(document).on('page:init', '.page[data-name="adventures"]', function (e) {
   const page = $(e.target);
+  const progressColors = ['#ea545a', '#ff9368', '#ea6767', '#eb7125', '#ffbc8b'];
 
   $.getJSON(API + '/adventures')
     .done(function(resp) {
@@ -37,9 +38,12 @@ $$(document).on('page:init', '.page[data-name="adventures"]', function (e) {
     const templateHeaderHTML = app.templates.currentAdventureMissionsHeaderTemplate(adventureData);
     const templateMissionsHTML = app.templates.currentAdventureMissionsTemplate(adventureData);
 
-
     $(templateHeaderHTML).hide().appendTo('.adventures-current-header').fadeIn(300);
     $(templateMissionsHTML).hide().appendTo('.adventures-current-list').fadeIn(300);
+
+    // Move down the list below the header
+    const headerHeight = page.find('.adventures-current-header')[0].clientHeight - 6;
+    page.find('.adventures-current-list').css('margin-top', headerHeight);
 
     // Save the progressbar "globally" and set the progress in updateAdventureMissionsHeader(true) (true is for firstInit)
     const progressbar = page.find('.adventures-current-progressbar');
@@ -96,7 +100,7 @@ $$(document).on('page:init', '.page[data-name="adventures"]', function (e) {
 
       // On first load the text is updated and gets set in the template, so we don't need to update it here
       if (!firstInit) {
-        page.find('.adventures-current-title').html('Vecka ' + adventureData.week_number + ' - ' + adventureData.title +
+        page.find('.adventures-current-title').html(adventureData.title + ' (v.' + adventureData.week_number + ')' +
                                                     '<span>' + completedMissionCount + ' av ' + missionCount + '</span>');
       }
     }
@@ -212,11 +216,14 @@ $$(document).on('page:init', '.page[data-name="adventures"]', function (e) {
 
     page.find('#adventure-group').on('tab:show', function() {
       if (animateWeekProgress) {
-        weekProgressbars.forEach(function(el) {
-          el.animate(el.progress);
-        });
-        app.progressbar.set(progressbar, progress, 500);
-        animateWeekProgress = false;
+        // Wait a bit for the tab transition animation to finish
+        setTimeout(function() {
+          weekProgressbars.forEach(function(el) {
+            el.animate(el.progress);
+          });
+          app.progressbar.set(progressbar, progress, 500);
+          animateWeekProgress = false;
+        }, 200);
       }
     });
 
@@ -235,7 +242,7 @@ $$(document).on('page:init', '.page[data-name="adventures"]', function (e) {
           const isTabActive = page.find('#adventure-group').hasClass('tab-active');
           adventuresData.adventures.adventures.forEach(function(el, index) {
             weekProgressbar = weekProgressbars[index];
-            weekProgressbars[index].setText('Vecka ' + el.week_number + ': <br>' + el.missions_finished + ' / ' + el.adventure_missions.length);
+            weekProgressbars[index].setText(el.title + ': <br>' + el.missions_finished + ' / ' + el.adventure_missions.length);
 
             const weekProgress = el.missions_finished/el.adventure_missions.length;
             // Only animate the weekly progressbars if the group tab is active otherwise we wait for it to be shown and then animate in the tab:show event above
@@ -254,11 +261,11 @@ $$(document).on('page:init', '.page[data-name="adventures"]', function (e) {
 
           if (isTabActive) {
             app.progressbar.set(progressbar, 0, 0);
-            // Wait for F7 to clear the progressbar (yes this is weird)
+
+            // Wait a bit for the refresh animation to finish before setting progress
             setTimeout(function() {
               app.progressbar.set(progressbar, progress, 500);
-            }, 1);
-
+            }, 300);
 
             app.ptr.refresh('#adventures-current');
             app.ptr.refresh('#adventures-highscore');
@@ -287,20 +294,26 @@ $$(document).on('page:init', '.page[data-name="adventures"]', function (e) {
 
     function setupWeekProgressbars() {
       let allWeekProgressbars = [];
-      const weekProgressbarContainers = page.find('.adventure-week-stats');
+      const swiperContainer = $('.adventure-week-stats-swiper');
+      const nollningWeek = adventuresData.adventures.adventures.length - 1;
+
       adventuresData.adventures.adventures.forEach(function(el, index) {
+        swiperContainer.find('.swiper-wrapper').append('<div class="adventure-week-stats swiper-slide"></div>');
+
+        const weekProgressbarContainers = page.find('.adventure-week-stats');
         const missionsFinished = el.missions_finished;
         const missionsCount = el.adventure_missions.length;
+
         const weekProgressbar = new ProgressBar.Circle(weekProgressbarContainers[index], {
-          color: '#eb7125',
+          color: progressColors[nollningWeek],
           strokeWidth: 5,
           trailWidth: 2,
-          trailColor: '#1c4979',
+          trailColor: '#000',
           fill: 'rgba(0, 0, 0, 0.5)',
           duration: 1000,
           easing: 'easeInOut',
           text: {
-            value: 'Vecka ' + el.week_number + ': <br>' + missionsFinished + ' / ' + missionsCount,
+            value: el.title + ': <br>' + missionsFinished + ' / ' + missionsCount,
             style: {
               color: '#fff',
               position: 'absolute',
@@ -323,13 +336,29 @@ $$(document).on('page:init', '.page[data-name="adventures"]', function (e) {
           step: function(state, shape) {
             shape.path.setAttribute('stroke-width', state.width);
 
-            var value = Math.round(shape.value() * missionsCount);
-            shape.setText('Vecka ' + el.week_number + ': <br>' + value + ' / ' + missionsCount);
+            const value = Math.round(shape.value() * missionsCount);
+            shape.setText(el.title + ': <br>' + value + ' / ' + missionsCount);
           }
         });
+
         const weekProgress = missionsFinished/missionsCount;
         weekProgressbar.progress = weekProgress;
         allWeekProgressbars.push(weekProgressbar);
+      });
+
+      const swiperWidth = $('body')[0].clientWidth - 30;
+      const swiper = app.swiper.create(swiperContainer, {
+        initialSlide: nollningWeek,
+        centerSildes: true,
+        width: swiperWidth,
+        spaceBetween: 15,
+        roundLengths: true,
+        slidesPerView: 2,
+        slidesPreGroup: 2,
+        pagination: {
+          el: '.swiper-pagination',
+          type: 'bullets',
+        },
       });
 
       return allWeekProgressbars;
@@ -347,7 +376,7 @@ $$(document).on('page:init', '.page[data-name="adventures"]', function (e) {
     page.find('#adventures-highscore').on('ptr:refresh', function(e) {
       $.getJSON(API + '/adventure_mission_groups')
         .done(function(resp) {
-          const highscoreData = prepareAdventuresHighscore(resp);
+          const highscoreDataPtr = prepareAdventuresHighscore(resp);
 
           if (page.find('#adventures-highscore').hasClass('tab-active')) {
             app.ptr.refresh('#adventures-current');
@@ -358,7 +387,7 @@ $$(document).on('page:init', '.page[data-name="adventures"]', function (e) {
           page.find('.adventures-highscore-list').html('');
 
           // Generate the template HTML and fade it in in the highscore list
-          const templateHTML = app.templates.adventuresHighscoreTemplate(highscoreData);
+          const templateHTML = app.templates.adventuresHighscoreTemplate(highscoreDataPtr);
           $(templateHTML).hide().appendTo('.adventures-highscore-list').fadeIn(600);
 
           // Return the pull to refresh loader back to its hidden place

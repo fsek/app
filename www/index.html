@@ -184,15 +184,15 @@
               <div class="nollning-buttons">
                 <div class="nollning-button-container">
                   <div class="row">
-                    <a href="/adventures/" class="col-33">
-                      <div class="nollning-btn-adventures"></div>
+                  <a href="/adventures/" class="col-33">
+                    <div class="nollning-btn-adventures"></div>
                     </a>
                     <a href="/groups/" class="col-33">
                       <div class="nollning-btn-messages">
                         <span class="badge group-badge"></span>
                       </div>
                     </a>
-                    <a href="/adventures/" class="col-33">
+                    <a href="/chantbook/" class="col-33">
                       <div class="nollning-btn-chants"></div>
                     </a>
                   </div>
@@ -906,6 +906,27 @@
       {{/each}}
     </script>
 
+    <script type="text/template7" id="chantbookTemplate">
+      {{#each author}}
+        <div class="list-group">
+          <ul>
+            <li class="list-group-title">{{thisAuthor}}</li>
+            {{#each songs}}
+              <li>
+                <a href="song/{{id}}" class="item-link">
+                  <div class="item-content">
+                    <div class="item-inner">
+                      <div class="item-title">{{title}}</div>
+                    </div>
+                  </div>
+                </a>
+              </li>
+            {{/each}}
+          </ul>
+        </div>
+      {{/each}}
+    </script>
+
     <script type="text/template7" id="apiVersionTemplate">
       <div class="popup popup-version-check popup-tablet-fullscreen">
         <div class="background-overlay"></div>
@@ -1056,6 +1077,8 @@
   <script type="text/javascript" src="js/adventures.js"></script>
   <script type="text/javascript" src="js/nollning.js"></script>
   <script type="text/javascript" src="js/matrix.js"></script>
+  <script type="text/javascript" src="js/chantbook.js"></script>
+
 </body>
 
 </html>

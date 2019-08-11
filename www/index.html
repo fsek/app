@@ -197,7 +197,7 @@
                     </a>
                   </div>
                   <div class="row">
-                    <a href="#" class="col-33 open-matrix-pb">
+                    <a href="/matrix/" class="col-50 open-matrix-pb">
                       <div class="nollning-btn-matrix"></div>
                     </a>
                     <a href="https://www.fsektionen.se/anonym" target="_blank" class="col-33 external">
@@ -988,9 +988,52 @@
             </div>
           </div>
         </div>
-
       </script>
+
+    <script type="text/template7" id="matrixWeekTemplate">
+      {{#if week}}
+        <div class="timeline-week-container" id="timeline-container-week-{{week}}">
+          <div class="block-title">Vecka {{week}}</div>
+          <div class="timeline timeline-sides" id="timeline-list-week-{{week}}"></div>
+        </div>
+      {{/if}}
+    </script>
+
+    <script type="text/template7" id="matrixEventTemplate">
+      <div class="timeline-item timeline-item-{{side}}">
+        {{#if date}}
+          <div class="timeline-item-date">{{date.getDate()}} <small>{{date.getMonthName()}}</small></div>
+        {{else}}
+          <div class="timeline-item-date"></div>
+        {{/if}}
+        <div class="timeline-item-divider {{event.progress}}"></div>
+        <div class="timeline-item-content">
+          <a href="event/{{event.id}}/" class="timeline-event-container">
+            <div class="timeline-item-time">{{event.time}}</div>
+            <div class="timeline-item-title">{{event.title}}</div>
+            {{#if event.location}}
+              <div class="timeline-item-location">
+                <i class="fa fa-map-marker" aria-hidden="true"></i>
+                {{event.location}}
+              </div>
+            {{/if}}
+            {{#if event.has_signup}}
+              <p class="signup" id="timeline-signup">
+                {{#if event.signup_not_opened_yet}}
+                  <i class="fa fa-user" aria-hidden="true"></i>
+                  Öppnar {{event.event_signup.opens.timeDateString()}}
+                {{else}}
+                  <i class="fa {{event.registered_status_icon}}" aria-hidden="true"></i>
+                  {{event.registered_status}}
+                {{/if}}
+              </p>
+            {{/if}}
+          </a>
+        </div>
+      </div>
+    </script>
     </section>
+
 
 
   <!-- External JS Libraries -->
@@ -1031,6 +1074,7 @@
   <script type="text/javascript" src="js/album.js"></script>
   <script type="text/javascript" src="js/adventures.js"></script>
   <script type="text/javascript" src="js/nollning.js"></script>
+  <script type="text/javascript" src="js/matrix.js"></script>
 </body>
 
 </html>

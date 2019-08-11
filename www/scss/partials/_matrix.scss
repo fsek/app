@@ -1,0 +1,145 @@
+.matrix-content {
+  background: $white;
+}
+
+.matrix-content::after {
+  content: '';
+  left: 0;
+  mix-blend-mode: screen;
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+#timeline-back {
+  filter: brightness(0) invert(1);
+}
+
+.page-content .timeline {
+  margin: 0;
+  background: $white;
+}
+
+.timeline-fail {
+  color: $black;
+  font-size: 16px;
+  margin: 16px;
+}
+
+#week-list {
+  margin-top: 16px;
+
+  .block-title {
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 16px;
+    margin-left: 16px;
+    overflow: visible;
+    font-size: 18px;
+    color: $black;
+    background: $white;
+    z-index: 2;
+  }
+}
+
+.page-content .timeline-sides .timeline-item {
+  .timeline-item-date {
+    background: transparent;
+    color: $black;
+    z-index: 2;
+  }
+
+  .timeline-item-divider {
+    z-index: 2;
+  }
+}
+
+// EVENT CARDS
+.page-content .timeline-sides .timeline-item .timeline-item-content {
+  background: $black;
+  border-radius: 7px;
+  color: $white;
+  padding-left: 12px;
+  padding-right: 12px;
+  padding-top: 12px;
+  word-break: break-all;
+
+  a {
+    display: block;
+    margin-bottom: 12px;
+  }
+
+  .timeline-item-time {
+    color: $white;
+  }
+
+  .timeline-item-title {
+    color: $white;
+    font-size: 14px;
+    font-weight: bold;
+    word-break: break-word;
+  }
+
+  .timeline-item-location {
+    color: $white;
+
+    .fa-map-marker {
+      padding-left: 1px;
+      padding-right: 3px;
+    }
+  }
+}
+
+.page-content .timeline-sides .timeline-item:last-child {
+  padding-bottom: 16px;
+}
+
+#timeline-signup {
+  color: $white;
+  margin: 0;
+}
+
+.signup .fa-user {
+  padding-right: 2px;
+}
+
+// TIMELINE COLORS
+.today-past,
+.past {
+  background: $green;
+
+  &::before {
+    background: $green;
+  }
+
+  &::after {
+    background: $green;
+  }
+}
+
+.today-future,
+.future {
+  background: $gray;
+
+  &::before {
+    background: $gray;
+  }
+
+  &::after {
+    background: $gray;
+  }
+}
+
+.today-last,
+.last {
+  background: $green;
+
+  &::before {
+    background: $green;
+  }
+
+  &::after {
+    background: $gray;
+  }
+}

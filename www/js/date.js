@@ -64,6 +64,11 @@ Date.prototype.getDayMonthName = function() {
   return dayNames[this.getDay()] + ', ' + this.getDate() + ' ' + monthNamesShort[this.getMonth()].toLowerCase();
 };
 
+// Get the short name of the month in upper cases
+Date.prototype.getMonthName = function() {
+  return monthNamesShort[this.getMonth()].toUpperCase();
+};
+
 // Get time for dots in events
 Date.prototype.timeWithoutDot = function() {
   return this.getFullHours() + ', ' + this.getDate() + ' ' + monthNames[this.getMonth()].toLowerCase();

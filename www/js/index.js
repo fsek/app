@@ -149,6 +149,25 @@ var nollningView = app.views.create('#view-nollning', {
         },
       ]
     },
+    {
+      name: 'matrix',
+      path: '/matrix/',
+      url: './matrix.html',
+      routes: [
+        {
+          name: 'event',
+          path: '/event/:eventId',
+          url: './event.html',
+          routes: [
+            {
+              name: 'contact',
+              path: 'contact/:contactId',
+              url: './contact.html',
+            },
+          ]
+        }
+      ]
+    },
   ]
 });
 

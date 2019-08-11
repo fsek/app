@@ -14,20 +14,7 @@ $$(document).on('page:init', '.page[data-name="nollning"]', function (e) {
     }
   }
 
-  // Setup the photo browser with the matrix
-  var matrixPhotoBrowser = app.photoBrowser.create({
-    photos: ['img/nollning_matrix.png'],
-    swipeToClose: false,
-    toolbar: false,
-    iconsColor: 'white'
-  });
-
-  // Open photo browser on click
-  tab.find('.open-matrix-pb').on('click', function () {
-    matrixPhotoBrowser.open();
-  });
-
-  // Toggle the nollning-toolbar class so the toolbar changes color in the nollning tab
+  // Toggle the nollning-toolbar class so the toolbar changes color in the nollnings tab
   var toolbar = $('.toolbar');
   tab.on('tab:show', function() {
     if (!$('.nollning-content').hasClass('loaded')) setGroupNotification();

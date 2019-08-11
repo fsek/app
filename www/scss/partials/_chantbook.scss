@@ -1,0 +1,72 @@
+.searchbar-songbook .searchbar-disable-button {
+  color: $fsek-orange !important;
+}
+
+
+
+#chantbook-list .list-group-title {
+  font-weight: bold;
+  color: #3c3c3c;
+}
+
+.chantbook-indexlist li {
+  margin-top: 5px;
+  color: #8e8e93;
+}
+
+.chantbook-indexlist .list-index-label {
+  background: $fsek-orange !important;
+}
+
+.chant-content .block-title {
+  font-size: 27px;
+  color: $fsek-orange;
+  white-space: initial;
+  line-height: initial;
+}
+
+.chant-content .block .auth-mel {
+  margin-bottom: 0;
+}
+
+.chant-content .block {
+  margin-bottom: 16px;
+  margin-top: 0;
+}
+
+.chant-content .block p {
+  font-size: 16px;
+  margin-top: 0;
+}
+
+.chant-content .block span {
+  color: $fsek-orange;
+}
+
+.chant-content .song-text {
+  background-color: $white;
+}
+
+.chant-content .song-text p:last-child {
+  margin-bottom: 0;
+}
+
+.chant-content .song-text .block-inner {
+  padding: 15px 0;
+}
+
+
+.chantbook-content .list ul::before, .songbook-content .list ul:after {
+  display: none;
+}
+
+.chantbook-content .preloader, .song-content .preloader {
+  height: 40px;
+  margin-left: calc(50% - 20px);
+  margin-top: calc(50% - 20px);
+  width: 40px;
+}
+
+.chantbook-content .searchbar-not-found {
+  font-size: 16px;
+}

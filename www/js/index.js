@@ -172,7 +172,19 @@ var nollningView = app.views.create('#view-nollning', {
       name: 'introduction_contacts',
       path: '/introduction_contacts/',
       url: './introduction_contacts.html',
-    }
+    },
+    {
+      name: 'chantbook',
+      path: '/chantbook/',
+      url: './chantbook.html',
+      routes: [
+        {
+          name: 'song',
+          path: 'song/:songId',
+          url: './song.html'
+        },
+      ]
+    },
   ]
 });
 

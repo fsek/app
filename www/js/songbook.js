@@ -29,6 +29,7 @@ function initSongList(songdata) {
       songList[counter].songs.push(element);
     }
   });
+
   var templateHTML = app.templates.songbookTemplate({letter: songList});
   var songbookList = $('#songbook-list');
   songbookList.html(templateHTML);

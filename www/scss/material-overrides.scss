@@ -126,7 +126,7 @@
   background-color: $white;
 }
 
-.user-foodpref-info{
+.user-foodpref-info {
   font-size: 13px;
 }
 
@@ -136,11 +136,15 @@
   color: #4a4a4e;
 }
 
-.song-content{
+.song-content {
   background-color: #f6f6f6;
 }
 
-#songbook-list{
+#songbook-list {
+  margin-top: 56px;
+}
+
+#chantbook-list {
   margin-top: 56px;
 }
 
@@ -164,7 +168,7 @@
   background: none;
 }
 
-#view-alternatives .smart-select-page .list {
+.smart-select-page.page-with-subnavbar .list {
   margin-top: 56px;
 }
 

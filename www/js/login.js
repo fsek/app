@@ -135,6 +135,7 @@ function afterSignIn() {
   pushAfterLogin();
   initNotificationBadge();
   loadHome();
+  setGroupNotification();
 
   // if ($$('#groups-list ul').is(':empty')) getGroups();
 

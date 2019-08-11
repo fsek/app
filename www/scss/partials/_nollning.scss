@@ -1,91 +1,113 @@
+.nollning-background {
+  background-image: url("../img/nollning_background.png");
+  background-position-x: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%;
+
+  .nollning-left-col {
+    height: 7vh;
+    margin-top: 1vh;
+    width: 45vw;
+  }
+
+  .nollning-right-col {
+    height: 17vh;
+    width: 55vw;
+  }
+
+  .row {
+    justify-content: normal;
+    padding-top: 44.5vh;
+  }
+}
+
+.nollning-btn-messages .group-badge {
+  background: #ffe0b3;
+  border: 1px solid #ffb485;
+  color: $fsek-orange;
+  float: right;
+  font-size: 12px;
+  height: 22px;
+  line-height: 20px;
+  margin-top: 2vw;
+  margin-right: 5px;
+  padding: 0;
+  width: 22px;
+}
+
 .group-badge {
   margin-right: 5px;
 }
 
-.nollning-btn-messages .group-badge {
-  height: 19px;
-  width: 19px;
-  float: right;
-  background: #ffe0b3;
-  color: $fsek-orange;
-  border: 1px solid #ffb485;
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-  padding-top: 4px;
-}
-
-.nollning-button-container .row:first-child {
-  margin-bottom: 8px;
-}
-
 .nollning-btn-adventures {
-  width: 15vh;
   background-image: url("../img/nollning_stone_adventures.png");
+  width: 15vh;
 }
 
 .nollning-btn-contact {
-  width: 13vh;
   background-image: url("../img/nollning_stone_contact.png");
+  width: 13vh;
 }
 
 .nollning-btn-matrix {
-  width: 14vh;
   background-image: url("../img/nollning_stone_matrix.png");
+  width: 14vh;
 }
 
 .nollning-btn-messages {
-  width: 13vh;
   background-image: url("../img/nollning_stone_messages.png");
+  width: 13vh;
+}
+
+.nollning-btn-chants {
+  background-image: url("../img/nollning_stone_chants.png");
+  width: 13vh;
 }
 
 .nollning-button-container {
-  width: 60%;
   margin: auto;
-}
+  width: 90%;
 
-.nollning-button-container .col-50 div {
-  height: 12vh;
-  margin: auto;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position-x: center;
+  .col-33 div, .col-50 div {
+    background-position-x: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 21vw;
+    margin: auto;
+  }
+
+  .row:first-child {
+    margin-bottom: 8px;
+  }
+
+  .row {
+    justify-content: center;
+  }
 }
 
 .nollning-content {
-  background: #61889a;
+  background: $nollning-ground;
   padding-top: 0 !important;
 }
 
-.nollning-ocean {
-  height: 62vh;
-  background-image: url("../img/nollning_background.png");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position-x: center;
-}
-
-.nollning-sand {
-  height: 38vh;
-  background-image: url("../img/nollning_sand.png");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position-x: center;
-}
-
-.nollning-toolbar.toolbar {
-  background-color: #2f729e !important;
+.nollning-buttons {
+  height: 40vh;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
 }
 
 .nollning-toolbar.toolbar i {
-  color: white !important;
+  color: $white !important;
 }
+
 
 .tab-link .moose-icon {
   position: relative;
   height: 100%;
   width: 100%;
-  background-image:  url(../img/nollning_moose_icon.png);
+  background-image: url("../img/nollning_moose_icon.png");
   background-size: contain;
   background-repeat: no-repeat;
   background-position-x: center;
@@ -93,18 +115,18 @@
 }
 
 .tab-link.tab-link-active .moose-icon {
-  filter: hue-rotate(170deg);
+  background-image: url("../img/nollning_moose_icon_active.png");
 }
 
 #view-nollning .navbar {
-  background-color: #2f729e !important;
+  background-color: $nollning-red !important;
 }
 
 .nollning-moose {
   position: absolute;
   width: 100vw;
-  height: 28vh;
-  margin-top: 20vh;
+  height: 33vh;
+  margin-top: 17vh;
   background-image: url("../img/nollning_moose.png");
   background-size: contain;
   background-repeat: no-repeat;
@@ -112,53 +134,34 @@
   pointer-events: none;
 }
 
-.nollning-ocean .row {
-  padding-top: 29.5vh;
-}
-
-.nollning-ocean .nollning-left-col {
-  width: calc(100vw*0.4);
-  height: 14vh;
-  margin-top: 4vh;
-}
-
-.nollning-ocean .nollning-middle-col {
-  width: calc(100vw*0.2);
-  height: 17vh;
-}
-
-.nollning-ocean .nollning-right-col {
-  width: calc(100vw*0.4);
-  height: 17vh;
-  margin-top: 6vh;
-}
-
 #nollning-f-btn {
   height: 100%;
-  width: 10vh;
+  width: 15vh;
   float: right;
 }
 
 #nollning-moose-btn {
-  height: 100%;
-  width: 10vh;
+  height: 56%;
   margin: auto;
+  padding-top: 21%;
+  pointer-events: auto;
+  width: 11vh;
 }
 
 #nollning-pi-btn {
-  height: 57%;
-  width: 9vh;
-  margin-left: 1vh;
+  height: 51%;
+  margin-top: 1.5vh;
+  width: 13vh;
 }
 
 #nollning-n-btn {
-  height: 35%;
-  width: 10vh;
-  margin-left: -3vh;
+  height: 27%;
+  margin-left: 7vh;
+  width: 12vh;
 }
 
-.nollning-moose-orange {
-  background-image: url("../img/nollning_moose_orange.png");
+.nollning-moose-egg {
+  filter: hue-rotate(30deg);
 }
 
 .nollning-tab {

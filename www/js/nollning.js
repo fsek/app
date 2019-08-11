@@ -7,10 +7,10 @@ $$(document).on('page:init', '.page[data-name="nollning"]', function (e) {
   }
 
   // If orange moose is has been activated we add its class
-  if ($.auth.user.nollning_moose_orange) {
+  if ($.auth.user.nollning_moose_egg) {
     const nollningMoose = tab.find('.nollning-moose');
-    if (!nollningMoose.hasClass('nollning-moose-orange')) {
-      tab.find('.nollning-moose').addClass('nollning-moose-orange');
+    if (!nollningMoose.hasClass('nollning-moose-egg')) {
+      nollningMoose.addClass('nollning-moose-egg');
     }
   }
 
@@ -22,18 +22,18 @@ $$(document).on('page:init', '.page[data-name="nollning"]', function (e) {
     iconsColor: 'white'
   });
 
-  //Open photo browser on click
+  // Open photo browser on click
   tab.find('.open-matrix-pb').on('click', function () {
     matrixPhotoBrowser.open();
   });
 
-  // Toggle the nollning-toolbar class so the toolbar changes color in the nollnings tab
+  // Toggle the nollning-toolbar class so the toolbar changes color in the nollning tab
   var toolbar = $('.toolbar');
   tab.on('tab:show', function() {
     if (!$('.nollning-content').hasClass('loaded')) setGroupNotification();
 
     if (!toolbar.hasClass('nollning-toolbar')) toolbar.addClass('nollning-toolbar');
-    StatusBar.backgroundColorByHexString('#2f729e');
+    StatusBar.backgroundColorByHexString('#590d02');
   });
 
   tab.on('tab:hide', function() {
@@ -61,11 +61,11 @@ $$(document).on('page:init', '.page[data-name="nollning"]', function (e) {
         break;
     }
 
-    const key = [0,1,2,3];
+    const key = [1,2,0,3];
     if (key[keyIndex] === idNbr) {
       if (keyIndex === 3) {
-        tab.find('.nollning-moose').toggleClass('nollning-moose-orange');
-        $.auth.user.nollning_moose_orange = true;
+        tab.find('.nollning-moose').toggleClass('nollning-moose-egg');
+        $.auth.user.nollning_moose_egg = true;
         keyIndex = 0;
       } else {
         keyIndex++;

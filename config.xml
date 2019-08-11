@@ -13,6 +13,7 @@
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
     <allow-intent href="geo:*" />
+    <allow-intent href="mailto:*" />
     <platform name="android">
         <allow-intent href="market:*" />
         <resource-file src="res/f.png" target="res/drawable/f.png" />

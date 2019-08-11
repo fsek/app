@@ -11,7 +11,7 @@
 
   <!-- Material/iOS stylesheets. Will be replaced on deploy -->
   <link rel="stylesheet" href="lib/framework7/css/framework7.min.css">
-  <link rel="stylesheet" href="compiled_css/material-overrides.css">
+  <link rel="stylesheet" href="compiled_css/ios-overrides.css">
 
   <!-- General stylesheets -->
   <link rel="stylesheet" href="compiled_css/font-awesome.min.css">
@@ -164,43 +164,43 @@
       <div id="view-nollning" class="view tab">
           <div data-name="nollning" class="page navbar-fixed">
             <div class="navbar android-hide">
-              <div class="navbar-inner nollning-navbar sliding">
-                <div class="title">Nollning</div>
-              </div>
+              <div class="navbar-inner sliding"></div>
             </div>
             <div class="page-content nollning-content">
-              <div class="nollning-ocean">
-                <div class="nollning-moose"></div>
+              <div class="nollning-background">
+                <div class="nollning-moose">
+                  <div id="nollning-moose-btn" class="nollning-stone"></div>
+                </div>
                 <div class="row">
                   <div class="nollning-left-col">
                     <div id="nollning-f-btn" class="nollning-stone"></div>
                   </div>
-                  <div class="nollning-middle-col">
-                    <div id="nollning-moose-btn" class="nollning-stone"></div>
-                  </div>
                   <div class="nollning-right-col">
-                    <div id="nollning-pi-btn" class="nollning-stone"></div>
                     <div id="nollning-n-btn" class="nollning-stone"></div>
+                    <div id="nollning-pi-btn" class="nollning-stone"></div>
                   </div>
                 </div>
               </div>
-              <div class="nollning-sand">
+              <div class="nollning-buttons">
                 <div class="nollning-button-container">
                   <div class="row">
-                    <a href="/adventures/" class="col-50">
+                    <a href="/adventures/" class="col-33">
                       <div class="nollning-btn-adventures"></div>
                     </a>
-                    <a href="/groups/" class="col-50">
+                    <a href="/groups/" class="col-33">
                       <div class="nollning-btn-messages">
                         <span class="badge group-badge"></span>
                       </div>
                     </a>
+                    <a href="/adventures/" class="col-33">
+                      <div class="nollning-btn-chants"></div>
+                    </a>
                   </div>
                   <div class="row">
-                    <a href="#" class="col-50 open-matrix-pb">
+                    <a href="#" class="col-33 open-matrix-pb">
                       <div class="nollning-btn-matrix"></div>
                     </a>
-                    <a href="https://www.fsektionen.se/anonym" target="_blank" class="col-50 external">
+                    <a href="https://www.fsektionen.se/anonym" target="_blank" class="col-33 external">
                       <div class="nollning-btn-contact"></div>
                     </a>
                   </div>
@@ -804,7 +804,7 @@
           {{#group}}
             <li {{#js_compare "this.group_user.unread_count > 0"}} class="unread"{{/js_compare}}
                 data-unread="{{group_user.unread_count}}">
-              <a href="/messages/{{id}}/{{name}}" class="item-link item-content">
+              <a href="messages/{{id}}/{{name}}" class="item-link item-content">
                 <div class="item-inner">
                   <div class="item-title-row">
                     <div class="item-title">{{name}}</div>

@@ -65,13 +65,27 @@ function initMessages(head, query) {
 
   // Set group name
   $('#messages-group-name').html(query.groupName);
-  app.navbar.size($('#view-groups .navbar'));
+  app.navbar.size($('#view-nollning .navbar'));
 
-  // Initialize Framework7 message bar
-  const msgBar = app.messagebar.create({
-    el: '.messagebar',
-    maxHeight: 75
-  });
+  // Check if group type is 'info', then we don't want to display messagebar
+  if (query.groupType !== 'info') {
+    // Initialize Framework7 message bar
+    const msgBar = app.messagebar.create({
+      el: '.messagebar',
+      maxHeight: 75
+    });
+
+    // Handle the "send" button. Don't close the keyboard on press
+    const messageBtn = head.find('#messageBtn');
+    nonFocusingButton(messageBtn, function() {
+      groupApp.sendMessage(msgBar.getValue());
+      msgBar.clear();
+    });
+  } else {
+    const msgBar = $('.messagebar');
+    msgBar.addClass('disabled');
+    msgBar.find('textarea')[0].placeholder = 'Chatten är skrivskyddad';
+  }
 
   // Infinite scroll
   const infiniteScroll = head.find('.infinite-scroll-content');
@@ -80,13 +94,6 @@ function initMessages(head, query) {
     app.infiniteScroll.destroy('.infinite-scroll-content');
     infiniteScroll.find('.infinite-scroll-preloader').remove();
   }
-
-  // Handle the "send" button. Don't close the keyboard on press
-  const messageBtn = head.find('#messageBtn');
-  nonFocusingButton(messageBtn, function() {
-    groupApp.sendMessage(msgBar.getValue());
-    msgBar.clear();
-  });
 
   // Functions for batch loading of messages
   function batchPrepare(msgs) {

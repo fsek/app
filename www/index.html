@@ -804,7 +804,7 @@
           {{#group}}
             <li {{#js_compare "this.group_user.unread_count > 0"}} class="unread"{{/js_compare}}
                 data-unread="{{group_user.unread_count}}">
-              <a href="messages/{{id}}/{{name}}" class="item-link item-content">
+              <a href="messages/{{id}}/{{group_type}}/{{name}}" class="item-link item-content">
                 <div class="item-inner">
                   <div class="item-title-row">
                     <div class="item-title">{{name}}</div>

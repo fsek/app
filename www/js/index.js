@@ -137,7 +137,7 @@ var nollningView = app.views.create('#view-nollning', {
       routes: [
         {
           name: 'messages',
-          path: 'messages/:groupId/:groupName',
+          path: 'messages/:groupId/:groupType/:groupName',
           url: './messages.html',
           routes: [
             {
@@ -157,7 +157,7 @@ var groupsView = app.views.create('#view-groups', {
   routesAdd: [
     {
       name: 'messages',
-      path: '/messages/:groupId/:groupName',
+      path: '/messages/:groupId/:groupType/:groupName',
       url: './messages.html',
       routes: [
         {

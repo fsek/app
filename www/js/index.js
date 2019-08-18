@@ -303,6 +303,11 @@ function onBackKey() {
     app.tab.show('#view-home');
   } else if (pageName === 'user-page') {
     backButton();
+  } else if (pageName === 'album') {
+    if (app.dialog.get() !== 'undefined') {
+      app.dialog.close();
+    }
+    router.back();
   } else {
     router.back();
   }

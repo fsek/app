@@ -5,7 +5,24 @@ $$(document).on('page:init', '.page[data-name="album"]', function (e) {
       initAlbums(resp.album);
     })
     .fail(function(resp) {
-      console.log(resp.statusText);
+      $$('.album-content .preloader').remove();
+      if (resp.statusText === 'Unauthorized') {
+        app.dialog.create({
+          title: 'Fel',
+          text: 'Du är inte auktoriserad för att se albumet. Detta beror på att ditt medlemskap inte är bekräftat. Frågor gällande din medlemsstatus kan skickas till spindelman@fsektionen.se.',
+          closeByBackdropClick: false,
+          buttons: [
+            {
+              text: 'Ok',
+              onClick: function() {
+                alternativesView.router.back();
+              }
+            }
+          ],
+        }).open();
+      } else {
+        $$('.album-content').append('<div class="block">Kunde inte läsa in album</div>');
+      }
     });
 });
 

@@ -168,6 +168,11 @@ var nollningView = app.views.create('#view-nollning', {
         }
       ]
     },
+    {
+      name: 'introduction_contacts',
+      path: '/introduction_contacts/',
+      url: './introduction_contacts.html',
+    }
   ]
 });
 

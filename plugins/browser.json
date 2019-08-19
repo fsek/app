@@ -10,6 +10,9 @@
     "cordova-plugin-headercolor": {
       "PACKAGE_NAME": "se.fsektionen.fapp"
     },
+    "cordova-plugin-keyboard": {
+      "PACKAGE_NAME": "se.fsektionen.fapp"
+    },
     "cordova-plugin-splashscreen": {
       "PACKAGE_NAME": "se.fsektionen.fapp"
     },
@@ -23,10 +26,6 @@
       "PACKAGE_NAME": "se.fsektionen.fapp"
     },
     "phonegap-plugin-push": {
-      "SENDER_ID": "223210674700",
-      "PACKAGE_NAME": "se.fsektionen.fapp"
-    },
-    "cordova-plugin-keyboard": {
       "PACKAGE_NAME": "se.fsektionen.fapp"
     }
   },

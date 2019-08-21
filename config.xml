@@ -14,6 +14,7 @@
     <allow-intent href="https://*/*" />
     <allow-intent href="geo:*" />
     <allow-intent href="mailto:*" />
+    <allow-navigation href="*://*.youtube.com/*" />
     <platform name="android">
         <allow-intent href="market:*" />
         <resource-file src="res/f.png" target="res/drawable/f.png" />
@@ -63,6 +64,7 @@
     <preference name="AutoHideSplashScreen" value="false" />
     <preference name="phonegap-version" value="cli-7.1.0" />
     <preference name="HeaderColor" value="#eb7125" />
+    <preference name="AllowInlineMediaPlayback" value="true" />
     <engine name="ios" spec="^4.5.4" />
     <engine name="android" spec="^8.0.0" />
     <plugin name="cordova-plugin-whitelist" spec="~1.3.2" />

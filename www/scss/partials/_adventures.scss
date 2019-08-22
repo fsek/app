@@ -85,6 +85,12 @@
 .adventure-mission {
   transition: 500ms;
   background-color: white;
+
+  .fa {
+    color: #797878c9;
+    font-size: 1.5em;
+    margin-top: 10px;
+  }
 }
 
 .adventure-mission-completed {

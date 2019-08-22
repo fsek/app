@@ -1,4 +1,4 @@
-$$(document).on('page:init', '.page[data-name="adventures"]', function (e) {
+$$(document).on('page:init', '.page[data-name="adventures"]', function(e) {
   const page = $(e.target);
   const progressColors = ['#ea545a', '#ff9368', '#ea6767', '#eb7125', '#ffbc8b'];
 
@@ -12,7 +12,9 @@ $$(document).on('page:init', '.page[data-name="adventures"]', function (e) {
       console.log(resp.statusText);
 
       page.find('.adventure-missions-btn').remove();
-      page.find('#adventures-current').html('<div class="adventures-current-empty"> Inga äventyrsuppdrag är tillgängliga :(</div>');
+      page
+        .find('#adventures-current')
+        .html('<div class="adventures-current-empty"> Inga äventyrsuppdrag är tillgängliga :(</div>');
       page.find('.adventure-week-stats-title').html('Ingen faddergrupp är tillgänglig :(');
       page.find('.adventures-current-preloader').remove();
     });
@@ -38,8 +40,14 @@ $$(document).on('page:init', '.page[data-name="adventures"]', function (e) {
     const templateHeaderHTML = app.templates.currentAdventureMissionsHeaderTemplate(adventureData);
     const templateMissionsHTML = app.templates.currentAdventureMissionsTemplate(adventureData);
 
-    $(templateHeaderHTML).hide().appendTo('.adventures-current-header').fadeIn(300);
-    $(templateMissionsHTML).hide().appendTo('.adventures-current-list').fadeIn(300);
+    $(templateHeaderHTML)
+      .hide()
+      .appendTo('.adventures-current-header')
+      .fadeIn(300);
+    $(templateMissionsHTML)
+      .hide()
+      .appendTo('.adventures-current-list')
+      .fadeIn(300);
 
     // Move down the list below the header
     const headerHeight = page.find('.adventures-current-header')[0].clientHeight - 6;
@@ -81,7 +89,10 @@ $$(document).on('page:init', '.page[data-name="adventures"]', function (e) {
 
       // Generate html for the updated missions and fade in its container
       const updatedTemplateHTML = app.templates.currentAdventureMissionsTemplate(adventureData);
-      $(updatedTemplateHTML).hide().appendTo('.adventures-current-list').fadeIn(300);
+      $(updatedTemplateHTML)
+        .hide()
+        .appendTo('.adventures-current-list')
+        .fadeIn(300);
 
       updateAdventureMissionsHeader(false);
       setupSwipeouts();
@@ -94,14 +105,25 @@ $$(document).on('page:init', '.page[data-name="adventures"]', function (e) {
       // Calculate the progress and set it on the progressbar
       const completedMissionCount = adventureData.missions_finished;
       const missionCount = adventureData.mission_count;
-      const progress = completedMissionCount*100/missionCount;
+      const progress = completedMissionCount * 100 / missionCount;
 
       app.progressbar.set(progressbar, progress, 800);
 
       // On first load the text is updated and gets set in the template, so we don't need to update it here
       if (!firstInit) {
-        page.find('.adventures-current-title').html(adventureData.title + ' (v.' + adventureData.week_number + ')' +
-                                                    '<span>' + completedMissionCount + ' av ' + missionCount + '</span>');
+        page
+          .find('.adventures-current-title')
+          .html(
+            adventureData.title +
+              ' (v.' +
+              adventureData.week_number +
+              ')' +
+              '<span>' +
+              completedMissionCount +
+              ' av ' +
+              missionCount +
+              '</span>'
+          );
       }
     }
 
@@ -118,7 +140,9 @@ $$(document).on('page:init', '.page[data-name="adventures"]', function (e) {
 
           // If it the mission can have different points we show a prompt for an user input, otherwise we go straight to the post request
           if (adventureMissionData.variablePoints === 'true') {
-            app.dialog.prompt('Skriv in antalet tjänade poäng <br> (max: ' + maxPoints + ' p)', 'Poäng', function (points) {
+            app.dialog.prompt('Skriv in antalet tjänade poäng <br> (max: ' + maxPoints + ' p)', 'Poäng', function(
+              points
+            ) {
               // The points input need to have a value and be less than the max. If it is we got to the post request, otherwise we alert an error
               points = parseInt(points, 10);
               if (points !== '' && points <= maxPoints && points !== 0) {
@@ -172,8 +196,8 @@ $$(document).on('page:init', '.page[data-name="adventures"]', function (e) {
           adventureData.missions_finished++;
           updateAdventureMissionsHeader(false);
         },
-        fail: function(resp) {
-          app.dialog.alert(resp.data.errors);
+        error: function(resp) {
+          app.dialog.alert(resp.responseJSON.error, 'Ouch!');
         }
       });
     }
@@ -194,8 +218,8 @@ $$(document).on('page:init', '.page[data-name="adventures"]', function (e) {
           adventureData.missions_finished--;
           updateAdventureMissionsHeader(false);
         },
-        fail: function(resp) {
-          app.dialog.alert(resp.data.errors);
+        error: function(resp) {
+          app.dialog.alert(resp.responseJSON.error, 'Ouch!');
         }
       });
     }
@@ -205,7 +229,7 @@ $$(document).on('page:init', '.page[data-name="adventures"]', function (e) {
     let animateWeekProgress = true;
     adventuresData.max_total_points = getAdventuresMaxPoints(adventuresData);
 
-    let progress = Math.round(adventuresData.total_group_points*100/adventuresData.max_total_points);
+    let progress = Math.round(adventuresData.total_group_points * 100 / adventuresData.max_total_points);
     adventuresData.points_percent = progress;
 
     var templateHTML = app.templates.adventureGroupHeaderTemplate(adventuresData);
@@ -242,9 +266,11 @@ $$(document).on('page:init', '.page[data-name="adventures"]', function (e) {
           const isTabActive = page.find('#adventure-group').hasClass('tab-active');
           adventuresData.adventures.adventures.forEach(function(el, index) {
             weekProgressbar = weekProgressbars[index];
-            weekProgressbars[index].setText(el.title + ': <br>' + el.missions_finished + ' / ' + el.adventure_missions.length);
+            weekProgressbars[index].setText(
+              el.title + ': <br>' + el.missions_finished + ' / ' + el.adventure_missions.length
+            );
 
-            const weekProgress = el.missions_finished/el.adventure_missions.length;
+            const weekProgress = el.missions_finished / el.adventure_missions.length;
             // Only animate the weekly progressbars if the group tab is active otherwise we wait for it to be shown and then animate in the tab:show event above
             if (isTabActive) {
               weekProgressbar.set(0);
@@ -254,9 +280,11 @@ $$(document).on('page:init', '.page[data-name="adventures"]', function (e) {
               animateWeekProgress = true;
             }
           });
-          page.find('.adventure-group-points-title span').html(adventuresData.total_group_points + ' / ' + maxTotalPoints);
+          page
+            .find('.adventure-group-points-title span')
+            .html(adventuresData.total_group_points + ' / ' + maxTotalPoints);
 
-          progress = Math.round(adventuresData.total_group_points*100/maxTotalPoints);
+          progress = Math.round(adventuresData.total_group_points * 100 / maxTotalPoints);
           page.find('.adventure-group-progress').html(progress + '%');
 
           if (isTabActive) {
@@ -341,7 +369,7 @@ $$(document).on('page:init', '.page[data-name="adventures"]', function (e) {
           }
         });
 
-        const weekProgress = missionsFinished/missionsCount;
+        const weekProgress = missionsFinished / missionsCount;
         weekProgressbar.progress = weekProgress;
         allWeekProgressbars.push(weekProgressbar);
       });
@@ -357,8 +385,8 @@ $$(document).on('page:init', '.page[data-name="adventures"]', function (e) {
         slidesPreGroup: 2,
         pagination: {
           el: '.swiper-pagination',
-          type: 'bullets',
-        },
+          type: 'bullets'
+        }
       });
 
       return allWeekProgressbars;
@@ -371,7 +399,10 @@ $$(document).on('page:init', '.page[data-name="adventures"]', function (e) {
 
     // Generate the template HTML and fade it in in the highscore list
     const templateHTML = app.templates.adventuresHighscoreTemplate(highscoreData);
-    $(templateHTML).hide().appendTo('.adventures-highscore-list').fadeIn(300);
+    $(templateHTML)
+      .hide()
+      .appendTo('.adventures-highscore-list')
+      .fadeIn(300);
 
     page.find('#adventures-highscore').on('ptr:refresh', function(e) {
       $.getJSON(API + '/adventure_mission_groups')
@@ -388,7 +419,10 @@ $$(document).on('page:init', '.page[data-name="adventures"]', function (e) {
 
           // Generate the template HTML and fade it in in the highscore list
           const templateHTML = app.templates.adventuresHighscoreTemplate(highscoreDataPtr);
-          $(templateHTML).hide().appendTo('.adventures-highscore-list').fadeIn(600);
+          $(templateHTML)
+            .hide()
+            .appendTo('.adventures-highscore-list')
+            .fadeIn(600);
 
           // Return the pull to refresh loader back to its hidden place
           e.detail();

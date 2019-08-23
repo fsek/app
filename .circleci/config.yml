@@ -18,6 +18,15 @@ jobs:
       - run: npm install --silent
       - run: npm install gulp-cli -g
       - run: ./deploy/production
+  build_stage:
+    machine:
+      enabled: true
+    steps:
+      - add_ssh_keys
+      - checkout
+      - run: npm install --silent
+      - run: npm install gulp-cli -g
+      - run: ./deploy/stage
 
 workflows:
   version: 2
@@ -31,3 +40,7 @@ workflows:
           filters:
             branches:
               only: production
+      - build_stage:
+          filters:
+            branches:
+              only: stage

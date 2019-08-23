@@ -333,7 +333,7 @@ $$(document).on('page:init', '.page[data-name="adventures"]', function(e) {
         const missionsCount = el.adventure_missions.length;
 
         const weekProgressbar = new ProgressBar.Circle(weekProgressbarContainers[index], {
-          color: progressColors[nollningWeek],
+          color: progressColors[0],
           strokeWidth: 5,
           trailWidth: 2,
           trailColor: '#000',

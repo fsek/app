@@ -42,7 +42,7 @@
 
 - (void)hide:(CDVInvokedUrlCommand*)command
 {
-    [self setVisible:NO andForce:YES];
+    [self setVisible:NO];
 }
 
 - (void)pageDidLoad
@@ -354,7 +354,7 @@
         CGSize viewportSize = [UIApplication sharedApplication].delegate.window.bounds.size;
         _imageView.frame = CGRectMake(0, 0, viewportSize.width, viewportSize.height);
         _imageView.contentMode = UIViewContentModeScaleAspectFill;
-        return; 
+        return;
     }
 
     UIImage* img = _imageView.image;

@@ -1,0 +1,39 @@
+#!/bin/bash
+
+### CONFIGURE GIT
+git config --global -l
+git config --global user.name 'CircleCI'
+git config --global user.email 'circle@ci'
+git clean -f -d
+
+### ANDROID
+git reset --hard origin/stage
+sed -i '/<link rel="stylesheet"/s/ios/material/' ./www/index.html
+sed -i '/<platform name="ios">/,/<\/platform>/d' ./config.xml
+sed -i '/\/www\/compiled_css\/*/d' ./.gitignore
+
+gulp compile
+
+git add -A
+git commit -m 'Automatic Android deploy'
+git push -f origin stage:stage-android
+
+### iOS
+git reset --hard origin/stage
+sed -i '/<link rel="stylesheet"/s/material/ios/' ./www/index.html
+sed -i '/<platform name="android">/,/<\/platform>/d' ./config.xml
+sed -i '/\/www\/compiled_css\/*/d' ./.gitignore
+
+gulp compile
+
+git add -A
+git commit -m 'Automatic iOS deploy'
+git push -f origin stage:stage-ios
+git reset --hard origin/stage
+
+### DEPLOY TO PHONEGAP BUILD
+curl spindelman@fsektionen.se -X PUT -d 'data={"pull":"true"}' \
+"https://build.phonegap.com/api/v1/apps/3683507?auth_token=${phonegap_build_token}"
+
+curl spindelman@fsektionen.se -X PUT -d 'data={"pull":"true"}' \
+"https://build.phonegap.com/api/v1/apps/3683510?auth_token=${phonegap_build_token}"

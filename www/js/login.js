@@ -6,7 +6,6 @@ var loginScreen = app.loginScreen.create({
       document.addEventListener('deviceready', function() {
         navigator.splashscreen.hide();
         StatusBar.backgroundColorByHexString(loginBarColor);
-        StatusBar.overlaysWebView(false);
       }, false);
     }
   }
@@ -15,6 +14,11 @@ var loginScreen = app.loginScreen.create({
 // Redirect from the login screen if the user has signed in before
 $.auth.validateToken()
   .done(function() {
+    // Fix statusbar and close splash
+    document.addEventListener('deviceready', function() {
+      navigator.splashscreen.hide();
+    }, false);
+
     afterSignIn();
   })
   .fail(function() {
@@ -116,12 +120,9 @@ $$(document).on('page:init', '.page[data-name="login"]', function () {
 });
 
 function afterSignIn() {
-  // Fix statusbar and close splash
-  document.addEventListener('deviceready', function() {
-    navigator.splashscreen.hide();
-    StatusBar.overlaysWebView(false);
-    StatusBar.backgroundColorByHexString(mainBarColor);
-  }, false);
+  // Fix statusbar
+  StatusBar.backgroundColorByHexString(mainBarColor);
+  StatusBar.overlaysWebView(false);
 
   loginScreen.close();
 

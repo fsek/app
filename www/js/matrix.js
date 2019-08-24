@@ -1,5 +1,4 @@
 let nbrIntroductionWeeks;
-const weekColors = ['#45afeb', '#b52548', '#83213f', '#578344', '#eb7125'];
 
 $$(document).on('page:init', '.page[data-name="matrix"]', function (e) {
   const page = $(e.target);

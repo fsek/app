@@ -1,4 +1,3 @@
-
 a:active {
   color: $active-link;
 }
@@ -7,8 +6,8 @@ a:active {
   display: none !important;
 }
 
-.navbar {
-  background-color: $fsek-orange !important;
+.tabs .navbar {
+  background-color: $fsek-orange;
   color: $white;
 }
 

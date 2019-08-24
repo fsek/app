@@ -1,3 +1,26 @@
+$$(document).on('page:beforeout', '.page[data-name="adventures"]', function() {
+  StatusBar.backgroundColorByHexString(nollningBarColor);
+
+  nollningView.$el.find('.navbar').removeClass('adventure-navbar');
+});
+
+$$(document).on('page:afterout', '.page[data-name="adventures"]', function() {
+  const nollningWeek = nollningView.$el.attr('data-week');
+  nollningView.$el.removeClass(`adventure-week-${nollningWeek}`);
+});
+
+$$(document).on('page:beforein', '.page[data-name="adventures"]', function() {
+  // Append the correct weekly styling (nollning start on week 35)
+  let nollningWeek = new Date().getWeekNumber() - 35;
+  if (nollningWeek > 4) nollningWeek = 4;
+  if (nollningWeek < 0) nollningWeek = 0;
+
+  nollningView.$el.attr('data-week', nollningWeek);
+  StatusBar.backgroundColorByHexString(weekColors[nollningWeek]);
+  nollningView.$el.addClass(`adventure-week-${nollningWeek}`);
+  nollningView.$el.find('.navbar').addClass('adventure-navbar');
+});
+
 $$(document).on('page:init', '.page[data-name="adventures"]', function(e) {
   const page = $(e.target);
   const progressColors = ['#ea545a', '#ff9368', '#ea6767', '#eb7125', '#ffbc8b'];
@@ -50,8 +73,11 @@ $$(document).on('page:init', '.page[data-name="adventures"]', function(e) {
       .fadeIn(300);
 
     // Move down the list below the header
-    const headerHeight = page.find('.adventures-current-header')[0].clientHeight - 6;
-    page.find('.adventures-current-list').css('margin-top', headerHeight);
+    const headerMinHeight = page.find('.adventures-current-header')[0].clientHeight - 6;
+    const headerMaxHeight = headerMinHeight + page.find('.accordion-item-content div')[0].clientHeight + 8;
+    if (app.device.android) {
+      page.find('.adventures-current-list').css('margin-top', headerMinHeight);
+    }
 
     // Save the progressbar "globally" and set the progress in updateAdventureMissionsHeader(true) (true is for firstInit)
     const progressbar = page.find('.adventures-current-progressbar');
@@ -60,6 +86,32 @@ $$(document).on('page:init', '.page[data-name="adventures"]', function(e) {
     // Setup the swipeout actions that show the 'Slutför' and 'Återställ' buttons
     setupSwipeouts();
 
+    // Set up the accordion
+    if (adventureData.video !== '' && app.device.android) {
+      page.find('.adventures-accordion').on('accordion:open', function () {
+        icon = page.find('.fa-plus-circle');
+        icon.removeClass('fa-plus-circle');
+        icon.addClass('fa-minus-circle');
+
+        page.find('.adventures-current-list').animate({
+          marginTop: headerMaxHeight
+        }, 300, function() {
+          page.find('#adventures-current .ptr-preloader').css('top', 370);
+        });
+      });
+
+      page.find('.adventures-accordion').on('accordion:close', function () {
+        page.find('#adventures-current .ptr-preloader').css('top', 170);
+
+        page.find('.adventures-current-list').animate({
+          marginTop: headerMinHeight
+        }, 200, function() {
+          icon = page.find('.fa-minus-circle');
+          icon.removeClass('fa-minus-circle');
+          icon.addClass('fa-plus-circle');
+        });
+      });
+    }
     // Reload the adventures when pull down refresh event is triggered
     page.find('#adventures-current').on('ptr:refresh', function(e) {
       $.getJSON(API + '/adventures')
@@ -333,7 +385,7 @@ $$(document).on('page:init', '.page[data-name="adventures"]', function(e) {
         const missionsCount = el.adventure_missions.length;
 
         const weekProgressbar = new ProgressBar.Circle(weekProgressbarContainers[index], {
-          color: progressColors[0],
+          color: progressColors[nollningWeek],
           strokeWidth: 5,
           trailWidth: 2,
           trailColor: '#000',

@@ -1,7 +1,7 @@
 @mixin adventure-week($number, $main, $second, $progress, $first-place, $second-place, $third-place) {
 
   .adventure-week-#{$number} {
-    .navbar {
+    .adventure-navbar.navbar {
       background-color: #{$main} !important;
     }
 
@@ -26,6 +26,10 @@
       background-color: #{$main};
     }
 
+    .adventures-accordion i.fa {
+      color: #{$second};
+    }
+
     .adventures-current-progressbar {
       background-color: #{$second} !important;
 
@@ -33,6 +37,8 @@
         background-color: #{$progress} !important;
       }
     }
+
+
 
     /* Adventure Group */
     .adventure-group-gradient {
@@ -118,7 +124,6 @@ a.complete-adventure-mission {
   border-radius: 6px;
   margin-top: -4px;
   padding-bottom: 16px;
-  position: fixed;
 }
 
 .adventures-current-list .item-title {
@@ -133,6 +138,16 @@ a.complete-adventure-mission {
   font-size: 16px;
   color: white;
   padding: 8px 16px;
+}
+
+.adventures-accordion {
+  font-size: 16px;
+  color: white;
+  padding: 16px 0 0 16px;
+
+  i.fa {
+    font-size: 18px;
+  }
 }
 
 .adventures-current-title span {

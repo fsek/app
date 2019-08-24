@@ -13,10 +13,10 @@
         "SENDER_ID": "509736475453"
       },
       "ionic-plugin-keyboard": {},
+      "cordova-plugin-statusbar": {},
       "cordova-plugin-splashscreen": {},
       "cordova-plugin-headercolor": {},
-      "cordova-plugin-keyboard": {},
-      "cordova-plugin-statusbar": {}
+      "cordova-plugin-keyboard": {}
     }
   },
   "scripts": {

@@ -1,18 +1,7 @@
-$$(document).on('page:beforeout', '.page[data-name="nollning"]', function (e) {
-  const navbar = $('#view-nollning .navbar');
-  if (navbar.hasClass('nollning-navbar')) {
-    navbar.removeClass('nollning-navbar');
-  }
-});
+const weekColors = ['#45afeb', '#b52548', '#83213f', '#578344', '#eb7125'];
+const nollningBarColor = '#c01d1d';
 
-$$(document).on('page:afterin', '.page[data-name="nollning"]', function (e) {
-  const navbar = $('#view-nollning .navbar');
-  if (!navbar.hasClass('nollning-navbar')) {
-    navbar.addClass('nollning-navbar');
-  }
-});
-
-$$(document).on('page:init', '.page[data-name="nollning"]', function (e) {
+$$(document).on('page:init', '.page[data-name="nollning"]', function () {
   const tab = $('#view-nollning');
 
   // If we're logged in and the nollning page recives init event we need to add the group badge again
@@ -28,29 +17,24 @@ $$(document).on('page:init', '.page[data-name="nollning"]', function (e) {
     }
   }
 
-  // Append the correct weekly styling (nollning start on week 35)
-  const nollningWeek = new Date().getWeekNumber() - 34;
-  $('#view-nollning').addClass(`adventure-week-${nollningWeek}`);
-
   // Toggle the nollning-toolbar class so the toolbar changes color in the nollnings tab
   const toolbar = $('.toolbar');
   tab.on('tab:show', function(e) {
     if (!$('.nollning-content').hasClass('loaded')) setGroupNotification();
 
     if (!toolbar.hasClass('nollning-toolbar')) toolbar.addClass('nollning-toolbar');
-    StatusBar.backgroundColorByHexString('#590d02');
 
     if (e.target.id === 'view-nollning') {
-      const navbar = $('#view-nollning .navbar');
-      if (!navbar.hasClass('nollning-navbar')) {
-        navbar.addClass('nollning-navbar');
-      }
+      StatusBar.backgroundColorByHexString(nollningBarColor);
     }
   });
 
-  tab.on('tab:hide', function() {
+  tab.on('tab:hide', function(e) {
     if (toolbar.hasClass('nollning-toolbar')) toolbar.removeClass('nollning-toolbar');
-    StatusBar.backgroundColorByHexString(mainBarColor);
+
+    if (e.target.id === 'view-nollning') {
+      StatusBar.backgroundColorByHexString(mainBarColor);
+    }
   });
 
   // Moose egg

@@ -1,28 +1,28 @@
 {
-  "_from": "cordova-plugin-statusbar@2.2.3",
-  "_id": "cordova-plugin-statusbar@2.2.3",
+  "_from": "cordova-plugin-statusbar@2.4.3",
+  "_id": "cordova-plugin-statusbar@2.4.3",
   "_inBundle": false,
-  "_integrity": "sha1-UcXgKtQzvr0LDcl3pEbrkd/uFQI=",
+  "_integrity": "sha512-ThmXzl6QIKWFXf4wWw7Q/zpB+VKkz3VM958+5A0sXD4jmR++u7KnGttLksXshVwWr6lvGwUebLYtIyXwS4Ovcg==",
   "_location": "/cordova-plugin-statusbar",
   "_phantomChildren": {},
   "_requested": {
     "type": "version",
     "registry": true,
-    "raw": "cordova-plugin-statusbar@2.2.3",
+    "raw": "cordova-plugin-statusbar@2.4.3",
     "name": "cordova-plugin-statusbar",
     "escapedName": "cordova-plugin-statusbar",
-    "rawSpec": "2.2.3",
+    "rawSpec": "2.4.3",
     "saveSpec": null,
-    "fetchSpec": "2.2.3"
+    "fetchSpec": "2.4.3"
   },
   "_requiredBy": [
     "#USER",
     "/"
   ],
-  "_resolved": "https://registry.npmjs.org/cordova-plugin-statusbar/-/cordova-plugin-statusbar-2.2.3.tgz",
-  "_shasum": "51c5e02ad433bebd0b0dc977a446eb91dfee1502",
-  "_spec": "cordova-plugin-statusbar@2.2.3",
-  "_where": "/home/jakob/Skrivbord/app/node_modules",
+  "_resolved": "https://registry.npmjs.org/cordova-plugin-statusbar/-/cordova-plugin-statusbar-2.4.3.tgz",
+  "_shasum": "cc557aef66c27484e0f7f045004040d03321f82d",
+  "_spec": "cordova-plugin-statusbar@2.4.3",
+  "_where": "/home/fredrik/Documents/spindel/app",
   "author": {
     "name": "Apache Software Foundation"
   },
@@ -77,5 +77,5 @@
     "test": "npm run jshint"
   },
   "types": "./types/index.d.ts",
-  "version": "2.2.3"
+  "version": "2.4.3"
 }

@@ -20,6 +20,43 @@
 -->
 # Release Notes
 
+### 2.4.3 (Jun 19, 2019)
+
+-   docs: Improved documentation and removed text that implies iOS only ([#130](https://github.com/apache/cordova-plugin-statusbar/issues/130)) ([`33e410a`](https://github.com/apache/cordova-plugin-statusbar/commit/33e410a), [`14b1513`](https://github.com/apache/cordova-plugin-statusbar/commit/14b1513))
+-   docs: Alpha example doesn't match description ([#100](https://github.com/apache/cordova-plugin-statusbar/issues/100)) ([`5b77cae`](https://github.com/apache/cordova-plugin-statusbar/commit/5b77cae), [`9b5baa2`](https://github.com/apache/cordova-plugin-statusbar/commit/9b5baa2))
+-   chore(types): remove version from types ([`fade76b`](https://github.com/apache/cordova-plugin-statusbar/commit/fade76b))
+-   chore: fix github issues link ([`288bd71`](https://github.com/apache/cordova-plugin-statusbar/commit/288bd71))
+-   docs: remove outdated translations ([`8dacefa`](https://github.com/apache/cordova-plugin-statusbar/commit/8dacefa))
+-   build: add `.npmignore` to remove unneeded files from npm package ([`84081de`](https://github.com/apache/cordova-plugin-statusbar/commit/84081de))
+-   build: add `.gitattributes` to force LF (instead of possible CRLF on Windows) ([`da6c2a8`](https://github.com/apache/cordova-plugin-statusbar/commit/da6c2a8))
+-   ci(travis): Update Travis CI configuration for new paramedic ([#139](https://github.com/apache/cordova-plugin-statusbar/issues/139)) ([`a538bfe`](https://github.com/apache/cordova-plugin-statusbar/commit/a538bfe))
+-   feat: update typings ([#132](https://github.com/apache/cordova-plugin-statusbar/issues/132)) ([`003fa61`](https://github.com/apache/cordova-plugin-statusbar/commit/003fa61))
+-   chore: drop Node.js v4 support ([#124](https://github.com/apache/cordova-plugin-statusbar/issues/124)) ([`a07612a`](https://github.com/apache/cordova-plugin-statusbar/commit/a07612a))
+-   chore(github): Add or update GitHub pull request and issue template ([`727eea3`](https://github.com/apache/cordova-plugin-statusbar/commit/727eea3))
+-   docs: remove JIRA link ([`adcee9f`](https://github.com/apache/cordova-plugin-statusbar/commit/adcee9f))
+-   ci(travis): also accept terms for android sdk `android-27` ([`c8a13b8`](https://github.com/apache/cordova-plugin-statusbar/commit/c8a13b8))
+-   docs: remove second title headline ([`ecf8ccd`](https://github.com/apache/cordova-plugin-statusbar/commit/ecf8ccd))
+-   docs: Add Android overlay support to README ([#97](https://github.com/apache/cordova-plugin-statusbar/issues/97)) ([`e0256b2`](https://github.com/apache/cordova-plugin-statusbar/commit/e0256b2), [`053a902`](https://github.com/apache/cordova-plugin-statusbar/commit/053a902))
+
+
+### 2.4.2 (Apr 12, 2018)
+* [CB-12679](https://issues.apache.org/jira/browse/CB-12679) Remove Permissions section
+
+### 2.4.1 (Dec 27, 2017)
+* [CB-13712](https://issues.apache.org/jira/browse/CB-13712) (iOS): fix overlaysWebView reset on rotation (#92)
+
+### 2.4.0 (Dec 15, 2017)
+* [CB-13623](https://issues.apache.org/jira/browse/CB-13623) (iOS): Remove **iOS** 6-7 code
+
+### 2.3.0 (Nov 06, 2017)
+* [CB-13476](https://issues.apache.org/jira/browse/CB-13476) (iOS): handle double size statusbar on SDK 10 for **iOS 11**
+* [CB-13394](https://issues.apache.org/jira/browse/CB-13394) (iOS): fix `iPhone X` StatusBar rendering in landscape
+* [CB-11858](https://issues.apache.org/jira/browse/CB-11858) (android) Add `StatusBarStyle` feature support for **Android M+**
+* [CB-13311](https://issues.apache.org/jira/browse/CB-13311) (iOS) Statusbar does not overlay correctly on `iPhone X`
+* [CB-13028](https://issues.apache.org/jira/browse/CB-13028) (CI) **Browser** builds on Travis and AppVeyor
+* [CB-12812](https://issues.apache.org/jira/browse/CB-12812) (browser) Fix statusbar plugin with **Browser** platform
+* [CB-12847](https://issues.apache.org/jira/browse/CB-12847) added `bugs` entry to `package.json`.
+
 ### 2.2.3 (Apr 27, 2017)
 * [CB-12622](https://issues.apache.org/jira/browse/CB-12622) Added **Android 6.0** build badge to `README`
 * [CB-10879](https://issues.apache.org/jira/browse/CB-10879) Enable overlaysWebView on **Android** API 21+

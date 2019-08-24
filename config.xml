@@ -53,13 +53,8 @@
         <splash src="res/splash/ios/Default@3x~universal~anyany.png" />
         <resource-file src="GoogleService-Info.plist" />
     </platform>
-    <feature name="StatusBar">
-        <param name="ios-package" onload="true" value="CDVStatusBar" />
-    </feature>
     <preference name="Orientation" value="portrait" />
     <preference name="DisallowOverscroll" value="true" />
-    <preference name="StatusBarOverlaysWebView" value="false" />
-    <preference name="StatusBarBackgroundColor" value="#eb7125" />
     <preference name="ShowSplashScreenSpinner" value="false" />
     <preference name="AutoHideSplashScreen" value="false" />
     <preference name="phonegap-version" value="cli-7.1.0" />
@@ -71,8 +66,8 @@
         <variable name="SENDER_ID" value="509736475453" />
     </plugin>
     <plugin name="ionic-plugin-keyboard" spec="^2.2.1" />
-    <plugin name="cordova-plugin-statusbar" spec="^2.2.3" />
     <plugin name="cordova-plugin-splashscreen" spec="^4.0.3" />
     <plugin name="cordova-plugin-headercolor" spec="^1.0.0" />
     <plugin name="cordova-plugin-keyboard" spec="^1.2.0" />
+    <plugin name="cordova-plugin-statusbar" spec="^2.4.3" />
 </widget>

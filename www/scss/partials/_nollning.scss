@@ -8,12 +8,12 @@
   .nollning-left-col {
     height: 7vh;
     margin-top: 1vh;
-    width: 45vw;
+    width: 43vw;
   }
 
   .nollning-right-col {
     height: 17vh;
-    width: 55vw;
+    width: 57vw;
   }
 
   .row {
@@ -99,9 +99,8 @@
 }
 
 .nollning-toolbar.toolbar i {
-  color: $white !important;
+  color: #ffcbcb !important;
 }
-
 
 .tab-link .moose-icon {
   position: relative;
@@ -118,8 +117,9 @@
   background-image: url("../img/nollning_moose_icon_active.png");
 }
 
-#view-nollning:not(.adventure-week-*) .navbar {
-  background-color: $nollning-red !important;
+#view-nollning .navbar {
+  background-color: $nollning-red;
+  transition: background-color 200ms ease;
 }
 
 .nollning-moose {

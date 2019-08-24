@@ -6,12 +6,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui, viewport-fit=cover">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://stage.fsektionen.se https://fsektionen.se wss://fsektionen.se wss://stage.fsektionen.se gap://ready 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; frame-src 'self' https://www.youtube.com/; media-src *; img-src 'self' https://stage.fsektionen.se https://fsektionen.se data:" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://stage.fsektionen.se https://fsektionen.se wss://fsektionen.se wss://stage.fsektionen.se gap://ready 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; child-src 'self' https://www.youtube.com gap://ready; media-src *; img-src 'self' https://stage.fsektionen.se https://fsektionen.se data:" />
   <title>F-sektionen</title>
 
   <!-- Material/iOS stylesheets. Will be replaced on deploy -->
   <link rel="stylesheet" href="lib/framework7/css/framework7.min.css">
-  <link rel="stylesheet" href="compiled_css/material-overrides.css">
+  <link rel="stylesheet" href="compiled_css/ios-overrides.css">
 
   <!-- General stylesheets -->
   <link rel="stylesheet" href="compiled_css/font-awesome.min.css">
@@ -164,7 +164,9 @@
       <div id="view-nollning" class="view tab">
           <div data-name="nollning" class="page navbar-fixed">
             <div class="navbar android-hide">
-              <div class="navbar-inner sliding"></div>
+              <div class="navbar-inner sliding">
+                <div class="title">Nollning</div>
+              </div>
             </div>
             <div class="page-content nollning-content">
               <div class="nollning-background">
@@ -358,8 +360,16 @@
         <span></span>
       </div>
       {{#if video}}
-        <div style="width: calc(100% - 32px); height: 0px; position: relative; padding-bottom: 56.250%; margin: 16px 16px 0 16px;">
-          <iframe src="{{video}}" frameborder="0" width="100%" height="100%" allowfullscreen style="width: 100%; height: 100%; position: absolute; left: 0px; top: 0px; overflow: hidden;"></iframe>
+        <div class="accordion-item adventures-accordion">
+          <div class="accordion-item-toggle">
+            <i class="fa fa-plus-circle"></i>
+            <span>Äventyrsvideo</span>
+          </div>
+          <div class="accordion-item-content">
+            <div style="width: calc(100% - 16px); height: 0px; position: relative; padding-bottom: 56.250%; margin-top: 8px;">
+              <iframe src="{{video}}" frameborder="0" width="100%" height="100%" allowfullscreen style="width: 100%; height: 100%; position: absolute; left: 0px; top: 0px; overflow: hidden;"></iframe>
+            </div>
+          </div>
         </div>
       {{/if}}
     </script>
@@ -1068,11 +1078,12 @@
   <script type="text/javascript" src="js/calendar.js"></script>
   <script type="text/javascript" src="js/notifications.js"></script>
   <script type="text/javascript" src="js/home.js"></script>
+  <script type="text/javascript" src="js/version_check.js"></script>
+  <script type="text/javascript" src="js/groups.js"></script>
   <script type="text/javascript" src="js/login.js"></script>
   <script type="text/javascript" src="js/signup.js"></script>
   <script type="text/javascript" src="js/reset_password.js"></script>
   <script type="text/javascript" src="js/action_cable.js"></script>
-  <script type="text/javascript" src="js/groups.js"></script>
   <script type="text/javascript" src="js/messages.js"></script>
   <script type="text/javascript" src="js/event.js"></script>
   <script type="text/javascript" src="js/alternatives.js"></script>
@@ -1080,7 +1091,6 @@
   <script type="text/javascript" src="js/user_page.js"></script>
   <script type="text/javascript" src="js/songbook.js"></script>
   <script type="text/javascript" src="js/contact.js"></script>
-  <script type="text/javascript" src="js/version_check.js"></script>
   <script type="text/javascript" src="js/about_app.js"></script>
   <script type="text/javascript" src="js/gallery.js"></script>
   <script type="text/javascript" src="js/album.js"></script>

@@ -89,6 +89,7 @@
 }
 
 .calendar-navbar {
+  background-color: #eb7125 !important;
   height: 88px !important;
   font-size: 16px !important;
 }
@@ -208,4 +209,12 @@
 
 .adventures-subnavbar {
   padding-bottom: 12px;
+}
+
+.adventures-current-header {
+  position: fixed;
+}
+
+#adventures-current .ptr-preloader {
+  top: 170px;
 }

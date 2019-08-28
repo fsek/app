@@ -122,6 +122,10 @@
   transition: background-color 200ms ease;
 }
 
+#view-nollning .icon-back {
+  filter: brightness(0) invert(1);
+}
+
 .nollning-moose {
   position: absolute;
   width: 100vw;

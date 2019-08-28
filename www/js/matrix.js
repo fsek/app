@@ -1,5 +1,10 @@
 let nbrIntroductionWeeks;
 
+$$(document).on('page:beforein', '.page[data-name="matrix"]', function() {
+  $$('.navbar').removeAttr('id');
+  StatusBar.backgroundColorByHexString(nollningBarColor);
+});
+
 $$(document).on('page:init', '.page[data-name="matrix"]', function (e) {
   const page = $(e.target);
 
@@ -104,7 +109,7 @@ function setLastEvent() {
   if (day > 9) {
     eventDate = parent.innerText.slice(0, 6);
   } else {
-    eventDate = parent.innterText.slice(0, 5);
+    eventDate = parent.innerText.slice(0, 5);
   }
   if (today === eventDate) {
     last.outerHTML = '<div class="timeline-item-divider today-last"></div>';

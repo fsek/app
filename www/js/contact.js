@@ -1,3 +1,7 @@
+$$(document).on('page:beforein', '.page[data-name="contact"], .page[data-name="smart-select-page"]', function() {
+  $$('.navbar').attr('id', 'orange-navbar');
+});
+
 $$(document).on('page:init', '.page[data-name="contact"]', function (e) {
   $.getJSON(API + '/contacts')
     .done(function(resp) {

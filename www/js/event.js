@@ -1,3 +1,8 @@
+$$(document).on('page:beforein', '.page[data-name="event"]', function() {
+  $$('.navbar').attr('id', 'orange-navbar');
+  StatusBar.backgroundColorByHexString('#eb7125');
+});
+
 //Configuration of the event page
 $$(document).on('page:init', '.page[data-name="event"]', function (e) {
   var eventId = e.detail.route.params.eventId;

@@ -6,9 +6,8 @@ a:active {
   display: none !important;
 }
 
-.tabs .navbar {
-  background-color: $fsek-orange;
-  color: $white;
+#orange-navbar {
+  background: $fsek-orange !important;
 }
 
 .searchbar .searchbar-cancel{

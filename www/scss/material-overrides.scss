@@ -1,5 +1,9 @@
 @import 'partials/variables';
 
+.md .color-theme-orange .navbar {
+  background: $fsek-orange;
+}
+
 .toolbar {
   background-color: $fsek-orange !important;
 }

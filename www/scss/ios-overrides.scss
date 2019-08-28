@@ -5,6 +5,11 @@
   margin-bottom: 10px;
 }
 
+.ios .navbar {
+  background: $fsek-orange;
+  color: $white;
+}
+
 .ios .message-sent .message-bubble{
   background-color: #60b0d8;
 }

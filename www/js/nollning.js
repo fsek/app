@@ -1,6 +1,11 @@
 const weekColors = ['#45afeb', '#b52548', '#83213f', '#578344', '#eb7125'];
 const nollningBarColor = '#c01d1d';
 
+// Only needed if introduction is active
+$$('#msg-btn').on('click', function() {
+  $$('.navbar').removeAttr('id');
+});
+
 $$(document).on('page:init', '.page[data-name="nollning"]', function () {
   const tab = $('#view-nollning');
 

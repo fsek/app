@@ -209,7 +209,9 @@ function initUserPage() {
 
           // Updates user.food_custom to either the input value (if the 'Annat' input was found) otherwise an empty string
           var otherInput = $('#option-other input');
-          if (otherInput.length !== 0) {
+
+          // Check if text field 'Annat' is not empty and not just whitespace
+          if (otherInput.length !== 0 && (/\S/).test(otherInput[0].value)) {
             foodCustom = otherInput[0].value;
           } else {
             foodCustom = '';
@@ -273,10 +275,7 @@ function initUserPage() {
       // Get data from the form
       formData = app.form.convertToData('#user-form');
 
-      // Update custom food data
-      $.auth.user.food_custom = foodCustom;
-
-      // Edit and update formData and the user object
+      // Edit and update formData
       formData = prepareFormData(formData, user);
 
       // Sen and ajax PUT request to update the user setting with formData
@@ -308,7 +307,9 @@ function initUserPage() {
       // If it's an array (either switch or food preferences)
       if (typeof value === 'object') {
         if (key == 'food_preferences') {
-          if (value.length != 0) {
+          if (value.length === 0 || value.length === 1 && value[0] === 'Annat') {
+            value = [''];
+          } else {
             // Remove 'Annat', change 'Mjölkallergi' to 'milk' and change every element to lower case in the food_preferences array
             value.forEach(function(element, index) {
               if (element == 'Annat') {
@@ -319,8 +320,6 @@ function initUserPage() {
                 value[index] = element.toLowerCase();
               }
             });
-          } else {
-            value = [''];
           }
         } else {
           value = value[0] == 'on'; // Change the switch input value from ['on'] to true and [] to false
@@ -329,6 +328,10 @@ function initUserPage() {
       }
       user[key] = value;
     }
+    formData.food_custom = foodCustom;
+
+    // Update custom food data to local user variable
+    user.food_custom = foodCustom;
 
     return formData;
   }

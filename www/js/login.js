@@ -6,7 +6,11 @@ var loginScreen = app.loginScreen.create({
       document.addEventListener('deviceready', function() {
         navigator.splashscreen.hide();
         StatusBar.backgroundColorByHexString(loginBarColor);
+        //StatusBar.overlaysWebView(true);
       }, false);
+    },
+    close: function () {
+      StatusBar.overlaysWebView(false);
     }
   }
 });
@@ -17,6 +21,7 @@ $.auth.validateToken()
     // Fix statusbar and close splash
     document.addEventListener('deviceready', function() {
       navigator.splashscreen.hide();
+      StatusBar.overlaysWebView(false);
     }, false);
 
     afterSignIn();
@@ -26,20 +31,6 @@ $.auth.validateToken()
   });
 
 $$(document).on('page:init', '.page[data-name="login"]', function () {
-  // Activate the login button if we have text in the input field, otherwise disable it
-  $('.login-screen-content input').on('input',function(e) {
-    var loginFormData = app.form.convertToData('#login-form');
-    var loginBtn = $('.login-btn');
-
-    if (loginFormData.email !== '' && loginFormData.password !== '') {
-      if (loginBtn.hasClass('disabled')) {
-        loginBtn.removeClass('disabled');
-      }
-    } else if (!loginBtn.hasClass('disabled')) {
-      loginBtn.addClass('disabled');
-    }
-  });
-
   $('.login-btn').on('click', function () {
     var abort = false;
 
@@ -53,7 +44,6 @@ $$(document).on('page:init', '.page[data-name="login"]', function () {
       clearTimeout(preloadTimeout);
       app.dialog.close();
       $('#login-form input[name="password"]').val('');
-      $('.login-btn').addClass('disabled');
       abort = true;
       app.dialog.alert('Begäran tog för lång tid. Kontrollera din internetanslutning (eduroam räknas inte) :\'(', 'Inloggningen misslyckades');
     }, 20000);
@@ -81,7 +71,6 @@ $$(document).on('page:init', '.page[data-name="login"]', function () {
             app.dialog.alert('Ogiltig E-post eller lösenord', 'Inloggningen misslyckades');
           }
 
-          $('.login-btn').addClass('disabled');
           $('#login-form input[name="password"]').val('');
           clearTimeout(preloadTimeout);
           clearTimeout(abortTimeout);
@@ -122,7 +111,6 @@ $$(document).on('page:init', '.page[data-name="login"]', function () {
 function afterSignIn() {
   // Fix statusbar
   StatusBar.backgroundColorByHexString(mainBarColor);
-  StatusBar.overlaysWebView(false);
 
   loginScreen.close();
 

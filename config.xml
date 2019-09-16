@@ -60,7 +60,7 @@
     <preference name="AutoHideSplashScreen" value="false" />
     <preference name="phonegap-version" value="cli-7.1.0" />
     <preference name="HeaderColor" value="#eb7125" />
-    <preference name="StatusBarOverlaysWebView" value="false" />
+    <preference name="StatusBarOverlaysWebView" value="true" />
     <engine name="ios" spec="^4.5.4" />
     <engine name="android" spec="^8.0.0" />
     <plugin name="cordova-plugin-whitelist" spec="~1.3.2" />

@@ -10,6 +10,7 @@ git clean -f -d
 git reset --hard origin/stage
 sed -i '/<link rel="stylesheet"/s/ios/material/' ./www/index.html
 sed -i '/<platform name="ios">/,/<\/platform>/d' ./config.xml
+sed -i "/<name>/c\    <name>F-stage</name>" config.xml
 sed -i '/\/www\/compiled_css\/*/d' ./.gitignore
 
 gulp compile
@@ -22,6 +23,7 @@ git push -f origin stage:stage-android
 git reset --hard origin/stage
 sed -i '/<link rel="stylesheet"/s/material/ios/' ./www/index.html
 sed -i '/<platform name="android">/,/<\/platform>/d' ./config.xml
+sed -i "/<name>/c\    <name>F-stage</name>" ./config.xml
 sed -i '/\/www\/compiled_css\/*/d' ./.gitignore
 
 gulp compile

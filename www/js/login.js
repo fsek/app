@@ -110,7 +110,7 @@ function afterSignIn() {
 
   loginScreen.close();
 
-  //Checks if user has accepted the latest terms and prompts them if they have not
+  // Checks if user has accepted the latest terms and prompts them if they have not
   checkTermsVersion();
 
   // Show home tab with news (needs to be done if an user logs out)
@@ -120,9 +120,8 @@ function afterSignIn() {
   pushAfterLogin();
   initNotificationBadge();
   loadHome();
-  setGroupNotification();
 
-  // if ($$('#groups-list ul').is(':empty')) getGroups();
+  if ($$('#groups-list ul').is(':empty')) getGroups();
 
   if ($('#calendar').is(':empty')) initCalendar($('.page.calendar-page'));
 

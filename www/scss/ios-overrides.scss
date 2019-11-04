@@ -51,7 +51,7 @@
   background: none;
 }
 
-.tabbar{
+.tabs .tabbar{
   background: $fsek-orange !important;
   color: #ffe0b3;
 }
@@ -135,35 +135,6 @@
   padding-bottom: 65px;
 }
 
-/* NOLLNING */
-.nollning-toolbar.toolbar {
-  background: $nollning-red !important;
-
-  &:before {
-    display: none;
-  }
-}
-
-.nollning-content {
-  overflow: hidden;
-}
-
-.adventure-mission .item-title {
-  font-weight: normal !important;
-}
-
-.adventures-highscore-list .item-title {
-  font-weight: normal !important;
-}
-
-.adventures-subnavbar:after {
-  content: none !important;
-}
-
-#chantbook-list {
-  margin-top: 0;
-}
-
 a.message-send-button {
   color: black !important;
   margin-left: 5px;
@@ -178,12 +149,4 @@ a.message-send-button:active {
 
 .photo-browser-page .navbar, .photo-browser-page .toolbar {
   background-color: rgba(30, 30, 30, 0.8) !important;
-}
-
-.adventures-current-list {
-  margin-top: 0 !important;
-}
-
-.swipeout-content .item-media {
-  margin-right: 16px;
 }

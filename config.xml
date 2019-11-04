@@ -70,5 +70,4 @@
     <plugin name="cordova-plugin-statusbar" spec="^2.4.3" />
     <plugin name="cordova-plugin-splashscreen" spec="^4.0.3" />
     <plugin name="cordova-plugin-headercolor" spec="^1.0.0" />
-    <plugin name="cordova-plugin-dialogs" />
 </widget>

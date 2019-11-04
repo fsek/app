@@ -5,7 +5,7 @@ var child_process = require('child_process');
  *  Pass arguments as this: npm start -- arg1 arg2
  */
 
-var phonegap = child_process.exec('phonegap serve -p 3001' + process.argv.slice(2, process.argv.length).join(' '));
+var phonegap = child_process.exec('phonegap serve -p 3001 ' + process.argv.slice(2, process.argv.length).join(' '));
 var gulp = child_process.exec('gulp');
 
 phonegap.stdout.on('data', function (data) {

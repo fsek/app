@@ -953,35 +953,34 @@
       <script type="text/template7" id="cafeTemplate">
         {{#each years}}
           <div class="timeline-year">
-              <div class="timeline-year-title black-text bg-color-white"><span>{{years}}</span></div>
+              <div class="timeline-year-title black-text bg-color-white"><span>{{@key}}</span></div>
               {{#each months}}
                   <div class="timeline-month">
-                    <div class="timeline-month-title black-text bg-color-white"><span>{{monthname}}</span></div>
+                    <div class="timeline-month-title black-text bg-color-white"><span>{{@key}}</span></div>
                     {{#each days}}
-                    <div class="timeline-item ">
-                      <div class="timeline-item-date black-text bg-color-white">{{day}}, {{date}}:e</div>
-                      <div class="timeline-item-content ">
-                      {{#each shift}}
-                      {{#if time}}
-                      <p>{{time}}</p>
-                      {{/if}}
-                      {{#if name}}
-                        {{#if me}}
-                        <a href="cafe_shift/{{id}}/{{me}}" class="item-link asd">
-                        <div class="timeline-item-inner white-text bg-color-green" id="{{id}}">
+                    <div class="timeline-item timeline-day">
+                      <div class="timeline-item-date black-text bg-color-white">{{@key}}</div>
+                      <div class="timeline-item-content">
+                      {{#each this}}
+                        {{#if user}}
+                          {{#js_if "this.user.firstname === @root.me.firstname"}}
+                            <a href="cafe_shift/{{start}}/{{id}}/true" class="item-link asd cafe-shift">
+                            <div class="timeline-item-inner bg-color-green" id="{{id}}">
+                            <div class="timeline-item-text black-text">{{duration}} \n{{user.firstname}} {{user.lastname}}</div>
+                            </div>
+                            </a>
+                          {{else}}
+                            <div class="timeline-item-inner bg-color-orange cafe-shift" id="{{id}}">
+                            <div class="timeline-item-text black-text">{{duration}} \n{{user.firstname}} {{user.lastname}}</div>
+                            </div>
+                          {{/js_if}}
                         {{else}}
-                        <a class="item-link">
-                        <div class="timeline-item-inner " id="{{id}}">
+                          <a href="cafe_shift/{{start}}/{{id}}/false" class="item-link asd cafe-shift">
+                          <div class="timeline-item-inner bg-color-white" id="{{id}}">
+                          <div class="timeline-item-text black-text">{{duration}}\n Ledigt pass</div>
+                          </div>
+                          </a>
                         {{/if}}
-                        <div class="timeline-item-text">{{name}}</div>
-                      {{else}}
-                      <a href="cafe_shift/{{id}}/{{me}}" class="item-link asd">
-                      <div class="timeline-item-inner bg-color-white" id="{{id}}">
-                      <div class="timeline-item-text black-text">Ledigt pass</div>
-                      {{/if}}
-                        </div>
-                        </a>
-
                         {{/each}}
                       </div>
                     </div>

@@ -206,7 +206,7 @@ var alternativesView = app.views.create('#view-alternatives', {
       routes: [
         {
           name: 'cafe_shift',
-          path: 'cafe_shift/:shiftId/:isMe',
+          path: 'cafe_shift/:start/:shiftId/:isMe',
           url: './cafe_shift.html'
         }
       ]
@@ -303,7 +303,7 @@ document.addEventListener('deviceready', function() {
   document.addEventListener('backbutton', onBackKey, false);
 
   /*
-   * Set the API version in the app and check if the version coincides with the 
+   * Set the API version in the app and check if the version coincides with the
    * web API version using the function "checkAPIVersion" defined in check_version.js.
    */
   var appAPIVersion = '1.0';

@@ -11,7 +11,7 @@
 
   <!-- Material/iOS stylesheets. Will be replaced on deploy -->
   <link rel="stylesheet" href="lib/framework7/css/framework7.min.css">
-  <link rel="stylesheet" href="compiled_css/ios-overrides.css">
+  <link rel="stylesheet" href="compiled_css/material-overrides.css">
 
   <!-- General stylesheets -->
   <link rel="stylesheet" href="compiled_css/font-awesome.min.css">
@@ -961,26 +961,33 @@
                     <div class="timeline-item timeline-day">
                       <div class="timeline-item-date black-text bg-color-white">{{@key}}</div>
                       <div class="timeline-item-content">
-                      {{#each this}}
-                        {{#if user}}
-                          {{#js_if "this.user.firstname === @root.me.firstname"}}
-                            <a href="cafe_shift/{{start}}/{{id}}/true" class="item-link asd cafe-shift">
-                            <div class="timeline-item-inner bg-color-green" id="{{id}}">
-                            <div class="timeline-item-text black-text">{{duration}} \n{{user.firstname}} {{user.lastname}}</div>
+                        {{#each this}}
+                          {{#if user}}
+                              <a class="item-link cafe-shift {{#js_if "this.user.firstname !== @root.me.firstname"}} disabled {{/js_if}}" href="cafe_shift/{{start}}/{{id}}/true">
+                                <div class="timeline-item-inner {{#js_if "this.user.firstname === @root.me.firstname"}} enrolled {{else}}  taken disabled {{/js_if}}" id="{{id}}">
+                                  <span class="time-info"><i class="fa fa-clock-o clock-icon" />{{duration}}</span>
+                                  <div class="timeline-item-text black-text shift-text">
+                                    {{#if user.avatar.thumb.url}}
+                                      <!--<img src="{{@root.BASE_URL}}{{user.avatar.thumb.url}}"/>-->
+                                      <img class="user-image" src="https://fsektionen.se/uploads/users/863/thumb_olomi_1ec52370c83e516b0886584c462ed099.jpg"/>
+                                    {{else}}
+                                      <i class="fa fa-user user-icon" />
+                                    {{/if}}
+                                    <span class="user-info">{{user.firstname}} {{user.lastname}}</span></div>
+                                </div>
+                              </a>
+                          {{else}}
+                            <a href="cafe_shift/{{start}}/{{id}}/false" class="item-link asd cafe-shift">
+                            <div class="timeline-item-inner bg-color-white free" id="{{id}}">
+
+                                <span class="time-info"><i class="fa fa-clock-o clock-icon" />{{duration}}</span>
+                              <div class="timeline-item-text black-text shift-text">
+                                <i class="fa fa-coffee coffee-icon" />
+                                Ledigt pass
+                              </div>
                             </div>
                             </a>
-                          {{else}}
-                            <div class="timeline-item-inner bg-color-orange cafe-shift" id="{{id}}">
-                            <div class="timeline-item-text black-text">{{duration}} \n{{user.firstname}} {{user.lastname}}</div>
-                            </div>
-                          {{/js_if}}
-                        {{else}}
-                          <a href="cafe_shift/{{start}}/{{id}}/false" class="item-link asd cafe-shift">
-                          <div class="timeline-item-inner bg-color-white" id="{{id}}">
-                          <div class="timeline-item-text black-text">{{duration}}\n Ledigt pass</div>
-                          </div>
-                          </a>
-                        {{/if}}
+                          {{/if}}
                         {{/each}}
                       </div>
                     </div>

@@ -1,7 +1,21 @@
+
 .cafe-content {
 
+  .ios & {
+    padding-bottom: 0 !important;
+  }
+
   .timeline-year {
-   margin-top: 1em;
+    margin-top: 1em;
+    height: auto;
+
+    .ios & {
+      margin-top: 0;
+    }
+  }
+
+  .ios & .timeline-item-content {
+    overflow: hidden;
   }
 
   .timeline-day:nth-child(5n+1) {
@@ -9,15 +23,98 @@
   }
 
   .timeline-item-inner {
-    height: 18%;
-    background-color: #EB7125;
+    height: 100%;
+    border-radius: 0;
+    text-align: center;
+    position: relative;
+    border-radius: 10px;
+    border-radius: 10px;
+    border-top-width: 30px;
+    border-top-style: solid;
+
+    .time-info {
+      top: -24px;
+    }
   }
 
-  .cafe-shift:nth-child(even) .timeline-item-inner{
-    margin-bottom: 2em;
+  .cafe-shift {
+    display: block;
+    height: calc(25% - 8px);
+    margin-bottom: 6px;
+
+    &:nth-child(2) {
+      margin-bottom: 20px;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
   }
 
+  .shift-text {
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+  }
 
+  .time-info {
+    position: absolute;
+    color: white;
+    display: block;
+    width: 120%;
+    left: -10%;
+  }
+
+  .user-image {
+    border-radius: 50%;
+    height: 50%;
+    display: inline-block;
+  }
+
+  .user-info {
+    display: block;
+    margin-top: 4px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .clock-icon {
+    margin-right: 5px;
+  }
+
+  .user-icon {
+    font-size: 5em;
+    margin-top: 10px;
+  }
+
+  .coffee-icon {
+    font-size: 4em;
+    margin-bottom: 20%;
+    color: #c9c7c7;
+  }
+
+  .enrolled {
+    border-color: $green;
+  }
+
+  .taken {
+    border-color: #EB7125;
+  }
+
+  .free {
+    border-color: $light-gray;
+    padding-top: 15px;
+    
+    .time-info {
+      color: black;
+    }
+
+    .ios & {
+      border-color: #d7d7d7;
+    }
+  }
 
   .shift-update {
     background-color:#EB7125;
@@ -36,7 +133,20 @@
     color: black !important;
   }
 
+  @media screen and (max-height: 850px) {
+    .shift-text {
+      i, img {
+        display: none;
+      }
+    }
+
+    .user-info {
+      -webkit-line-clamp: 5;
+    }
+  }
+
 }
+
 .shift-content {
   .hilbert-avatar {
     height: 25vw;

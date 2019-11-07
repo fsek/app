@@ -35,6 +35,7 @@ function createDates(shiftdata) {
   console.log(shiftdata);
 
   shiftdata["me"] = $.auth.user;
+  shiftdata["BASE_URL"] = BASE_URL;
   var templateHTML = app.templates.cafeTemplate(shiftdata);
   var cafeList = $('#cafe-list');
   cafeList.html(templateHTML);

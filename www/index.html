@@ -948,7 +948,11 @@
     </script>
 
     <script type="text/template7" id="apiVersionTemplate">
-      <div class="popup popup-version-check popup-tablet-fullscreen">
+      {{#if easter}}
+        <div class="popup popup-tablet-fullscreen">
+      {{else}}
+        <div class="popup popup-version-check popup-tablet-fullscreen">
+      {{/if}}
         <div class="background-overlay"></div>
         <div class="block">
           <div class="smiley-container {{#if easter}}easter{{/if}}">

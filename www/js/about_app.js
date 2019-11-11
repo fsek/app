@@ -8,7 +8,7 @@ $$(document).on('page:init', '.page[data-name="about-app"]', function () {
     counter++;
 
     if (counter === 5) {
-      var templateHTML = app.templates.versionCheckTemplate({
+      var templateHTML = app.templates.apiVersionTemplate({
         appLink: '',
         easter: true
       });

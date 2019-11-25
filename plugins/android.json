@@ -10,16 +10,10 @@
     "cordova-plugin-headercolor": {
       "PACKAGE_NAME": "se.fsektionen.fapp"
     },
-    "cordova-plugin-keyboard": {
-      "PACKAGE_NAME": "se.fsektionen.fapp"
-    },
     "cordova-plugin-splashscreen": {
       "PACKAGE_NAME": "se.fsektionen.fapp"
     },
     "cordova-plugin-whitelist": {
-      "PACKAGE_NAME": "se.fsektionen.fapp"
-    },
-    "ionic-plugin-keyboard": {
       "PACKAGE_NAME": "se.fsektionen.fapp"
     },
     "phonegap-plugin-push": {

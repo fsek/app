@@ -65,7 +65,7 @@ function initSignUpPage(shiftId, isMe, start) {
 
   const shift = {
     'id': shiftId,
-    'name': myUser.firstname + ' ' + myUser.lastname,
+    'name': myUser.name,
     'committee': '',
     'competition': 'yes'};
 
@@ -128,7 +128,7 @@ function updateShift(shift, councilsall) {
       cafe_shift_id: shift.id,
       cafe_worker: {
         user_id: $.auth.user.id,
-        council_ids: councilsall[shift.committee],
+        council_ids: [councilsall[shift.committee]],
         group: shift.group,
         competition: shift.competition
       }

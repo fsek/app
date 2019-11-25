@@ -989,16 +989,16 @@
                       <div class="timeline-item-content">
                         {{#each this}}
                           {{#if user}}
-                              <a class="item-link cafe-shift {{#js_if "this.user.firstname !== @root.me.firstname"}} disabled {{/js_if}}" href="cafe_shift/{{start}}/{{id}}/true">
-                                <div class="timeline-item-inner {{#js_if "this.user.firstname === @root.me.firstname"}} enrolled {{else}}  taken disabled {{/js_if}}" id="{{id}}">
+                              <a class="item-link cafe-shift {{#js_if "this.user.id !== @root.me.id"}} disabled {{/js_if}}" href="cafe_shift/{{start}}/{{id}}/true">
+                                <div class="timeline-item-inner {{#js_if "this.user.id === @root.me.id"}} enrolled {{else}}  taken disabled {{/js_if}}" id="{{id}}">
                                   <span class="time-info"><i class="fa fa-clock-o clock-icon" />{{duration}}</span>
                                   <div class="timeline-item-text black-text shift-text">
-                                    {{#if user.avatar.thumb.url}}
-                                      <img class="user-image"  src="{{@root.BASE_URL}}{{user.avatar.thumb.url}}"/>
+                                    {{#if user.avatar}}
+                                      <img class="user-image"  src="{{@root.BASE_URL}}{{user.avatar}}"/>
                                     {{else}}
                                       <i class="fa fa-user-circle user-icon" />
                                     {{/if}}
-                                    <span class="user-info">{{user.firstname}} {{user.lastname}}</span></div>
+                                    <span class="user-info">{{user.name}}</span></div>
                                 </div>
                               </a>
                           {{else}}

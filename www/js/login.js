@@ -3,27 +3,11 @@ var loginScreen = app.loginScreen.create({
   on: {
     opened: function () {
       // Fix statusbar and close splash
-      document.addEventListener('deviceready', function() {
-        navigator.splashscreen.hide();
-        StatusBar.backgroundColorByHexString(loginBarColor);
-      }, false);
+      navigator.splashscreen.hide();
+      StatusBar.backgroundColorByHexString(loginBarColor);
     }
   }
 });
-
-// Redirect from the login screen if the user has signed in before
-$.auth.validateToken()
-  .done(function() {
-    // Fix statusbar and close splash
-    document.addEventListener('deviceready', function() {
-      navigator.splashscreen.hide();
-    }, false);
-
-    afterSignIn();
-  })
-  .fail(function() {
-    loginScreen.open(false); // true if animation
-  });
 
 $$(document).on('page:init', '.page[data-name="login"]', function () {
   // Activate the login button if we have text in the input field, otherwise disable it

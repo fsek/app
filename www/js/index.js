@@ -347,6 +347,18 @@ function onBackKey() {
  * web API version using the function "checkAPIVersion" defined in check_version.js.
  */
 document.addEventListener('deviceready', function() {
+  // Redirect from the login screen if the user has signed in before
+  $.auth.validateToken()
+    .done(function() {
+      // Fix statusbar and close splash
+      navigator.splashscreen.hide();
+
+      afterSignIn();
+    })
+    .fail(function() {
+      loginScreen.open(false); // true if animation
+    });
+
   document.addEventListener('backbutton', onBackKey, false);
   $.getJSON(API + '/versions')
     .done(function(resp) {

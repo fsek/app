@@ -57,7 +57,7 @@ function initSignUpPage(shiftId, isMe, start) {
   const shiftDate = new Date(start);
 
   // Different text if user already is signed up to shift
-  if (isMe == 'true') {
+  if (isMe === "true") {
     $('#header_text').html('Du är anmäld till pass kl ' + hours +':'+ minutes + '<br/>' + dayNames[shiftDate.getDay()] +' den ' + d + ' ' + monthNames[m] + ' ' + y);
   } else {
     $('#header_text').html('Anmälan till pass kl ' + hours +':'+ minutes + '<br/>' + dayNames[shiftDate.getDay()] +' den ' + d + ' ' + monthNames[m] + ' ' + y);
@@ -65,15 +65,18 @@ function initSignUpPage(shiftId, isMe, start) {
 
   const shift = {
     'id': shiftId,
-    'name': myUser.name,
+    'name': myUser.firstname + " " + myUser.lastname,
     'committee': '',
+    'group': '',
     'competition': 'yes'};
 
+  console.log(isMe)
   app.form.fillFromData('#shift-form', shift);
 
   // get all possible councils
   const councilsName = [];
   const councilsAll = {}; // connect id with council name
+
   $.getJSON(API + '/councils')
     .done(function(resp) {
       for (let c in resp.councils) {
@@ -93,12 +96,15 @@ function initSignUpPage(shiftId, isMe, start) {
       }
     ]
   });
+
   $('.shift-update').on('click', function() {
     updateShift(shift, councilsAll);
   });
+
   $('.shift-unsign').on('click', function() {
     unsignShift(shift, councilsAll);
   });
+
   if (isMe == 'true') {
     // hide unsign button if not signed up yet
     $('.shift-update').hide();
@@ -118,6 +124,7 @@ function updateShift(shift, councilsall) {
     shift.competition = true;
   }
   shift.committee = shiftData.committee;
+  shift.group = shiftData.group;
 
   // Send info to server and finn in acctual shift
   $.ajax({

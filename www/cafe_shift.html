@@ -36,13 +36,15 @@
             </div>
           </div>
         </li>
-        <li class="item-content item-input">
-         <div class="item-inner">
-           <div class="item-title item-label">Utskott</div>
-           <div class="item-input-wrap">
-             <input id="user-committee-input" name="committee" type="text" placeholder="Utskott">
-           </div>
-         </div>
+        <li>
+          <a class="council-select item-link smart-select smart-select-init" data-open-in="popover">
+            <select name="councils" multiple></select>
+            <div class="item-content">
+              <div class="item-inner">
+                <div class="item-title">Utskott</div>
+              </div>
+            </div>
+          </a>
         </li>
         <li class="item-content item-input">
           <div class="item-inner item-label">
@@ -53,8 +55,8 @@
           </div>
        </li>
      </ul>
-     <a class="shift-update button button-big button-fill">Arbeta på passet</a>
-     <a class="shift-unsign button button-big color-red button-fill">Avanmäl</a>
+     <a class="shift-create button button-big button-fill hidden">Arbeta på passet</a>
+     <a class="shift-destroy button button-big color-red button-fill hidden">Avanmäl</a>
     </form>
   </div>
 </div>

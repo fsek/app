@@ -168,7 +168,7 @@ var alternativesView = app.views.create('#view-alternatives', {
       routes: [
         {
           name: 'cafe_shift',
-          path: 'cafe_shift/:start/:shiftId/:isMe',
+          path: 'cafe_shift/:shiftId',
           url: './cafe_shift.html'
         }
       ]

@@ -1,4 +1,4 @@
-var foodCustom, formChanged, popupOpen, updateUser, user;
+var foodCustom, formChanged, popupOpen, programPicker, startYearPicker, updateUser, user;
 
 $$(document).on('page:init', '.page[data-name="user-page"]', function () {
   user = $.auth.user;
@@ -38,7 +38,11 @@ const dialog = app.dialog.create({
 });
 
 function backButton() {
-  if (!popupOpen) {
+  if (programPicker.opened) {
+    programPicker.close();
+  } else if (startYearPicker.opened) {
+    startYearPicker.close();
+  } else if (!popupOpen) {
     // Custom food must be checked separately since it is not part of the form
     if (formChanged || user.food_custom !== foodCustom) {
       dialog.open();
@@ -116,7 +120,7 @@ function initUserPage() {
   }
 
   function initProgramPicker(selectedProgram) {
-    var programPicker = app.picker.create({
+    programPicker = app.picker.create({
       inputEl: '#user-program-input',
       rotateEffect: true,
       toolbarCloseText: 'Klar',
@@ -138,7 +142,7 @@ function initUserPage() {
       startYears[i] = thisYear - i;
     }
 
-    var startYearPicker = app.picker.create({
+    startYearPicker = app.picker.create({
       inputEl: '#user-startyear-input',
       rotateEffect: true,
       toolbarCloseText: 'Klar',

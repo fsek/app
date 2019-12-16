@@ -11,7 +11,7 @@
 
   <!-- Material/iOS stylesheets. Will be replaced on deploy -->
   <link rel="stylesheet" href="lib/framework7/css/framework7.min.css">
-  <link rel="stylesheet" href="compiled_css/material-overrides.css">
+  <link rel="stylesheet" href="compiled_css/ios-overrides.css">
 
   <!-- General stylesheets -->
   <link rel="stylesheet" href="compiled_css/font-awesome.min.css">
@@ -809,56 +809,52 @@
       </div>
     </script>
 
-      <script type="text/template7" id="cafeTemplate">
-        {{#each years}}
-          <div class="timeline-year">
-              <div class="timeline-year-title black-text bg-color-white"><span>{{@key}}</span></div>
-              {{#each months}}
-                  <div class="timeline-month">
-                    <div class="timeline-month-title black-text bg-color-white"><span>{{@key}}</span></div>
-                    {{#each days}}
-                    <div class="timeline-item timeline-day {{#js_if "@key.includes('Fredag')"}}friday{{/js_if}}">
-                      <div class="timeline-item-date black-text bg-color-white">{{@key}}</div>
-                      <div class="timeline-item-content">
-                        {{#each this}}
-                          {{#if user}}
-                              <a class="item-link cafe-shift {{#js_if "this.user.id !== @root.me.id"}} disabled {{/js_if}}" href="cafe_shift/{{start}}/{{id}}/true">
-                                <div class="timeline-item-inner {{#js_if "this.user.id === @root.me.id"}} enrolled {{else}}  taken disabled {{/js_if}}" id="{{id}}">
-                                  <span class="time-info"><i class="fa fa-clock-o clock-icon" />{{duration}}</span>
-                                  <div class="timeline-item-text black-text shift-text">
-                                    {{#if user.avatar}}
-                                      <img class="user-image"  src="{{@root.BASE_URL}}{{user.avatar}}"/>
-                                    {{else}}
-                                      <i class="fa fa-user-circle user-icon" />
-                                    {{/if}}
-                                    <span class="user-info">{{user.name}}</span></div>
-                                </div>
-                              </a>
-                          {{else}}
-                            <a href="cafe_shift/{{start}}/{{id}}/false" class="item-link asd cafe-shift">
-                            <div class="timeline-item-inner bg-color-white free" id="{{id}}">
-
-                                <span class="time-info"><i class="fa fa-clock-o clock-icon" />{{duration}}</span>
-                              <div class="timeline-item-text black-text shift-text">
-                                <i class="fa fa-coffee coffee-icon" />
-                                <span class="user-info">Ledigt pass</span>
-                              </div>
+    <script type="text/template7" id="cafeTemplate">
+      {{#each years}}
+        <div class="timeline-year">
+          <div class="timeline-year-title black-text bg-color-white"><span>{{@key}}</span></div>
+            {{#each months}}
+              <div class="timeline-month">
+                <div class="timeline-month-title black-text bg-color-white"><span>{{@key}}</span></div>
+                {{#each days}}
+                <div class="timeline-item timeline-day {{#js_if "@key.includes('Fredag')"}}friday{{/js_if}}">
+                  <div class="timeline-item-date black-text bg-color-white">{{@key}}</div>
+                  <div class="timeline-item-content">
+                    {{#each this}}
+                      {{#if user}}
+                        <a class="item-link cafe-shift {{#js_if "this.user.id !== @root.me.id"}} disabled {{/js_if}}" href="cafe_shift/{{id}}">
+                          <div class="timeline-item-inner {{#js_if "this.user.id === @root.me.id"}} enrolled {{else}}  taken disabled {{/js_if}}" id="{{id}}">
+                            <span class="time-info"><i class="fa fa-clock-o clock-icon" />{{duration}}</span>
+                            <div class="timeline-item-text black-text shift-text">
+                              {{#if user.avatar}}
+                                <img class="user-image"  src="{{@root.BASE_URL}}{{user.avatar}}"/>
+                              {{else}}
+                                <i class="fa fa-user-circle user-icon" />
+                              {{/if}}
+                              <span class="user-info">{{user.name}}</span>
                             </div>
-                            </a>
-                          {{/if}}
-                        {{/each}}
-                      </div>
-                    </div>
+                          </div>
+                        </a>
+                      {{else}}
+                        <a href="cafe_shift/{{id}}" class="item-link cafe-shift">
+                          <div class="timeline-item-inner bg-color-white free" id="{{id}}">
+                              <span class="time-info"><i class="fa fa-clock-o clock-icon" />{{duration}}</span>
+                            <div class="timeline-item-text black-text shift-text">
+                              <i class="fa fa-coffee coffee-icon" />
+                              <span class="user-info">Ledigt pass</span>
+                            </div>
+                          </div>
+                        </a>
+                      {{/if}}
                     {{/each}}
-
                   </div>
-                  {{/each}}
-
-              </div>
+                </div>
+              {{/each}}
+            </div>
+          {{/each}}
+        </div>
       {{/each}}
-      </script>
-
-
+    </script>
 
     <script type="text/template7" id="galleryTemplate">
       {{#each album}}

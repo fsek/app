@@ -18,7 +18,7 @@
       margin-top: 0;
     }
   }
-  
+
   .friday{
     border-right: 2px solid #d6d6d6;
   }
@@ -100,7 +100,7 @@
   }
 
   .taken {
-    border-color: #EB7125;
+    border-color: $fsek-orange;
   }
 
   .free {
@@ -116,18 +116,13 @@
     }
   }
 
-  .shift-update {
-    background-color:#EB7125;
-  }
-
   .white-text {
-    color: #ffffff;
+    color: $white;
   }
 
   .black-text {
-    color: #000000;
+    color: $black;
   }
-
 
   .timeline-year-title, .timeline-month-title {
     color: black !important;
@@ -148,7 +143,7 @@
       -webkit-line-clamp: 5;
     }
   }
- 
+
 
   @media screen and (max-width: 370px) {
     .timeline-item-date, .time-info {
@@ -174,7 +169,13 @@
     background-image: url("../img/hilbert.png");
     margin: auto;
     box-shadow: 0px 2px 10px 2px rgba(0,0,0,0.2);
-    //border-radius: 100%;
-    //border: 3px solid #d6d6d6;
+  }
+
+  .shift-create {
+    background-color: $fsek-orange !important;
+  }
+
+  .button {
+    margin-top: 30px;
   }
 }

@@ -7,50 +7,36 @@ $$(document).on('page:init', '.page[data-name="user-page"]', function () {
   initUserPage(user);
 });
 
-const dialog = app.dialog.create({
-  title: 'Osparade ändringar',
-  text: 'Du verkar ha osparade ändringar! Vad vill du göra med dem?',
-  closeByBackdropClick: true,
-  buttons: [
-    {
-      text: 'Släng',
-      onClick: function() {
-        alternativesView.router.back();
-      }
-    },
-    {
-      text: 'Spara',
-      onClick: function() {
-        updateUser(user).then(function() {
-          alternativesView.router.back();
-        });
-      },
-    },
-  ],
-  on: {
-    close: function() {
-      popupOpen = false;
-    },
-    open: function() {
-      popupOpen = true;
-    }
-  }
-});
-
-function backButton() {
-  if (programPicker.opened) {
-    programPicker.close();
-  } else if (startYearPicker.opened) {
-    startYearPicker.close();
-  } else if (!popupOpen) {
+function userBackButton() {
+  if (typeof app.dialog.get() === 'undefined') {
     // Custom food must be checked separately since it is not part of the form
     if (formChanged || user.food_custom !== foodCustom) {
-      dialog.open();
+      app.dialog.create({
+        title: 'Osparade ändringar',
+        text: 'Du verkar ha osparade ändringar! Vad vill du göra med dem?',
+        closeByBackdropClick: true,
+        buttons: [
+          {
+            text: 'Släng',
+            onClick: function() {
+              alternativesView.router.back();
+            }
+          },
+          {
+            text: 'Spara',
+            onClick: function() {
+              updateUser(user).then(function() {
+                alternativesView.router.back();
+              });
+            },
+          },
+        ]
+      }).open();
     } else {
       alternativesView.router.back();
     }
   } else {
-    dialog.close();
+    app.dialog.close();
   }
 }
 
@@ -88,7 +74,7 @@ function initUserPage() {
   });
 
   $('.back-button').on('click', function() {
-    backButton();
+    userBackButton();
   });
 
   $('#user-form').change(function() {

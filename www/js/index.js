@@ -250,6 +250,8 @@ function onBackKey() {
     } else {
       navigator.app.exitApp();
     }
+  } else if (typeof app.picker.get() !== 'undefined') {
+    app.picker.close();
   } else if ($$('.popover.modal-in').length && !$$('.popup-terms').length) {
     app.popover.close('.popover.modal-in');
   } else if ($$('.popup').length && !$$('.popup-version-check').length) {
@@ -257,9 +259,14 @@ function onBackKey() {
   } else if (pageName === 'calendar' || pageName === 'groups' || pageName === 'notifications' || pageName === 'alternatives') {
     app.tab.show('#view-home');
   } else if (pageName === 'user-page') {
-    backButton();
+    userBackButton();
   } else if (pageName === 'album') {
-    if (app.dialog.get() !== 'undefined') {
+    if (typeof app.dialog.get() !== 'undefined') {
+      app.dialog.close();
+    }
+    router.back();
+  } else if (pageName === 'cafe-shift') {
+    if (typeof app.dialog.get() !== 'undefined') {
       app.dialog.close();
     }
     router.back();

@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui, viewport-fit=cover">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://stage.fsektionen.se https://fsektionen.se wss://fsektionen.se wss://stage.fsektionen.se gap://ready 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; child-src 'self' https://www.youtube.com gap://ready; media-src *; img-src 'self' https://stage.fsektionen.se https://fsektionen.se data:" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://stage.fsektionen.se https://fsektionen.se wss://fsektionen.se wss://stage.fsektionen.se gap://ready 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; child-src 'self' https://www.youtube.com gap://ready; media-src *; img-src * 'self' https://stage.fsektionen.se https://fsektionen.se data:" />
   <title>F-sektionen</title>
 
   <!-- Material/iOS stylesheets. Will be replaced on deploy -->
@@ -204,6 +204,15 @@
           <div class="page-content settings-content">
             <div class="list">
               <ul>
+                <li>
+                  <a href="/store/" class="item-link">
+                    <div class="item-content">
+                      <div class="item-inner">
+                        <div class="item-title">F-shoppen</div>
+                      </div>
+                    </div>
+                  </a>
+                </li>
                 <li>
                   <a href="/songbook/" class="item-link">
                     <div class="item-content">
@@ -906,6 +915,19 @@
         </div>
       </div>
     </script>
+
+    <script type="text/template7" id="storeTemplate">
+      {{#each products}}
+        <div class="card">
+          <div class="card-header" style="background-image: url({{image_url}})"></div>
+          <div class="card-content card-content-padding">
+            <div class="product-name">{{name}}</div>
+            Pris: {{price}} kr
+            <button data-id="{{id}}" class="button button-fill buy-product">Köp</button>
+          </div>
+        </div>
+      {{/each}}
+    </script>
   </section>
 
   <!-- External JS Libraries -->
@@ -945,6 +967,7 @@
   <script type="text/javascript" src="js/gallery.js"></script>
   <script type="text/javascript" src="js/album.js"></script>
   <script type="text/javascript" src="js/cafe.js"></script>
+  <script type="text/javascript" src="js/store.js"></script>
 </body>
 
 </html>

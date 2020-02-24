@@ -1,0 +1,34 @@
+.store-content {
+  .card:nth-child(-n+2) {
+    margin-top: 16px;
+  }
+
+  .card {
+    width: calc(50% - 18px);
+    float: left;
+    box-shadow: none;
+    margin-left: 8px
+  }
+
+  .card-header {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: #f8f8f8;
+    height: 37vh;
+  }
+
+  .card-content {
+    text-align: center;
+  }
+
+  .product-name {
+    font-size: 19px;
+    font-weight: bold;
+  }
+
+  .buy-product {
+    background-color: $fsek-orange;
+    margin-top: 10px;
+  }
+}

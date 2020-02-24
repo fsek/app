@@ -207,6 +207,11 @@ var alternativesView = app.views.create('#view-alternatives', {
       path: '/contact/:contactId',
       url: './contact.html',
     },
+    {
+      name: 'store',
+      path: '/store/',
+      url: './store.html',
+    }
   ]
 });
 

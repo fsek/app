@@ -11,7 +11,7 @@
 
   <!-- Material/iOS stylesheets. Will be replaced on deploy -->
   <link rel="stylesheet" href="lib/framework7/css/framework7.min.css">
-  <link rel="stylesheet" href="compiled_css/ios-overrides.css">
+  <link rel="stylesheet" href="compiled_css/material-overrides.css">
 
   <!-- General stylesheets -->
   <link rel="stylesheet" href="compiled_css/font-awesome.min.css">
@@ -204,6 +204,15 @@
           <div class="page-content settings-content">
             <div class="list">
               <ul>
+                <li>
+                  <a href="/wine/" class="item-link">
+                    <div class="item-content">
+                      <div class="item-inner">
+                        <div class="item-title">Vinlista</div>
+                      </div>
+                    </div>
+                  </a>
+                </li>
                 <li>
                   <a href="/songbook/" class="item-link">
                     <div class="item-content">
@@ -906,6 +915,27 @@
         </div>
       </div>
     </script>
+
+    <script type="text/template7" id="wineTemplate">
+      <div class="row">
+        <div class="column block-title">Namn</div>
+        <div class="column block-title">Årtal</div>
+      </div>
+      <div id="wine-list" class="list">
+        <ul>
+          {{#each wine}}
+            <li>
+              <div class="item-content">
+                <div class="item-inner">
+                  <div class="name item-title">{{name}}</div>
+                  <div class="year item-after">{{year}}</div>
+                </div>
+              </div>
+            </li>
+          {{/each}}
+        </ul>
+      </div>
+    </script>
   </section>
 
   <!-- External JS Libraries -->
@@ -945,6 +975,7 @@
   <script type="text/javascript" src="js/gallery.js"></script>
   <script type="text/javascript" src="js/album.js"></script>
   <script type="text/javascript" src="js/cafe.js"></script>
+  <script type="text/javascript" src="js/wine.js"></script>
 </body>
 
 </html>

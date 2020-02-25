@@ -35,7 +35,7 @@ var app = new Framework7({
 var $$ = Dom7;
 
 // API URLS
-const BASE_URL = 'https://stage.fsektionen.se';
+const BASE_URL = 'tcp://localhost:3000';
 const API = BASE_URL + '/api';
 const AC_URL = 'wss://stage.fsektionen.se/cable';
 
@@ -206,6 +206,11 @@ var alternativesView = app.views.create('#view-alternatives', {
       name: 'contact',
       path: '/contact/:contactId',
       url: './contact.html',
+    },
+    {
+      name: 'wine',
+      path: '/wine/',
+      url: './wine.html',
     },
   ]
 });

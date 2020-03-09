@@ -245,8 +245,8 @@ function onBackKey() {
   } else if (pageName === 'home') {
     const activeSub = page.find('.subtab.tab-active').attr('id');
 
-    if (activeSub !== 'subtab1') {
-      app.tab.show('#subtab1');
+    if (activeSub !== 'subtab-news') {
+      app.tab.show('#subtab-news');
     } else {
       navigator.app.exitApp();
     }

@@ -69,6 +69,6 @@
         <variable name="SENDER_ID" value="509736475453" />
     </plugin>
     <plugin name="cordova-plugin-statusbar" spec="^2.4.3" />
-    <plugin name="cordova-plugin-splashscreen" spec="^4.0.3" />
+    <plugin name="cordova-plugin-splashscreen" spec="https://github.com/prageeth/cordova-plugin-splashscreen.git#05d8f9a" source="git" />
     <plugin name="cordova-plugin-headercolor" spec="^1.0.0" />
 </widget>

@@ -1,5 +1,5 @@
-const weekColors = ['#45afeb', '#b52548', '#83213f', '#578344', '#eb7125'];
-const nollningBarColor = '#c01d1d';
+const weekColors = ['#d7c9b2', '#620c22', '#cae1ff', '#85cc43', '#eb7125'];
+const nollningBarColor = '#0e5e05';
 
 // Only needed if introduction is active
 $$('#msg-btn').on('click', function() {

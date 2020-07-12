@@ -22,6 +22,7 @@ $$(document).on('page:init', '.page[data-name="alternatives"]', function () {
           // Clear login inputs
           $('#login-form input[name="email"]').val('');
           $('#login-form input[name="password"]').val('');
+          $('.nollning-moose').removeClass('nollning-moose-orange');
 
           loginScreen.open();
         }

@@ -42,7 +42,6 @@
   display: none !important;
 }
 
-
 .ios .navbar i.icon, .ios .navbar a{
   color: $white;
 }
@@ -133,6 +132,44 @@
 
 .settings-content {
   padding-bottom: 65px;
+
+}
+
+/* NOLLNING */
+.nollning-toolbar.toolbar {
+  background: $nollning-red !important;
+
+  &:before {
+    display: none;
+  }
+}
+
+.nollning-content {
+  overflow: hidden;
+}
+
+.adventure-mission .item-title {
+  font-weight: normal !important;
+}
+
+.adventures-highscore-list .item-title {
+  font-weight: normal !important;
+}
+
+.adventures-subnavbar:after {
+  content: none !important;
+}
+
+#chantbook-list {
+  margin-top: 0;
+}
+
+.adventures-current-list {
+  margin-top: 0 !important;
+}
+
+.swipeout-content .item-media {
+  margin-right: 16px;
 }
 
 a.message-send-button {

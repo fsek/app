@@ -65,7 +65,7 @@ function initMessages(head, query) {
 
   // Set group name
   $('#messages-group-name').html(query.groupName);
-  app.navbar.size($('#view-groups .navbar'));
+  app.navbar.size($('#view-nollning .navbar'));
 
   // Check if group type is 'info', then we don't want to display messagebar
   if (query.groupType !== 'info') {

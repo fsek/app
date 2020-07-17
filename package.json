@@ -14,8 +14,7 @@
       },
       "cordova-plugin-statusbar": {},
       "cordova-plugin-splashscreen": {},
-      "cordova-plugin-headercolor": {},
-      "cordova-plugin-dialogs": {}
+      "cordova-plugin-headercolor": {}
     }
   },
   "scripts": {

@@ -41,28 +41,32 @@
 }
 
 .nollning-btn-adventures {
-  background-image: url("../img/nollning_stone_adventures.png");
-  width: 15vh;
+  background-image: url("../img/adventure_icon.png");
+  width: 13vh;
+  margin-left: -4vh;
 }
 
 .nollning-btn-contact {
-  background-image: url("../img/nollning_stone_contact.png");
-  width: 13vh;
+  background-image: url("../img/contact_icon.png");
+    width: 13vh;
 }
 
 .nollning-btn-matrix {
-  background-image: url("../img/nollning_stone_matrix.png");
-  width: 14vh;
+  background-image: url("../img/calendar_icon.png");
+  width: 13vh;
+  margin-left: -4vh;
 }
 
 .nollning-btn-messages {
-  background-image: url("../img/nollning_stone_messages.png");
+  background-image: url("../img/chat_icon.png");
   width: 13vh;
+  margin-left: 4vh;
 }
 
 .nollning-btn-chants {
-  background-image: url("../img/nollning_stone_chants.png");
+  background-image: url("../img/chants_icon.png");
   width: 13vh;
+  margin-left: 4vh;
 }
 
 .nollning-button-container {
@@ -73,16 +77,44 @@
     background-position-x: center;
     background-repeat: no-repeat;
     background-size: contain;
-    height: 21vw;
-    margin: auto;
+    height: 19vw;
+    margin-top: -2vh;
+    margin-bottom: -2vh;
+    
+
   }
 
   .row:first-child {
-    margin-bottom: 8px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    margin-left: 5px;
   }
 
   .row {
     justify-content: center;
+  }
+}
+
+.nollning-contact-button-container {
+  margin: auto;
+  width: 90%;
+
+  .col-33 div, .col-50 div {
+    background-position-x: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 24vw;
+    margin: 1px;
+  }
+
+  .row:first-child {
+    margin-bottom: 10px;
+    margin-top: 10px
+  }
+
+  .row {
+    justify-content: center;
+
   }
 }
 

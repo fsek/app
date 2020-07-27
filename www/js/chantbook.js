@@ -1,3 +1,8 @@
+$$(document).on('page:beforein', '.page[data-name="chantbook"]', function() {
+  $$('.navbar').removeAttr('id');
+  StatusBar.backgroundColorByHexString(nollningBarColor);
+});
+
 $$(document).on('page:init', '.page[data-name="chantbook"]', function (e) {
   $.getJSON(API + '/songs/chants')
     .done(function(resp) {

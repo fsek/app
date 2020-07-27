@@ -41,7 +41,11 @@ function initSongList(songdata) {
   });
 }
 
-$$(document).on('page:init', '.page[data-name="song"]', function (e) {
+$$(document).on('page:init', '.page[data-name="song"]', function (e, page) {
+  if (page.pageFrom.name == 'chantbook') {
+    $$('.navbar').removeAttr('id');
+    $$('.navbar').attr('id', 'navbar');
+  } 
   var songId = e.detail.route.params.songId;
   $.getJSON(API + '/songs/' + songId)
     .done(function(resp) {

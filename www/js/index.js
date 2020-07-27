@@ -184,6 +184,18 @@ var nollningView = app.views.create('#view-nollning', {
         },
       ]
     },
+    {
+      name: 'songbook',
+      path: '/songbook/',
+      url: './songbook.html',
+      routes: [
+        {
+          name: 'song',
+          path: 'song/:songId',
+          url: './song.html'
+        }
+      ]
+    },
   ]
 });
 

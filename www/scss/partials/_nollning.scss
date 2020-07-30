@@ -42,79 +42,50 @@
 
 .nollning-btn-adventures {
   background-image: url("../img/adventure_icon.png");
-  width: 13vh;
-  margin-left: -4vh;
+  width: 14vh;
 }
 
 .nollning-btn-contact {
   background-image: url("../img/contact_icon.png");
-    width: 13vh;
+  transform: scale(1.15);
+  width: 14vh;
 }
 
 .nollning-btn-matrix {
   background-image: url("../img/calendar_icon.png");
-  width: 13vh;
-  margin-left: -4vh;
+  width: 14vh;
 }
 
 .nollning-btn-messages {
   background-image: url("../img/chat_icon.png");
-  width: 13vh;
-  margin-left: 4vh;
+  width: 14vh;
 }
 
 .nollning-btn-chants {
   background-image: url("../img/chants_icon.png");
-  width: 13vh;
-  margin-left: 4vh;
+  width: 14vh;
 }
 
 .nollning-button-container {
   margin: auto;
+  margin-top: 2vh;
   width: 90%;
 
-  .col-33 div, .col-50 div {
+  .col-33 div {
     background-position-x: center;
     background-repeat: no-repeat;
     background-size: contain;
-    height: 19vw;
-    margin-top: -2vh;
-    margin-bottom: -2vh;
-    
-
-  }
-
-  .row:first-child {
-    margin-bottom: 10px;
-    margin-top: 10px;
-    margin-left: 5px;
-  }
-
-  .row {
-    justify-content: center;
-  }
-}
-
-.nollning-contact-button-container {
-  margin: auto;
-  width: 90%;
-
-  .col-33 div, .col-50 div {
-    background-position-x: center;
-    background-repeat: no-repeat;
-    background-size: contain;
-    height: 24vw;
-    margin: 1px;
-  }
-
-  .row:first-child {
-    margin-bottom: 10px;
-    margin-top: 10px
+    height: 11vh;
   }
 
   .row {
     justify-content: center;
 
+    .col-33 {
+      margin-left: 6vw;
+      margin-right: 6vw;
+      width: unset;
+    }
   }
 }
 
@@ -124,10 +95,11 @@
 }
 
 .nollning-buttons {
-  height: 38vh;
-  width: 100%;
+  bottom: 2vh;
+  height: 26vh;
+  margin-bottom: 29vw;
   position: absolute;
-  bottom: 0;
+  width: 100%;
 }
 
 .nollning-toolbar.toolbar i {
@@ -135,14 +107,14 @@
 }
 
 .tab-link .moose-icon {
-  position: relative;
-  height: 100%;
-  width: 100%;
   background-image: url("../img/nollning_moose_icon.png");
   background-size: contain;
   background-repeat: no-repeat;
   background-position-x: center;
+  height: 100%;
+  position: relative;
   transition: 350ms;
+  width: 100%;
 }
 
 .tab-link.tab-link-active .moose-icon {
@@ -159,15 +131,15 @@
 }
 
 .nollning-moose {
-  position: absolute;
-  width: 100vw;
-  height: 33vh;
-  margin-top: 17vh;
   background-image: url("../img/nollning_moose.png");
   background-size: contain;
   background-repeat: no-repeat;
   background-position-x: center;
+  height: 27vh;
+  margin-top: 20.5vh;
+  position: absolute;
   pointer-events: none;
+  width: 100vw;
 }
 
 .nollning-moose.nollning-moose-egg {

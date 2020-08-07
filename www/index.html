@@ -293,7 +293,6 @@
                     </div>
                   </a>
                 </li>
-                
               </ul>
             </div>
             <div class="block-title">Om</div>
@@ -370,7 +369,7 @@
     <script type="text/template7" id="currentAdventureMissionsHeaderTemplate">
       <div class="adventures-current-title">
         {{title}} (v.{{week_number}})
-        <span>{{missions_finished}} av {{mission_count}}</span>
+        <span>{{missions_accepted}} av {{mission_count}}</span>
       </div>
       <div class="progressbar adventures-current-progressbar">
         <span></span>
@@ -394,8 +393,8 @@
       <ul>
         {{#if is_mentor}}
           {{#each adventure_missions}}
-            <li data-id="{{id}}" data-max-points="{{max_points}}" data-variable-points="{{variable_points}}"
-                class="swipeout adventure-mission {{#if is_finished}} adventure-mission-completed {{/if}}">
+            <li data-id="{{id}}" data-max-points="{{max_points}}" data-variable-points="{{variable_points}}"" data-require-acceptance="{{require_acceptance}}"
+                class="swipeout adventure-mission {{#if is_accepted}} adventure-mission-completed {{/if}} {{#if is_pending}} adventure-mission-pending {{/if}}">
               <div class="swipeout-content">
                 <div class="item-content">
                   <div class="item-inner">
@@ -412,10 +411,14 @@
                 </div>
               </div>
               <div class="swipeout-actions-left">
-                <a href="#" class="color-green swipeout-overswipe complete-adventure-mission">Slutför</a>
+                {{#if require_acceptance}}
+                  <a href="#" class="color-orange swipeout-overswipe complete-adventure-mission">Slutför</a>
+                {{else}}
+                  <a href="#" class="color-green swipeout-overswipe complete-adventure-mission">Slutför</a>
+                {{/if}}
               </div>
               <div class="swipeout-actions-right">
-                <a href="#" class="color-orange swipeout-overswipe reset-adventure-mission">Återställ</a>
+                <a href="#" class="color-red swipeout-overswipe reset-adventure-mission">Återställ</a>
               </div>
             </li>
           {{/each}}

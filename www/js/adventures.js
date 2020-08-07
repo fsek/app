@@ -57,7 +57,7 @@ $$(document).on('page:init', '.page[data-name="adventures"]', function(e) {
     let adventureData = resp.adventures.adventures[currentIndex];
     adventureData.is_mentor = resp.is_mentor;
 
-    // Add totalt mission count and total completed mission count to the adventureData object
+    // Add total mission count and total completed mission count to the adventureData object
     adventureData.mission_count = adventureData.adventure_missions.length;
 
     // Generate the templateHTML for the header and the missions. Then remove the preloader and fade in the templateHTML in the containers
@@ -81,10 +81,10 @@ $$(document).on('page:init', '.page[data-name="adventures"]', function(e) {
     let headerMaxHeight = 150;
     if (adventureData.video) {
       headerMinHeight = page.find('.adventures-current-header')[0].clientHeight - 6;
-      headerMaxHeight = headerMinHeight + page.find('.accordion-item-content div')[0].clientHeight + 8; 
+      headerMaxHeight = headerMinHeight + page.find('.accordion-item-content div')[0].clientHeight + 8;
       if (app.device.android) {
         page.find('.adventures-current-list').css('margin-top', headerMinHeight);
-      }    
+      }
     }
 
     // Save the progressbar "globally" and set the progress in updateAdventureMissionsHeader(true) (true is for firstInit)
@@ -143,7 +143,7 @@ $$(document).on('page:init', '.page[data-name="adventures"]', function(e) {
     });
 
     function refreshAdventureMissions(event) {
-      // Update the totalt mission count and total completed mission count on the adventureData object
+      // Update the total mission count and total completed mission count on the adventureData object
       adventureData.mission_count = adventureData.adventure_missions.length;
 
       // Fade out old content
@@ -165,7 +165,7 @@ $$(document).on('page:init', '.page[data-name="adventures"]', function(e) {
 
     function updateAdventureMissionsHeader(firstInit) {
       // Calculate the progress and set it on the progressbar
-      const completedMissionCount = adventureData.missions_finished;
+      const completedMissionCount = adventureData.missions_accepted;
       const missionCount = adventureData.mission_count;
       const progress = completedMissionCount * 100 / missionCount;
 
@@ -208,13 +208,13 @@ $$(document).on('page:init', '.page[data-name="adventures"]', function(e) {
               // The points input need to have a value and be less than the max. If it is we got to the post request, otherwise we alert an error
               points = parseInt(points, 10);
               if (points !== '' && points <= maxPoints && points !== 0) {
-                finishAdventureMission(adventureMissionData.id, points, swipeout);
+                finishAdventureMission(adventureMissionData.id, points, swipeout, adventureMissionData);
               } else {
                 app.dialog.alert('Ogiltigt antal poäng. Var god och försök igen älskling <3', 'Fel');
               }
             });
           } else {
-            finishAdventureMission(adventureMissionData.id, maxPoints, swipeout);
+            finishAdventureMission(adventureMissionData.id, maxPoints, swipeout, adventureMissionData);
           }
         }
 
@@ -226,11 +226,22 @@ $$(document).on('page:init', '.page[data-name="adventures"]', function(e) {
       page.find('.reset-adventure-mission').on('click', function() {
         // Find the open swipeout which is the mission the user has interacted with
         const swipeout = page.find('.swipeout-opened');
+        const adventureMissionData = swipeout[0].dataset;
 
-        // If it's completed we remove the completed class, decrement the completed mission count and updated the header
+        // If it's completed we remove the completed class, decrement the completed mission count and update the header
         if (swipeout.hasClass('adventure-mission-completed')) {
-          const adventureMissionId = swipeout[0].dataset.id;
-          resetAdventureMission(adventureMissionId, swipeout);
+          if (adventureMissionData.requireAcceptance === 'true') {
+            app.dialog.confirm('Är du säker på att du vill återställa äventyrsuppdraget?', 'Bekräfta', function() {
+              resetAdventureMission(adventureMissionData.id, swipeout);
+            });
+          } else {
+            resetAdventureMission(adventureMissionData.id, swipeout);
+          }
+        }
+
+        // If it's pending confirmation we remove the pending class, decrement the pending mission count and update the header
+        if (swipeout.hasClass('adventure-mission-pending')) {
+          resetAdventureMission(adventureMissionData.id, swipeout);
         }
 
         // Close the open swipeout
@@ -238,11 +249,29 @@ $$(document).on('page:init', '.page[data-name="adventures"]', function(e) {
       });
     }
 
+    function updateSwipeouts(action, swipeout, adventureMissionData = null) {
+      if (action === 'finish') {
+        if (adventureMissionData.requireAcceptance === 'true') {
+          swipeout.addClass('adventure-mission-pending');
+        } else {
+          swipeout.addClass('adventure-mission-completed');
+          adventureData.missions_accepted++;
+        }
+      } else if (action === 'reset') {
+        if (swipeout.hasClass('adventure-mission-completed')) {
+          swipeout.removeClass('adventure-mission-completed');
+          adventureData.missions_accepted--;
+        } else {
+          swipeout.removeClass('adventure-mission-pending');
+        }
+      }
+    }
+
     /*
      * Make a post request to mark a mission as finished and with what points it was finished with.
      * On success we increment the completed mission count, update the progressbar and make the listitem green
      */
-    function finishAdventureMission(id, points, swipeout) {
+    function finishAdventureMission(id, points, swipeout, adventureMissionData) {
       $.ajax({
         url: API + '/adventure_missions/finish_adventure_mission',
         type: 'POST',
@@ -254,8 +283,7 @@ $$(document).on('page:init', '.page[data-name="adventures"]', function(e) {
         success: function() {
           app.ptr.refresh('#adventures-highscore');
           app.ptr.refresh('#adventure-group');
-          swipeout.addClass('adventure-mission-completed');
-          adventureData.missions_finished++;
+          updateSwipeouts('finish', swipeout, adventureMissionData);
           updateAdventureMissionsHeader(false);
         },
         error: function(resp) {
@@ -276,8 +304,7 @@ $$(document).on('page:init', '.page[data-name="adventures"]', function(e) {
         success: function() {
           app.ptr.refresh('#adventures-highscore');
           app.ptr.refresh('#adventure-group');
-          swipeout.removeClass('adventure-mission-completed');
-          adventureData.missions_finished--;
+          updateSwipeouts('reset', swipeout);
           updateAdventureMissionsHeader(false);
         },
         error: function(resp) {
@@ -329,10 +356,10 @@ $$(document).on('page:init', '.page[data-name="adventures"]', function(e) {
           adventuresData.adventures.adventures.forEach(function(el, index) {
             weekProgressbar = weekProgressbars[index];
             weekProgressbars[index].setText(
-              el.title + ': <br>' + el.missions_finished + ' / ' + el.adventure_missions.length
+              el.title + ': <br>' + el.missions_accepted + ' / ' + el.adventure_missions.length
             );
 
-            const weekProgress = el.missions_finished / el.adventure_missions.length;
+            const weekProgress = el.missions_accepted / el.adventure_missions.length;
             // Only animate the weekly progressbars if the group tab is active otherwise we wait for it to be shown and then animate in the tab:show event above
             if (isTabActive) {
               weekProgressbar.set(0);
@@ -391,7 +418,7 @@ $$(document).on('page:init', '.page[data-name="adventures"]', function(e) {
         swiperContainer.find('.swiper-wrapper').append('<div class="adventure-week-stats swiper-slide"></div>');
 
         const weekProgressbarContainers = page.find('.adventure-week-stats');
-        const missionsFinished = el.missions_finished;
+        const missionsAccepted = el.missions_accepted;
         const missionsCount = el.adventure_missions.length;
 
         const weekProgressbar = new ProgressBar.Circle(weekProgressbarContainers[index], {
@@ -403,7 +430,7 @@ $$(document).on('page:init', '.page[data-name="adventures"]', function(e) {
           duration: 1000,
           easing: 'easeInOut',
           text: {
-            value: el.title + ': <br>' + missionsFinished + ' / ' + missionsCount,
+            value: el.title + ': <br>' + missionsAccepted + ' / ' + missionsCount,
             style: {
               color: '#fff',
               position: 'absolute',
@@ -431,7 +458,7 @@ $$(document).on('page:init', '.page[data-name="adventures"]', function(e) {
           }
         });
 
-        const weekProgress = missionsFinished / missionsCount;
+        const weekProgress = missionsAccepted / missionsCount;
         weekProgressbar.progress = weekProgress;
         allWeekProgressbars.push(weekProgressbar);
       });

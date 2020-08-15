@@ -29,6 +29,7 @@ $$(document).on('page:init', '.page[data-name="adventures"]', function(e) {
     .done(function(resp) {
       initAdventureGroup(resp);
       initCurrentAdventureList(resp);
+      page.find('#adventures-current .ptr-preloader').show();
       page.find('.adventures-current-preloader').remove();
     })
     .fail(function(resp) {
@@ -73,10 +74,17 @@ $$(document).on('page:init', '.page[data-name="adventures"]', function(e) {
       .fadeIn(300);
 
     // Move down the list below the header
-    const headerMinHeight = page.find('.adventures-current-header')[0].clientHeight - 6;
-    const headerMaxHeight = headerMinHeight + page.find('.accordion-item-content div')[0].clientHeight + 8;
     if (app.device.android) {
-      page.find('.adventures-current-list').css('margin-top', headerMinHeight);
+      page.find('.adventures-current-list').css('margin-top', 60);
+    }
+    let headerMinHeight = 100;
+    let headerMaxHeight = 150;
+    if (adventureData.video) {
+      headerMinHeight = page.find('.adventures-current-header')[0].clientHeight - 6;
+      headerMaxHeight = headerMinHeight + page.find('.accordion-item-content div')[0].clientHeight + 8; 
+      if (app.device.android) {
+        page.find('.adventures-current-list').css('margin-top', headerMinHeight);
+      }    
     }
 
     // Save the progressbar "globally" and set the progress in updateAdventureMissionsHeader(true) (true is for firstInit)
@@ -111,6 +119,8 @@ $$(document).on('page:init', '.page[data-name="adventures"]', function(e) {
           icon.addClass('fa-plus-circle');
         });
       });
+    } else if (app.device.android) {
+      page.find('#adventures-current .ptr-preloader').css('top', 120);
     }
     // Reload the adventures when pull down refresh event is triggered
     page.find('#adventures-current').on('ptr:refresh', function(e) {

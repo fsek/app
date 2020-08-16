@@ -11,7 +11,7 @@ $$(document).on('page:afterout', '.page[data-name="adventures"]', function() {
 
 $$(document).on('page:beforein', '.page[data-name="adventures"]', function() {
   // Append the correct weekly styling (nollning start on week 35)
-  let nollningWeek = new Date().getWeekNumber() - 35;
+  let nollningWeek = 2;
   if (nollningWeek > 4) nollningWeek = 4;
   if (nollningWeek < 0) nollningWeek = 0;
 

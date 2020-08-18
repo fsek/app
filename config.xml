@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="se.fsektionen.fapp" version="2.4.1" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
-    <name>F-sektionen</name>
+    <name>F-stage</name>
     <description>
         F-sektionens app
     </description>
@@ -16,19 +16,6 @@
     <allow-intent href="mailto:*" />
     <allow-intent href="tel:*" />
     <allow-navigation href="*://*.youtube.com/*" />
-    <platform name="android">
-        <allow-intent href="market:*" />
-        <resource-file src="res/f.png" target="res/drawable/f.png" />
-        <splash density="port-ldpi" src="res/splash/drawable-ldpi/background.9.png" />
-        <splash density="port-mdpi" src="res/splash/drawable-mdpi/background.9.png" />
-        <splash density="port-hdpi" src="res/splash/drawable-hdpi/background.9.png" />
-        <splash density="port-xhdpi" src="res/splash/drawable-xhdpi/background.9.png" />
-        <splash density="port-xxhdpi" src="res/splash/drawable-xxhdpi/background.9.png" />
-        <splash density="port-xxxhdpi" src="res/splash/drawable-xxhdpi/background.9.png" />
-        <preference name="SplashMaintainAspectRatio" value="true" />
-        <preference name="android-targetSdkVersion" value="29" />
-        <resource-file src="google-services.json" target="/google-services.json" />
-    </platform>
     <platform name="ios">
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />

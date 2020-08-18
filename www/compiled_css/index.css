@@ -1,0 +1,2114 @@
+a:active {
+  color: #d35400; }
+
+.hidden {
+  display: none !important; }
+
+#orange-navbar {
+  background: #eb7125 !important; }
+
+.searchbar .searchbar-cancel {
+  color: #ffffff !important; }
+
+.tabbar .badge {
+  background: #ffe0b3;
+  color: #eb7125;
+  height: 19px;
+  width: 19px;
+  border: 1px solid #ffb485;
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: none;
+  margin-top: 4px; }
+
+#notification-badge {
+  margin-right: 8px; }
+
+.tabbar a.tab-link-active, .tabbar a.tab-link-active i {
+  color: #ffffff !important; }
+
+.tabbar .active .badge {
+  background: #ffffff; }
+
+.tabbar i {
+  font-size: 24px;
+  color: #f9d5be !important; }
+
+.tabbar i.fa-comments {
+  font-size: 30px; }
+
+.tabbar i.fa-home {
+  padding-top: 1px;
+  font-size: 32px; }
+
+.tabbar i.fa-bars {
+  font-size: 27px; }
+
+.taphold {
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  user-select: none; }
+
+.views {
+  overflow: hidden; }
+
+a.external {
+  word-break: break-all;
+  overflow-wrap: break-word; }
+
+img.img-responsive {
+  display: block;
+  height: auto;
+  margin: 0 auto;
+  width: 95%; }
+
+@media screen and (min-width: 767px) {
+  img.img-responsive {
+    width: 50%; } }
+
+@media screen and (min-width: 992px) {
+  img.img-responsive {
+    width: 35%; } }
+
+.login-screen-content {
+  background-size: 200% 100%;
+  background-image: url("../img/login-background_full.png");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  overflow: hidden;
+  height: 100%; }
+
+.login-container {
+  display: block;
+  left: 50%;
+  top: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%); }
+
+img.login-logo {
+  display: block;
+  height: auto;
+  margin: 0 auto;
+  min-width: 150px;
+  width: 35vw; }
+
+img.login-logo-spin {
+  transition: 1.5s;
+  transform: rotate(720deg); }
+
+.login-container .list ul {
+  width: 80vw;
+  color: #ffffff;
+  background: none;
+  max-width: 480px; }
+
+.login-screen-content .list ul:before, .login-container ul:after, .login-container .list .item-inner:after, .login-container .item-input-wrap:after {
+  display: none; }
+
+.login-screen-content li.item-content {
+  margin-bottom: 15px;
+  min-height: 45px;
+  height: 45px; }
+
+.login-screen-content .item-content:after {
+  content: '';
+  position: absolute;
+  background-image: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.4) 50%, rgba(255, 255, 255, 0) 100%);
+  bottom: 0;
+  left: 0;
+  height: 1px;
+  width: 100%; }
+
+.login-screen-content .item-input input {
+  color: #ffffff !important;
+  margin-left: 10px; }
+
+.login-screen-content ::-webkit-input-placeholder {
+  color: #ffffff !important; }
+
+.login-screen-content i {
+  color: #eb7125;
+  font-size: 25px;
+  margin: auto; }
+
+.login-screen-content .item-media {
+  width: 25px; }
+
+.login-screen-content i.fa-lock {
+  font-size: 32px !important; }
+
+.login-btn {
+  width: 96%;
+  margin-left: 2%;
+  background: #eb7125;
+  border-radius: 25px;
+  padding: 0 !important;
+  text-align: center; }
+
+.login-btn.active-state {
+  background-color: #b95f26 !important; }
+
+.login-btn i {
+  color: #ffffff !important;
+  font-size: 28px;
+  vertical-align: -16%; }
+
+.login-footer {
+  width: 80%;
+  margin-left: 10%;
+  margin-bottom: 7px;
+  bottom: 0;
+  position: fixed;
+  text-align: center; }
+
+.login-footer a {
+  color: #c5c0c0 !important;
+  font-size: 12px; }
+
+@media screen and (max-height: 600px) {
+  img.login-logo {
+    width: 130px; } }
+
+@media screen and (min-height: 650px) {
+  img.login-logo {
+    margin-bottom: 30px;
+    min-width: 160px; } }
+
+.signup-content {
+  background: #60b0d8;
+  display: flex;
+  flex-direction: column;
+  /*overflow: hidden;*/ }
+
+.signup-title {
+  color: #ffffff;
+  font-size: 24px;
+  font-weight: bold;
+  padding-top: 30px;
+  text-align: center;
+  text-transform: uppercase;
+  /*width: 100%;*/ }
+
+.signup-content .list {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  margin: 25px auto;
+  margin-top: 20px; }
+
+.signup-content .list ul {
+  background: none; }
+
+.signup-content .list ul:before, .signup-content .list ul:after, .signup-content .list .item-inner:after, .signup-content .item-input-wrap:after {
+  display: none; }
+
+.signup-content li.item-content {
+  margin-bottom: 20px; }
+
+.signup-content .item-content:not(.error-message):after {
+  content: '';
+  position: absolute;
+  background-image: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.4) 50%, rgba(255, 255, 255, 0) 100%);
+  bottom: 0;
+  left: 0;
+  height: 1px;
+  width: 100%; }
+
+.signup-content .item-input input {
+  color: #ffffff !important;
+  margin-left: 10px; }
+
+.signup-content ::-webkit-input-placeholder {
+  color: #ffffff !important; }
+
+.signup-content i {
+  color: #eb7125;
+  font-size: 25px; }
+
+.signup-content i.fa-lock {
+  font-size: 32px !important; }
+
+.signup-content i.fa-user {
+  font-size: 30px !important; }
+
+.signup-content .item-media {
+  width: 25px;
+  padding-left: 8px; }
+
+.signup-btn {
+  width: 90%;
+  margin-left: 5%;
+  margin-top: 10px;
+  background: #eb7125;
+  border-color: #eb7125 !important;
+  border-radius: 25px !important;
+  color: #ffffff !important; }
+
+.signup-btn.active-state {
+  background-color: #b95f26 !important; }
+
+.signup-footer {
+  color: #ffffff;
+  text-align: center;
+  margin-top: auto;
+  margin-bottom: 7px; }
+
+.signup-footer a {
+  color: #eb7125 !important;
+  font-weight: bold; }
+
+.reset-password-content {
+  background: #60b0d8;
+  display: flex;
+  flex-direction: column;
+  /*overflow: hidden;*/ }
+
+.reset-password-title {
+  color: #ffffff;
+  font-size: 24px;
+  font-weight: bold;
+  padding-top: 50px;
+  text-align: center;
+  text-transform: uppercase;
+  /*overflow: initial;*/ }
+
+.reset-password-content .block {
+  width: 80%;
+  margin-left: 10%;
+  margin-top: 55px;
+  color: #ffffff; }
+
+.reset-password-content .list {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  margin: 25px auto; }
+
+.reset-password-content .list ul {
+  background: none; }
+
+.reset-password-content .list ul:before, .reset-password-content .list ul:after, .reset-password-content .list .item-inner:after, .reset-password-content .item-input-wrap:after {
+  display: none; }
+
+.reset-password-content li.item-content:not(.error-message) {
+  margin-bottom: 25px; }
+
+.reset-password-content .item-content:not(.error-message):after {
+  content: '';
+  position: absolute;
+  background-image: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.4) 50%, rgba(255, 255, 255, 0) 100%);
+  bottom: 0;
+  left: 0;
+  height: 1px;
+  width: 100%; }
+
+.reset-password-content .item-input input {
+  color: #ffffff !important;
+  margin-left: 10px; }
+
+.reset-password-content ::-webkit-input-placeholder {
+  color: #ffffff !important; }
+
+.reset-password-content i {
+  color: #eb7125;
+  font-size: 25px; }
+
+.reset-password-content .item-media {
+  width: 25px;
+  padding-left: 8px; }
+
+.reset-password-btn {
+  width: 90%;
+  margin-left: 5%;
+  background: #eb7125;
+  border-color: #eb7125 !important;
+  border-radius: 25px !important;
+  color: #ffffff !important; }
+
+.reset-password-btn.active-state {
+  background-color: #b95f26 !important; }
+
+.reset-password-footer {
+  text-align: center;
+  margin-top: auto;
+  margin-bottom: 7px;
+  color: #ffffff; }
+
+.reset-password-footer a {
+  color: #eb7125 !important;
+  font-weight: bold; }
+
+.signup-confirm-content, .resetpw-confirm-content {
+  background: #60b0d8;
+  overflow: hidden; }
+
+.signup-confirm-content .block-title, .resetpw-confirm-content .block-title {
+  text-align: center;
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 24px;
+  margin-top: 14%;
+  margin-bottom: 14%;
+  overflow: initial; }
+
+.signup-confirm-content .block-title p, .resetpw-confirm-content .block-title p {
+  color: #eb7125;
+  margin: 0;
+  margin-top: 10px; }
+
+.signup-confirm-content .block, .resetpw-confirm-content .block {
+  color: #ffffff;
+  width: 90%;
+  margin-left: 5%; }
+
+.signup-confirm-content a, .signup-confirm-content span, .resetpw-confirm-content a, .resetpw-confirm-content span {
+  color: #eb7125;
+  font-weight: bold; }
+
+.signup-content .item-content.error:after, .reset-password-content .item-content.error:after {
+  background-image: none, linear-gradient(to right, rgba(255, 0, 0, 0) 0%, red 50%, rgba(255, 0, 0, 0) 100%); }
+
+.error i {
+  color: #e74c3c; }
+
+ul li.item-content.error-message {
+  color: red;
+  font-size: 14px; }
+
+.signup-content .item-content.error-message {
+  margin-top: -15px;
+  margin-bottom: 5px;
+  min-height: 20px;
+  height: 20px; }
+
+.reset-password-content li.item-content.error {
+  margin-bottom: 0; }
+
+.calendar-page {
+  display: flex;
+  flex-direction: column; }
+
+.calendar.calendar-inline {
+  height: 250px;
+  padding-bottom: 15px; }
+
+.calendar .calendar-week-header {
+  height: 20px;
+  color: #eb7125; }
+
+.calendar .calendar-day-selected span {
+  background-color: #eb7125 !important; }
+
+.calendar .calendar-day-today:not(.calendar-day-selected) span {
+  color: #eb7125 !important; }
+
+.calendar .calendar-day-has-events.calendar-day-today span:after {
+  background: #eb7125 !important; }
+
+.calendar .calendar-day-has-events span:after {
+  background: #ccc !important; }
+
+.calendar .calendar-day-has-events.calendar-day-selected span:after {
+  background: none !important; }
+
+/* Overrides F7 default: Without "-1px" some content overflows! */
+.calendar-row {
+  height: -webkit-calc(100% / 6 - 1px);
+  height: -moz-calc(100% / 6 - 1px);
+  height: calc(100% / 6 - 1px); }
+
+.day-title {
+  height: 23px;
+  min-height: 23px;
+  padding: 5px 0 2px 10px;
+  background-color: #eb7125;
+  color: #ffffff;
+  font-weight: bold; }
+
+.day-content {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  width: 100%; }
+
+.day-content .disabled {
+  text-align: center; }
+
+.day-content .preloader {
+  margin-left: calc(50% - 15px);
+  margin-top: 5vh;
+  height: 30px;
+  width: 30px; }
+
+.day-content-event:first-child {
+  margin-top: 8px; }
+
+a.day-content-event {
+  color: #eb7125 !important;
+  display: block;
+  background-color: #ffffff;
+  margin: 7px 10px !important; }
+
+.day-content-event .card-header {
+  min-height: 37px;
+  padding: 4px 16px 0 16px;
+  font-weight: bold; }
+
+.day-content-event .card-header:after {
+  content: none; }
+
+.day-content-event .card-content-inner {
+  padding: 0 16px 5px 16px;
+  color: #000; }
+
+.day-content-event .card-media {
+  position: absolute;
+  padding-right: 12px;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%); }
+
+.day-content-event i.icon {
+  color: #eb7125; }
+
+.day-content-event .date, .day-content-event .location, .day-content-event .signup {
+  margin: 0;
+  margin-bottom: 5px; }
+
+.day-content-event .date i, .day-content-event .location i {
+  font-size: 18px;
+  color: #eb7125;
+  padding-right: 2px; }
+
+.day-content-event .location i {
+  padding-left: 2px;
+  padding-right: 5px; }
+
+.day-content-event .signup i {
+  font-size: 18px;
+  padding-right: 2px; }
+
+.day-content-event .fa-user {
+  color: #eb7125;
+  padding-right: 5px !important; }
+
+.day-content-event .fa-check-circle {
+  color: #4e9d2d; }
+
+.day-content-event .fa-question-circle, .day-content-event {
+  color: #eb7125; }
+
+.day-content-event .fa-times-circle, .day-content-event .fa-exclamation-circle {
+  color: #e74c3c; }
+
+#view-calendar .navbar .left {
+  font-weight: bold; }
+
+/* Adjust calendar height for different screen sizes */
+@media screen and (min-height: 600px) {
+  .calendar.calendar-inline {
+    height: 280px; } }
+
+@media screen and (min-height: 650px) {
+  .calendar.calendar-inline {
+    height: 290px; } }
+
+@media screen and (min-height: 700px) {
+  .calendar.calendar-inline {
+    height: 320px; } }
+
+@media screen and (min-height: 750px) {
+  .calendar.calendar-inline {
+    height: 340px; } }
+
+@media screen and (min-height: 850px) {
+  .calendar.calendar-inline {
+    height: 365px; } }
+
+@media screen and (min-height: 1000px) {
+  .calendar.calendar-inline {
+    height: 515px; } }
+
+@media screen and (min-height: 1300px) {
+  .calendar.calendar-inline {
+    height: 615px; } }
+
+.notification-list {
+  margin-top: 0 !important; }
+
+.notification-title {
+  color: #eb7125; }
+
+.notification-list .unvisited {
+  background-color: rgba(253, 133, 21, 0.12); }
+
+.notification-list .item-title {
+  font-size: 18px; }
+
+.notification-list .item-subtitle {
+  font-size: 15px;
+  overflow: auto;
+  white-space: normal; }
+
+.notification-list .item-subtitle p {
+  margin-top: 8px;
+  margin-bottom: 8px; }
+
+.notification-list .item-text {
+  color: black;
+  font-size: 13px;
+  font-style: italic;
+  padding-top: 3px; }
+
+.notification-list .item-text:empty {
+  padding-top: 0;
+  height: 15px; }
+
+.notification-list .item-created {
+  font-size: 11px;
+  color: grey; }
+
+.notification-list .item-inner:after {
+  background-color: rgba(0, 0, 0, 0.25) !important;
+  margin-left: -5px; }
+
+.notification-list .disabled {
+  text-align: center; }
+
+.notification-list ul:empty:before, .notification-list ul:empty:after {
+  content: none; }
+
+.no-notifications {
+  text-align: center; }
+
+.message-text p:first-child {
+  margin-top: 0; }
+
+.message-text p:last-child {
+  margin-bottom: 0; }
+
+.message-sent.message-admin .message-bubble,
+.message-received.message-admin .message-bubble {
+  background-color: #ff9800;
+  color: #ffffff; }
+
+.msg-editor-page .content-block-title {
+  margin-top: 15px;
+  padding-top: 5px; }
+
+.msg-editor {
+  display: block;
+  height: 90%;
+  margin: 0 10px; }
+
+.msg-editor textarea {
+  box-sizing: border-box;
+  font-family: inherit;
+  font-size: 17px;
+  height: 100%;
+  line-height: 20px;
+  padding: 6px 15px;
+  resize: none;
+  width: 100%; }
+
+.groups-list {
+  margin-top: 0 !important; }
+
+.groups-list .item-text {
+  display: block;
+  height: auto;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap; }
+
+.groups-list .item-text p {
+  display: none; }
+
+.groups-list .unread {
+  background-color: rgba(253, 133, 21, 0.12); }
+
+.no-groups {
+  text-align: center;
+  font-size: 14px; }
+
+ul.no-groups:before, ul.no-groups:after {
+  display: none !important; }
+
+.event-container .card-content .item-inner:after, .event-container .card-content ul:before, .event-container .list-group:last-of-type ul:after {
+  display: none; }
+
+.event-container .fa-envelope {
+  font-size: 17px; }
+
+.event-container .fa-check-circle {
+  color: #4e9d2d; }
+
+.event-container .fa-times-circle, .event-container .fa-exclamation-circle {
+  color: #e74c3c; }
+
+.event-container i {
+  color: #eb7125;
+  font-size: 22px;
+  margin: auto; }
+
+.event-container .item-media {
+  width: 20px; }
+
+.event-container .item-inner a {
+  color: #eb7125 !important; }
+
+.event-container .item-title {
+  white-space: initial; }
+
+.event-container .list-group ul:after {
+  background-color: #e1e1e1; }
+
+.event-container .preloader {
+  margin-left: calc(50% - 20px);
+  margin-top: calc(50% - 20px);
+  height: 40px;
+  width: 40px; }
+
+.event-description {
+  max-height: 100px;
+  overflow: hidden;
+  transition: 500ms; }
+
+.event-description.content-fade:after {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  content: "";
+  background: linear-gradient(to top, white 0%, rgba(255, 255, 255, 0) 90%);
+  pointer-events: none; }
+
+.event-description p:first-child {
+  margin-top: 8px; }
+
+.event-description-container {
+  padding: 0 15px; }
+
+.event-description-container i {
+  padding-bottom: 5px;
+  font-size: 25px; }
+
+.event-description-container span {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  text-align: center; }
+
+.event-signup-container input {
+  font-size: 14px !important; }
+
+.event-signup-btn {
+  background-color: #eb7125;
+  border-color: #eb7125 !important;
+  color: #ffffff !important;
+  margin: 15px; }
+
+.event-signup-btn.active-state {
+  background-color: #b95f26 !important; }
+
+.event-signup-cancel-btn {
+  background-color: #e74c3c;
+  border-color: #e74c3c !important;
+  color: #ffffff !important;
+  margin: 15px; }
+
+.event-signup-cancel-btn.active-state {
+  background-color: #a73529 !important; }
+
+#event-signup-group input, #event-signup-groupcustom input, #event-usertype input {
+  background-color: #ececec;
+  padding-left: 10px;
+  border-radius: 4px; }
+
+.event-title {
+  font-size: 24px !important;
+  white-space: initial;
+  font-weight: bold;
+  color: #eb7125; }
+
+.ios .event-contact a, .md .event-contact a {
+  color: #eb7125; }
+
+.ios .event-container .list, .md .event-container .list {
+  font-size: 14px; }
+
+.popover-about-signup .block-title {
+  color: #eb7125;
+  margin-top: 20px; }
+
+.popover-about-signup .block {
+  margin-bottom: 20px; }
+
+.news-card .name {
+  font-style: italic; }
+
+.news-card .card-header {
+  color: #eb7125;
+  font-weight: bold; }
+
+.news-card .card-footer:before {
+  content: none; }
+
+.news-card {
+  word-break: break-word; }
+
+.news-card.card {
+  margin-bottom: 16px; }
+
+.subtab-container .subtab {
+  padding-top: 0 !important; }
+
+.home-subnavbar {
+  background-color: #eb7125 !important; }
+
+.home-subnavbar .button {
+  border: 1px solid #ffffff !important;
+  color: #ffffff !important; }
+
+.home-subnavbar .button.tab-link-active {
+  background-color: #ffffff !important;
+  color: #eb7125 !important; }
+
+.subtab .infinite-scroll-preloader {
+  height: 37px;
+  margin-bottom: 10px;
+  overflow: hidden;
+  position: relative; }
+
+.subtab .day-title:not(:first-child) {
+  margin-top: 13px !important; }
+
+#subtab-event .day-title {
+  background-color: #f7f7f8;
+  color: #eb7125;
+  margin-top: 10px; }
+
+#subtab-event p.disabled {
+  text-align: center; }
+
+#view-home .ptr-preloader {
+  top: -35px; }
+
+.about-title {
+  font-size: 24px;
+  font-weight: bold !important;
+  color: #eb7125 !important;
+  overflow: visible; }
+
+.contributor {
+  margin: 0; }
+
+.contributor-title {
+  color: #eb7125;
+  font-weight: bold;
+  margin: 0; }
+
+.fwiki-link .item-inner {
+  background-image: none !important;
+  padding-right: 10px !important; }
+
+.signout-btn {
+  background-color: #e74c3c;
+  color: #ffffff !important;
+  margin-bottom: 20px; }
+
+.signout-btn.active-state {
+  background-color: #a73529 !important; }
+
+#option-other .item-input {
+  width: 100%; }
+
+.user-avatar {
+  height: 31vw;
+  width: 31vw;
+  background-color: white;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-image: url("../img/missing_thumb.png");
+  margin: auto;
+  box-shadow: 0px 2px 10px 2px rgba(0, 0, 0, 0.2);
+  border-radius: 100%;
+  border: 3px solid #d6d6d6; }
+
+.user-container {
+  width: 100%;
+  height: 52vw;
+  padding-top: 26px;
+  background-color: #eb7125; }
+
+.user-container p {
+  margin: 0;
+  text-align: center;
+  padding-top: 17px;
+  font-size: 18px;
+  color: white; }
+
+.user-content {
+  padding-bottom: 12px !important; }
+
+.user-food-pref .item-after {
+  max-width: 60% !important;
+  white-space: initial; }
+
+.user-content .item-title {
+  width: auto;
+  min-width: 45%;
+  max-width: 80%;
+  white-space: initial; }
+
+.user-foodpref-info {
+  color: #8f8f94;
+  white-space: initial !important; }
+
+#user-form {
+  margin: 0; }
+
+.user-list-title {
+  font-size: 14px; }
+
+.searchbar-songbook .searchbar-disable-button {
+  color: #eb7125 !important; }
+
+#songbook-list {
+  margin-right: 17px;
+  margin-bottom: 0; }
+
+#songbook-list .list-group-title {
+  font-weight: bold;
+  color: #3c3c3c; }
+
+.songbook-indexlist li {
+  margin-top: 5px;
+  color: #8e8e93; }
+
+.songbook-indexlist .list-index-label {
+  background: #eb7125 !important; }
+
+.song-content .block-title {
+  font-size: 27px;
+  color: #eb7125;
+  white-space: initial;
+  line-height: initial; }
+
+.song-content .block .auth-mel {
+  margin-bottom: 0; }
+
+.song-content .block {
+  margin-bottom: 16px;
+  margin-top: 0; }
+
+.song-content .block p {
+  font-size: 16px;
+  margin-top: 0; }
+
+.song-content .block span {
+  color: #eb7125; }
+
+.song-content .song-text {
+  background-color: #ffffff; }
+
+.song-content .song-text p:last-child {
+  margin-bottom: 0; }
+
+.song-content .song-text .block-inner {
+  padding: 15px 0; }
+
+.songbook-content .list ul::before, .songbook-content .list ul:after {
+  display: none; }
+
+.songbook-content .preloader, .song-content .preloader {
+  margin-left: calc(50% - 20px);
+  margin-top: calc(50% - 20px);
+  height: 40px;
+  width: 40px; }
+
+.songbook-content .searchbar-not-found {
+  font-size: 16px; }
+
+#contact-description,
+#contact-info,
+#contact-list {
+  background: #ffffff; }
+
+#contact-description .list {
+  margin: 0;
+  font-size: 14px; }
+
+#contact-description p {
+  margin-bottom: 0; }
+
+#contact-users {
+  margin-top: 12px; }
+
+#contact-email span,
+#contact-users span {
+  color: #eb7125; }
+
+.page-content.contact-content {
+  background: #f3f3f3; }
+
+.contact-text textarea {
+  height: 100%; }
+
+.contact-text {
+  height: 200px; }
+
+.contact-content .block-title {
+  color: #eb7125;
+  font-size: 17px;
+  overflow: visible; }
+
+.contact-content .contact-button {
+  background-color: #eb7125 !important;
+  margin-top: 20px; }
+
+.contact-avatar {
+  background-color: #ffffff;
+  background-repeat: no-repeat;
+  background-size: contain;
+  border: 3px solid #d6d6d6;
+  border-radius: 100%;
+  box-shadow: 0px 2px 10px 2px rgba(0, 0, 0, 0.2);
+  height: 31vw;
+  margin: auto;
+  width: 31vw; }
+  .contact-avatar .infinite-scroll-preloader {
+    margin-top: calc(50% - 16px); }
+
+.contact-container {
+  background-color: #eb7125;
+  height: 52vw;
+  padding-top: 26px; }
+  .contact-container p {
+    color: #ffffff;
+    font-size: 18px;
+    margin: 0;
+    padding-top: 17px;
+    text-align: center; }
+
+#contact-form .item-content.item-input {
+  background: #ffffff; }
+
+.background-overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  animation: bg_animation 10s infinite linear; }
+
+.popup {
+  background-image: url(../img/login-background_full.png); }
+
+.popup .popup-title {
+  font-size: 25px; }
+
+.popup-text {
+  font-size: 17px;
+  color: white; }
+
+.popup-terms .popup-terms-title {
+  color: #eb7125;
+  font-size: 22px;
+  font-weight: bold;
+  margin-top: 45%;
+  margin-left: 16px; }
+
+.popup-terms .block {
+  margin-top: 8px; }
+
+.popup-terms a.item-link {
+  color: #eb7125; }
+
+.popup-terms .button.accept-terms {
+  background-color: #eb7125;
+  color: #ffffff;
+  font-size: 17px;
+  height: 40px;
+  margin-top: 45px;
+  padding-top: 3px; }
+
+#store-button {
+  margin-top: 45px;
+  background: #eb7125;
+  font-size: 17px;
+  height: 40px;
+  padding-top: 3px; }
+
+.smiley {
+  font-size: 100px;
+  color: #ffffff;
+  position: absolute;
+  bottom: 0; }
+
+.smiley-container {
+  position: relative;
+  height: 50vh;
+  width: 100%;
+  margin-bottom: 25px; }
+
+.smiley-container.easter {
+  height: 90vh; }
+
+@keyframes bg_animation {
+  0% {
+    background-color: rgba(255, 125, 125, 0.4); }
+  33% {
+    background-color: rgba(125, 255, 255, 0.2); }
+  67% {
+    background-color: rgba(239, 109, 255, 0.2); }
+  100% {
+    background-color: rgba(255, 125, 125, 0.4); } }
+
+.gallery-container {
+  margin-left: 15px; }
+
+.album {
+  position: relative;
+  height: calc(50vw - 19px);
+  width: calc(50vw - 19px);
+  float: left;
+  margin: 2px; }
+
+.album-full-background {
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  position: absolute;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: brightness(0.6);
+  background-color: white; }
+
+.album-text {
+  position: relative;
+  color: white;
+  text-align: center; }
+
+.album-title {
+  font-weight: bold; }
+
+.album-text i {
+  color: #eb7125; }
+
+.album-text div {
+  display: block; }
+
+.gallery-container .preloader {
+  margin-left: calc(50% - 20px);
+  margin-top: 35px;
+  height: 40px;
+  width: 40px; }
+
+.album-images {
+  margin-left: 15px; }
+
+.album-image {
+  position: relative;
+  height: calc(25vw - 11.5px);
+  width: calc(25vw - 11.5px);
+  float: left;
+  margin: 0px 4px 4px 0px; }
+
+.image-full-background {
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  position: absolute;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat; }
+
+.album-content .block-title {
+  font-weight: bold;
+  font-size: 27px;
+  color: #eb7125;
+  white-space: initial;
+  line-height: initial;
+  margin: 32px 0px 15px 15px; }
+
+.album-content .block span {
+  color: #eb7125; }
+
+.album-content .preloader {
+  margin-left: calc(50% - 20px);
+  margin-top: 35px;
+  height: 40px;
+  width: 40px; }
+
+.album-content .block {
+  margin-bottom: 15px;
+  padding-left: 15px; }
+
+#fredmansky {
+  max-width: 100%;
+  height: auto;
+  position: absolute;
+  bottom: -50px;
+  right: -50px;
+  transform: scale(0.3, 0.3);
+  animation: smooth 5s ease-in;
+  margin-bottom: 0px; }
+
+@keyframes smooth {
+  0% {
+    opacity: 0;
+    transform: rotate(0deg) scale(0.01, 0.01); }
+  100% {
+    opacity: 1;
+    transform: rotate(1080deg) scale(0.3, 0.3); } }
+
+.ios .cafe-content {
+  padding-bottom: 0 !important; }
+
+.cafe-content .timeline {
+  padding-top: 0 !important;
+  background: transparent !important; }
+
+.cafe-content .timeline-year {
+  margin-top: 1em;
+  height: auto; }
+  .ios .cafe-content .timeline-year {
+    margin-top: 0; }
+
+.cafe-content .friday {
+  border-right: 2px solid #d6d6d6; }
+
+.cafe-content .timeline-item-inner {
+  height: 100%;
+  text-align: center;
+  position: relative;
+  border-radius: 10px;
+  border-top-width: 30px;
+  border-top-style: solid; }
+  .cafe-content .timeline-item-inner .time-info {
+    top: -24px; }
+
+.cafe-content .cafe-shift {
+  height: calc(25% - 8px);
+  display: block;
+  margin-bottom: 6px; }
+  .cafe-content .cafe-shift:nth-child(2) {
+    margin-bottom: 20px; }
+  .cafe-content .cafe-shift:last-child {
+    margin-bottom: 0; }
+
+.cafe-content .shift-text {
+  height: 100%;
+  overflow: hidden;
+  position: relative; }
+
+.cafe-content .time-info {
+  color: #ffffff;
+  display: block;
+  left: -10%;
+  position: absolute;
+  width: 120%; }
+
+.cafe-content .user-image {
+  border: 2px solid #f3f3f3;
+  border-radius: 50%;
+  display: inline-block;
+  height: 50%; }
+
+.cafe-content .user-info {
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  margin-top: 0px;
+  display: block;
+  display: -webkit-box;
+  overflow: hidden; }
+
+.cafe-content .clock-icon {
+  margin-right: 5px; }
+
+.cafe-content .user-icon {
+  color: #c9c7c7;
+  font-size: 4em;
+  margin-top: 10px; }
+
+.cafe-content .coffee-icon {
+  color: #c9c7c7;
+  font-size: 4em; }
+
+.cafe-content .enrolled {
+  border-color: #2e8b57; }
+
+.cafe-content .taken {
+  border-color: #eb7125; }
+
+.cafe-content .free {
+  border-color: #f3f3f3;
+  padding-top: 15px; }
+  .cafe-content .free .time-info {
+    color: black; }
+  .ios .cafe-content .free {
+    border-color: #d7d7d7; }
+
+.cafe-content .white-text {
+  color: #ffffff; }
+
+.cafe-content .black-text {
+  color: #000000; }
+
+.cafe-content .timeline-year-title, .cafe-content .timeline-month-title {
+  color: black !important; }
+
+.cafe-content .timeline-item-date {
+  color: black !important; }
+
+@media screen and (max-height: 750px) {
+  .cafe-content .shift-text i, .cafe-content .shift-text img {
+    display: none; }
+  .cafe-content .user-info {
+    -webkit-line-clamp: 5; } }
+
+@media screen and (max-width: 370px) {
+  .cafe-content .timeline-item-date, .cafe-content .time-info {
+    font-size: 3.3vw; } }
+
+@media screen and (max-height: 640px) {
+  .cafe-content .user-info {
+    font-size: 12px; } }
+
+.shift-content .hilbert-avatar {
+  height: 25vw;
+  width: 40vw;
+  background-color: white;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-image: url("../img/hilbert.png");
+  margin: auto;
+  box-shadow: 0px 2px 10px 2px rgba(0, 0, 0, 0.2); }
+
+.shift-content .shift-create {
+  background-color: #eb7125 !important; }
+
+.shift-content .button {
+  margin-top: 30px; }
+
+.nollning-background {
+  background-image: url("../img/nollning_background.png");
+  background-position-x: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh; }
+  .nollning-background .nollning-left-col {
+    height: 7vh;
+    margin-top: 1vh;
+    width: 43vw; }
+  .nollning-background .nollning-right-col {
+    height: 17vh;
+    width: 57vw; }
+  .nollning-background .row {
+    justify-content: normal;
+    padding-top: 41.5vh; }
+
+.nollning-btn-messages .group-badge {
+  background: #ffe0b3;
+  border: 1px solid #ffb485;
+  color: #eb7125;
+  float: right;
+  font-size: 12px;
+  height: 22px;
+  line-height: 20px;
+  margin-top: 2vw;
+  margin-right: 5px;
+  padding: 0;
+  width: 22px; }
+
+.group-badge {
+  margin-right: 5px; }
+
+.nollning-btn-adventures {
+  background-image: url("../img/adventure_icon.png");
+  width: 14vh; }
+
+.nollning-btn-contact {
+  background-image: url("../img/contact_icon.png");
+  transform: scale(1.15);
+  width: 14vh; }
+
+.nollning-btn-matrix {
+  background-image: url("../img/calendar_icon.png");
+  width: 14vh; }
+
+.nollning-btn-messages {
+  background-image: url("../img/chat_icon.png");
+  width: 14vh; }
+
+.nollning-btn-chants {
+  background-image: url("../img/chants_icon.png");
+  width: 14vh; }
+
+.nollning-button-container {
+  margin: auto;
+  margin-top: 2vh;
+  width: 90%; }
+  .nollning-button-container .col-33 div {
+    background-position-x: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 11vh; }
+  .nollning-button-container .row {
+    justify-content: center; }
+    .nollning-button-container .row .col-33 {
+      margin-left: 6vw;
+      margin-right: 6vw;
+      width: unset; }
+
+.nollning-content {
+  background: #094203;
+  padding-top: 0 !important; }
+
+.nollning-buttons {
+  bottom: 2vh;
+  height: 26vh;
+  margin-bottom: 29vw;
+  position: absolute;
+  width: 100%; }
+
+.nollning-toolbar.toolbar i {
+  color: #ffcbcb !important; }
+
+.tab-link .moose-icon {
+  background-image: url("../img/nollning_moose_icon.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position-x: center;
+  height: 100%;
+  position: relative;
+  transition: 350ms;
+  width: 100%; }
+
+.tab-link.tab-link-active .moose-icon {
+  background-image: url("../img/nollning_moose_icon_active.png"); }
+
+#view-nollning .navbar {
+  background-color: #0e5e05;
+  transition: background-color 200ms ease; }
+
+#view-nollning .icon-back {
+  filter: brightness(0) invert(1); }
+
+.nollning-moose {
+  background-image: url("../img/nollning_moose.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position-x: center;
+  height: 27vh;
+  margin-top: 20.5vh;
+  position: absolute;
+  pointer-events: none;
+  width: 100vw; }
+
+.nollning-moose.nollning-moose-egg {
+  animation: moose-animation 14s infinite; }
+
+@keyframes moose-animation {
+  0% {
+    filter: hue-rotate(0deg); }
+  50% {
+    filter: hue-rotate(360deg); }
+  100% {
+    filter: hue-rotate(0deg); } }
+
+#nollning-f-btn {
+  height: 100%;
+  width: 15vh;
+  float: right; }
+
+#nollning-moose-btn {
+  height: 56%;
+  margin: auto;
+  padding-top: 21%;
+  pointer-events: auto;
+  width: 11vh; }
+
+#nollning-pi-btn {
+  height: 51%;
+  margin-top: 1.5vh;
+  width: 13vh; }
+
+#nollning-n-btn {
+  height: 27%;
+  margin-left: 7vh;
+  width: 12vh; }
+
+.nollning-tab {
+  background-color: #f6fcff; }
+
+@font-face {
+  font-family: Planewalker;
+  src: url("../fonts/Planewalker.otf"); }
+
+.adventure-week-0 {
+  /* Current Adventure */
+  /* Adventure Group */
+  /* Adventure Highscore */ }
+  .adventure-week-0 .adventure-navbar.navbar {
+    background-color: #d7c9b2 !important; }
+  .adventure-week-0 .adventures-container {
+    background-color: #d7c9b2; }
+  .adventure-week-0 .adventures-subnavbar {
+    background-color: #d7c9b2 !important; }
+    .adventure-week-0 .adventures-subnavbar .tab-link, .adventure-week-0 .adventures-subnavbar .tab-link.active-state {
+      background-color: #a39681; }
+    .adventure-week-0 .adventures-subnavbar .tab-link.tab-link-active {
+      color: #d7c9b2 !important; }
+  .adventure-week-0 .adventures-current-header {
+    background-color: #d7c9b2; }
+  .adventure-week-0 .adventures-accordion i.fa {
+    color: #a39681; }
+  .adventure-week-0 .adventures-current-progressbar {
+    background-color: #a39681 !important; }
+    .adventure-week-0 .adventures-current-progressbar span {
+      background-color: #fab23e !important; }
+  .adventure-week-0 .adventure-group-gradient {
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#d7c9b2), color-stop(0.2, #d7c9b2), to(transparent)); }
+  .adventure-week-0 .adventure-missions-btn {
+    background-color: #d7c9b2 !important; }
+  .adventure-week-0 .adventure-group-progressbar span {
+    background-color: #fab23e !important; }
+  .adventure-week-0 .adventures-highscore-first .item-media {
+    background-color: #fab23e; }
+  .adventure-week-0 .adventures-highscore-second .item-media {
+    background-color: #bf8d3b; }
+  .adventure-week-0 .adventures-highscore-third .item-media {
+    background-color: #73592f; }
+
+.adventure-week-1 {
+  /* Current Adventure */
+  /* Adventure Group */
+  /* Adventure Highscore */ }
+  .adventure-week-1 .adventure-navbar.navbar {
+    background-color: #620c22 !important; }
+  .adventure-week-1 .adventures-container {
+    background-color: #620c22; }
+  .adventure-week-1 .adventures-subnavbar {
+    background-color: #620c22 !important; }
+    .adventure-week-1 .adventures-subnavbar .tab-link, .adventure-week-1 .adventures-subnavbar .tab-link.active-state {
+      background-color: #420b19; }
+    .adventure-week-1 .adventures-subnavbar .tab-link.tab-link-active {
+      color: #620c22 !important; }
+  .adventure-week-1 .adventures-current-header {
+    background-color: #620c22; }
+  .adventure-week-1 .adventures-accordion i.fa {
+    color: #420b19; }
+  .adventure-week-1 .adventures-current-progressbar {
+    background-color: #420b19 !important; }
+    .adventure-week-1 .adventures-current-progressbar span {
+      background-color: #ff9368 !important; }
+  .adventure-week-1 .adventure-group-gradient {
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#620c22), color-stop(0.2, #620c22), to(transparent)); }
+  .adventure-week-1 .adventure-missions-btn {
+    background-color: #620c22 !important; }
+  .adventure-week-1 .adventure-group-progressbar span {
+    background-color: #ff9368 !important; }
+  .adventure-week-1 .adventures-highscore-first .item-media {
+    background-color: #9b1e3b; }
+  .adventure-week-1 .adventures-highscore-second .item-media {
+    background-color: #841932; }
+  .adventure-week-1 .adventures-highscore-third .item-media {
+    background-color: #6B1429; }
+
+.adventure-week-2 {
+  /* Current Adventure */
+  /* Adventure Group */
+  /* Adventure Highscore */ }
+  .adventure-week-2 .adventure-navbar.navbar {
+    background-color: #cae1ff !important; }
+  .adventure-week-2 .adventures-container {
+    background-color: #cae1ff; }
+  .adventure-week-2 .adventures-subnavbar {
+    background-color: #cae1ff !important; }
+    .adventure-week-2 .adventures-subnavbar .tab-link, .adventure-week-2 .adventures-subnavbar .tab-link.active-state {
+      background-color: #88b1e6; }
+    .adventure-week-2 .adventures-subnavbar .tab-link.tab-link-active {
+      color: #cae1ff !important; }
+  .adventure-week-2 .adventures-current-header {
+    background-color: #cae1ff; }
+  .adventure-week-2 .adventures-accordion i.fa {
+    color: #88b1e6; }
+  .adventure-week-2 .adventures-current-progressbar {
+    background-color: #88b1e6 !important; }
+    .adventure-week-2 .adventures-current-progressbar span {
+      background-color: #d17060 !important; }
+  .adventure-week-2 .adventure-group-gradient {
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#cae1ff), color-stop(0.2, #cae1ff), to(transparent)); }
+  .adventure-week-2 .adventure-missions-btn {
+    background-color: #cae1ff !important; }
+  .adventure-week-2 .adventure-group-progressbar span {
+    background-color: #d17060 !important; }
+  .adventure-week-2 .adventures-highscore-first .item-media {
+    background-color: #db7e79; }
+  .adventure-week-2 .adventures-highscore-second .item-media {
+    background-color: #b3726f; }
+  .adventure-week-2 .adventures-highscore-third .item-media {
+    background-color: #916866; }
+
+.adventure-week-3 {
+  /* Current Adventure */
+  /* Adventure Group */
+  /* Adventure Highscore */ }
+  .adventure-week-3 .adventure-navbar.navbar {
+    background-color: #85cc43 !important; }
+  .adventure-week-3 .adventures-container {
+    background-color: #85cc43; }
+  .adventure-week-3 .adventures-subnavbar {
+    background-color: #85cc43 !important; }
+    .adventure-week-3 .adventures-subnavbar .tab-link, .adventure-week-3 .adventures-subnavbar .tab-link.active-state {
+      background-color: #35502a; }
+    .adventure-week-3 .adventures-subnavbar .tab-link.tab-link-active {
+      color: #85cc43 !important; }
+  .adventure-week-3 .adventures-current-header {
+    background-color: #85cc43; }
+  .adventure-week-3 .adventures-accordion i.fa {
+    color: #35502a; }
+  .adventure-week-3 .adventures-current-progressbar {
+    background-color: #35502a !important; }
+    .adventure-week-3 .adventures-current-progressbar span {
+      background-color: #cc6843 !important; }
+  .adventure-week-3 .adventure-group-gradient {
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#85cc43), color-stop(0.2, #85cc43), to(transparent)); }
+  .adventure-week-3 .adventure-missions-btn {
+    background-color: #85cc43 !important; }
+  .adventure-week-3 .adventure-group-progressbar span {
+    background-color: #cc6843 !important; }
+  .adventure-week-3 .adventures-highscore-first .item-media {
+    background-color: #456c37; }
+  .adventure-week-3 .adventures-highscore-second .item-media {
+    background-color: #35502a; }
+  .adventure-week-3 .adventures-highscore-third .item-media {
+    background-color: #23361c; }
+
+.adventure-week-4 {
+  /* Current Adventure */
+  /* Adventure Group */
+  /* Adventure Highscore */ }
+  .adventure-week-4 .adventure-navbar.navbar {
+    background-color: #eb7125 !important; }
+  .adventure-week-4 .adventures-container {
+    background-color: #eb7125; }
+  .adventure-week-4 .adventures-subnavbar {
+    background-color: #eb7125 !important; }
+    .adventure-week-4 .adventures-subnavbar .tab-link, .adventure-week-4 .adventures-subnavbar .tab-link.active-state {
+      background-color: #9e440b; }
+    .adventure-week-4 .adventures-subnavbar .tab-link.tab-link-active {
+      color: #eb7125 !important; }
+  .adventure-week-4 .adventures-current-header {
+    background-color: #eb7125; }
+  .adventure-week-4 .adventures-accordion i.fa {
+    color: #9e440b; }
+  .adventure-week-4 .adventures-current-progressbar {
+    background-color: #9e440b !important; }
+    .adventure-week-4 .adventures-current-progressbar span {
+      background-color: #ffbc8b !important; }
+  .adventure-week-4 .adventure-group-gradient {
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#eb7125), color-stop(0.2, #eb7125), to(transparent)); }
+  .adventure-week-4 .adventure-missions-btn {
+    background-color: #eb7125 !important; }
+  .adventure-week-4 .adventure-group-progressbar span {
+    background-color: #ffbc8b !important; }
+  .adventure-week-4 .adventures-highscore-first .item-media {
+    background-color: #be520d; }
+  .adventure-week-4 .adventures-highscore-second .item-media {
+    background-color: #9e440b; }
+  .adventure-week-4 .adventures-highscore-third .item-media {
+    background-color: #853909; }
+
+.adventures-subnavbar {
+  padding-bottom: 12px; }
+  .adventures-subnavbar .tab-link {
+    color: white !important;
+    border-color: #ffffff29 !important; }
+  .adventures-subnavbar .tab-link.tab-link-active {
+    background-color: white !important; }
+
+.adventure-mission {
+  transition: 500ms;
+  background-color: white; }
+  .adventure-mission .fa {
+    color: #797878c9;
+    font-size: 1.5em;
+    margin-top: 10px; }
+
+.adventure-mission-completed {
+  background-color: #daffdf !important; }
+
+.adventure-mission-pending {
+  background-color: #fff0da !important; }
+
+a.complete-adventure-mission {
+  background-color: #65df6b !important; }
+
+/* CURRENT ADVENTURE */
+#adventures-current {
+  background-color: #efeff4; }
+
+.adventures-current-empty {
+  margin-top: 25px;
+  margin-left: 15px;
+  font-size: 17px; }
+
+.adventures-current-header {
+  width: 100%;
+  z-index: 100;
+  border-radius: 6px;
+  margin-top: -4px;
+  padding-bottom: 16px; }
+
+.adventures-current-list .item-title {
+  white-space: initial; }
+
+.adventures-current-list .item-inner:after {
+  display: none !important; }
+
+.adventures-current-title {
+  font-size: 16px;
+  color: white;
+  padding: 8px 16px; }
+
+.adventures-accordion {
+  font-size: 16px;
+  color: white;
+  padding: 16px 0 0 16px; }
+  .adventures-accordion i.fa {
+    font-size: 18px; }
+
+.adventures-current-title span {
+  float: right; }
+
+.adventures-current-preloader {
+  margin-top: 140px !important; }
+
+.adventures-current-progressbar {
+  width: calc(100% - 32px);
+  margin-left: 16px;
+  height: 10px !important; }
+
+/* ADVENTURE GROUP */
+#adventure-group {
+  background-image: url("../img/nollning_adventure_background.png");
+  background-size: cover;
+  background-position-x: center;
+  background-position-y: 20px;
+  padding-bottom: 0; }
+
+.adventure-group-gradient {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0; }
+
+.adventure-group-name {
+  width: 100%;
+  font-size: calc(15px + 7vw);
+  text-align: center;
+  color: white !important;
+  margin-top: 1vh;
+  margin-left: 0px !important;
+  font-family: Planewalker;
+  position: relative; }
+
+.adventure-group-points {
+  margin: 0 15px;
+  text-align: center;
+  font-size: 17px; }
+
+.adventure-group-points-title {
+  color: white;
+  text-align: left;
+  position: relative;
+  padding-bottom: 5px; }
+
+.adventure-group-points-title span {
+  float: right; }
+
+.adventure-group-progress {
+  margin: 0;
+  color: white;
+  position: relative; }
+
+.adventure-group-progressbar {
+  background-color: #16313e !important;
+  padding: 2px;
+  height: 22px !important;
+  border-radius: 10px !important; }
+
+.adventure-weeks-container {
+  margin-top: 4vh;
+  margin-bottom: 6vh; }
+  .adventure-weeks-container .swiper-wrapper {
+    margin-left: 15px; }
+  .adventure-weeks-container .swiper-pagination {
+    bottom: 0; }
+  .adventure-weeks-container .swiper-pagination-bullet {
+    background: #f3f3f3; }
+  .adventure-weeks-container .adventure-week-stats {
+    font-size: 16px;
+    text-align: center;
+    font-size: calc(11px + 1vw); }
+  .adventure-weeks-container .adventure-week-stats-title {
+    position: relative;
+    color: white;
+    margin-left: 15px;
+    margin-bottom: 10px;
+    font-size: 17px; }
+
+.adventure-missions-btn {
+  color: white !important;
+  background-color: #1c4979 !important;
+  border: none !important;
+  width: calc(100% - 30px);
+  margin-left: 15px; }
+
+.adventure-missions-list {
+  margin: 0px !important; }
+  .adventure-missions-list .list-group-title {
+    font-weight: bold;
+    color: black;
+    font-size: 20px;
+    font-size: 18px; }
+  .adventure-missions-list .item-title {
+    white-space: initial; }
+  .adventure-missions-list .item-inner:after {
+    display: none !important; }
+  .adventure-missions-list ul:after {
+    display: none !important; }
+
+/* ADVENTURES HIGHSCORE */
+#adventures-highscore {
+  background-color: #efeff4; }
+
+.adventures-highscore-list {
+  margin-top: -1px !important; }
+  .adventures-highscore-list .item-content {
+    padding-left: 0 !important;
+    margin-top: -1px; }
+  .adventures-highscore-list .item-media {
+    width: 18%;
+    height: 100%;
+    justify-content: center; }
+  .adventures-highscore-list .item-inner {
+    display: flex;
+    flex-direction: column;
+    margin-left: 0 !important;
+    padding-left: 16px;
+    justify-content: space-evenly;
+    background: #ffffff; }
+  .adventures-highscore-list .item-inner:after {
+    display: none !important; }
+  .adventures-highscore-list .item-title-row {
+    width: 100%; }
+  .adventures-highscore-list .item-text {
+    align-self: flex-start;
+    padding: 5px 0px; }
+  .adventures-highscore-list .item-title {
+    -webkit-hyphens: auto;
+    hyphens: auto;
+    white-space: initial; }
+  .adventures-highscore-list .item-after {
+    color: black !important; }
+
+.adventures-highscore-first {
+  height: 140px !important;
+  font-size: calc(18px + 1vw) !important; }
+  .adventures-highscore-first .item-media {
+    color: #ffD700; }
+    .adventures-highscore-first .item-media i {
+      font-size: calc(45px + 1vw); }
+  .adventures-highscore-first .item-text {
+    font-size: calc(14px + 1vw) !important; }
+  .adventures-highscore-first .item-after {
+    font-size: calc(18px + 1vw) !important; }
+
+.adventures-highscore-second {
+  height: 120px !important;
+  font-size: calc(16px + 1vw) !important; }
+  .adventures-highscore-second .item-media {
+    color: #c0c0c0; }
+    .adventures-highscore-second .item-media i {
+      font-size: calc(37px + 1vw); }
+  .adventures-highscore-second .item-text {
+    font-size: calc(13px + 1vw) !important; }
+  .adventures-highscore-second .item-after {
+    font-size: calc(16px + 1vw) !important; }
+
+.adventures-highscore-third {
+  height: 100px !important;
+  font-size: calc(14px + 1vw) !important; }
+  .adventures-highscore-third .item-media {
+    color: #cd7f32; }
+    .adventures-highscore-third .item-media i {
+      font-size: calc(29px + 1vw); }
+  .adventures-highscore-third .item-text {
+    font-size: calc(12px + 1vw) !important; }
+  .adventures-highscore-third .item-after {
+    font-size: calc(14px + 1vw) !important; }
+
+.matrix-content {
+  background: #ffffff; }
+
+.matrix-content::after {
+  content: '';
+  left: 0;
+  mix-blend-mode: screen;
+  pointer-events: none;
+  position: absolute;
+  top: 44px;
+  width: 100%; }
+
+.page-content .timeline {
+  margin: 0 !important;
+  padding-top: 10px;
+  background: #ffffff; }
+
+.timeline-fail {
+  color: #000000;
+  font-size: 16px;
+  margin: 16px; }
+
+#week-list .block-title {
+  padding: 16px 16px 16px 24px;
+  margin: 0;
+  overflow: visible;
+  font-size: 18px;
+  color: #000000;
+  background: #ffffff;
+  z-index: 2; }
+
+.page-content .timeline-sides .timeline-item .timeline-item-date {
+  background: transparent;
+  color: #000000;
+  z-index: 2; }
+
+.page-content .timeline-sides .timeline-item .timeline-item-divider {
+  z-index: 2; }
+
+.page-content .timeline-sides .timeline-item .timeline-item-content {
+  background: #000000;
+  border-radius: 7px;
+  color: #ffffff;
+  padding-left: 12px;
+  padding-right: 12px;
+  padding-top: 12px;
+  word-break: break-all; }
+  .page-content .timeline-sides .timeline-item .timeline-item-content a {
+    display: block;
+    margin-bottom: 12px; }
+  .page-content .timeline-sides .timeline-item .timeline-item-content .timeline-item-time {
+    color: #ffffff; }
+  .page-content .timeline-sides .timeline-item .timeline-item-content .timeline-item-title {
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: bold;
+    word-break: break-word; }
+  .page-content .timeline-sides .timeline-item .timeline-item-content .timeline-item-location {
+    color: #ffffff; }
+    .page-content .timeline-sides .timeline-item .timeline-item-content .timeline-item-location .fa-map-marker {
+      padding-left: 1px;
+      padding-right: 3px; }
+
+.page-content .timeline-sides .timeline-item:last-child {
+  padding-bottom: 16px; }
+
+#timeline-signup {
+  color: #ffffff;
+  margin: 0; }
+
+.signup .fa-user {
+  padding-right: 2px; }
+
+.today-past,
+.past {
+  background: #2e8b57; }
+  .today-past::before,
+  .past::before {
+    background: #2e8b57; }
+  .today-past::after,
+  .past::after {
+    background: #2e8b57; }
+
+.today-future,
+.future {
+  background: #bbb; }
+  .today-future::before,
+  .future::before {
+    background: #bbb; }
+  .today-future::after,
+  .future::after {
+    background: #bbb; }
+
+.today-last,
+.last {
+  background: #2e8b57; }
+  .today-last::before,
+  .last::before {
+    background: #2e8b57; }
+  .today-last::after,
+  .last::after {
+    background: #bbb; }
+
+.introduction-contacts-content {
+  background: #f3f3f3; }
+  .introduction-contacts-content .fa-external-link {
+    padding-left: 2px; }
+  .introduction-contacts-content .block {
+    color: #4a4a4e; }
+  .introduction-contacts-content .block-header {
+    font-size: 20px; }
+  .introduction-contacts-content .block-title {
+    color: #0e5e05;
+    font-size: 17px;
+    overflow: visible;
+    white-space: normal;
+    word-break: break-all; }
+  .introduction-contacts-content .block-title-large {
+    font-size: 22px;
+    word-break: break-word; }
+    .introduction-contacts-content .block-title-large a {
+      color: #0e5e05;
+      text-decoration: underline; }
+  .introduction-contacts-content .block-strong {
+    background: #ffffff;
+    color: #000000; }
+    .introduction-contacts-content .block-strong a {
+      color: #0e5e05;
+      text-decoration: underline; }
+
+.searchbar-songbook .searchbar-disable-button {
+  color: #000000 !important; }
+
+#chantbook-list .list-group-title {
+  font-weight: bold;
+  color: #3c3c3c; }
+
+.chantbook-indexlist li {
+  margin-top: 5px;
+  color: #8e8e93; }
+
+.chantbook-indexlist .list-index-label {
+  background: #eb7125 !important; }
+
+.chant-content .block-title {
+  font-size: 27px;
+  color: #eb7125;
+  white-space: initial;
+  line-height: initial; }
+
+.chant-content .block .auth-mel {
+  margin-bottom: 0; }
+
+.chant-content .block {
+  margin-bottom: 16px;
+  margin-top: 0; }
+
+.chant-content .block p {
+  font-size: 16px;
+  margin-top: 0; }
+
+.chant-content .block span {
+  color: #eb7125; }
+
+.chant-content .song-text {
+  background-color: #ffffff; }
+
+.chant-content .song-text p:last-child {
+  margin-bottom: 0; }
+
+.chant-content .song-text .block-inner {
+  padding: 15px 0; }
+
+.chantbook-content .list ul::before, .songbook-content .list ul:after {
+  display: none; }
+
+.chantbook-content .preloader, .song-content .preloader {
+  height: 40px;
+  margin-left: calc(50% - 20px);
+  margin-top: calc(50% - 20px);
+  width: 40px; }
+
+.chantbook-content .searchbar-not-found {
+  font-size: 16px; }
+
+#chantbook-songbook-button {
+  background-color: #0e5e05;
+  font-size: 16px;
+  width: 160px; }
+
+.egg-season, .egg-season-summer, .egg-season-autumn, .egg-season-winter, .egg-season-spring {
+  display: inline-block;
+  height: 100px;
+  width: 72px; }
+
+.egg-season-summer {
+  float: left; }
+
+.egg-season-autumn {
+  float: left; }
+
+.egg-season-winter {
+  float: right; }
+
+.egg-season-spring {
+  float: right; }
+
+.egg-season-wrapper {
+  position: absolute;
+  top: 40%;
+  left: 0;
+  width: 100%; }
+
+.egg-hilbert-wrapper {
+  display: flex;
+  left: 0;
+  position: absolute;
+  top: 21%;
+  width: 100%; }
+
+.egg-horn, .egg-horn-left, .egg-horn-right {
+  display: inline-block;
+  height: 100px;
+  width: 95px; }
+
+.egg-horn-left {
+  float: left;
+  margin-left: calc(50% - 125px); }
+
+.egg-moose {
+  display: inline-block;
+  height: 160px;
+  width: 65px;
+  margin-top: 2px; }
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg); }
+  to {
+    transform: rotate(359deg); } }
+
+@keyframes scale {
+  from {
+    transform: scale(1); }
+  to {
+    transform: scale(2); } }
+
+.egg-moose-rotate {
+  animation: rotation 2s infinite linear; }
+
+.egg-moose-scale {
+  animation: scale 1.5s alternate infinite ease-in-out; }

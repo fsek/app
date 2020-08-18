@@ -5,12 +5,12 @@ function getGroups() {
       var groupEl = $$('#groups-list ul');
       groupEl.html('');
       var groups = resp.groups.reverse();
-      var unread = 0;
+      var unread_new = 0;
       var hasGroups = groups.length !== 0;
       var templateHTML = '';
       if (hasGroups) {
         for (var group of groups) {
-          unread += group.group_user.unread_count;
+          unread_new += group.group_user.unread_count;
           templateHTML += app.templates.groupTemplate({group: group,
             hasGroups: hasGroups});
         }
@@ -22,7 +22,7 @@ function getGroups() {
       }
 
       groupEl.html(templateHTML);
-      updateGroupBadge(unread);
+      updateGroupBadge(unread_new);
     });
 }
 

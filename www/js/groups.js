@@ -59,7 +59,7 @@ $$('#groups-list').on('click', 'li', function() {
 
 function updateGroupBadge(count) {
   if (count > 0) {
-    $$('.group-badge').html(count);
+    $$('.group-badge').html('!');
     $$('.group-badge').show();
   } else {
     $$('.group-badge').html(0);

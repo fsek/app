@@ -18,7 +18,7 @@ $(".egg-season-autumn").on("click", () => {
     clickSeason(1, "Tack för att du röstade på Cofös Saga. Antal röster: " + getVotes(), "Hösten är bäst!");
 });
 $(".egg-season-winter").on("click", () => {
-    clickSeason(2, "Tack för att du röstade på Cofös Matlida. Antal röster: " + getVotes(), "Vintern är bäst!");
+    clickSeason(2, "Tack för att du röstade på Cofös Matilda. Antal röster: " + getVotes(), "Vintern är bäst!");
 });
 $(".egg-season-spring").on("click", () => {
     clickSeason(3, "Tack för att du röstade på Cofös Björn. Antal röster: " + getVotes(), "Våren är bäst!");

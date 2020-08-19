@@ -23,7 +23,7 @@ $$(document).on('page:beforein', '.page[data-name="adventures"]', function() {
 
 $$(document).on('page:init', '.page[data-name="adventures"]', function(e) {
   const page = $(e.target);
-  const progressColors = ['#ea545a', '#ff9368', '#ea6767', '#eb7125', '#ffbc8b'];
+  const progressColors = ['#fab23e', '#ff9368', '#d17060', '#cc6843', '#ffbc8b'];
 
   $.getJSON(API + '/adventures')
     .done(function(resp) {

@@ -1,3 +1,8 @@
+$$(document).on('page:beforein', '.page[data-name="songbook"]', function() {
+  $$('.navbar').removeAttr('id');
+  StatusBar.backgroundColorByHexString(mainBarColor);
+});
+
 $$(document).on('page:init', '.page[data-name="songbook"]', function (e) {
   $.getJSON(API + '/songs')
     .done(function(resp) {

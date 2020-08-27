@@ -1,6 +1,6 @@
 {
   "name": "se.fsektionen.fapp",
-  "version": "2.5.0",
+  "version": "2.5.1",
   "displayName": "F-sektionen",
   "cordova": {
     "platforms": [

@@ -10,6 +10,10 @@
 .message-received.message-admin .message-bubble {
   background-color: #ff9800;
   color: $white;
+
+  a {
+    color: #007aff;
+  }
 }
 
 .msg-editor-page .content-block-title {

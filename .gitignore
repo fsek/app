@@ -2,6 +2,3 @@
 /node_modules
 .DS_Store
 .java-version
-/www/compiled_css/index.css
-/www/compiled_css/ios-overrides.css
-/www/compiled_css/material-overrides.css

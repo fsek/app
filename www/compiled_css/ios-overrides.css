@@ -1,194 +1,147 @@
-@import 'partials/variables';
-
 .messages-auto-layout .message-label.message-updated {
   display: inline;
-  margin-bottom: 10px;
-}
+  margin-bottom: 10px; }
 
 .ios .navbar {
-  background: $fsek-orange;
-  color: $white;
-}
+  background: #eb7125;
+  color: #ffffff; }
 
-.ios .message-sent .message-bubble{
-  background-color: #60b0d8;
-}
+.ios .message-sent .message-bubble {
+  background-color: #60b0d8; }
 
 .day-content {
-  margin-bottom: 44px;
-}
+  margin-bottom: 44px; }
 
 #calendar {
-  margin-top: 44px;
-}
+  margin-top: 44px; }
 
 .calendar, .calendar .calendar-week-header {
-  background-color: $white;
-}
+  background-color: #ffffff; }
 
 .calendar-page .calendar-day-today span {
-  background: none !important;
-}
+  background: none !important; }
 
 .calendar-page .calendar-custom-toolbar {
-  background-color: $fsek-orange;
-}
+  background-color: #eb7125; }
 
-#event-signup-groupcustom, .event-signup-container .input-showing{
-  margin-top: 8px;
-}
+#event-signup-groupcustom, .event-signup-container .input-showing {
+  margin-top: 8px; }
 
 .navbar:after {
-  display: none !important;
-}
+  display: none !important; }
 
-.ios .navbar i.icon, .ios .navbar a{
-  color: $white;
-}
+.ios .navbar i.icon, .ios .navbar a {
+  color: #ffffff; }
 
 .ios ul.no-groups {
-  background: none;
-}
+  background: none; }
 
-.tabs .tabbar{
-  background: $fsek-orange !important;
-  color: #ffe0b3;
-}
+.tabs .tabbar {
+  background: #eb7125 !important;
+  color: #ffe0b3; }
 
 .tabbar .badge {
   line-height: 16px !important;
   padding: 0 !important;
-  font-size: 11px;
-}
+  font-size: 11px; }
 
 .home-subnavbar {
-  margin-top: -12px !important;
-}
+  margin-top: -12px !important; }
 
 .subtab-container {
   margin-top: 77px;
   height: -webkit-calc(100vh - 120px);
-  height: calc(100vh - 120px);
-}
+  height: calc(100vh - 120px); }
 
 .song-content .block {
-  color: #000;
-}
+  color: #000; }
 
 .song-content .block-title {
   text-transform: initial;
-  margin-top: 15px;
-}
+  margin-top: 15px; }
 
-#songbook-list{
-  margin-top: 0px;
-}
+#songbook-list {
+  margin-top: 0px; }
 
 .songbook-indexlist {
   bottom: 0 !important;
-  margin-top: 45px;
-}
+  margin-top: 45px; }
 
 #view-home .subtab {
   top: -50px;
-  height: 110%;
-}
+  height: 110%; }
 
 #view-home .subtab .ptr-preloader {
-  top: 55px;
-}
+  top: 55px; }
 
 #view-home .subtab-list {
-  margin-top: 60px;
-}
+  margin-top: 60px; }
 
 .notification-list li:last-child {
-  margin-bottom: 53px;
-}
+  margin-bottom: 53px; }
 
-.ios-hide{
-  display: none !important;
-}
+.ios-hide {
+  display: none !important; }
 
 .user-content {
   /*background: linear-gradient(to bottom,$fsek-orange 60%, #efeff4 61%);*/
   background-image: url("../img/RoosterxHen.png");
   background-size: contain;
-  background-repeat: no-repeat;
-}
+  background-repeat: no-repeat; }
 
 #user-form {
-  background-color: #efeff4;
-}
+  background-color: #efeff4; }
 
 .user-foodpref-info {
-  font-size: 14px;
-}
+  font-size: 14px; }
 
 .user-list-title {
   color: #8f8f94;
-  padding: 20px 15px 10px 15px;
-}
+  padding: 20px 15px 10px 15px; }
 
 .settings-content {
-  padding-bottom: 65px;
-
-}
+  padding-bottom: 65px; }
 
 /* NOLLNING */
 .nollning-toolbar.toolbar {
-  background: $nollning-red !important;
-
-  &:before {
-    display: none;
-  }
-}
+  background: #0e5e05 !important; }
+  .nollning-toolbar.toolbar:before {
+    display: none; }
 
 .nollning-content {
-  overflow: hidden;
-}
+  overflow: hidden; }
 
 .adventure-mission .item-title {
-  font-weight: normal !important;
-}
+  font-weight: normal !important; }
 
 .adventures-highscore-list .item-title {
-  font-weight: normal !important;
-}
+  font-weight: normal !important; }
 
 .adventures-subnavbar:after {
-  content: none !important;
-}
+  content: none !important; }
 
 #chantbook-list {
   margin-top: 0;
-  margin-bottom: 35px;
-}
+  margin-bottom: 35px; }
 
 #view-nollning .chantbook-fab {
-  margin-bottom: 0;
-}
+  margin-bottom: 0; }
 
 .adventures-current-list {
-  margin-top: 0 !important;
-}
+  margin-top: 0 !important; }
 
 .swipeout-content .item-media {
-  margin-right: 16px;
-}
+  margin-right: 16px; }
 
 a.message-send-button {
   color: black !important;
   margin-left: 5px;
-  padding-bottom: 1px;
-}
+  padding-bottom: 1px; }
 
 a.message-send-button:active {
   opacity: .3;
   transition-duration: 0s;
-  -webkit-transition-duration: 0s;
-}
+  -webkit-transition-duration: 0s; }
 
 .photo-browser-page .navbar, .photo-browser-page .toolbar {
-  background-color: rgba(30, 30, 30, 0.8) !important;
-}
+  background-color: rgba(30, 30, 30, 0.8) !important; }

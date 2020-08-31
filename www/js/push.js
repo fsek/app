@@ -1,12 +1,12 @@
 function setupPush() {
   pushService = PushNotification.init({
     'android': {
-      'senderID': '509736475453',
+      'senderID': '178540363026',
       'icon': 'f',
       'iconColor': '#EB7125'
     },
     'ios': {
-      'senderID': '509736475453',
+      'senderID': '178540363026',
       'fcmSandbox': true, // True for development
       'sound': true,
       'alert': true,

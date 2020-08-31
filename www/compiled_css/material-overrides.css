@@ -1,225 +1,171 @@
-@import 'partials/variables';
-
 .md .color-theme-orange .navbar {
-  background: $fsek-orange;
-}
+  background: #eb7125; }
 
 .toolbar {
-  background-color: $fsek-orange !important;
-}
+  background-color: #eb7125 !important; }
 
 .toolbar:after {
-  display: none;
-}
+  display: none; }
 
 .tabbar .badge {
-  padding: 3px 0 0 0;
-}
+  padding: 3px 0 0 0; }
 
 .toolbar.messagebar {
-  background-color: $white !important;
-  position: fixed;
-}
+  background-color: #ffffff !important;
+  position: fixed; }
 
-.messages .message-text, .toolbar.messagebar textarea{
-  font-size: 18px;
-}
+.messages .message-text, .toolbar.messagebar textarea {
+  font-size: 18px; }
 
 .messages .message-sent .message-bubble {
-  background-color: #cfd8dc;
-}
+  background-color: #cfd8dc; }
 
 .messages .message-sent .message-bubble:before {
-  border-bottom-color: #cfd8dc !important;
-}
+  border-bottom-color: #cfd8dc !important; }
 
 .message-sent.message-admin .message-bubble:before,
 .message-received.message-admin .message-bubble:before {
-  border-bottom-color: #ff9800 !important;
-}
+  border-bottom-color: #ff9800 !important; }
 
 .message-avatar {
   height: 35px !important;
-  width: 35px !important;
-}
+  width: 35px !important; }
 
 .android-hide {
-  display: none !important;
-}
+  display: none !important; }
 
 .content-block-title {
-	line-height: 1;
-}
+  line-height: 1; }
 
 .subtab-container {
   margin-top: 104px;
   height: -webkit-calc(100vh - 104px);
-  height: calc(100vh - 104px);
-}
+  height: calc(100vh - 104px); }
 
 .home-subnavbar {
   margin-top: -8px !important;
-  height: 54px !important;
-}
+  height: 54px !important; }
 
 #subtab-news .news-card {
-  margin-top: 15px;
-}
+  margin-top: 15px; }
 
 .input-field:after, .item-input-field:after {
-  background-color: rgba(255,255,255,0) !important;
-}
+  background-color: rgba(255, 255, 255, 0) !important; }
 
 .user-content .input-field:after, .user-content .item-input-field:after {
-  background-color: rgba(0,0,0,.12) !important;
-}
+  background-color: rgba(0, 0, 0, 0.12) !important; }
 
 .modal .input-field:after {
-  background-color: black !important;
-}
+  background-color: black !important; }
 
 .modal .input-field.focus-state:after,
 .modal .input-field.not-empty-state:after {
-    background-color: $fsek-orange !important;
-}
+  background-color: #eb7125 !important; }
 
 .calendar .calendar-week-header {
-  color: $fsek-orange;
-}
+  color: #eb7125; }
 
 .calendar {
   color: #000;
-  margin-top: 88px;
-}
+  margin-top: 88px; }
 
 .calendar-navbar {
   background-color: #eb7125 !important;
   height: 88px !important;
-  font-size: 16px !important;
-}
+  font-size: 16px !important; }
 
 .calendar-navbar .navbar-inner {
   height: 40px;
-  margin-top: 48px;
-}
+  margin-top: 48px; }
 
 .calendar-navbar .left {
-  margin-left: 16px;
-}
+  margin-left: 16px; }
 
 .message-name {
-  z-index: 100;
-}
+  z-index: 100; }
 
 .user-avatar {
-  border: none;
-}
+  border: none; }
 
-.md .navbar:after{
-  display: none;
-}
+.md .navbar:after {
+  display: none; }
 
 .list-block .focus-state.item-inner .label {
-  color: $fsek-orange;
-}
+  color: #eb7125; }
 
 .user-content {
-  background-color: #f3f3f3;
-}
+  background-color: #f3f3f3; }
 
 #user-form {
-  background-color: $white;
-}
+  background-color: #ffffff; }
 
 .user-foodpref-info {
-  font-size: 13px;
-}
+  font-size: 13px; }
 
 .user-list-title {
   padding: 30px 15px 15px 15px;
   background-color: #f3f3f3;
-  color: #4a4a4e;
-}
+  color: #4a4a4e; }
 
 .song-content {
-  background-color: #f6f6f6;
-}
+  background-color: #f6f6f6; }
 
 #songbook-list {
-  margin-top: 56px;
-}
+  margin-top: 56px; }
 
 #chantbook-list {
   margin-top: 56px;
-  margin-bottom: 85px;
-}
+  margin-bottom: 85px; }
 
 .songbook-content .searchbar-not-found {
-  margin-top: 75px;
-}
+  margin-top: 75px; }
 
 .settings-content {
-  padding-bottom: 25px;
-}
+  padding-bottom: 25px; }
 
 .contact-content .contact-selected .item-title {
-  font-size: 14px;
-}
+  font-size: 14px; }
 
 .contact-content .contact-button {
-  margin-bottom: 35px;
-}
+  margin-bottom: 35px; }
 
 .md .contact-text:after {
-  background: none;
-}
+  background: none; }
 
 .smart-select-page.page-with-subnavbar .list {
-  margin-top: 56px;
-}
+  margin-top: 56px; }
 
 #view-alternatives .subnavbar {
-  background: $white;
-}
+  background: #ffffff; }
 
 .searchbar input {
-  font-size: 16px !important;
-}
+  font-size: 16px !important; }
 
 .searchbar {
-  border-bottom: 1px solid #0000000f;
-}
+  border-bottom: 1px solid #0000000f; }
 
 .md .subnavbar:after {
-  content: none;
-}
+  content: none; }
 
 .event-container {
-  padding-top: 8px;
-}
+  padding-top: 8px; }
 
 .md .ptr-preloader {
-  margin-top: -10px;
-}
+  margin-top: -10px; }
 
 /* NOLLNING */
 .nollning-toolbar.toolbar {
-  background: none !important;
-}
+  background: none !important; }
 
 .adventures-container .page-content {
-  padding-top: 104px !important;
-}
+  padding-top: 104px !important; }
 
 .adventures-subnavbar {
-  padding-bottom: 12px;
-}
+  padding-bottom: 12px; }
 
 .adventures-current-header {
-  position: fixed;
-}
+  position: fixed; }
 
 #adventures-current .ptr-preloader {
   display: none;
-  top: 170px;
-}
+  top: 170px; }

@@ -10,7 +10,7 @@
     "plugins": {
       "cordova-plugin-whitelist": {},
       "phonegap-plugin-push": {
-        "SENDER_ID": "509736475453"
+        "SENDER_ID": "178540363026"
       },
       "cordova-plugin-statusbar": {},
       "cordova-plugin-splashscreen": {},

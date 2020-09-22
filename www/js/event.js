@@ -78,7 +78,7 @@ function initEventPage(eventData) {
 
     if (sameDay(startDate, endDate)) {
       switch (eventData.dot) {
-        case 'single':
+        case 'single'key: "value", 
           startDate = startDate.hhmm() + ' (.)';
           break;
         case 'double':

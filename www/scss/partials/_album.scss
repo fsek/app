@@ -24,13 +24,13 @@
 .album-content .block-title {
   font-weight: bold;
   font-size: 27px;
-  color: $fsek-orange;
+  color: $fsek-orange !important;
   white-space: initial;
   line-height: initial;
   margin: 32px 0px 15px 15px;
 }
 
-.album-content .block span{
+.album-content .block span {
   color: $fsek-orange;
 }
 

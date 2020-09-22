@@ -4,6 +4,12 @@
   background: $white;
 }
 
+.theme-dark #contact-description,
+.theme-dark #contact-info,
+.theme-dark #contact-list {
+  background: $black;
+}
+
 #contact-description .list {
   margin: 0;
   font-size: 14px;
@@ -26,6 +32,10 @@
   background: $light-gray;
 }
 
+.theme-dark .page-content.contact-content {
+  background: $black;
+}
+
 .contact-text textarea {
   height: 100%;
 }
@@ -38,6 +48,10 @@
   color: $fsek-orange;
   font-size: 17px;
   overflow: visible;
+}
+
+.theme-dark .block-title {
+  color: $light-gray;
 }
 
 .contact-content .contact-button {
@@ -77,4 +91,13 @@
 
 #contact-form .item-content.item-input {
   background: $white;
+}
+
+.theme-dark #contact-form .item-content.item-input {
+  background: $black;
+}
+
+.ios .color-theme-orange label.item-radio input[type=radio]:checked~.icon-radio,
+.ios .theme-dark label.item-radio input[type=radio]:checked~.icon-radio {
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2013%2010'%3E%3Cpolygon%20fill%3D'%23ff9500'%20points%3D'11.6%2C0%204.4%2C7.2%201.4%2C4.2%200%2C5.6%204.4%2C10%204.4%2C10%204.4%2C10%2013%2C1.4%20'%2F%3E%3C%2Fsvg%3E");
 }

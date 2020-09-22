@@ -1,8 +1,8 @@
 .login-screen-content {
-  background-size: 200% 100%;
-  background-image: url("../img/login-background_full.png");
-  background-repeat: no-repeat;
-  background-attachment: fixed;
+  background-size: 200% 100% !important;
+  background-image: url("../img/login-background_full.png") !important;
+  background-repeat: no-repeat !important;
+  background-attachment: fixed !important;
   overflow: hidden;
   height: 100%;
 }

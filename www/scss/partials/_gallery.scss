@@ -47,3 +47,11 @@
   height: 40px;
   width: 40px;
 }
+
+.navbar {
+  background-color: $fsek-orange;
+}
+
+.theme-dark .navbar {
+  background-color: $fsek-orange;
+}

@@ -37,3 +37,12 @@
   resize: none;
   width: 100%;
 }
+
+.ios a {
+  color: $fsek-orange;
+}
+
+.md .messagebar a.link,
+.md .theme-dark .messagebar a.link {
+  color: $fsek-orange;
+}

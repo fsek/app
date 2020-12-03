@@ -74,6 +74,10 @@
   font-size: 14px;
 }
 
+.theme-dark .user-list-title {
+  background-color: $black;
+}
+
 .md .theme-dark .toggle input[type=checkbox]:checked+.toggle-icon:after {
   background: $light-orange;
 }

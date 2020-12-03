@@ -104,9 +104,8 @@ function afterSignIn() {
   pushAfterLogin();
   initNotificationBadge();
   loadHome();
-  setGroupNotification();
 
-  // if ($$('#groups-list ul').is(':empty')) getGroups();
+  if ($$('#groups-list ul').is(':empty')) getGroups();
 
   if ($('#calendar').is(':empty')) initCalendar($('.page.calendar-page'));
 

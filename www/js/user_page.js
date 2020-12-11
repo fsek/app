@@ -103,6 +103,12 @@ function initUserPage() {
     // Add member date to the page while setting it to the fullDate type
     var memberDate = new Date(user.member_at).fullDate();
     userContent.find('#user-member-at').html('Medlemskap sedan ' + memberDate);
+
+    // Toggles the dark mode checkbox
+    if (localStorage.getItem('dark-mode') == 'on') {
+      $('input[name="dark_mode"]').prop('checked', true);
+    }
+
   }
 
   function initProgramPicker(selectedProgram) {
@@ -288,6 +294,14 @@ function initUserPage() {
           app.dialog.close();
           app.dialog.alert('Kunde inte uppdatera dina användarinställningar. Kontrollera din internetanslutning och försök igen :(', 'Misslyckades att spara');
         });
+
+        if ($('input[name="dark_mode"]').prop('checked')) {
+          localStorage.setItem('dark-mode', 'on');
+          $('body').attr('class', 'theme-dark');
+        } else {
+          localStorage.setItem('dark-mode', 'off');
+          $('body').attr('class', 'color-theme-orange');
+        }
     });
   };
 

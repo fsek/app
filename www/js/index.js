@@ -281,6 +281,10 @@ function onBackKey() {
  * web API version using the function "checkAPIVersion" defined in check_version.js.
  */
 document.addEventListener('deviceready', function() {
+  // Sets app to dark mode, if turned on
+  if (localStorage.getItem('dark-mode') == 'on') {
+    $('body').attr('class', 'theme-dark');
+  }
   // Redirect from the login screen if the user has signed in before
   $.auth.validateToken()
     .done(function() {

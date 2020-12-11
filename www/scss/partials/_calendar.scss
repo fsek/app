@@ -1,3 +1,7 @@
+.theme-dark .calendar {
+  background-color: $black;
+}
+
 .calendar-page {
   display: flex;
   flex-direction: column;
@@ -11,6 +15,11 @@
 .calendar .calendar-week-header {
   height: 20px;
   color: $fsek-orange;
+  background-color: $white;
+}
+
+.theme-dark .calendar .calendar-week-header {
+  background-color: $black;
 }
 
 .calendar .calendar-day-selected span{
@@ -89,7 +98,11 @@ a.day-content-event {
 
 .day-content-event .card-content-inner {
   padding: 0 16px 5px 16px;
-  color: #000;
+  color: $black;
+}
+
+.theme-dark .day-content-event .card-content-inner {
+  color: $light-gray;
 }
 
 .day-content-event .card-media {

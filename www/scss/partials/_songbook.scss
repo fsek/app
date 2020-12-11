@@ -1,4 +1,4 @@
-.searchbar-songbook .searchbar-disable-button{
+.searchbar-songbook .searchbar-disable-button {
   color: $fsek-orange !important;
 }
 
@@ -7,7 +7,7 @@
   margin-bottom: 0;
 }
 
-#songbook-list .list-group-title{
+#songbook-list .list-group-title {
   font-weight: bold;
   color: #3c3c3c;
 }
@@ -21,28 +21,37 @@
   background: $fsek-orange !important;
 }
 
-.song-content .block-title{
+.song-content .block-title {
   font-size: 27px;
   color: $fsek-orange;
   white-space: initial;
   line-height: initial;
 }
 
-.song-content .block .auth-mel{
+.theme-dark .song-content .block-title {
+  color: $fsek-orange;
+}
+
+.song-content .block .auth-mel {
   margin-bottom: 0;
 }
 
 .song-content .block {
   margin-bottom: 16px;
   margin-top: 0;
+  color: $black;
 }
 
-.song-content .block p{
+.theme-dark .song-content .block {
+  color: $light-gray;
+}
+
+.song-content .block p {
   font-size: 16px;
   margin-top: 0;
 }
 
-.song-content .block span{
+.song-content .block span {
   color: $fsek-orange;
 }
 
@@ -50,15 +59,19 @@
   background-color: $white;
 }
 
-.song-content .song-text p:last-child{
+.theme-dark .song-content .song-text {
+  background-color: $dark-gray;
+}
+
+.song-content .song-text p:last-child {
   margin-bottom: 0;
 }
 
-.song-content .song-text .block-inner{
+.song-content .song-text .block-inner {
   padding: 15px 0;
 }
 
-.songbook-content .list ul::before, .songbook-content .list ul:after{
+.songbook-content .list ul::before, .songbook-content .list ul:after {
   display: none;
 }
 
@@ -71,4 +84,8 @@
 
 .songbook-content .searchbar-not-found {
   font-size: 16px;
+}
+
+.theme-dark .searchbar {
+  background-color: $dark-gray !important;
 }

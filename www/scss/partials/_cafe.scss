@@ -57,7 +57,7 @@
   }
 
   .time-info {
-    color: #ffffff;
+    color: $white;
     display: block;
     left: -10%;
     position: absolute;
@@ -108,7 +108,7 @@
     padding-top: 15px;
 
     .time-info {
-      color: black;
+      color: $black;
     }
 
     .ios & {
@@ -120,12 +120,25 @@
     color: $white;
   }
 
+  .theme-dark .white-text {
+    color: $black !important;
+  }
+
   .black-text {
     color: $black;
   }
 
+  .theme-dark .black-text {
+    color: $light-gray !important;
+  }
+
   .timeline-year-title, .timeline-month-title {
-    color: black !important;
+    color: $black !important;
+  }
+
+  .theme-dark .timeline-year-title, 
+  .theme-dark .timeline-month-title {
+    color: $light-gray !important;
   }
 
   .timeline-item-date{
@@ -162,7 +175,7 @@
   .hilbert-avatar {
     height: 25vw;
     width: 40vw;
-    background-color: white;
+    background-color: $white;
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
@@ -178,4 +191,20 @@
   .button {
     margin-top: 30px;
   }
+}
+
+.ios .theme-dark .bg-color-white {
+  background-color: $black !important;
+}
+
+.md .theme-dark .bg-color-white {
+  background-color: $black !important;
+}
+
+.theme-dark .cafe-content .friday {
+  border-right-color: $dark-gray !important;
+}
+
+.theme-dark .cafe-content .black-text {
+  color: $light-gray !important;
 }

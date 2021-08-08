@@ -135,3 +135,60 @@
 
 }
 
+/* NOLLNING */
+.nollning-toolbar.toolbar {
+  background: $nollning-red !important;
+
+  &:before {
+    display: none;
+  }
+}
+
+.nollning-content {
+  overflow: hidden;
+}
+
+.adventure-mission .item-title {
+  font-weight: normal !important;
+}
+
+.adventures-highscore-list .item-title {
+  font-weight: normal !important;
+}
+
+.adventures-subnavbar:after {
+  content: none !important;
+}
+
+#chantbook-list {
+  margin-top: 0;
+  margin-bottom: 35px;
+}
+
+#view-nollning .chantbook-fab {
+  margin-bottom: 0;
+}
+
+.adventures-current-list {
+  margin-top: 0 !important;
+}
+
+.swipeout-content .item-media {
+  margin-right: 16px;
+}
+
+a.message-send-button {
+  color: black !important;
+  margin-left: 5px;
+  padding-bottom: 1px;
+}
+
+a.message-send-button:active {
+  opacity: .3;
+  transition-duration: 0s;
+  -webkit-transition-duration: 0s;
+}
+
+.photo-browser-page .navbar, .photo-browser-page .toolbar {
+  background-color: rgba(30, 30, 30, 0.8) !important;
+}

@@ -1,0 +1,88 @@
+.egg-season {
+  display: inline-block;
+  height: 100px;
+  width: 72px;
+}
+
+.egg-season-summer {
+  @extend .egg-season;
+  float:left;
+}
+
+.egg-season-autumn {
+  @extend .egg-season;
+  float:left;
+}
+
+.egg-season-winter {
+  @extend .egg-season;
+  float:right;
+}
+
+.egg-season-spring {
+  @extend .egg-season;
+  float:right;
+}
+
+.egg-season-wrapper {
+  position: absolute;
+  top: 40%;
+  left: 0;
+  width: 100%;
+}
+
+.egg-hilbert-wrapper {
+  display: flex;
+  left: 0;
+  position: absolute;
+  top: 21%;
+  width: 100%;
+}
+
+.egg-horn {
+  display: inline-block;
+  height: 100px;
+  width: 95px;
+}
+
+.egg-horn-left {
+  @extend .egg-horn;
+  float:left;
+  margin-left: calc(50% - 125px);
+}
+
+.egg-horn-right {
+  @extend .egg-horn;
+}
+
+.egg-moose {
+  display: inline-block;
+  height: 160px;
+  width: 65px;
+  margin-top: 2px;
+}
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}
+@keyframes scale {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(2);
+  }
+}
+
+.egg-moose-rotate {
+  animation: rotation 2s infinite linear;
+}
+
+.egg-moose-scale {
+  animation: scale 1.5s alternate infinite ease-in-out;
+}

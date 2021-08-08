@@ -80,11 +80,16 @@
           <a href="#view-calendar" id="cal-btn" class="tab-link">
             <i class="fa fa-calendar" aria-hidden="true"></i>
           </a>
-          <a href="#view-groups" id="msg-btn" class="tab-link">
+          <a href="#view-nollning" id="msg-btn" class="tab-link">
+            <div class="moose-icon">
+              <span class="badge group-badge"></span>
+            </div>
+          </a>
+          <!--<a href="#view-groups" id="msg-btn" class="tab-link">
             <i class="fa fa-comments" aria-hidden="true">
               <span class="badge" id="group-badge"></span>
             </i>
-          </a>
+          </a>-->
           <a href="#view-notifications" id="noti-btn" class="tab-link">
             <i class="fa fa-bell" aria-hidden="true">
               <span class="badge" id="notification-badge"></span>
@@ -155,8 +160,65 @@
           </div>
         </div>
       </div>
+      <!-- Tab 3 (Nollning) -->
+      <div id="view-nollning" class="view tab">
+        <div data-name="nollning" class="page navbar-fixed">
+          <div class="navbar android-hide">
+            <div class="navbar-inner sliding">
+              <div class="title">Nollning</div>
+            </div>
+          </div>
+          <div class="page-content nollning-content">
+            <div class="nollning-background">
+              <div class="nollning-moose-scale">
+                <div class="nollning-moose">
+                  <div id="nollning-moose-btn" class="nollning-stone"></div>
+                </div>
+              </div>
+            </div>
+            <div class="egg-hilbert-wrapper">
+              <div class="egg-horn-left"></div>
+              <div class="egg-moose"></div>
+              <div class="egg-horn-right"></div>
+            </div>
+            <div class="egg-season-wrapper">
+              <div class="egg-season-summer"></div>
+              <div class="egg-season-autumn"></div>
+              <div class="egg-season-winter"></div>
+              <div class="egg-season-spring"></div>
+            </div>
+            <div class="nollning-buttons">
+              <div class="nollning-button-container">
+                <div class="row">
+                  <a href="/adventures/" class="col-33">
+                    <div class="nollning-btn-adventures"></div>
+                  </a>
+                  <a href="/groups/" class="col-33">
+                    <div class="nollning-btn-messages">
+                      <span class="badge group-badge"></span>
+                    </div>
+                  </a>
+                </div>
+                <div class="row">
+                  <a href="/introduction_contacts/" class="col-33">
+                    <div class="nollning-btn-contact"></div>
+                  </a>
+                </div>
+                <div class="row">
+                  <a href="/matrix/" class="col-33">
+                    <div class="nollning-btn-matrix"></div>
+                  </a>
+                  <a href="/chantbook/" class="col-33">
+                    <div class="nollning-btn-chants"></div>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
       <!-- Tab 3 (Messages) -->
-      <div id="view-groups" class="view tab">
+      <!--<div id="view-groups" class="view tab">
         <div data-name="groups" class="page navbar-fixed">
           <div class="navbar android-hide">
             <div class="navbar-inner sliding">
@@ -173,7 +235,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </div>-->
       <!-- Tab 4 (Notifications) -->
       <div id="view-notifications" class="view tab">
         <div data-name="notifications" class="page">
@@ -303,9 +365,164 @@
 
   <!-- Templates -->
   <section id="templates">
- 
-   
-  
+    <!-- NOLLNING TEMPLATES -->
+    <script type="text/template7" id="currentAdventureMissionsHeaderTemplate">
+      <div class="adventures-current-title">
+        {{title}} (v.{{week_number}})
+        <span>{{missions_accepted}} av {{mission_count}}</span>
+      </div>
+      <div class="progressbar adventures-current-progressbar">
+        <span></span>
+      </div>
+      {{#if video}}
+        <div class="accordion-item adventures-accordion">
+          <div class="accordion-item-toggle">
+            <i class="fa fa-plus-circle"></i>
+            <span>Äventyrsvideo</span>
+          </div>
+          <div class="accordion-item-content">
+            <div style="width: calc(100% - 16px); height: 0px; position: relative; padding-bottom: 56.250%; margin-top: 8px;">
+              <iframe src="{{video}}" frameborder="0" width="100%" height="100%" allowfullscreen style="width: 100%; height: 100%; position: absolute; left: 0px; top: 0px; overflow: hidden;"></iframe>
+            </div>
+          </div>
+        </div>
+      {{/if}}
+    </script>
+
+    <script type="text/template7" id="currentAdventureMissionsTemplate">
+      <ul>
+        {{#if is_mentor}}
+          {{#each adventure_missions}}
+            <li data-id="{{id}}" data-max-points="{{max_points}}" data-variable-points="{{variable_points}}"" data-require-acceptance="{{require_acceptance}}"
+                class="swipeout adventure-mission {{#if is_accepted}} adventure-mission-completed {{/if}} {{#if is_pending}} adventure-mission-pending {{/if}}">
+              <div class="swipeout-content">
+                <div class="item-content">
+                  <div class="item-inner">
+                    <div class="item-title-row">
+                      <div class="item-title">{{title}}</div>
+                    </div>
+                    <div class="item-text">{{max_points}} poäng</div>
+                  </div>
+                  {{#if locked}}
+                    <div class="item-media">
+                      <i class="fa fa-lock" />
+                    </div>
+                  {{/if}}
+                </div>
+              </div>
+              <div class="swipeout-actions-left">
+                {{#if require_acceptance}}
+                  <a href="#" class="color-orange swipeout-overswipe complete-adventure-mission">Slutför</a>
+                {{else}}
+                  <a href="#" class="color-green swipeout-overswipe complete-adventure-mission">Slutför</a>
+                {{/if}}
+              </div>
+              <div class="swipeout-actions-right">
+                <a href="#" class="color-red swipeout-overswipe reset-adventure-mission">Återställ</a>
+              </div>
+            </li>
+          {{/each}}
+        {{else}}
+          {{#each adventure_missions}}
+            <li class="item-content adventure-mission {{#if is_finished}} adventure-mission-completed {{/if}}">
+              <div class="item-inner">
+                <div class="item-title-row">
+                  <div class="item-title">{{title}}</div>
+                </div>
+                <div class="item-text">{{max_points}} poäng</div>
+              </div>
+              {{#if locked}}
+                <div class="item-media">
+                  <i class="fa fa-lock" />
+                </div>
+              {{/if}}
+            </li>
+          {{/each}}
+        {{/if}}
+      </ul>
+    </script>
+
+    <script type="text/template7" id="adventureGroupHeaderTemplate">
+      <div class="adventure-group-name">{{group_name}}</div>
+      <div class="adventure-group-points">
+        <div class="adventure-group-points-title">Insamlade poäng<span>{{total_group_points}} / {{max_total_points}}</span></div>
+        <div class="progressbar adventure-group-progressbar">
+          <span></span>
+          <p class="adventure-group-progress">{{points_percent}}%</p>
+        </div>
+      </div>
+    </script>
+
+    <script type="text/template7" id="adventuresHighscoreTemplate">
+      <ul>
+        {{#each groups}}
+          <li>
+            <div class="item-content {{place_class}}">
+              <div class="item-media">
+                {{#if place_class}}
+                  <i class="fa fa-trophy"></i>
+                {{else}}
+                  {{place}}.
+                {{/if}}
+              </div>
+              <div class="item-inner">
+                <div class="item-title-row">
+                  <div class="item-title" lang="en">{{name}}</div>
+                  <div class="item-after">{{total_points}} p</div>
+                </div>
+                <div class="item-text">
+                  {{finished_missions}} avklarade uppdrag
+                </div>
+              </div>
+            </div>
+          </li>
+        {{/each}}
+      </ul>
+    </script>
+
+    <script type="text/template7" id="matrixWeekTemplate">
+      {{#if week}}
+        <div class="timeline-week-container" id="timeline-container-week-{{week}}">
+          <div class="block-title">Vecka {{week}}</div>
+          <div class="timeline timeline-sides" id="timeline-list-week-{{week}}"></div>
+        </div>
+      {{/if}}
+    </script>
+
+    <script type="text/template7" id="matrixEventTemplate">
+      <div class="timeline-item timeline-item-{{side}}">
+        {{#if date}}
+          <div class="timeline-item-date">{{date.getDate()}} <small>{{date.getMonthName()}}</small></div>
+        {{else}}
+          <div class="timeline-item-date"></div>
+        {{/if}}
+        <div class="timeline-item-divider {{event.progress}}"></div>
+        <div class="timeline-item-content">
+          <a href="event/{{event.id}}/" class="timeline-event-container">
+            <div class="timeline-item-time">{{event.time}}</div>
+            <div class="timeline-item-title">{{event.title}}</div>
+            {{#if event.location}}
+              <div class="timeline-item-location">
+                <i class="fa fa-map-marker" aria-hidden="true"></i>
+                {{event.location}}
+              </div>
+            {{/if}}
+            {{#if event.has_signup}}
+              <p class="signup" id="timeline-signup">
+                {{#if event.signup_not_opened_yet}}
+                  <i class="fa fa-user" aria-hidden="true"></i>
+                  Öppnar {{event.event_signup.opens.timeDateString()}}
+                {{else}}
+                  <i class="fa {{event.registered_status_icon}}" aria-hidden="true"></i>
+                  {{event.registered_status}}
+                {{/if}}
+              </p>
+            {{/if}}
+          </a>
+        </div>
+      </div>
+    </script>
+
     <script type="text/template7" id="contactTemplate">
       <select name="contacts">
         {{#each contact}}
@@ -948,6 +1165,11 @@
   <script type="text/javascript" src="js/gallery.js"></script>
   <script type="text/javascript" src="js/album.js"></script>
   <script type="text/javascript" src="js/cafe.js"></script>
+  <script type="text/javascript" src="js/adventures.js"></script>
+  <script type="text/javascript" src="js/nollning.js"></script>
+  <script type="text/javascript" src="js/matrix.js"></script>
+  <script type="text/javascript" src="js/chantbook.js"></script>
+  <script type="text/javascript" src="js/nollningeggs.js"></script>
 </body>
 
 </html>

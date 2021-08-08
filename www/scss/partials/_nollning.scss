@@ -1,0 +1,196 @@
+.nollning-background {
+  background-image: url("../img/nollning_background.png");
+  background-position-x: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+
+  .nollning-left-col {
+    height: 7vh;
+    margin-top: 1vh;
+    width: 43vw;
+  }
+
+  .nollning-right-col {
+    height: 17vh;
+    width: 57vw;
+  }
+
+  .row {
+    justify-content: normal;
+    padding-top: 41.5vh;
+  }
+}
+
+.nollning-btn-messages .group-badge {
+  background: #ffe0b3;
+  border: 1px solid #ffb485;
+  color: $fsek-orange;
+  float: right;
+  font-size: 12px;
+  height: 22px;
+  line-height: 20px;
+  margin-top: 2vw;
+  margin-right: 5px;
+  padding: 0;
+  width: 22px;
+}
+
+.group-badge {
+  margin-right: 5px;
+}
+
+.nollning-btn-adventures {
+  background-image: url("../img/adventure_icon.png");
+  width: 14vh;
+}
+
+.nollning-btn-contact {
+  background-image: url("../img/contact_icon.png");
+  transform: scale(1.15);
+  width: 14vh;
+}
+
+.nollning-btn-matrix {
+  background-image: url("../img/calendar_icon.png");
+  width: 14vh;
+}
+
+.nollning-btn-messages {
+  background-image: url("../img/chat_icon.png");
+  width: 14vh;
+}
+
+.nollning-btn-chants {
+  background-image: url("../img/chants_icon.png");
+  width: 14vh;
+}
+
+.nollning-button-container {
+  margin: auto;
+  margin-top: 2vh;
+  width: 90%;
+
+  .col-33 div {
+    background-position-x: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 11vh;
+  }
+
+  .row {
+    justify-content: center;
+
+    .col-33 {
+      margin-left: 6vw;
+      margin-right: 6vw;
+      width: unset;
+    }
+  }
+}
+
+.nollning-content {
+  background: $nollning-ground;
+  padding-top: 0 !important;
+}
+
+.nollning-buttons {
+  bottom: 2vh;
+  height: 26vh;
+  margin-bottom: 29vw;
+  position: absolute;
+  width: 100%;
+}
+
+.nollning-toolbar.toolbar i {
+  color: #ffcbcb !important;
+}
+
+.tab-link .moose-icon {
+  background-image: url("../img/nollning_moose_icon.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position-x: center;
+  height: 100%;
+  position: relative;
+  transition: 350ms;
+  width: 100%;
+}
+
+.tab-link.tab-link-active .moose-icon {
+  background-image: url("../img/nollning_moose_icon_active.png");
+}
+
+#view-nollning .navbar {
+  background-color: $nollning-red;
+  transition: background-color 200ms ease;
+}
+
+#view-nollning .icon-back {
+  filter: brightness(0) invert(1);
+}
+
+.nollning-moose {
+  background-image: url("../img/nollning_moose.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position-x: center;
+  height: 27vh;
+  margin-top: 20.5vh;
+  position: absolute;
+  pointer-events: none;
+  width: 100vw;
+}
+
+.nollning-moose.nollning-moose-egg {
+  animation: moose-animation 14s infinite;
+}
+
+@keyframes moose-animation {
+  0% {
+    filter: hue-rotate(0deg);
+  }
+
+  50% {
+    filter: hue-rotate(360deg);
+  }
+
+  100% {
+    filter: hue-rotate(0deg);
+  }
+}
+
+#nollning-f-btn {
+  height: 100%;
+  width: 15vh;
+  float: right;
+}
+
+#nollning-moose-btn {
+  height: 56%;
+  margin: auto;
+  padding-top: 21%;
+  pointer-events: auto;
+  width: 11vh;
+}
+
+#nollning-pi-btn {
+  height: 51%;
+  margin-top: 1.5vh;
+  width: 13vh;
+}
+
+#nollning-n-btn {
+  height: 27%;
+  margin-left: 7vh;
+  width: 12vh;
+}
+
+.nollning-tab {
+  background-color: #f6fcff;
+}
+
+@font-face {
+  font-family: Planewalker;
+  src: url("../fonts/Planewalker.otf");
+}

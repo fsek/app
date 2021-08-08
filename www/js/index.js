@@ -115,7 +115,91 @@ var calendarView = app.views.create('#view-calendar', {
   ]
 });
 
+var nollningView = app.views.create('#view-nollning', {
+  routesAdd: [
+    {
+      name: 'adventures',
+      path: '/adventures/',
+      url: './adventures.html',
+      routes: [
+        {
+          name: 'adventure_missions',
+          path: 'adventure_missions/',
+          componentUrl: './adventure_missions.html'
+        }
+      ]
+    },
+    {
+      name: 'groups',
+      path: '/groups/',
+      url: './groups.html',
+      routes: [
+        {
+          name: 'messages',
+          path: 'messages/:groupId/:groupType/:groupName',
+          url: './messages.html',
+          routes: [
+            {
+              name: 'messages_editor',
+              path: 'messages_editor/',
+              url: './messages_editor.html'
+            }
+          ]
+        },
+      ]
+    },
+    {
+      name: 'matrix',
+      path: '/matrix/',
+      url: './matrix.html',
+      routes: [
+        {
+          name: 'event',
+          path: '/event/:eventId',
+          url: './event.html',
+          routes: [
+            {
+              name: 'contact',
+              path: 'contact/:contactId',
+              url: './contact.html',
+            },
+          ]
+        }
+      ]
+    },
+    {
+      name: 'introduction_contacts',
+      path: '/introduction_contacts/',
+      url: './introduction_contacts.html',
+    },
+    {
+      name: 'chantbook',
+      path: '/chantbook/',
+      url: './chantbook.html',
+      routes: [
+        {
+          name: 'song',
+          path: 'song/:songId',
+          url: './song.html'
+        },
+      ]
+    },
+    {
+      name: 'songbook',
+      path: '/songbook/',
+      url: './songbook.html',
+      routes: [
+        {
+          name: 'song',
+          path: 'song/:songId',
+          url: './song.html'
+        }
+      ]
+    },
+  ]
+});
 
+/*
 var groupsView = app.views.create('#view-groups', {
   routesAdd: [
     {
@@ -131,7 +215,7 @@ var groupsView = app.views.create('#view-groups', {
       ]
     },
   ]
-});
+});*/
 
 var notificationsView = app.views.create('#view-notifications', {
   routesAdd: [
@@ -257,7 +341,7 @@ function onBackKey() {
     app.popover.close('.popover.modal-in');
   } else if ($$('.popup').length && !$$('.popup-version-check').length) {
     app.popup.close('.popup');
-  } else if (pageName === 'calendar' || pageName === 'groups' || pageName === 'notifications' || pageName === 'alternatives') {
+  } else if (pageName === 'calendar' || pageName === 'nollning' || pageName === 'notifications' || pageName === 'alternatives') {
     app.tab.show('#view-home');
   } else if (pageName === 'user-page') {
     userBackButton();
